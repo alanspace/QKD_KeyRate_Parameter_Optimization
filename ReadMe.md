@@ -58,29 +58,6 @@ The trained neural network provides a powerful combination of speed and accuracy
   <em>Figure: Comparison of SKR from numerically optimized parameters (solid lines) vs. NN-predicted parameters (markers) for an unseen test case (nx = 5x10⁸). The near-perfect overlap demonstrates the model's high accuracy and generalization.</em>
 </p>
 
-## Repository Structure
-
-
-.
-├── data/
-│ └── qkd_grouped_dataset.json # The generated dataset from optimization runs
-├── models/
-│ ├── bb84_nn_model.pth # The trained PyTorch model weights
-│ ├── scaler.pkl # Scaler for input features
-│ └── y_scaler.pkl # Scaler for target parameters
-├── notebooks/
-│ ├── 1_Data_Generation_and_Analysis.ipynb # Notebook for running optimization and analyzing results
-│ ├── 2_Neural_Network_Training.ipynb # Notebook for training the NN model
-│ └── 3_Evaluation_and_Inference.ipynb # Notebook for evaluating the trained model
-├── src/
-│ ├── qkd_functions.py # Core QKD key rate calculation functions (JAX-based)
-│ ├── model.py # PyTorch NN model definition
-│ └── train.py # Script for training the model
-├── figures/
-│ └── keyrate_comparison_plot.png # Example output figure
-├── requirements.txt # Python dependencies
-└── README.md # This file
-
 
 ## Getting Started
 
