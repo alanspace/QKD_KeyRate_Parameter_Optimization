@@ -53,11 +53,10 @@ The trained neural network provides a powerful combination of speed and accuracy
 - **💡 Excellent Generalization:** The network successfully learned the underlying physics, allowing it to accurately interpolate and predict optimal parameters for conditions it was not explicitly trained on.
 
 <p align="center">
-  <img src="https://github.com/alanspace/QKD_KeyRate_Parameter_Optimization/blob/main/NeuralNetwork/image/keyrate_parameters_5e8.png" alt="Predicted vs Optimized Key Rates" width="80%">
+  <img src="https://github.com/alanspace/QKD_KeyRate_Parameter_Optimization/blob/main/NeuralNetwork/image/keyrate_parameters_5e8.png?raw=true" alt="Predicted vs Optimized Key Rates" width="80%">
   <br>
   <em>Figure: Comparison of SKR from numerically optimized parameters (solid lines) vs. NN-predicted parameters (markers) for an unseen test case (nx = 5x10⁸). The near-perfect overlap demonstrates the model's high accuracy and generalization.</em>
 </p>
-
 
 ## Getting Started
 
@@ -70,8 +69,8 @@ The trained neural network provides a powerful combination of speed and accuracy
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/QKD-ML-Optimization.git
-    cd QKD-ML-Optimization
+    git clone https://github.com/alanspace/QKD_KeyRate_Parameter_Optimization.git
+    cd QKD_KeyRate_Parameter_Optimization
     ```
 
 2.  **Create a virtual environment and activate it:**
@@ -86,17 +85,62 @@ The trained neural network provides a powerful combination of speed and accuracy
     ```
     *Note: Installing JAX and PyTorch with specific hardware acceleration (CUDA/MPS) might require separate commands. Please refer to their official documentation.*
 
-### Usage
+## Usage
 
-1.  **Explore the Data (Optional):** Open `notebooks/1_Data_Generation_and_Analysis.ipynb` to see how the ground-truth dataset was generated and analyzed. Running the optimization from scratch is time-consuming. A pre-generated dataset is available in the `data/` directory.
+This project is organized into three main workflows, each corresponding to a Jupyter notebook in the `notebooks/` directory. Follow them in order to reproduce the results of this study.
 
-2.  **Train the Model (Optional):** Run `notebooks/2_Neural_Network_Training.ipynb` to train the neural network on the dataset. This will save the trained model weights to the `models/` directory.
+### 1. Verification of the Analytical Model
 
-3.  **Perform Fast Inference:** The main application is to use the pre-trained model for instant predictions. Open `notebooks/3_Evaluation_and_Inference.ipynb` to see how to:
-    - Load the trained model and scalers.
-    - Provide new experimental conditions (fiber length, block size, etc.).
-    - Get the predicted optimal QKD parameters in milliseconds.
-    - Evaluate the performance of the predicted parameters.
+**Notebook:** `notebooks/1_Analytical_Verification.ipynb`
+
+This notebook serves as the starting point to verify the core QKD simulation. It calculates and plots the Secret Key Rate (SKR) using a *fixed*, non-optimized set of parameters.
+
+**Purpose:**
+- To ensure the JAX-based implementation of the BB84 decoy-state protocol is correct.
+- To reproduce the expected exponential decay of the key rate with fiber length.
+- To serve as a baseline for comparison against the optimized results.
+
+**How to Run:**
+1.  Open and run the cells in `notebooks/1_Analytical_Verification.ipynb`.
+2.  The script will generate plots showing the SKR vs. fiber length for various block sizes (`n_X`) and save them in the `analytical_result/` directory.
+
+### 2. Data Generation via Numerical Optimization
+
+**Notebook:** `notebooks/2_Optimization_and_Data_Generation.ipynb`
+
+This is the most computationally intensive step. This notebook uses the **Dual Annealing** algorithm to find the optimal QKD parameters (`μ1`, `μ2`, `Pμ1`, `Pμ2`, `Px`) that maximize the SKR for thousands of different scenarios.
+
+**Purpose:**
+- To perform a global search for the best possible parameters across a range of fiber lengths and block sizes.
+- To generate the high-quality "ground truth" dataset that will be used to train the neural network.
+
+**How to Run:**
+- **Warning:** Running this notebook from scratch can take several hours, even with parallel processing.
+- A pre-generated dataset, `qkd_grouped_dataset.json`, is provided in the `data/` directory to allow you to skip this step.
+- To run it yourself, open and execute the cells in `notebooks/2_Optimization_and_Data_Generation.ipynb`. The script will use `joblib` to parallelize the optimization across multiple CPU cores and save the final dataset as a `.json` file.
+
+### 3. Neural Network Training and Evaluation
+
+**Notebook:** `notebooks/3_Neural_Network_Training_and_Evaluation.ipynb`
+
+This is the core machine learning part of the project. It uses the dataset generated in the previous step to train a neural network that can predict optimal parameters instantly.
+
+**Purpose:**
+- To train a feed-forward neural network to learn the complex mapping from experimental conditions to optimal parameters.
+- To evaluate the trained model's accuracy by comparing its predictions against the ground-truth data.
+- To demonstrate the massive speedup of NN inference compared to numerical optimization.
+
+**How to Run:**
+1.  Open and run the cells in `notebooks/3_Neural_Network_Training_and_Evaluation.ipynb`.
+2.  The notebook will:
+    - Load the pre-generated dataset from `data/`.
+    - Pre-process the data and initialize the PyTorch model.
+    - Train the model for 5,000 epochs, leveraging the GPU (MPS on Mac) for acceleration. Training progress will be displayed with a `tqdm` progress bar.
+    - Save the final trained model (`bb84_nn_model.pth`) and data scalers (`scaler.pkl`, `y_scaler.pkl`) to the `models/` directory.
+    - Generate comprehensive plots to evaluate the model's performance, including:
+        - Training and validation loss curves.
+        - Comparison plots of predicted vs. optimized key rates and parameters.
+        - Relative error plots to quantify prediction accuracy.
 
 ## Citation
 
@@ -111,7 +155,6 @@ If you use this work in your research, please cite the original project:
   supervisor   = {Svanberg, Erik and Foletto, Giulio and Adya, Vaishali},
   examiner     = {Gallo, Katia}
 }
-
 
 This work is based on the analytical model presented in:
 
