@@ -137,7 +137,7 @@ This is the core machine learning part of the project. It uses the dataset gener
     - Load the pre-generated dataset from `../Training_Data/n_X/good/cleaned_combined_datasets.json`.
     - Pre-process the data and initialize the PyTorch model.
     - Train the model for 5,000 epochs, leveraging the GPU (MPS on Mac) for acceleration. Training progress will be displayed with a `tqdm` progress bar.
-    - Save the final trained model (`bb84_nn_model.pth`) and data scalers (`scaler.pkl`, `y_scaler.pkl`) to the `models/` directory.
+    - Save the final trained model (`bb84_nn_model.pth`) and data scalers (`models/scaler.pkl`, `models/y_scaler.pkl`) to the `models/` directory.
     - Generate comprehensive plots to evaluate the model's performance, including:
         - Training and validation loss curves.
         - Comparison plots of predicted vs. optimized key rates and parameters.
