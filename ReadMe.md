@@ -53,7 +53,7 @@ The trained neural network provides a powerful combination of speed and accuracy
 - **💡 Excellent Generalization:** The network successfully learned the underlying physics, allowing it to accurately interpolate and predict optimal parameters for conditions it was not explicitly trained on.
 
 <p align="center">
-  <img src="https://i.imgur.com/e58Y3hX.png" alt="Predicted vs Optimized Key Rates" width="80%">
+  <img src="https://github.com/alanspace/QKD_KeyRate_Parameter_Optimization/blob/main/NeuralNetwork/image/keyrate_parameters_5e8.png" alt="Predicted vs Optimized Key Rates" width="80%">
   <br>
   <em>Figure: Comparison of SKR from numerically optimized parameters (solid lines) vs. NN-predicted parameters (markers) for an unseen test case (nx = 5x10⁸). The near-perfect overlap demonstrates the model's high accuracy and generalization.</em>
 </p>
