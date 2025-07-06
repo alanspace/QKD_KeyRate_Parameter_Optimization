@@ -88,11 +88,11 @@ The trained neural network provides a powerful combination of speed and accuracy
 
 ## Usage
 
-This project is organized into three main workflows, each corresponding to a Jupyter notebook in the `notebooks/` directory. Follow them in order to reproduce the results of this study.
+This project is organized into three main workflows, each corresponding to a Jupyter notebook in the `Analysis`,  `Optimization`,  `NeuralNetwork` directory. Follow them in order to reproduce the results of this study.
 
 ### 1. Verification of the Analytical Model
 
-**Notebook:** `notebooks/1_Analytical_Verification.ipynb`
+**Notebook:** `Analysis/BB84_Parameters_2014_Analysis_Jax.ipynb`
 
 This notebook serves as the starting point to verify the core QKD simulation. It calculates and plots the Secret Key Rate (SKR) using a *fixed*, non-optimized set of parameters.
 
@@ -102,12 +102,12 @@ This notebook serves as the starting point to verify the core QKD simulation. It
 - To serve as a baseline for comparison against the optimized results.
 
 **How to Run:**
-1.  Open and run the cells in `notebooks/1_Analytical_Verification.ipynb`.
+1.  Open and run the cells in `Analysis/BB84_Parameters_2014_Analysis_Jax.ipynb`.
 2.  The script will generate plots showing the SKR vs. fiber length for various block sizes (`n_X`) and save them in the `analytical_result/` directory.
 
 ### 2. Data Generation via Numerical Optimization
 
-**Notebook:** `notebooks/2_Optimization_and_Data_Generation.ipynb`
+**Notebook:** `Optimization/BB84_Parameters_2014_Optimization_Jax_updated.ipynb`
 
 This is the most computationally intensive step. This notebook uses the **Dual Annealing** algorithm to find the optimal QKD parameters (`μ1`, `μ2`, `Pμ1`, `Pμ2`, `Px`) that maximize the SKR for thousands of different scenarios.
 
@@ -118,11 +118,11 @@ This is the most computationally intensive step. This notebook uses the **Dual A
 **How to Run:**
 - **Warning:** Running this notebook from scratch can take several hours, even with parallel processing.
 - A pre-generated dataset, `qkd_grouped_dataset.json`, is provided in the `data/` directory to allow you to skip this step.
-- To run it yourself, open and execute the cells in `notebooks/2_Optimization_and_Data_Generation.ipynb`. The script will use `joblib` to parallelize the optimization across multiple CPU cores and save the final dataset as a `.json` file.
+- To run it yourself, open and execute the cells in `Optimization/BB84_Parameters_2014_Optimization_Jax_updated.ipynb`. The script will use `joblib` to parallelize the optimization across multiple CPU cores and save the final dataset as a `.json` file.
 
 ### 3. Neural Network Training and Evaluation
 
-**Notebook:** `notebooks/3_Neural_Network_Training_and_Evaluation.ipynb`
+**Notebook:** `NeuralNetwork/neural_network_updated.ipynb`
 
 This is the core machine learning part of the project. It uses the dataset generated in the previous step to train a neural network that can predict optimal parameters instantly.
 
@@ -132,7 +132,7 @@ This is the core machine learning part of the project. It uses the dataset gener
 - To demonstrate the massive speedup of NN inference compared to numerical optimization.
 
 **How to Run:**
-1.  Open and run the cells in `notebooks/3_Neural_Network_Training_and_Evaluation.ipynb`.
+1.  Open and run the cells in `NeuralNetwork/neural_network_updated.ipynb`.
 2.  The notebook will:
     - Load the pre-generated dataset from `data/`.
     - Pre-process the data and initialize the PyTorch model.
