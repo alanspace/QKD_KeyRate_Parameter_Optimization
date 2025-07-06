@@ -1,0 +1,7602 @@
+[
+  {
+    "fiber_length": 1e-12,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 0.5012531328330777,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 1.0025062656651553,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 1.503759398497233,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 2.0050125313293106,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 2.5062656641613885,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 3.007518796993466,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 3.5087719298255435,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 4.010025062657621,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 4.511278195489699,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 5.012531328321777,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 5.513784461153855,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 6.015037593985932,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 6.516290726818009,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 7.017543859650087,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 7.518796992482166,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 8.020050125314242,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 8.52130325814632,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 9.022556390978398,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 9.523809523810476,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 10.025062656642554,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 10.52631578947463,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 11.02756892230671,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 11.528822055138786,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 12.030075187970864,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 12.531328320802942,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 13.032581453635018,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 13.533834586467098,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 14.035087719299174,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 14.536340852131252,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 15.037593984963332,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 15.538847117795408,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 16.040100250627486,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 16.541353383459562,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 17.042606516291638,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 17.543859649123718,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 18.045112781955794,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 18.546365914787874,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 19.047619047619953,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 19.54887218045203,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 20.050125313284106,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 20.551378446116185,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 21.05263157894826,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 21.553884711780338,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 22.055137844612418,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 22.556390977444497,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 23.057644110276573,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 23.55889724310865,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 24.06015037594073,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 24.561403508772806,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 25.06265664160488,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 25.563909774436958,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 26.065162907269038,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 26.566416040101117,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 27.067669172933194,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 27.568922305765273,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 28.07017543859735,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 28.571428571429426,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 29.072681704261505,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 29.57393483709358,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 30.07518796992566,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 30.576441102757737,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 31.077694235589817,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 31.578947368421893,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 32.08020050125397,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 32.58145363408605,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 33.08270676691812,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 33.583959899750205,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 34.08521303258228,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 34.58646616541436,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 35.087719298246434,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 35.58897243107852,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 36.090225563910586,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 36.59147869674267,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 37.09273182957475,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 37.59398496240682,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 38.095238095238905,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 38.59649122807098,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 39.09774436090306,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 39.59899749373513,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 40.10025062656722,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 40.60150375939929,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 41.10275689223137,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 41.604010025063445,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 42.10526315789552,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 42.606516290727605,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 43.107769423559674,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 43.60902255639176,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 44.11027568922384,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 44.61152882205591,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 45.11278195488799,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 45.61403508772007,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 46.115288220552145,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 46.61654135338422,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 47.117794486216305,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 47.619047619048374,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 48.12030075188046,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 48.62155388471254,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 49.12280701754461,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 49.62406015037669,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 50.12531328320876,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 50.626566416040845,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 51.12781954887292,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 51.629072681705,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 52.13032581453707,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 52.63157894736916,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 53.13283208020123,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 53.63408521303331,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 54.13533834586539,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 54.63659147869746,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 55.137844611529545,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 55.63909774436162,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 56.1403508771937,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 56.64160401002578,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 57.142857142857856,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 57.64411027568993,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 58.14536340852201,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 58.646616541354085,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 59.14786967418616,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 59.649122807018244,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 60.15037593985032,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 60.6516290726824,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 61.15288220551448,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 61.65413533834655,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 62.15538847117863,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 62.65664160401071,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 63.157894736842785,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 63.65914786967486,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 64.16040100250694,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 64.66165413533902,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 65.1629072681711,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 65.66416040100317,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 66.16541353383525,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 66.66666666666733,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 67.16791979949942,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 67.66917293233149,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 68.17042606516355,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 68.67167919799564,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 69.17293233082772,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 69.6741854636598,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 70.17543859649187,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 70.67669172932396,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 71.17794486215602,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 71.6791979949881,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 72.18045112782018,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 72.68170426065227,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 73.18295739348434,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 73.6842105263164,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 74.1854636591485,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 74.68671679198057,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 75.18796992481265,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 75.68922305764472,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 76.19047619047682,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 76.69172932330888,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 77.19298245614095,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 77.69423558897304,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 78.19548872180512,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 78.6967418546372,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 79.19799498746927,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 79.69924812030135,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 80.20050125313342,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 80.7017543859655,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 81.20300751879759,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 81.70426065162967,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 82.20551378446173,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 82.7067669172938,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 83.2080200501259,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 83.70927318295797,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 84.21052631579005,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 84.71177944862214,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 85.2130325814542,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 85.71428571428628,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 86.21553884711835,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 86.71679197995044,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 87.21804511278252,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 87.7192982456146,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 88.22055137844667,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 88.72180451127875,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 89.22305764411082,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 89.7243107769429,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 90.22556390977499,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 90.72681704260705,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 91.22807017543913,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 91.7293233082712,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 92.2305764411033,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 92.73182957393537,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 93.23308270676745,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 93.73433583959952,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 94.2355889724316,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 94.73684210526368,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 95.23809523809575,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 95.73934837092784,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 96.24060150375992,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 96.74185463659198,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 97.24310776942407,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 97.74436090225615,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 98.24561403508822,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 98.7468671679203,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 99.24812030075238,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 99.74937343358445,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 100.25062656641653,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 100.75187969924862,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 101.2531328320807,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 101.75438596491277,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 102.25563909774483,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 102.75689223057692,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 103.258145363409,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 103.75939849624108,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 104.26065162907315,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 104.76190476190524,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 105.2631578947373,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 105.76441102756938,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 106.26566416040147,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 106.76691729323355,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 107.26817042606562,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 107.76942355889769,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 108.27067669172978,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 108.77192982456185,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 109.27318295739393,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 109.77443609022602,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 110.2756892230581,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 110.77694235589016,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 111.27819548872223,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 111.77944862155432,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 112.2807017543864,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 112.78195488721848,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 113.28320802005057,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 113.78446115288263,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 114.2857142857147,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 114.78696741854678,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 115.28822055137887,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 115.78947368421095,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 116.29072681704301,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 116.7919799498751,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 117.29323308270718,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 117.79448621553925,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 118.29573934837133,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 118.79699248120342,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 119.29824561403548,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 119.79949874686756,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 120.30075187969965,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 120.80200501253172,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 121.3032581453638,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 121.80451127819587,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 122.30576441102795,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 122.80701754386003,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 123.3082706766921,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 123.80952380952418,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 124.31077694235627,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 124.81203007518833,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 125.31328320802041,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 125.8145363408525,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 126.31578947368457,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 126.81704260651665,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 127.31829573934873,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 127.8195488721808,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 128.3208020050129,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 128.82205513784498,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 129.32330827067702,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 129.8245614035091,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 130.3258145363412,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 130.82706766917326,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 131.32832080200535,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 131.8295739348374,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 132.3308270676695,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 132.8320802005016,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 133.33333333333366,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 133.83458646616575,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 134.33583959899784,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 134.83709273182987,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 135.33834586466196,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 135.83959899749405,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 136.3408521303261,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 136.8421052631582,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 137.3433583959903,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 137.84461152882236,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 138.34586466165445,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 138.8471177944865,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 139.3483709273186,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 139.8496240601507,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 140.35087719298272,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 140.8521303258148,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 141.3533834586469,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 141.85463659147896,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 142.35588972431106,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 142.85714285714315,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 143.3583959899752,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 143.8596491228073,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 144.36090225563936,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 144.86215538847145,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 145.36340852130354,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 145.8646616541356,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 146.36591478696766,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 146.86716791979975,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 147.36842105263182,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 147.8696741854639,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 148.370927318296,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 148.87218045112806,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 149.37343358396015,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 149.87468671679224,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 150.3759398496243,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 150.8771929824564,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 151.37844611528845,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 151.87969924812052,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 152.3809523809526,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 152.88220551378467,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 153.38345864661676,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 153.88471177944885,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 154.3859649122809,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 154.887218045113,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 155.3884711779451,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 155.88972431077715,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 156.39097744360924,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 156.89223057644134,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 157.39348370927337,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 157.89473684210546,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 158.39598997493752,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 158.8972431077696,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 159.3984962406017,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 159.89974937343376,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 160.40100250626585,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 160.90225563909794,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 161.40350877193,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 161.9047619047621,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 162.4060150375942,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 162.90726817042625,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 163.4085213032583,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 163.90977443609037,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 164.41102756892246,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 164.91228070175455,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 165.41353383458662,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 165.9147869674187,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 166.4160401002508,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 166.91729323308286,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 167.41854636591495,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 167.91979949874704,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 168.4210526315791,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 168.92230576441116,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 169.42355889724325,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 169.92481203007532,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 170.4260651629074,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 170.92731829573947,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 171.42857142857156,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 171.92982456140365,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 172.4310776942357,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 172.9323308270678,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 173.4335839598999,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 173.93483709273195,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 174.43609022556402,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 174.9373433583961,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 175.43859649122817,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 175.93984962406026,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 176.44110275689235,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 176.9423558897244,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 177.4436090225565,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 177.94486215538856,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 178.44611528822065,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 178.94736842105274,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 179.4486215538848,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 179.9498746867169,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 180.45112781954896,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 180.95238095238102,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 181.4536340852131,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 181.9548872180452,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 182.45614035087726,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 182.95739348370935,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 183.45864661654142,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 183.9598997493735,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 184.4611528822056,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 184.96240601503766,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 185.46365914786975,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 185.9649122807018,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 186.46616541353387,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 186.96741854636596,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 187.46867167919805,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 187.96992481203011,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 188.4711779448622,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 188.9724310776943,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 189.47368421052636,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 189.97493734335845,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 190.4761904761905,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 190.9774436090226,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 191.47869674185466,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 191.97994987468672,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 192.48120300751881,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 192.9824561403509,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 193.48370927318297,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 193.98496240601506,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 194.48621553884715,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 194.9874686716792,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 195.4887218045113,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 195.98997493734336,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 196.49122807017545,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 196.99248120300754,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 197.49373433583958,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 197.99498746867167,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 198.49624060150376,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 198.99749373433582,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 199.4987468671679,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  },
+  {
+    "fiber_length": 200.0,
+    "n_X": 1000000,
+    "key_rate": NaN,
+    "optimized_parameters": {
+      "mu_1": NaN,
+      "mu_2": NaN,
+      "P_mu_1": NaN,
+      "P_mu_2": NaN,
+      "P_X_value": NaN
+    },
+    "initial_guess": {
+      "mu_1": 0.325684,
+      "mu_2": 0.008542,
+      "P_mu_1": 0.601268,
+      "P_mu_2": 0.810905,
+      "P_X_value": 0.681594
+    }
+  }
+]
