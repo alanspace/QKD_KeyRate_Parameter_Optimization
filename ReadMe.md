@@ -117,7 +117,7 @@ This is the most computationally intensive step. This notebook uses the **Dual A
 
 **How to Run:**
 - **Warning:** Running this notebook from scratch can take several hours, even with parallel processing.
-- A pre-generated dataset, `qkd_grouped_dataset.json`, is provided in the `data/` directory to allow you to skip this step.
+- A pre-generated dataset, `qkd_grouped_dataset_{timestamp}.json`, is provided in the `generated_dataset/` directory to allow you to skip this step.
 - To run it yourself, open and execute the cells in `Optimization/BB84_Parameters_2014_Optimization_Jax_updated.ipynb`. The script will use `joblib` to parallelize the optimization across multiple CPU cores and save the final dataset as a `.json` file.
 
 ### 3. Neural Network Training and Evaluation
