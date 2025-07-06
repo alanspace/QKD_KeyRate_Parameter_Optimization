@@ -58,72 +58,7 @@ The trained neural network provides a powerful combination of speed and accuracy
   <em>Figure: Comparison of SKR from numerically optimized parameters (solid lines) vs. NN-predicted parameters (markers) for an unseen test case (nx = 5x10⁸). The near-perfect overlap demonstrates the model's high accuracy and generalization.</em>
 </p>
 
-## Getting Started
 
-### Prerequisites
-
-- Python 3.9 or higher
-- GPU support for PyTorch is highly recommended for training (e.g., NVIDIA with CUDA or Apple Silicon with MPS).
-
-### Installation
-
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/alanspace/QKD_KeyRate_Parameter_Optimization.git
-    cd QKD_KeyRate_Parameter_Optimization
-    ```
-
-2.  **Create a virtual environment and activate it:**
-    ```bash
-    python -m venv qkd
-    source qkd/bin/activate  # On Windows, use `qkd\Scripts\activate`
-    ```
-
-3.  **Install the required dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-    *Note: Installing JAX and PyTorch with specific hardware acceleration (CUDA/MPS) might require separate commands. Please refer to their official documentation.*
-
-## Usage
-
-This project is organized into three main workflows, each corresponding to a Jupyter notebook in the `notebooks/` directory. Follow them in order to reproduce the results of this study.
-
-### 1. Verification of the Analytical Model
-
-**Notebook:** `notebooks/1_Analytical_Verification.ipynb`
-
-This notebook serves as the starting point to verify the core QKD simulation. It calculates and plots the Secret Key Rate (SKR) using a *fixed*, non-optimized set of parameters.
-
-**Purpose:**
-- To ensure the JAX-based implementation of the BB84 decoy-state protocol is correct.
-- To reproduce the expected exponential decay of the key rate with fiber length.
-- To serve as a baseline for comparison against the optimized results.
-
-**How to Run:**
-1.  Open and run the cells in `notebooks/1_Analytical_Verification.ipynb`.
-2.  The script will generate plots showing the SKR vs. fiber length for various block sizes (`n_X`) and save them in the `analytical_result/` directory.
-
-### 2. Data Generation via Numerical Optimization
-
-**Notebook:** `notebooks/2_Optimization_and_Data_Generation.ipynb`
-
-This is the most computationally intensive step. This notebook uses the **Dual Annealing** algorithm to find the optimal QKD parameters (`μ1`, `μ2`, `Pμ1`, `Pμ2`, `Px`) that maximize the SKR for thousands of different scenarios.
-
-**Purpose:**
-- To perform a global search for the best possible parameters across a range of fiber lengths and block sizes.
-- To generate the high-quality "ground truth" dataset that will be used to train the neural network.
-
-**How to Run:**
-- **Warning:** Running this notebook from scratch can take several hours, even with parallel processing.
-- A pre-generated dataset, `qkd_grouped_dataset.json`, is provided in the `data/` directory to allow you to skip this step.
-- To run it yourself, open and execute the cells in `notebooks/2_Optimization_and_Data_Generation.ipynb`. The script will use `joblib` to parallelize the optimization across multiple CPU cores and save the final dataset as a `.json` file.
-
-### 3. Neural Network Training and Evaluation
-
-**Notebook:** `notebooks/3_Neural_Network_Training_and_Evaluation.ipynb`
-
-This is the core machine learning part of the project. It uses the dataset ge
 ## Getting Started
 
 ### Prerequisites
@@ -220,41 +155,11 @@ If you use this work in your research, please cite the original project:
   year         = {2024},
   supervisor   = {Svanberg, Erik and Foletto, Giulio and Adya, Vaishali},
   examiner     = {Gallo, Katia}
-}nerated in the previous step to train a neural network that can predict optimal parameters instantly.
-
-**Purpose:**
-- To train a feed-forward neural network to learn the complex mapping from experimental conditions to optimal parameters.
-- To evaluate the trained model's accuracy by comparing its predictions against the ground-truth data.
-- To demonstrate the massive speedup of NN inference compared to numerical optimization.
-
-**How to Run:**
-1.  Open and run the cells in `notebooks/3_Neural_Network_Training_and_Evaluation.ipynb`.
-2.  The notebook will:
-    - Load the pre-generated dataset from `data/`.
-    - Pre-process the data and initialize the PyTorch model.
-    - Train the model for 5,000 epochs, leveraging the GPU (MPS on Mac) for acceleration. Training progress will be displayed with a `tqdm` progress bar.
-    - Save the final trained model (`bb84_nn_model.pth`) and data scalers (`scaler.pkl`, `y_scaler.pkl`) to the `models/` directory.
-    - Generate comprehensive plots to evaluate the model's performance, including:
-        - Training and validation loss curves.
-        - Comparison plots of predicted vs. optimized key rates and parameters.
-        - Relative error plots to quantify prediction accuracy.
-
-## Citation
-
-If you use this work in your research, please cite the original project:
-
-```bibtex
-@mastersthesis{leung2024mlqkd,
-  author       = {Leung, Shek Lun},
-  title        = {Machine Learning for Quantum Key Distribution Network Optimization},
-  school       = {KTH Royal Institute of Technology},
-  year         = {2024},
-  supervisor   = {Svanberg, Erik and Foletto, Giulio and Adya, Vaishali},
-  examiner     = {Gallo, Katia}
 }
+
+
 
 This work is based on the analytical model presented in:
 
 Lim, C. C. W., et al. (2014). "Concise security bounds for practical decoy-state quantum key distribution". Physical Review A, 89(2), 022307.
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+
