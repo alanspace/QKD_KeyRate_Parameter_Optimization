@@ -134,7 +134,7 @@ This is the core machine learning part of the project. It uses the dataset gener
 **How to Run:**
 1.  Open and run the cells in `NeuralNetwork/neural_network_updated.ipynb`.
 2.  The notebook will:
-    - Load the pre-generated dataset from `data/`.
+    - Load the pre-generated dataset from `../Training_Data/n_X/good/cleaned_combined_datasets.json`.
     - Pre-process the data and initialize the PyTorch model.
     - Train the model for 5,000 epochs, leveraging the GPU (MPS on Mac) for acceleration. Training progress will be displayed with a `tqdm` progress bar.
     - Save the final trained model (`bb84_nn_model.pth`) and data scalers (`scaler.pkl`, `y_scaler.pkl`) to the `models/` directory.
