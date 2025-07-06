@@ -76,8 +76,8 @@ The trained neural network provides a powerful combination of speed and accuracy
 
 2.  **Create a virtual environment and activate it:**
     ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    python -m venv qkd
+    source qkd/bin/activate  # On Windows, use `qkd\Scripts\activate`
     ```
 
 3.  **Install the required dependencies:**
