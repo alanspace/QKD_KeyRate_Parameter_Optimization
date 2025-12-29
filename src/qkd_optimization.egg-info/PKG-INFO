@@ -1,3 +1,25 @@
+Metadata-Version: 2.4
+Name: qkd-optimization
+Version: 0.1.0
+Summary: Machine Learning for Quantum Key Distribution Network Optimization
+Author-email: Shek Lun Leung <your.email@example.com>
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: torch
+Requires-Dist: scikit-learn
+Requires-Dist: joblib
+Requires-Dist: jax
+Requires-Dist: jaxlib
+Requires-Dist: matplotlib
+Requires-Dist: tqdm
+Requires-Dist: tqdm-joblib
+
 # Machine Learning for Quantum Key Distribution Network Optimization
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)

@@ -1,0 +1,22 @@
+name: qkd-opt
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy
+  - scipy
+  - pandas
+  - pytorch
+  - scikit-learn
+  - joblib
+  - matplotlib
+  - tqdm
+  - pip
+  - pip:
+      - jax
+      - jaxlib
+      - jax-metal
+      - tqdm-joblib
+      - -e .

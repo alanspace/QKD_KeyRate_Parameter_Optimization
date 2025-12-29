@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qkd-optimization"
+version = "0.1.0"
+authors = [
+  { name="Shek Lun Leung", email="your.email@example.com" },
+]
+description = "Machine Learning for Quantum Key Distribution Network Optimization"
+readme = "ReadMe.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "numpy",
+    "scipy",
+    "pandas",
+    "torch",
+    "scikit-learn",
+    "joblib",
+    "jax",
+    "jaxlib",
+    "matplotlib",
+    "tqdm",
+    "tqdm-joblib"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

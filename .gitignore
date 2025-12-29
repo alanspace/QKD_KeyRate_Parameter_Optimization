@@ -1,0 +1,28 @@
+# System files
+.DS_Store
+.checkpoints
+.env
+
+# Python compilation
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+venv/
+env/
+.venv/
+.conda/
+qkd-opt/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/
+
+# Optimization artifacts (Large data)
+generated_dataset/
+*.json
+!**/Training_Data/**/*.json  # Keep training data if it's small/critical, otherwise ignore
