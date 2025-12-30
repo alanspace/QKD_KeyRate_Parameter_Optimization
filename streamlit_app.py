@@ -21,11 +21,22 @@ st.set_page_config(
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(current_dir)
 
-# Import Physics Engine (Numpy Version for Cloud Compatibility)
+# ==========================================
+# 2. HYBRID PHYSICS ENGINE LOADING
+# ==========================================
+# Try loading JAX (Fast/GPU) first, fall back to Numpy (Cloud/CPU)
+engine_type = "Unknown"
 try:
-    from src.qkd.model_numpy import calculate_key_rates_and_metrics
+    import jax
+    from src.qkd.model import calculate_key_rates_and_metrics
+    engine_type = "🚀 JAX (High Performance)"
+    print("Success: Loaded JAX engine.")
 except ImportError:
-    st.error("Could not import logic from `src`. Make sure you are running this from the project root.")
+    from src.qkd.model_numpy import calculate_key_rates_and_metrics
+    engine_type = "☁️ Numpy (Cloud Compatibility)"
+    print("Fallback: Loaded Numpy engine.")
+except Exception as e:
+    st.error(f"Critical Error loading physics engine: {e}")
     st.stop()
 
 # ==========================================
@@ -84,9 +95,9 @@ model, scaler, y_scaler = load_resources()
 # 4. UI LAYOUT
 # ==========================================
 st.title("⚡️ QKD Parameter Optimizer")
-st.markdown("""
-This tool uses a **Neural Network (270x faster than Dual Annealing)** to predict the optimal operating parameters 
-for Decoy-State BB84 Quantum Key Distribution.
+st.markdown(f"""
+This tool uses a **Neural Network (270x faster than Dual Annealing)** to predict the optimal operating parameters.
+Running on: **{engine_type}**
 """)
 
 col1, col2 = st.columns([1, 2])
