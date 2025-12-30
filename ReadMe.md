@@ -112,6 +112,18 @@ This is the easiest way to get everything running with GPU acceleration (`jax-me
     python -m unittest discover tests
     ```
 
+### 3. Run the Web App Demo 🚀
+Experience real-time AI optimization in your browser:
+
+1.  **Start the server:**
+    ```bash
+    python BB84_Web_App/server.py
+    ```
+2.  **Open your browser:**
+    Navigate to `http://localhost:8080`.
+3.  **Optimize:**
+    Enter any fiber length (e.g., 50km) and block size to see the neural network instantly predict the optimal parameters and visualize the secret key rate curve.
+
 ## Usage
 
 This project is organized into three main workflows, each corresponding to a Jupyter notebook in the `Analysis`,  `Optimization`,  `NeuralNetwork` directory. Follow them in order to reproduce the results of this study.

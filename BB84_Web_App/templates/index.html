@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QKD Parameter Optimizer</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f4f6f8;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 800px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .form-section {
+            flex: 1;
+        }
+
+        .chart-section {
+            flex: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #1a73e8;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: #1a73e8;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #1557b0;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f0fe;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .result-item strong {
+            color: #1a73e8;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 300px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-section">
+            <h1>QKD Optimizer ⚡️</h1>
+            <div class="form-group">
+                <label>Fiber Length (km)</label>
+                <input type="number" id="fiber_length" value="50" step="0.1">
+            </div>
+            <div class="form-group">
+                <label>Block Size (n_x)</label>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span>10^</span>
+                    <input type="number" id="n_x_exp" value="8" min="5" max="11" step="0.1" style="width: 80px;"
+                        oninput="updateNxVal()">
+                    <span id="n_x_val" style="font-size: 12px; color: #666;">(100,000,000)</span>
+                </div>
+            </div>
+            <button onclick="optimize()">Optimize (AI Inference)</button>
+
+            <div id="result">
+                <div class="result-item"><span>Signal (μ1):</span> <strong id="mu1">-</strong></div>
+                <div class="result-item"><span>Decoy (μ2):</span> <strong id="mu2">-</strong></div>
+                <div class="result-item"><span>P(μ1):</span> <strong id="pmu1">-</strong></div>
+                <div class="result-item"><span>P(μ2):</span> <strong id="pmu2">-</strong></div>
+                <div class="result-item"><span>Basis (Px):</span> <strong id="px">-</strong></div>
+                <div style="font-size: 12px; margin-top: 10px; text-align: center; color: #666;">Inference time: <
+                        5ms</div>
+                </div>
+            </div>
+            <div class="chart-section">
+                <canvas id="keyRateChart"></canvas>
+            </div>
+        </div>
+
+        <script>
+            let chart = null;
+
+            function updateNxVal() {
+                const exp = document.getElementById('n_x_exp').value;
+                const val = Math.pow(10, exp);
+                document.getElementById('n_x_val').textContent = `(${val.toLocaleString()})`;
+            }
+
+            async function optimize() {
+                const btn = document.querySelector('button');
+                const resultDiv = document.getElementById('result');
+                btn.textContent = 'Optimizing...';
+                btn.disabled = true;
+
+                const length = document.getElementById('fiber_length').value;
+                const nx_exp = document.getElementById('n_x_exp').value;
+                const nx = Math.pow(10, nx_exp);
+
+                try {
+                    // Parallel requests: Prediction + Plot Data
+                    const [predRes, plotRes] = await Promise.all([
+                        fetch('/predict', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ fiber_length: length, n_x: nx })
+                        }),
+                        fetch('/plot_data', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ fiber_length: length, n_x: nx })
+                        })
+                    ]);
+
+                    const data = await predRes.json();
+                    const plotData = await plotRes.json();
+
+                    if (data.status === 'success' && plotData.status === 'success') {
+                        // Update Numbers
+                        document.getElementById('mu1').textContent = data.results.mu1.toFixed(3);
+                        document.getElementById('mu2').textContent = data.results.mu2.toFixed(3);
+                        document.getElementById('pmu1').textContent = data.results.P_mu1.toFixed(3);
+                        document.getElementById('pmu2').textContent = data.results.P_mu2.toFixed(3);
+                        document.getElementById('px').textContent = data.results.P_x.toFixed(3);
+                        resultDiv.style.display = 'block';
+
+                        // Update Chart
+                        drawChart(plotData.curve_x, plotData.curve_y, plotData.point_x, data.results.P_x);
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                } catch (e) {
+                    console.error(e);
+                    alert('Network error');
+                } finally {
+                    btn.textContent = 'Optimize (AI Inference)';
+                    btn.disabled = false;
+                }
+            }
+
+            function drawChart(labels, dataPoints, currentX, currentPredictionInfo) {
+                const ctx = document.getElementById('keyRateChart').getContext('2d');
+
+                // Find y-value for current X on the curve roughly
+                // Simple interpolation for display
+                let currentY = 0;
+                // Need to find which index matches currentX
+                // labels are [0, ..., 160]
+                // We find the closest index to currentX
+                const closestIndex = labels.reduce((prev, curr, index) => Math.abs(curr - currentX) < Math.abs(labels[prev] - currentX) ? index : prev, 0);
+                currentY = dataPoints[closestIndex];
+
+                if (chart) {
+                    chart.destroy();
+                }
+
+                chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels.map(x => x.toFixed(0)),
+                        datasets: [{
+                            label: 'Theoretical Key Rate (Secret Bits / Pulse)',
+                            data: dataPoints,
+                            borderColor: '#1a73e8',
+                            backgroundColor: 'rgba(26, 115, 232, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            pointRadius: 0
+                        }, {
+                            label: 'Optimized Point',
+                            data: labels.map((x, i) => i === closestIndex ? currentY : null),
+                            pointBackgroundColor: '#ff5252',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 6,
+                            showLine: false
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { position: 'bottom' },
+                            title: { display: true, text: 'Secret Key Rate vs Distance' }
+                        },
+                        scales: {
+                            x: { title: { display: true, text: 'Fiber Length (km)' } },
+                            y: {
+                                title: { display: true, text: 'Key Rate' },
+                                type: 'logarithmic'
+                            }
+                        }
+                    }
+                });
+            }
+        </script>
+</body>
+
+</html>
