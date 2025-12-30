@@ -5,7 +5,6 @@ import torch.nn as nn
 import os
 import sys
 import joblib
-import jax
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -22,9 +21,9 @@ st.set_page_config(
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(current_dir)
 
-# Import Physics Engine (Critical)
+# Import Physics Engine (Numpy Version for Cloud Compatibility)
 try:
-    from src.qkd.model import calculate_key_rates_and_metrics
+    from src.qkd.model_numpy import calculate_key_rates_and_metrics
 except ImportError:
     st.error("Could not import logic from `src`. Make sure you are running this from the project root.")
     st.stop()
