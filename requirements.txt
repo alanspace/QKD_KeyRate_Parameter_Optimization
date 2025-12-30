@@ -5,8 +5,8 @@ pandas
 torch
 scikit-learn
 joblib
-jax
-jaxlib
+jax<=0.4.38
+jaxlib<=0.4.38
 matplotlib
 tqdm
 tqdm-joblib
