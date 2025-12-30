@@ -1,18 +1,12 @@
-# Core Scientific Computing
-numpy
+streamlit
+numpy<2.0.0
 scipy
 pandas
-
-# Machine Learning & Deep Learning
 torch
 scikit-learn
 joblib
-
-# High-Performance Computing
 jax
 jaxlib
-
-# Plotting & Progress Bars
 matplotlib
 tqdm
 tqdm-joblib
