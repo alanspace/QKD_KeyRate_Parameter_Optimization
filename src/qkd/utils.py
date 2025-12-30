@@ -1,5 +1,8 @@
 import numpy as np
-import jax.numpy as jnp
+try:
+    import jax.numpy as jnp
+except ImportError:
+    import numpy as jnp
 
 def experimental_parameters():
     """
