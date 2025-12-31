@@ -8,7 +8,15 @@
 
 This repository contains the code and analysis for the project "Machine Learning for Quantum Key Distribution Network Optimization," which investigates the use of neural networks (NNs) to accelerate the parameter optimization of decoy-state BB84 QKD systems.
 
+
+## 🚀 Live Demo
+
+Try the interactive optimization web app here: [**Launch App**](https://appapppy-jcrvkdozjbapjtbgujxutu.streamlit.app/)
+
+![App Demo](BB84_Web_App/demo_image.png)
+
 ## 🛠️ Software Engineering & Architecture
+
 
 To meet industry standards for reliability and maintainability, this project has been engineered as a robust Python package (`qkd-optimization`) rather than a collection of loose scripts.
 
