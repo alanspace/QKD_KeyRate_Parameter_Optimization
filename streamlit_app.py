@@ -245,7 +245,7 @@ if run_btn and model and scaler:
         ax.grid(True, which="both", linestyle='--', alpha=0.4)
         ax.legend()
         ax.set_xlim(0, 180)
-        ax.set_ylim(bottom=1e-8, top=1e-2) # Adjusted QKD range
+        ax.set_ylim(bottom=1e-7, top=1e-2) # Adjusted QKD range
         
         st.pyplot(fig)
 
