@@ -125,12 +125,25 @@ Experience real-time AI optimization in your browser:
 
 1.  **Start the server:**
     ```bash
-    python BB84_Web_App/server.py
+    streamlit run streamlit_app.py
     ```
 2.  **Open your browser:**
-    Navigate to `http://localhost:8080`.
+    The app should properly launch in your default browser at `http://localhost:8501`.
+
 3.  **Optimize:**
     Enter any fiber length (e.g., 50km) and block size to see the neural network instantly predict the optimal parameters and visualize the secret key rate curve.
+
+## Project Structure
+
+This repository is organized to facilitate both research reproduction and application deployment:
+
+- **`src/`**: Contains the core Python package `qkd`, including the physics engine (`physics.py`), QKD model logic (`model.py`), and utility functions.
+- **`Analysis/`**: Jupyter notebooks for validating the analytical model and physics engine against established theoretical results.
+- **`Optimization/`**: Notebooks and scripts for generating the training dataset using Dual Annealing numerical optimization.
+- **`NeuralNetwork/`**: Contains the neural network architecture, training notebooks, and the pre-trained model artifacts (`bb84_nn_model.pth` and scalers).
+- **`Project_Report/`**: The detailed PDF report describing the theoretical background, methodology, and results.
+- **`QKD_Archive/`**: Legacy code and previous iterations of the web application.
+- **`streamlit_app.py`**: The main entry point for the interactive web application.
 
 ## Usage
 
