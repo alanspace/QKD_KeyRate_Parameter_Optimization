@@ -13,7 +13,9 @@ This repository contains the code and analysis for the project "Machine Learning
 
 Try the interactive optimization web app here: [**Launch App**](https://appapppy-jcrvkdozjbapjtbgujxutu.streamlit.app/)
 
-![App Demo](BB84_Web_App/demo_image.png)
+> **Note:** Streamlit Cloud apps may "sleep" after periods of inactivity. If you see a sleeping message, please click the **"Yes, get this app back up!"** button to wake it up.
+
+![App Demo](QKD_Archive/BB84_Web_App/demo_image.png)
 
 ## 🛠️ Software Engineering & Architecture
 
