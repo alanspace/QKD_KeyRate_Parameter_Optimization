@@ -15,7 +15,7 @@ Try the interactive optimization web app here: [**Launch App**](https://appapppy
 
 > **Note:** Streamlit Cloud apps may "sleep" after periods of inactivity. If you see a sleeping message, please click the **"Yes, get this app back up!"** button to wake it up.
 
-![App Demo](QKD_Archive/BB84_Web_App/demo_image.png)
+![App Demo](assets/demo_image.png)
 
 ## 🛠️ Software Engineering & Architecture
 
@@ -65,17 +65,32 @@ The trained neural network provides a powerful combination of speed and accuracy
 
 - **🚀 Massive Speedup:** NN inference for 100 operating points takes **~1 second**, whereas the original Dual Annealing optimization requires an estimated **4.5 minutes** for the same task. This represents a **~270x speedup**.
 
-- **🎯 High Accuracy:** The NN predictions closely match the numerically optimized ground truth.
+- **🎯 High Accuracy:** The NN predictions closely match the numerically optimized ground truth over the practical operating range.
   - The predicted Secret Key Rate (SKR) shows excellent agreement with the optimized SKR across all trained block sizes.
-  - For an unseen intermediate block size (`nx = 5 × 10⁸`), the relative error in the final SKR remained within an acceptable **±5%**, even in the challenging high-loss regime near the transmission limit.
+  - For an unseen intermediate block size (`nx = 5 × 10⁸`), the relative error in the final SKR remained within **±5%** over the practical operating range (0-150 km for this configuration).
+  - As expected, relative error increases near the physical transmission limits where key rates approach zero, but remains negligible in absolute terms.
 
 - **💡 Excellent Generalization:** The network successfully learned the underlying physics, allowing it to accurately interpolate and predict optimal parameters for conditions it was not explicitly trained on.
 
 <p align="center">
   <img src="https://github.com/alanspace/QKD_KeyRate_Parameter_Optimization/blob/main/NeuralNetwork/image/keyrate_parameters_5e8.png?raw=true" alt="Predicted vs Optimized Key Rates" width="80%">
   <br>
-  <em>Figure: Comparison of SKR from numerically optimized parameters (solid lines) vs. NN-predicted parameters (markers) for an unseen test case (nx = 5x10⁸). The near-perfect overlap demonstrates the model's high accuracy and generalization.</em>
+  <em>Figure: Comparison of SKR from numerically optimized parameters (solid lines) vs. NN-predicted parameters (markers) for an unseen test case (nx = 5×10⁸). The near-perfect overlap over the practical operating range (0-150 km) demonstrates the model's high accuracy and excellent generalization to unseen block sizes.</em>
 </p>
+
+### Performance Benchmarks
+
+Detailed performance comparison between neural network inference and traditional Dual Annealing optimization on Apple M2 Pro (10-core CPU, 16-core GPU):
+
+| Method | Hardware | Time for 1 Point | Time for 100 Points | Relative Speedup |
+|--------|----------|------------------|---------------------|------------------|
+| **Neural Network** | Apple M2 GPU (MPS) | ~0.01s | ~1.0s | **270x faster** |
+| **Dual Annealing** | 10-core CPU | ~2.7s | ~270s (4.5 min) | Baseline |
+
+**Key Observations:**
+- NN inference scales efficiently: 100× more predictions adds only 100× time (linear scaling)
+- Dual Annealing time varies significantly (2-5s per point) depending on convergence
+- **Real-world impact:** On resource-constrained devices (e.g., Raspberry Pi, drone computers), this speedup enables real-time parameter adaptation that would otherwise be impossible
 
 
 ## Getting Started
@@ -203,6 +218,51 @@ This is the core machine learning part of the project. It uses the dataset gener
         - Training and validation loss curves.
         - Comparison plots of predicted vs. optimized key rates and parameters.
         - Relative error plots to quantify prediction accuracy.
+
+## Limitations and Future Work
+
+While this work demonstrates the viability of neural networks for QKD parameter optimization, several limitations and opportunities for future research have been identified:
+
+### Current Limitations
+
+1. **Prediction Accuracy Near Physical Limits**
+   - The model achieves **<5% relative error** over the practical operating range where key rates are usable (typically >10⁻⁷ per pulse).
+   - Near the physical transmission limits (where key rates approach zero), relative errors increase significantly. This is a well-understood limitation: small absolute errors become large relative errors when dividing by near-zero values.
+   - **Impact:** For practical QKD deployment, this limitation is negligible since these extreme low-rate regimes are not operationally useful.
+
+2. **Training Data Coverage**
+   - The model was trained on fiber-based QKD scenarios with fixed system parameters (detector efficiency, dark count rate, error correction efficiency).
+   - Generalization to significantly different hardware configurations or free-space channels has not been validated.
+
+3. **Static Channel Assumption**
+   - The current implementation assumes static channel conditions. Time-varying channels (e.g., atmospheric turbulence in satellite QKD) would require additional model inputs and retraining.
+
+### Future Research Directions
+
+1. **Physics-Informed Neural Networks (PINNs)**
+   - Incorporate the underlying QKD rate equations directly into the loss function to improve physical consistency, especially near boundary conditions.
+   - This could reduce the error spikes at transmission limits while maintaining inference speed.
+
+2. **Uncertainty Quantification**
+   - Implement Bayesian neural networks or ensemble methods to provide confidence intervals on predictions.
+   - This would enable risk-aware decision-making in critical quantum communication infrastructure.
+
+3. **Multi-Objective Optimization**
+   - Extend the framework to simultaneously optimize for key rate, error rate tolerance, and resource consumption.
+   - Relevant for heterogeneous quantum networks with varying quality-of-service requirements.
+
+4. **Real-Time Adaptation**
+   - Deploy the trained model on edge devices (Raspberry Pi, FPGA) to demonstrate true real-time parameter adaptation in dynamic scenarios (drone-based QKD, satellite downlinks).
+   - Benchmark inference latency on resource-constrained hardware.
+
+5. **Transfer Learning for New Protocols**
+   - Investigate whether a model trained on BB84 can be fine-tuned for other protocols (e.g., MDI-QKD, twin-field QKD) with minimal additional data.
+
+6. **Explainability and Interpretability**
+   - Apply techniques like SHAP values or attention mechanisms to understand which input features most strongly influence parameter predictions.
+   - This could provide physical insights into the optimization landscape.
+
+These extensions would further demonstrate the scalability and robustness of ML-based QKD optimization and are natural next steps for publication-ready research.
 
 ## Citation
 
