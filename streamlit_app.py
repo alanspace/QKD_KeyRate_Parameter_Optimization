@@ -7,6 +7,7 @@ import sys
 import joblib
 import pandas as pd
 import matplotlib.pyplot as plt
+import time
 
 # ==========================================
 # 1. SETUP & CONFIGURATION
@@ -83,8 +84,9 @@ def load_resources():
     try:
         scaler = joblib.load(SCALER_PATH)
         y_scaler = joblib.load(Y_SCALER_PATH)
-    except:
-        st.error("Scalers not found! Predictions will be inaccurate.")
+    except Exception as e:
+        st.error(f"Scalers not found or failed to load! Error: {e}")
+        st.write(f"Attempted path: {SCALER_PATH}")
         return None, None, None
 
     return model, scaler, y_scaler
@@ -131,6 +133,7 @@ with col1:
 # 5. INFERENCE & PLOTTING LOGIC
 # ==========================================
 if run_btn and model and scaler:
+    start_time = time.time()
     with st.spinner("Running AI Inference & Physics Verification..."):
         # ---------------------------
         # A. Single Point Prediction
@@ -212,8 +215,12 @@ if run_btn and model and scaler:
     # ==========================================
     # 6. RESULTS DISPLAY
     # ==========================================
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    
     with col1:
         st.success("Optimization Complete!")
+        st.info(f"⚡️ Processing Time: {elapsed_time:.4f} seconds")
         st.markdown(f"**Max Key Rate:** `{user_kr:.2e}` bits/pulse")
         
         st.markdown("### Optimal Parameters")
