@@ -1,0 +1,45 @@
+# Matplotlib style for academic papers (IEEE/Nature style)
+
+# Figure size (width, height in inches)
+# Single column width is usually ~3.5 inches
+# Double column width is usually ~7 inches
+figure.figsize : 6, 4
+figure.dpi : 300
+
+# Font settings
+font.family : serif
+font.serif : Times New Roman, DejaVu Serif, Bitstream Vera Serif
+font.size : 12
+axes.labelsize : 12
+axes.titlesize : 14
+legend.fontsize : 10
+xtick.labelsize : 10
+ytick.labelsize : 10
+
+# Axes and Grid
+axes.grid : True
+grid.color : b0b0b0
+grid.linestyle : --
+grid.linewidth : 0.5
+grid.alpha : 0.5
+axes.linewidth : 1.0
+axes.edgecolor : black
+
+# Lines and Markers
+lines.linewidth : 2.0
+lines.markersize : 6
+
+# Colors (Colorblind friendly palette - Seaborn Deep or similar)
+axes.prop_cycle : cycler('color', ['4C72B0', '55A868', 'C44E52', '8172B2', 'CCB974', '64B5CD'])
+
+# Legend
+legend.frameon : True
+legend.framealpha : 0.9
+legend.edgecolor : black
+legend.fancybox : False
+legend.loc : best
+
+# Saving
+savefig.bbox : tight
+savefig.pad_inches : 0.1
+savefig.format : png

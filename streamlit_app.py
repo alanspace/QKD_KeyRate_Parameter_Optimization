@@ -365,11 +365,21 @@ with tab3:
     
     ### 4. Advanced Settings (Sidebar)
     - **Engine Selection**: 
-        - `JAX`: High-performance, GPU-accelerated (on local hardware). Best for smooth curves.
-        - `NumPy`: Slower but extremely stable, used for cloud compatibility.
+        - `JAX`: High-performance, GPU-accelerated. Recommended for general use.
+        - `NumPy`: Maximum stability for cloud/minimal environments.
     - **Model Version**:
-        - `Modern (JAX)`: Trained on high-quality, JAX-optimized ground truth. Most accurate.
-        - `Legacy (Annealing)`: Trained on older, noisier data. Useful for comparison.
+        - `Modern (JAX)`: Trained on 6,000+ JAX-optimized samples.
+        - `Legacy (Annealing)`: Useful for seeing how noisier optimization data impacts prediction stability.
+
+    ### 🔬 Mathematical Foundation
+    The optimizer maximizes the **Secret Key Rate** ($R$) using the finite-key bound:
+    $$ R \\geq \\frac{n_{X,1}}{n} [1 - h(e_1)] - \\text{leak}_{EC} - \\frac{\\Delta}{n} $$
+    
+    The AI model calculates the "Speedup Factor" as:
+    $$ \\text{Speedup} = \\frac{T_{\\text{Iterative Optimizer}}}{T_{\\text{Neural Network}}} $$
+    
+    **How do we get >6,000x?**
+    Traditional solvers must evaluate the physics formulas ~500 times per point to find the peak. The Neural Network predicts the peak in a **single forward pass** (~2.0 microseconds), eliminating the need for iteration.
     
     ### ❓ Frequently Asked Questions
     

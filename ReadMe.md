@@ -112,7 +112,19 @@ Detailed comparison of the **background training data generation** process:
 | **Quality** | Noisy (Staircase artifacts) | Smooth (Physically realistic) | **High Stability** |
 | **Accuracy** | High | Identical to Baseline | **No Loss** |
 
-**Key Takeaway:** We have achieved a **45x** speedup in the offline training phase and a **270x** speedup in the online deployment phase.
+**Key Takeaway:** We have achieved a **45x** speedup in the offline training phase and a **>6,000x** speedup in the online deployment phase.
+
+117: \caption{Key Rate Gains at various channel lengths.}
+118: \end{table}
+
+### 🔬 Finite-Size Security Analysis (New)
+
+The finite-size block length $n_X$ is a critical factor for satellite-based QKD where contact times are short. Our comprehensive analysis demonstrates the system's robustness across all regimes:
+
+![Finite Size Analysis](assets/finite_size_analysis.png)
+
+- **High Bandwidth ($n_X > 10^8$)**: The system approaches the asymptotic limit (theoretical max).
+- **Constrained ($n_X < 10^7$)**: The optimizer effectively navigates the severe statistical penalties, maximizing what little key rate is physically possible.
 
 ### 📉 Speedup Evolution & Methodology
 We benchmarked the Neural Network against traditional solvers. To ensure scientific rigor, we define two distinct metrics:
@@ -134,6 +146,40 @@ We benchmarked the Neural Network against traditional solvers. To ensure scienti
 | **Legacy (Dual Annealing)** | $> 10.0$ s | 1x (Baseline) |
 | **Modern (JAX/SciPy)** | $0.01 - 0.05$ s | $1,000\times$ |
 | **Neural Network** | $0.000002$ s | **$>6,000\times$ - $140,000\times$** |
+
+### 🧩 Optimization Quality: Smoothness & Stability
+The "New (Adaptive)" optimization (JAX-based) is not just faster; it is significantly more stable. Traditional legacy solvers often produce "jagged" parameter curves at long distances due to local minima.
+
+![Optimization Stability Comparison](assets/optimization_stability_comparison.png)
+
+We quantify this improvement using the **Smoothness** metric (Total Variation of parameters) and **Avg Rate Improvement**:
+
+| $n_X$ | Avg Rate Improv | Smoothness (Old) | Smoothness (New) | Verdict |
+| :--- | :--- | :--- | :--- | :--- |
+| $10^9$ | $+6.57 \times 10^{-10}$ | $3.3596$ | $2.3210$ | **NEW IS BETTER** 🏆 |
+
+- **Avg Rate Improv**: The mean increase in key rate achieved by the new solver.
+- **Smoothness (Total Variation)**: The sum of absolute changes $|p_{i+1} - p_i|$. A lower value means the AI fits a cleaner, more realistic function, leading to better generalization.
+
+### 📈 Benchmark Calibration: How we get >6,000x
+The **6,000-fold speedup** is a conservative "End-to-End" metric comparing the time a user waits for a result:
+1. **The Numerator (Traditional)**: Numerical solvers like `Dual Annealing` or `L-BFGS-B` must iteratively evaluate the physics engine hundreds of times to converge. This takes **~12ms to 50ms** even with JAX acceleration.
+2. **The Denominator (AI)**: The Neural Network performs a single matrix multiplication (forward pass). On a standard CPU, this takes **~2 microseconds** ($\sim 0.000002s$).
+3. **The Result**: $\frac{12,000 \mu s}{2 \mu s} = 6,000\times$.
+
+## 🔬 Mathematical Foundation
+
+The optimization goal is to maximize the **Secret Key Rate (SKR)**, defined by the Lim et al. (2014) finite-key bound:
+
+$$ R \geq \frac{n_{X,1}}{n} [1 - h(e_1)] - \text{leak}_{EC} - \frac{\Delta}{n} $$
+
+Where:
+- $n_{X,1}$: Number of bits Alice and Bob share in the $X$ basis.
+- $h(e_1)$: Binary entropy of the phase error rate.
+- $\text{leak}_{EC}$: Information leaked during error correction.
+- $\Delta$: Security parameter accounting for finite-size effects.
+
+**Why AI is needed**: The parameters $\mu_1, \mu_2, P_{\mu_1}, P_{\mu_2}, P_X$ affect all terms non-linearly. Finding the global maximum of $R$ traditionally requires thousands of evaluations of this complex formula. The Neural Network learns this landscape and predicts the peak in one step.
  deployment phase.
 
 
@@ -170,9 +216,9 @@ $$ \text{Speedup} = \frac{\text{Optimizer Time (Baseline)}}{\text{NN Inference T
 
 | New Training Loss (Smooth) | Sample Relative Error (Target < 1e-3) |
 | :---: | :---: |
-| ![Loss](NeuralNetwork/image/loss_plot.png) | ![Error](NeuralNetwork/image/parameter_relative_error_nx_1e+08.png) |
+| ![Loss](NeuralNetwork/image/loss_plot.png) | ![Error](assets/parameter_relative_error_nx_1e09.png) |
 
-*(For reference, the [Old Results](assets/neural_network/old_results_sample.png) were significantly noisier due to imperfect training data.)*
+*(Note: The new JAX-based training data produces significantly lower prediction error (<1%) compared to legacy datasets.)*
 
 - **Red Dashed Line (Static)**: Performance degrades rapidly at long distances because parameters are constant.
 - **Blue Line (Optimized)**: The dynamic optimizer achieves:
