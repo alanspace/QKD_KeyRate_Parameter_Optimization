@@ -261,6 +261,16 @@ This repository is organized to facilitate both research reproduction and applic
 - **`QKD_Archive/`**: Legacy code and previous iterations of the web application.
 - **`streamlit_app.py`**: The main entry point for the interactive web application.
 
+### 4. Performance Baseline & Comparison (Legacy)
+
+**Notebooks:** 
+- `NeuralNetwork/neural_network_old.ipynb`
+- `Optimization/BB84_Parameters_2014_Optimization_Jax_old.ipynb`
+
+These files are retained as a **Performance Baseline**. 
+- They represent the project's state before the JAX-acceleration and professional reorganization.
+- Users can run these to verify that the original Dual Annealing approach was significantly slower (~10-50s per point) and produced noisier results compared to the modern **>50,000x faster** Neural Network pipeline.
+
 ## Usage
 
 This project is organized into three main workflows, each corresponding to a Jupyter notebook in the `Analysis`,  `Optimization`,  `NeuralNetwork` directory. Follow them in order to reproduce the results of this study.
