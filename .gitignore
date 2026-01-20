@@ -28,3 +28,7 @@ generated_dataset/
 !**/Training_Data/**/*.json  # Keep training data if it's small/critical, otherwise ignore
 node_modules/
 
+
+*.pth
+*.pdf
+
