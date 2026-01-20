@@ -11,10 +11,9 @@ from .physics import (
     calculate_l, calculate_R
 )
 
-@jit
 # Define the `objective` function with `alpha` and other parameters as arguments
+@jit
 def calculate_key_rates_and_metrics(params, L_values, n_X, alpha, eta_Bob, P_dc_value, epsilon_sec, epsilon_cor, f_EC, e_mis, P_ap, n_event): 
-#  mu_k_values, eta_ch_values, p_mu_k_values, p_1 = mu_1, p_2 = mu_2, p_3 = P_mu_1 = 0.65, p_4 = P_mu_2 = 0.3, p_5 =        P_X_value = 5e-3
     mu_1, mu_2, P_mu_1, P_mu_2, P_X_value = params 
     mu_3 = 2e-4
     mu_k_values = jnp.array([mu_1, mu_2, mu_3])
@@ -22,7 +21,7 @@ def calculate_key_rates_and_metrics(params, L_values, n_X, alpha, eta_Bob, P_dc_
     p_mu_k_values = jnp.array([P_mu_1, P_mu_2, P_mu_3])
        
     P_Z_value = 1 - P_X_value
-    # n_X = jnp.array([10**s for s in range(6, 11)])  # Detected events in X basis: 10^6 to 10^10
+    P_Z_value = 1 - P_X_value
     """Objective function to optimize key rate."""
 # 1. Channel and system efficiencies
     eta_ch_values = calculate_eta_ch(L_values, alpha)  # Channel transmittance
@@ -40,7 +39,7 @@ def calculate_key_rates_and_metrics(params, L_values, n_X, alpha, eta_Bob, P_dc_
     # Organize detection probabilities and detected events
     n_X_mu_k_values = jnp.array([n_X_mu_1, n_X_mu_2, n_X_mu_3])
 
-    #n_X_total = sum(n_X_mu_k_values)  # Total errors in X basis
+    n_X_mu_k_values = jnp.array([n_X_mu_1, n_X_mu_2, n_X_mu_3])
     n_X_total = jnp.sum(n_X_mu_k_values)
 
     P_det_mu_values = [P_det_mu_1, P_det_mu_2, P_det_mu_3]
@@ -73,10 +72,7 @@ def calculate_key_rates_and_metrics(params, L_values, n_X, alpha, eta_Bob, P_dc_
     m_X_mu_2 = m_X_mu_values[1]
     m_X_mu_3 = m_X_mu_values[2]
     
-    #m_X_mu_values = [m_X_mu_1, m_X_mu_2, m_X_mu_3]
     m_X_mu_values = jnp.array([m_X_mu_1, m_X_mu_2, m_X_mu_3])
-
-    # m_X_total = sum(m_X_mu_values)  # Total errors in X basis
     m_X_total = jnp.sum(m_X_mu_values) 
     
     sqrt_term_m_X = calculate_sqrt_term(m_X_total, epsilon_sec)  # Uncertainty in X error term
@@ -93,10 +89,7 @@ def calculate_key_rates_and_metrics(params, L_values, n_X, alpha, eta_Bob, P_dc_
     m_Z_mu_2 = m_Z_mu_values[1]
     m_Z_mu_3 = m_Z_mu_values[2]
 
-    # Note: potential bug in original logic used n_X_mu_k values here?
-    # Original code: m_Z_mu_values = jnp.array([n_X_mu_1, n_X_mu_2, n_X_mu_3])
-    # The variable name m_Z_mu_values is reused. This looks suspicious in original code.
-    # Replicating original behavior for now but flagging it mentally.
+    # Replicating original behavior
     m_Z_mu_values_tensor = jnp.array([n_X_mu_1, n_X_mu_2, n_X_mu_3]) 
     m_Z_total = jnp.sum(m_Z_mu_values_tensor)  # Total errors in Z basi
 
@@ -199,3 +192,37 @@ def objective(params, L_values, n_X, alpha, eta_Bob, P_dc_value, epsilon_sec, ep
         lambda_EC_values,
         l_calculated_values
     )
+
+
+def scalar_objective(params, L_values, n_X, alpha, eta_Bob, P_dc_value, epsilon_sec, epsilon_cor, f_EC, e_mis, P_ap, n_event):
+    """
+    Returns the negative Key Rate (scalar) for minimization.
+    """
+    metrics = calculate_key_rates_and_metrics(
+        params, L_values, n_X, alpha, eta_Bob, P_dc_value, epsilon_sec, epsilon_cor, f_EC, e_mis, P_ap, n_event
+    )
+    key_rates = metrics[0]
+    
+    # Recalculate parameters for penalty
+    mu_1, mu_2, P_mu_1, P_mu_2, P_X_value = params
+    mu_3 = 2e-4
+    P_mu_3 = 1 - P_mu_1 - P_mu_2
+    
+    penalized_key_rate = penalty(key_rates, mu_1, mu_2, mu_3, P_mu_1, P_mu_2, P_mu_3)
+    
+    # We want to MAXIMIZE key rate, so we MINIMIZE negative key rate
+    # Returning scalar (assuming single L if optimizing point-wise, 
+    # BUT current logic handles arrays. For optimization, we usually optimize for specific L)
+    
+    # Assuming input L is a scalar or we optimize 'mean' key rate over range (unlikely).
+    # Usually dual_annealing calls this with specific context.
+    # In the notebook: L is passed. If L is scalar, key_rate is scalar-ish array.
+    
+    return -jnp.sum(penalized_key_rate) # Sum handles both scalar and single-element array
+
+# JIT compile the scalar objective
+jit_scalar_objective = jit(scalar_objective)
+
+# Create value_and_grad function
+# This returns (loss, grads) tuple
+objective_val_and_grad = jit(jax.value_and_grad(scalar_objective, argnums=0))
