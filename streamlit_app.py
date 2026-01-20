@@ -62,43 +62,58 @@ class BB84Network(nn.Module):
 # ==========================================
 # 3. LOADING RESOURCES (Cached)
 # ==========================================
+# ==========================================
+# 3. LOADING RESOURCES (Cached)
+# ==========================================
 @st.cache_resource
-def load_resources():
-    # Paths
-    MODEL_PATH = os.path.join(current_dir, 'NeuralNetwork/bb84_nn_model.pth')
+def load_scalers():
     SCALER_PATH = os.path.join(current_dir, 'NeuralNetwork/models/scaler.pkl')
     Y_SCALER_PATH = os.path.join(current_dir, 'NeuralNetwork/models/y_scaler.pkl')
-
-    # Load Model
-    model = BB84Network()
-    if os.path.exists(MODEL_PATH):
-        try:
-            model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device('cpu')))
-            model.eval()
-        except:
-            st.warning("Model file corrupted or incompatible. Using random weights.")
-    else:
-        st.warning(f"Model not found at {MODEL_PATH}. Using random weights.")
-
-    # Load Scalers
     try:
         scaler = joblib.load(SCALER_PATH)
         y_scaler = joblib.load(Y_SCALER_PATH)
+        return scaler, y_scaler
     except Exception as e:
-        st.error(f"Scalers not found or failed to load! Error: {e}")
-        st.write(f"Attempted path: {SCALER_PATH}")
-        return None, None, None
+        st.error(f"Scalers load error: {e}")
+        return None, None
 
-    return model, scaler, y_scaler
+@st.cache_resource
+def load_model(model_type):
+    if model_type == "Modern (JAX)":
+        path = os.path.join(current_dir, 'NeuralNetwork/models/bb84_nn_model_jax.pth')
+    else:
+        path = os.path.join(current_dir, 'NeuralNetwork/models/bb84_nn_model_legacy.pth')
+    
+    model = BB84Network()
+    if os.path.exists(path):
+        try:
+            model.load_state_dict(torch.load(path, map_location=torch.device('cpu')))
+            model.eval()
+            return model
+        except Exception as e:
+            st.warning(f"Error loading {model_type}: {e}")
+    return None
 
-model, scaler, y_scaler = load_resources()
+# Load Scalers once
+scaler, y_scaler = load_scalers()
+
+# Sidebar Selector
+st.sidebar.header("🧠 AI Configuration")
+model_choice = st.sidebar.selectbox(
+    "Select Model Version",
+    ["Modern (JAX)", "Legacy (Annealing)"],
+    help="Modern: Trained on JAX data (High Accuracy)\nLegacy: Trained on Annealing data (Noisier)"
+)
+
+# Load Selected Model
+model = load_model(model_choice)
 
 # ==========================================
 # 4. UI LAYOUT
 # ==========================================
 st.title("⚡️ QKD Parameter Optimizer")
 st.markdown(f"""
-This tool uses a **Neural Network (270x faster than Dual Annealing)** to predict the optimal operating parameters.
+**Using Model:** `{model_choice}`
 Running on: **{engine_type}**
 """)
 
