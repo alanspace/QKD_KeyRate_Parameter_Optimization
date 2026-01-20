@@ -114,8 +114,7 @@ Detailed comparison of the **background training data generation** process:
 
 **Key Takeaway:** We have achieved a **45x** speedup in the offline training phase and a **>6,000x** speedup in the online deployment phase.
 
-117: \caption{Key Rate Gains at various channel lengths.}
-118: \end{table}
+
 
 ### 🔬 Finite-Size Security Analysis (New)
 
