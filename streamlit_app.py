@@ -1,3 +1,11 @@
+import os
+import sys
+
+# FORCE JAX to CPU (Metal has issues with JIT-ted float64/complex)
+# Must be set BEFORE import jax or any streamlit components that might trigger it
+os.environ['JAX_PLATFORMS'] = 'cpu'
+os.environ['JAX_ENABLE_X64'] = 'True'
+
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -6,13 +14,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import joblib
-import os
-import sys
 import time
-
-# ==========================================
-# 1. SETUP & CONFIGURATION
-# ==========================================
 st.set_page_config(
     page_title="QKD AI Optimizer",
     page_icon="⚡️",
@@ -27,22 +29,36 @@ if ROOT_DIR not in sys.path:
 # ==========================================
 # 2. HYBRID PHYSICS ENGINE LOADING
 # ==========================================
-# Try loading JAX (Fast/GPU) first, fall back to Numpy (Cloud/CPU)
+# Sidebar Selector for Engine
+st.sidebar.header("⚙️ System Settings")
+force_numpy = st.sidebar.checkbox(
+    "Force Cloud Mode (NumPy Only)", 
+    value=True, # DEFAULT TO TRUE for stability while debugging
+    help="Bypass JAX and use pure NumPy physics. Slower for curves, but extremely stable."
+)
+
+st.sidebar.divider()
+run_calibration = st.sidebar.button("Run Physics Calibration ✅", help="Bypass AI and use known 'Golden Parameters' to test the physics core.")
+
 engine_type = "Unknown"
 jax_available = False
-try:
-    import jax
-    # FORCE JAX to CPU (Metal has issues with JIT-ted float64/complex)
-    os.environ['JAX_PLATFORMS'] = 'cpu'
-    from src.qkd.model import calculate_key_rates_and_metrics
-    engine_type = "🚀 JAX (High Performance)"
-    jax_available = True
-    print("Success: Loaded JAX engine.")
-except (ImportError, Exception):
+
+if not force_numpy:
+    try:
+        import jax
+        from src.qkd.model import calculate_key_rates_and_metrics
+        engine_type = "🚀 JAX (High Performance)"
+        jax_available = True
+        print("Success: Loaded JAX engine.")
+    except (ImportError, Exception) as e:
+        print(f"JAX load failed, falling back to NumPy: {e}")
+        force_numpy = True
+
+if force_numpy or engine_type == "Unknown":
     try:
         from src.qkd.model_numpy import calculate_key_rates_and_metrics
-        engine_type = "☁️ Numpy (Cloud Compatibility)"
-        print("Fallback: Loaded Numpy engine.")
+        engine_type = "☁️ NumPy (Cloud Compatibility)"
+        print("Fallback: Loaded NumPy engine.")
     except Exception as e:
         st.error(f"Critical Error loading physics engine: {e}")
         st.stop()
@@ -68,14 +84,11 @@ class BB84NN(nn.Module):
 # ==========================================
 # 3. LOADING RESOURCES (Cached)
 # ==========================================
-# ==========================================
-# 3. LOADING RESOURCES (Cached)
-# ==========================================
 @st.cache_resource
 def load_scalers():
-    # Use relative paths from the script's location
-    SCALER_PATH = os.path.join(os.path.dirname(__file__), 'NeuralNetwork/models/scaler.pkl')
-    Y_SCALER_PATH = os.path.join(os.path.dirname(__file__), 'NeuralNetwork/models/y_scaler.pkl')
+    # Use absolute paths from the ROOT_DIR
+    SCALER_PATH = os.path.join(ROOT_DIR, 'NeuralNetwork', 'models', 'scaler.pkl')
+    Y_SCALER_PATH = os.path.join(ROOT_DIR, 'NeuralNetwork', 'models', 'y_scaler.pkl')
     try:
         if not os.path.exists(SCALER_PATH):
             st.error(f"Scaler not found at {SCALER_PATH}")
@@ -90,9 +103,9 @@ def load_scalers():
 @st.cache_resource
 def load_model(model_type):
     if model_type == "Modern (JAX)":
-        path = os.path.join(os.path.dirname(__file__), 'NeuralNetwork/models/bb84_nn_model_jax.pth')
+        path = os.path.join(ROOT_DIR, 'NeuralNetwork', 'models', 'bb84_nn_model_jax.pth')
     else:
-        path = os.path.join(os.path.dirname(__file__), 'NeuralNetwork/models/bb84_nn_model_legacy.pth')
+        path = os.path.join(ROOT_DIR, 'NeuralNetwork', 'models', 'bb84_nn_model_legacy.pth')
     
     model = BB84NN() # Match training class name
     if os.path.exists(path):
@@ -154,6 +167,7 @@ with tab1:
             help="Higher block size means lower finite-size analysis penalties."
         )
         
+        
         n_x = 10**n_x_exponent
         st.caption(f"Actual Block Size: {n_x:,.0f}")
         
@@ -162,34 +176,33 @@ with tab1:
     # ==========================================
     # 5. INFERENCE & PLOTTING LOGIC
     # ==========================================
-    if run_btn and model and scaler:
+    if (run_btn or run_calibration) and model and scaler:
         start_time = time.time()
-        with st.spinner("Running AI Inference & Physics Verification..."):
-            # ---------------------------
-            # A. Single Point Prediction
-            # ---------------------------
-            # Prepare Input: [L/100, -log(Pdc), 0.5, log10(nx)]
-            # Scaler expects raw values: [L, 6.22, 0.5, log10(nx)]
-            e_1 = float(fiber_length) / 100.0 # Scaling correction we found! 
-            e_2 = -np.log10(6e-7) 
-            e_3 = 5e-3 * 100      
-            e_4 = np.log10(float(n_x))
-            
-            raw_input = np.array([[e_1, e_2, e_3, e_4]])
-            scaled_input = scaler.transform(raw_input)
-            input_tensor = torch.tensor(scaled_input, dtype=torch.float32)
-            
-            # Predict
-            with torch.no_grad():
-                pred_scaled = model(input_tensor).numpy()
-            
-            # Inverse Transform
-            pred = y_scaler.inverse_transform(pred_scaled)[0]
-            mu1, mu2, Pmu1, Pmu2, Px = pred
+        
+        # Override with Golden Parameters if Calibration is selected
+        if run_calibration:
+            mu1, mu2, Pmu1, Pmu2, Px = 0.48, 0.05, 0.4, 0.4, 0.8
+            st.info("🛠️ Running in **Calibration Mode**: Using manually verified Golden Parameters.")
+        else:
+            with st.spinner("Running AI Inference..."):
+                # Prepare Input
+                e_1 = float(fiber_length) / 100.0
+                e_2 = -np.log10(6e-7) 
+                e_3 = 0.5      
+                e_4 = np.log10(float(n_x))
+                
+                raw_input = np.array([[e_1, e_2, e_3, e_4]])
+                scaled_input = scaler.transform(raw_input)
+                input_tensor = torch.tensor(scaled_input, dtype=torch.float32)
+                
+                with torch.no_grad():
+                    pred_scaled = model(input_tensor).numpy()
+                
+                pred = y_scaler.inverse_transform(pred_scaled)[0]
+                mu1, mu2, Pmu1, Pmu2, Px = pred
+                print(f"DEBUG: Predicted Params for {fiber_length}km -> mu1:{mu1:.4f}, mu2:{mu2:.4f}, Pmu1:{Pmu1:.4f}, Pmu2:{Pmu2:.4f}, Px:{Px:.4f}")
 
-            # ---------------------------
-            # B. Curve Generation
-            # ---------------------------
+        with st.spinner("Physics Verification..."):
             # Generate points for plot (0 to 180km)
             curve_L = np.linspace(0, 180, 50)
             
@@ -333,5 +346,8 @@ with tab2:
     - **Physics Core**: Finite-Key Decoy-State BB84 (Lim et al., 2014).
     """)
 
+# Handle display of errors if they occurred
 if model is None:
-    st.error("Model failed to load. Please check logs.")
+    st.error("AI Model failed to load. Please check the terminal logs for the exact error path or shape mismatch.")
+if engine_type == "Unknown":
+    st.error("Physics engine failed to initialize.")
