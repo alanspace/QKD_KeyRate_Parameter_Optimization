@@ -1,13 +1,17 @@
 import streamlit as st
 import numpy as np
-import torch
-import torch.nn as nn
-import os
-import sys
-import joblib
 import pandas as pd
 import matplotlib.pyplot as plt
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import joblib
+import os
+import sys
 import time
+
+# FORCE JAX to CPU (Metal has issues with JIT-ted float64/complex)
+os.environ['JAX_PLATFORMS'] = 'cpu'
 
 # ==========================================
 # 1. SETUP & CONFIGURATION
@@ -215,8 +219,10 @@ with tab1:
                         L_val, n_x, alpha_val, eta_Bob, P_dc_value, epsilon_sec, epsilon_cor, f_EC, e_mis, 0, 1
                     )
                     kr = float(res[0])
-                    key_rates.append(kr if kr > 0 else 0)
-                except:
+                    key_rates.append(kr if kr > 1e-20 else 0)
+                except Exception as e:
+                    # Log error to console for debugging
+                    print(f"Physics error at {L_val}km: {e}")
                     key_rates.append(0)
 
             # Get Key Rate for User Selected Point
@@ -227,7 +233,8 @@ with tab1:
                     fiber_length, n_x, alpha_val, eta_Bob, P_dc_value, epsilon_sec, epsilon_cor, f_EC, e_mis, 0, 1
                 )
                  user_kr = float(res_user[0])
-            except:
+            except Exception as e:
+                 print(f"User point physics error: {e}")
                  user_kr = 0.0
 
         # ==========================================
