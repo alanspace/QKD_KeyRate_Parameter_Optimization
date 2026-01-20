@@ -142,7 +142,7 @@ st.markdown(f"""
 Running on: **{engine_type}**
 """)
 
-tab1, tab2 = st.tabs(["🚀 Live Optimizer", "📊 System Analysis"])
+tab1, tab2, tab3 = st.tabs(["🚀 Live Optimizer", "📊 System Analysis", "📖 User Guide"])
 
 with tab1:
     col1, col2 = st.columns([1, 2])
@@ -344,6 +344,40 @@ with tab2:
     - **Model Architecture**: 4-Layer Feed-Forward Neural Network (PyTorch).
     - **Training State**: 5,000 Epochs with Learning Rate Decay.
     - **Physics Core**: Finite-Key Decoy-State BB84 (Lim et al., 2014).
+    """)
+
+with tab3:
+    st.header("📖 How to use the QKD AI Optimizer")
+    
+    st.markdown("""
+    ### 1. Configure the Environment
+    - **Fiber Length (km)**: Enter the physical distance between Alice and Bob. The system is trained for 0km up to 200km.
+    - **Block Size (Log10 n_x)**: Adjust the amount of data processed at once. Larger block sizes (e.g., $10^8$ or $10^9$) generally yield higher key rates due to reduced finite-size effects, but require longer accumulation times in real-world setups.
+    
+    ### 2. Run Optimization
+    - Click the **Optimize Parameters 🚀** button.
+    - The **Neural Network** will instantly predict the optimal intensities and basis choices.
+    - The **Physics Engine** will then verify these parameters by calculating the theoretical Secret Key Rate (SKR).
+    
+    ### 3. Interpret Results
+    - **Optimal Parameters Table**: Use these values to configure your QKD hardware (lasers, modulators, and basis selectors).
+    - **Secret Key Rate Plot**: The red dot indicates your performance at the current setup. The blue curve shows how this setup performs across different distances.
+    
+    ### 4. Advanced Settings (Sidebar)
+    - **Engine Selection**: 
+        - `JAX`: High-performance, GPU-accelerated (on local hardware). Best for smooth curves.
+        - `NumPy`: Slower but extremely stable, used for cloud compatibility.
+    - **Model Version**:
+        - `Modern (JAX)`: Trained on high-quality, JAX-optimized ground truth. Most accurate.
+        - `Legacy (Annealing)`: Trained on older, noisier data. Useful for comparison.
+    
+    ### ❓ Frequently Asked Questions
+    
+    **Q: Why is my Key Rate zero?**
+    A: Either the distance is too long for the current block size, or the experimental noise (like dark counts) overwhelms the signal. Try increasing the Block Size.
+    
+    **Q: What are 'Golden Parameters'?**
+    A: These are manually verified optimal parameters for specific standard distances (like 50km). Use the **Physics Calibration** button to see if the engine correctly reproduces known results.
     """)
 
 # Handle display of errors if they occurred

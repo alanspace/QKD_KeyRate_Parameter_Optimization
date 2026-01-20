@@ -250,10 +250,14 @@ Experience real-time AI optimization in your browser:
     streamlit run streamlit_app.py
     ```
 2.  **Open your browser:**
-    The app should properly launch in your default browser at `http://localhost:8501`.
+    The app should properly launch at `http://localhost:8501`.
 
-3.  **Optimize:**
-    Enter any fiber length (e.g., 50km) and block size to see the neural network instantly predict the optimal parameters and visualize the secret key rate curve.
+3.  **Using the Optimizer:**
+    *   **Step 1: Set Conditions** - Use the sidebar to enter the **Fiber Length** and **Block Size**.
+    *   **Step 2: Prediction** - Click **Optimize Parameters 🚀**. The AI predicts optimal laser intensities ($\mu_k$) and basis choice ($P_X$) in microseconds.
+    *   **Step 3: Analyze** - Review the generated **Secret Key Rate curve**. A red dot marks your current operating point against the theoretical limit.
+    *   **Step 4: Audit** - Navigate to the **System Analysis** tab to see verified performance gains and sensitivity analysis.
+    *   **Step 5: Learn** - Check the **User Guide** tab within the app for detailed documentation and FAQs.
 
 ## Project Structure
 
