@@ -9,13 +9,21 @@
 This repository contains the code and analysis for the project "Machine Learning for Quantum Key Distribution Network Optimization," which investigates the use of neural networks (NNs) to accelerate the parameter optimization of decoy-state BB84 QKD systems.
 
 
-## 🚀 Live Demo
+## ⚡️ Interactive Live Dashboard
 
-Try the interactive optimization web app here: [**Launch App**](https://appapppy-jcrvkdozjbapjtbgujxutu.streamlit.app/)
+Experience the power of real-time AI optimization through our interactive dashboard.
 
-> **Note:** Streamlit Cloud apps may "sleep" after periods of inactivity. If you see a sleeping message, please click the **"Yes, get this app back up!"** button to wake it up.
+[**Launch Live App on Streamlit Cloud**](https://appapppy-jcrvkdozjbapjtbgujxutu.streamlit.app/)
 
-![App Demo](assets/demo_image.png)
+### 🚀 Live Optimizer Tab
+The primary interface for real-time parameter tuning. Enter your experimental conditions (Fiber Length, Block Size), and watch the Neural Network predict optimal intensities ($\mu_k$) and basis probabilities ($P_X$) in milliseconds.
+
+![Live Optimizer](assets/web_app_1.png)
+
+### 📊 System Analysis Tab
+A deep-dive interface for scientific verification. It displays performance metrics, range extension, and visual proofs such as parameter sensitivity and "Dynamic vs. Static" overlays.
+
+![System Analysis](assets/web_app_2.png)
 
 ## 🛠️ Software Engineering & Architecture
 
@@ -81,8 +89,6 @@ The trained neural network provides a powerful combination of speed and accuracy
   <br>
   <em>Figure: Comparison of SKR from numerically optimized parameters (solid lines) vs. NN-predicted parameters (markers) for an unseen test case (nx = 5×10⁸). The near-perfect overlap over the practical operating range (0-150 km) demonstrates the model's high accuracy and excellent generalization to unseen block sizes.</em>
 </p>
-
-### Performance Benchmarks
 
 ### Performance Benchmarks
 
