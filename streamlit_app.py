@@ -10,9 +10,6 @@ import os
 import sys
 import time
 
-# FORCE JAX to CPU (Metal has issues with JIT-ted float64/complex)
-os.environ['JAX_PLATFORMS'] = 'cpu'
-
 # ==========================================
 # 1. SETUP & CONFIGURATION
 # ==========================================
@@ -23,43 +20,48 @@ st.set_page_config(
 )
 
 # Add project root to path for imports
-current_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(current_dir)
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+if ROOT_DIR not in sys.path:
+    sys.path.append(ROOT_DIR)
 
 # ==========================================
 # 2. HYBRID PHYSICS ENGINE LOADING
 # ==========================================
 # Try loading JAX (Fast/GPU) first, fall back to Numpy (Cloud/CPU)
 engine_type = "Unknown"
+jax_available = False
 try:
     import jax
+    # FORCE JAX to CPU (Metal has issues with JIT-ted float64/complex)
+    os.environ['JAX_PLATFORMS'] = 'cpu'
     from src.qkd.model import calculate_key_rates_and_metrics
     engine_type = "🚀 JAX (High Performance)"
+    jax_available = True
     print("Success: Loaded JAX engine.")
-except ImportError:
-    from src.qkd.model_numpy import calculate_key_rates_and_metrics
-    engine_type = "☁️ Numpy (Cloud Compatibility)"
-    print("Fallback: Loaded Numpy engine.")
-except Exception as e:
-    st.error(f"Critical Error loading physics engine: {e}")
-    st.stop()
+except (ImportError, Exception):
+    try:
+        from src.qkd.model_numpy import calculate_key_rates_and_metrics
+        engine_type = "☁️ Numpy (Cloud Compatibility)"
+        print("Fallback: Loaded Numpy engine.")
+    except Exception as e:
+        st.error(f"Critical Error loading physics engine: {e}")
+        st.stop()
 
 # ==========================================
 # 2. MODEL DEFINITION
 # ==========================================
-class BB84Network(nn.Module):
+class BB84NN(nn.Module):
     def __init__(self):
-        super(BB84Network, self).__init__()
+        super(BB84NN, self).__init__()
         self.fc1 = nn.Linear(4, 16)
         self.fc2 = nn.Linear(16, 32)
         self.fc3 = nn.Linear(32, 16)
-        self.fc4 = nn.Linear(16, 5) # mu1, mu2, Pmu1, Pmu2, Px
-        self.relu = nn.ReLU()
+        self.fc4 = nn.Linear(16, 5)
 
     def forward(self, x):
-        x = self.relu(self.fc1(x))
-        x = self.relu(self.fc2(x))
-        x = self.relu(self.fc3(x))
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = F.relu(self.fc3(x))
         x = self.fc4(x)
         return x
 
@@ -71,9 +73,13 @@ class BB84Network(nn.Module):
 # ==========================================
 @st.cache_resource
 def load_scalers():
-    SCALER_PATH = os.path.join(current_dir, 'NeuralNetwork/models/scaler.pkl')
-    Y_SCALER_PATH = os.path.join(current_dir, 'NeuralNetwork/models/y_scaler.pkl')
+    # Use relative paths from the script's location
+    SCALER_PATH = os.path.join(os.path.dirname(__file__), 'NeuralNetwork/models/scaler.pkl')
+    Y_SCALER_PATH = os.path.join(os.path.dirname(__file__), 'NeuralNetwork/models/y_scaler.pkl')
     try:
+        if not os.path.exists(SCALER_PATH):
+            st.error(f"Scaler not found at {SCALER_PATH}")
+            return None, None
         scaler = joblib.load(SCALER_PATH)
         y_scaler = joblib.load(Y_SCALER_PATH)
         return scaler, y_scaler
@@ -84,18 +90,20 @@ def load_scalers():
 @st.cache_resource
 def load_model(model_type):
     if model_type == "Modern (JAX)":
-        path = os.path.join(current_dir, 'NeuralNetwork/models/bb84_nn_model_jax.pth')
+        path = os.path.join(os.path.dirname(__file__), 'NeuralNetwork/models/bb84_nn_model_jax.pth')
     else:
-        path = os.path.join(current_dir, 'NeuralNetwork/models/bb84_nn_model_legacy.pth')
+        path = os.path.join(os.path.dirname(__file__), 'NeuralNetwork/models/bb84_nn_model_legacy.pth')
     
-    model = BB84Network()
+    model = BB84NN() # Match training class name
     if os.path.exists(path):
         try:
             model.load_state_dict(torch.load(path, map_location=torch.device('cpu')))
             model.eval()
             return model
         except Exception as e:
-            st.warning(f"Error loading {model_type}: {e}")
+            st.error(f"Error loading {model_type} at {path}: {e}")
+    else:
+        st.error(f"Model file NOT found: {path} (Current WD: {os.getcwd()})")
     return None
 
 # Load Scalers once
@@ -300,8 +308,9 @@ with tab2:
     with cola:
         st.markdown("#### 🎯 Parameter Sensitivity")
         st.caption("Which parameters affect the Key Rate most?")
-        if os.path.exists("Testing/Sensitivity_Analysis.png"):
-            st.image("Testing/Sensitivity_Analysis.png", use_container_width=True)
+        SENSITIVITY_PLOT = os.path.join(ROOT_DIR, "Testing/Sensitivity_Analysis.png")
+        if os.path.exists(SENSITIVITY_PLOT):
+            st.image(SENSITIVITY_PLOT, use_container_width=True)
             st.info("**Insight:** Basis Probability ($P_X$) is the most critical factor. A 20% error leads to 100% signal loss, proving why precision optimization is vital.")
         else:
             st.warning("Sensitivity plot not found. Run `Analysis/parameter_sensitivity.py` to generate.")
@@ -309,8 +318,9 @@ with tab2:
     with colb:
         st.markdown("#### ⚡️ Dynamic vs. Static")
         st.caption("Comparison of AI-optimized vs. Fixed parameters.")
-        if os.path.exists("Testing/Dynamic_vs_Static_Overlay.png"):
-            st.image("Testing/Dynamic_vs_Static_Overlay.png", use_container_width=True)
+        OVERLAY_PLOT = os.path.join(ROOT_DIR, "Testing/Dynamic_vs_Static_Overlay.png")
+        if os.path.exists(OVERLAY_PLOT):
+            st.image(OVERLAY_PLOT, use_container_width=True)
         else:
             st.warning("Comparison plot not found.")
 

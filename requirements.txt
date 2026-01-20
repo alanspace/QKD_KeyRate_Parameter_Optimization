@@ -8,5 +8,5 @@ joblib
 matplotlib
 tqdm
 tqdm-joblib
-jax
-jaxlib
+# jax
+# jaxlib
