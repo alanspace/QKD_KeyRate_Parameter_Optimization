@@ -1,0 +1,11 @@
+2026-02-05 01:55:12,303 - ERROR - ❌ n_X=1e+04 failed: dual_annealing() got an unexpected keyword argument 'local_search_options'
+2026-02-05 01:55:12,303 - ERROR - ❌ n_X=1e+06 failed: dual_annealing() got an unexpected keyword argument 'local_search_options'
+2026-02-05 01:55:12,303 - ERROR - ❌ n_X=1e+07 failed: dual_annealing() got an unexpected keyword argument 'local_search_options'
+2026-02-05 01:55:12,303 - ERROR - ❌ n_X=1e+08 failed: dual_annealing() got an unexpected keyword argument 'local_search_options'
+2026-02-05 01:55:12,303 - ERROR - ❌ n_X=1e+05 failed: dual_annealing() got an unexpected keyword argument 'local_search_options'
+2026-02-05 01:55:12,304 - ERROR - ❌ n_X=1e+09 failed: dual_annealing() got an unexpected keyword argument 'local_search_options'
+2026-02-05 01:55:12,388 - INFO - ==================================================
+2026-02-05 01:55:12,388 - INFO - TIER 1 SUMMARY
+2026-02-05 01:55:12,388 - INFO - Total Sequential Time: 0.00 hrs
+2026-02-05 01:55:12,388 - INFO - Wall Clock Time:      0.01 min
+2026-02-05 01:55:12,388 - INFO - ==================================================

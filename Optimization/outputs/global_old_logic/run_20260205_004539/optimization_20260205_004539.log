@@ -1,0 +1,3 @@
+2026-02-05 00:45:39,823 - INFO - Starting BB84 Optimization Pipeline (Old Logic / Dual Annealing)
+2026-02-05 00:45:39,823 - INFO - Output Directory: /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/script_version/results_global_old_logic/run_20260205_004539
+2026-02-05 00:45:39,823 - INFO - Spawning 6 processes for 6 curves...

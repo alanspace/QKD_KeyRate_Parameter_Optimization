@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.25)  20 JAN 2026 15:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.25)  29 JAN 2026 12:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -452,17 +452,17 @@ ol with three in-ten-sity lev-els ($\OML/cmm/m/it/10.95 ^^V[]; ^^V[]; ^^V[] \OT
 [1
 
 {/usr/local/texlive/2025basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<NeuralNetwork/image/loss_plot.png, id=76, 867.24pt x 433.62pt>
-File: NeuralNetwork/image/loss_plot.png Graphic file (type png)
-<use NeuralNetwork/image/loss_plot.png>
-Package pdftex.def Info: NeuralNetwork/image/loss_plot.png  used on input line 
-60.
+<../NeuralNetwork/image/loss_plot.png, id=88, 867.24pt x 433.62pt>
+File: ../NeuralNetwork/image/loss_plot.png Graphic file (type png)
+<use ../NeuralNetwork/image/loss_plot.png>
+Package pdftex.def Info: ../NeuralNetwork/image/loss_plot.png  used on input li
+ne 60.
 (pdftex.def)             Requested size: 317.07614pt x 158.53795pt.
-<assets/parameter_relative_error_nx_1e09.png, id=78, 1300.86pt x 722.7pt>
-File: assets/parameter_relative_error_nx_1e09.png Graphic file (type png)
-<use assets/parameter_relative_error_nx_1e09.png>
-Package pdftex.def Info: assets/parameter_relative_error_nx_1e09.png  used on i
-nput line 70.
+<../assets/parameter_relative_error_nx_1e09.png, id=90, 1300.86pt x 722.7pt>
+File: ../assets/parameter_relative_error_nx_1e09.png Graphic file (type png)
+<use ../assets/parameter_relative_error_nx_1e09.png>
+Package pdftex.def Info: ../assets/parameter_relative_error_nx_1e09.png  used o
+n input line 73.
 (pdftex.def)             Requested size: 407.66833pt x 226.48279pt.
 
 
@@ -471,84 +471,135 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.74 
-      <./NeuralNetwork/image/loss_plot.png>]
-<Testing/Dynamic_vs_Static_Overlay.png, id=88, 628.5081pt x 394.5942pt>
-File: Testing/Dynamic_vs_Static_Overlay.png Graphic file (type png)
-<use Testing/Dynamic_vs_Static_Overlay.png>
-Package pdftex.def Info: Testing/Dynamic_vs_Static_Overlay.png  used on input l
-ine 101.
-(pdftex.def)             Requested size: 385.02547pt x 241.73169pt.
-
+l.77 
+      <../NeuralNetwork/image/loss_plot.png>]
 
 [3
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.105 
-      
+l.104         \item \textbf
+                           {Value:} Enables microsecond-latency control loop...
+ <../assets/parameter_relative_error_nx_1e09.png>]
+Overfull \hbox (48.8905pt too wide) in paragraph at lines 137--149
+ [][] 
+ []
+
+
+
+[4
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.105 
-       <./assets/parameter_relative_error_nx_1e09.png>]
-
-LaTeX Warning: Reference `fig:finite_size' on page 4 undefined on input line 12
-1.
-
-<assets/finite_size_analysis.png, id=96, 402.5439pt x 285.7074pt>
-File: assets/finite_size_analysis.png Graphic file (type png)
-<use assets/finite_size_analysis.png>
-Package pdftex.def Info: assets/finite_size_analysis.png  used on input line 12
-5.
-(pdftex.def)             Requested size: 385.02547pt x 273.27763pt.
-
-
-[4
-pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.129 
+l.160 
       
 pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.129 
-       <./Testing/Dynamic_vs_Static_Overlay.png>]
-<assets/optimization_stability_comparison.png, id=106, 615.2586pt x 397.7259pt>
+l.160 
+      ]
+<../assets/error_histogram.png, id=125, 616.2222pt x 397.7259pt>
+File: ../assets/error_histogram.png Graphic file (type png)
+<use ../assets/error_histogram.png>
+Package pdftex.def Info: ../assets/error_histogram.png  used on input line 179.
 
-File: assets/optimization_stability_comparison.png Graphic file (type png)
-<use assets/optimization_stability_comparison.png>
-Package pdftex.def Info: assets/optimization_stability_comparison.png  used on 
-input line 135.
-(pdftex.def)             Requested size: 407.66833pt x 263.5316pt.
+(pdftex.def)             Requested size: 385.02547pt x 248.50525pt.
 
 
 [5
-pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.151 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.151 
-       <./assets/finite_size_analysis.png> <./assets/optimization_stability_com
-parison.png>]
+l.203 
+       <../assets/error_histogram.png>]
+<../assets/extrapolation_check.png, id=132, 624.6537pt x 397.7259pt>
+File: ../assets/extrapolation_check.png Graphic file (type png)
+<use ../assets/extrapolation_check.png>
+Package pdftex.def Info: ../assets/extrapolation_check.png  used on input line 
+206.
+(pdftex.def)             Requested size: 385.02547pt x 245.16133pt.
+<../Testing/Dynamic_vs_Static_Overlay.png, id=133, 628.5081pt x 394.5942pt>
+File: ../Testing/Dynamic_vs_Static_Overlay.png Graphic file (type png)
+<use ../Testing/Dynamic_vs_Static_Overlay.png>
+Package pdftex.def Info: ../Testing/Dynamic_vs_Static_Overlay.png  used on inpu
+t line 216.
+(pdftex.def)             Requested size: 385.02547pt x 241.73169pt.
+
 
 [6
 pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.160 \end{document}
+l.220 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.220 
+       <../assets/extrapolation_check.png>]
+<../assets/finite_size_analysis.png, id=142, 402.5439pt x 285.7074pt>
+File: ../assets/finite_size_analysis.png Graphic file (type png)
+<use ../assets/finite_size_analysis.png>
+Package pdftex.def Info: ../assets/finite_size_analysis.png  used on input line
+ 240.
+(pdftex.def)             Requested size: 385.02547pt x 273.27763pt.
+
+
+[7
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.244 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.244 
+       <../Testing/Dynamic_vs_Static_Overlay.png>]
+<../assets/optimization_stability_comparison.png, id=151, 615.2586pt x 397.2441
+pt>
+File: ../assets/optimization_stability_comparison.png Graphic file (type png)
+<use ../assets/optimization_stability_comparison.png>
+Package pdftex.def Info: ../assets/optimization_stability_comparison.png  used 
+on input line 250.
+(pdftex.def)             Requested size: 407.66833pt x 263.21236pt.
+
+
+[8
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.256 \begin{equation}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.256 \begin{equation}
+                       <../assets/finite_size_analysis.png> <../assets/optimiza
+tion_stability_comparison.png>]
+Overfull \hbox (7.81947pt too wide) in paragraph at lines 276--277
+[]\T1/cmr/bx/n/10.95 Physics-Informed Neu-ral Net-works (PINNs): \T1/cmr/m/n/10
+.95 In-te-grat-ing the an-a-lytic se-cu-rity bounds
+ []
+
+
+
+[9
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.290 \end{document}
                     ] (./results_report.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
@@ -556,55 +607,47 @@ L3 programming layer <2025-01-18>
  ***********
 
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Package rerunfilecheck Warning: File `results_report.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `results_report.out':
-(rerunfilecheck)             Before: 26DD642135FBD6230EC2E5C529D01692;2466
-(rerunfilecheck)             After:  345E42DAB41F6096F80754E6DB8C797E;2675.
+Package rerunfilecheck Info: File `results_report.out' has not changed.
+(rerunfilecheck)             Checksum: 281A8E4B59FE564DB9F35199C9CAB1E3;2954.
  ) 
 Here is how much of TeX's memory you used:
- 10817 strings out of 474662
- 164765 string characters out of 5751108
- 564656 words of memory out of 5000000
- 33682 multiletter control sequences out of 15000+600000
- 577160 words of font info for 84 fonts, out of 8000000 for 9000
+ 10868 strings out of 474662
+ 165839 string characters out of 5751108
+ 566476 words of memory out of 5000000
+ 33709 multiletter control sequences out of 15000+600000
+ 577474 words of font info for 85 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 75i,11n,79p,940b,441s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,79p,1138b,592s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/daai6ga1hou2/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jkn
 appen/ec/ecti1095.600pk> </Users/daai6ga1hou2/Library/texlive/2025basic/texmf-v
-ar/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/daai6ga1hou2/Library/tex
-live/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/da
+ar/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/daai6ga1hou2/Library/tex
+live/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/da
 ai6ga1hou2/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx
-1200.600pk> </Users/daai6ga1hou2/Library/texlive/2025basic/texmf-var/fonts/pk/l
-jfour/jknappen/ec/ecrm1095.600pk> </Users/daai6ga1hou2/Library/texlive/2025basi
-c/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/daai6ga1hou2/Li
-brary/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> <
+1095.600pk> </Users/daai6ga1hou2/Library/texlive/2025basic/texmf-var/fonts/pk/l
+jfour/jknappen/ec/ecbx1200.600pk> </Users/daai6ga1hou2/Library/texlive/2025basi
+c/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/daai6ga1hou2/Li
+brary/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> <
 /Users/daai6ga1hou2/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappe
-n/ec/ecbx1000.600pk> </Users/daai6ga1hou2/Library/texlive/2025basic/texmf-var/f
-onts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </Users/daai6ga1hou2/Library/texlive
-/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/local/tex
-live/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local
-/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/l
-ocal/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
-sr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>
-</usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
-fb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6
-.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r8.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy8.pfb>
-Output written on results_report.pdf (6 pages, 1429740 bytes).
+n/ec/ecrm1000.600pk> </Users/daai6ga1hou2/Library/texlive/2025basic/texmf-var/f
+onts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </Users/daai6ga1hou2/Library/texlive
+/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </Users/daai6g
+a1hou2/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728
+.600pk></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmbx10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmex10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmmi10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on results_report.pdf (9 pages, 1788041 bytes).
 PDF statistics:
- 523 PDF objects out of 1000 (max. 8388607)
- 164 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 500000)
- 130 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 636 PDF objects out of 1000 (max. 8388607)
+ 215 compressed objects within 3 object streams
+ 55 named destinations out of 1000 (max. 500000)
+ 164 words of extra memory for PDF output out of 10000 (max. 10000000)
 

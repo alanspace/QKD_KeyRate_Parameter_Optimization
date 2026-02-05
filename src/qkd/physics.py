@@ -131,7 +131,9 @@ def calculate_sqrt_term(n_total, epsilon_sec):
     Calculate the square root term used in uncertainty calculations for a given basis.
     """
     epsilon_sec = jnp.clip(epsilon_sec, 1e-10, None)  # Avoid log(0)
-    return jnp.sqrt((n_total / 2) * jnp.log(21 / epsilon_sec))
+    # Safe sqrt for gradients
+    val = (n_total / 2) * jnp.log(21 / epsilon_sec)
+    return jnp.sqrt(jnp.maximum(val, 0) + 1e-30)
 
 def calculate_n_pm(mu_k_values, p_mu_k_values, n_mu_k, calculate_sqrt_term):
     """
@@ -224,22 +226,50 @@ def calculate_lambda_EC(n_X_values, f_EC, calculate_e_obs):
     return n_X_values * f_EC * calculate_h(calculate_e_obs)
 
 def calculate_gamma(a, b, c, d):
-    def true_fn(_):
-        return 0.0
-
-    def false_fn(_):
-        term1 = (c + d) * (1 - b) * b / (c * d * jnp.log(2))
-        term2 = jnp.log2((c + d) / (c * d * (1 - b) * b) * (21**2 / a**2))
-        return jnp.sum(jnp.sqrt(term1 * term2))
-
-    # Use `lax.cond` to handle the condition
-    return lax.cond((b == 0) | (b == 1), true_fn, false_fn, operand=None)
+    # jax.debug.print("Gamma inputs: a={a}, b={b}, c={c}, d={d}", a=a, b=b, c=c, d=d)
+    
+    # Sanitize inputs
+    b = jnp.nan_to_num(b, nan=0.5, posinf=1e9, neginf=-1e9)
+    # Ensure yields are non-zero to avoid singularity. 
+    # If yields are 0, this drives gamma high, which clips Phi to 0.5, which is physically consistent (0 key).
+    c_safe = jnp.maximum(c, 1e-30)
+    d_safe = jnp.maximum(d, 1e-30)
+    
+    # Clip b to safe range
+    condition = (b <= 0) | (b >= 1)
+    b_safe = jnp.where(condition, 0.5, b)
+    b_safe = jnp.clip(b_safe, 1e-6, 1.0 - 1e-6)
+    
+    denom_log = c_safe * d_safe * jnp.log(2)
+    term1 = (c_safe + d_safe) * (1 - b_safe) * b_safe / denom_log
+    
+    denom = c_safe * d_safe * (1 - b_safe) * b_safe
+    term2 = jnp.log2(((c_safe + d_safe) / denom) * (21**2 / a**2))
+    
+    inner = term1 * term2
+    inner = jnp.maximum(inner, 0.0)
+    
+    result = jnp.sqrt(inner + 1e-30)
+    
+    # Result clipping to avoid huge values causing 0*Inf gradients downstream
+    # Since Phi is capped at 0.5, gamma > 1 is irrelevant physically
+    return jnp.minimum(result, 10.0)
 
 def calculate_Phi(v_Z_1, s_Z_1, gamma_result):
     """
     Calculates the Phi term, representing the key rate error correction bound.
     """
-    result = v_Z_1 / s_Z_1 + gamma_result
+    # Safe division for v/s
+    s_safe = jnp.where(s_Z_1 <= 1e-30, 1e-30, s_Z_1)
+    
+    # If s is effectively 0, term should likely be capped or large
+    # But to avoid gradient Inf, we bound the division
+    term1 = v_Z_1 / s_safe
+    
+    # Additional safety: clip term1 
+    term1 = jnp.clip(term1, -10.0, 10.0) 
+    
+    result = term1 + gamma_result
     return jnp.minimum(result, 0.5)
 
 def calculate_LastTwoTerm(epsilon_sec, epsilon_cor):

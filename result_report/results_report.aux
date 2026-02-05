@@ -1,0 +1,48 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{lim2014}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Theoretical Framework}{1}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Decoy-State BB84 Protocol}{1}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Optimization Objective}{1}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Data Generation: Adaptive Hybrid Optimization}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Neural Network Architecture}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Training convergence (MSE Loss) demonstrating effective learning of the parameter manifold.}}{2}{figure.1}\protected@file@percent }
+\newlabel{fig:loss}{{1}{2}{Training convergence (MSE Loss) demonstrating effective learning of the parameter manifold}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Error Analysis and JAX Significance}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Relative Prediction Error across fiber lengths for $n_X = 10^9$. The neural network maintains $<1\%$ error for critical parameters like $\mu _1$ and $P_X$ up to $\sim 150$km, verifying that the model effectively captures the smooth manifold discovered by JAX.}}{3}{figure.2}\protected@file@percent }
+\newlabel{fig:error}{{2}{3}{Relative Prediction Error across fiber lengths for $n_X = 10^9$. The neural network maintains $<1\%$ error for critical parameters like $\mu _1$ and $P_X$ up to $\sim 150$km, verifying that the model effectively captures the smooth manifold discovered by JAX}{figure.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Sensitivity Analysis (The "Security Cliff").}{3}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results and Performance Analysis}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Speedup Analysis: Offline vs. Online}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Algorithmic Complexity Shift.}{4}{section*.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces The transition from iterative search ($O(N)$) to constant-time inference ($O(1)$) explains the $5,000,000\times $ throughput gain.}}{4}{table.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Complexity Analysis.}{4}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Summary of Performance}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces End-to-End optimization performance. The raw speedup ($>5M\times $) highlights the throughput potential for large-scale key management, while the system speedup ($\sim 11k\times $) represents the realized gain for real-time FPGA feedback loops.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:speedup}{{2}{4}{End-to-End optimization performance. The raw speedup ($>5M\times $) highlights the throughput potential for large-scale key management, while the system speedup ($\sim 11k\times $) represents the realized gain for real-time FPGA feedback loops}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Verification Methodology \& Audit.}{4}{section*.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Error Distribution Analysis: The Relative Prediction Error follows a tightly constrained distribution (Bell Curve) centered at 0\% with no outliers $>5\%$. This "thin-tailed" behavior confirms consistent reliability across the entire operating range, critical for high-security applications.}}{5}{figure.3}\protected@file@percent }
+\newlabel{fig:error_hist}{{3}{5}{Error Distribution Analysis: The Relative Prediction Error follows a tightly constrained distribution (Bell Curve) centered at 0\% with no outliers $>5\%$. This "thin-tailed" behavior confirms consistent reliability across the entire operating range, critical for high-security applications}{figure.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Summary of Verification Audit. All metrics exceed or match the design requirements.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:audit}{{3}{6}{Summary of Verification Audit. All metrics exceed or match the design requirements}{table.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Extrapolation Capability: The Neural Network (Red) accurately predicts the parameter decay trend beyond the training boundary (180 km), maintaining a valid but negligible key rate as physically expected ("Graceful Decay"), rather than hallucinating high rates.}}{6}{figure.4}\protected@file@percent }
+\newlabel{fig:extrapolation}{{4}{6}{Extrapolation Capability: The Neural Network (Red) accurately predicts the parameter decay trend beyond the training boundary (180 km), maintaining a valid but negligible key rate as physically expected ("Graceful Decay"), rather than hallucinating high rates}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Secret Key Rate Enhancement}{6}{subsection.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Performance comparison: The AI-driven dynamic configuration (Blue) significantly outperforms the static configuration (Red) at distances $>100$km.}}{7}{figure.5}\protected@file@percent }
+\newlabel{fig:dynamic_vs_static}{{5}{7}{Performance comparison: The AI-driven dynamic configuration (Blue) significantly outperforms the static configuration (Red) at distances $>100$km}{figure.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Key Rate Gains at various channel lengths.}}{7}{table.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Finite-Size Security Analysis}{7}{subsection.4.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Finite-Size Security Analysis: Impact of block size $n_X$ on Secret Key Rate. The theoretical limit drops significantly for $n_X < 10^7$ due to statistical fluctuatio penalties.}}{8}{figure.6}\protected@file@percent }
+\newlabel{fig:finite_size}{{6}{8}{Finite-Size Security Analysis: Impact of block size $n_X$ on Secret Key Rate. The theoretical limit drops significantly for $n_X < 10^7$ due to statistical fluctuatio penalties}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Numerical Stability and Dataset Quality}{8}{subsection.4.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Stability Analysis: The new adaptive optimizer (Blue) eliminates the stochastic noise present in the legacy method (Red), reducing parameter jitter.}}{8}{figure.7}\protected@file@percent }
+\newlabel{fig:stability}{{7}{8}{Stability Analysis: The new adaptive optimizer (Blue) eliminates the stochastic noise present in the legacy method (Red), reducing parameter jitter}{figure.7}{}}
+\bibcite{lim2014}{1}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Quantitative metric comparison showing $\sim 31\%$ improvement in smoothness.}}{9}{table.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Future Work}{9}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\gdef \@abspage@last{9}

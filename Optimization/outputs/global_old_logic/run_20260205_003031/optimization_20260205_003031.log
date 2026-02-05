@@ -1,0 +1,13 @@
+2026-02-05 00:30:31,633 - INFO - Starting BB84 Optimization Pipeline (Old Logic / Dual Annealing)
+2026-02-05 00:30:31,633 - INFO - Output Directory: /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/script_version/results_global_old_logic/run_20260205_003031
+2026-02-05 00:30:31,633 - INFO - Spawning 6 processes for 6 curves...
+2026-02-05 00:30:32,364 - ERROR - Curve n_X=1e+04 generated an exception: scalar_objective() missing 8 required positional arguments: 'eta_Bob', 'P_dc_value', 'epsilon_sec', 'epsilon_cor', 'f_EC', 'e_mis', 'P_ap', and 'n_event'
+2026-02-05 00:30:32,364 - ERROR - Curve n_X=1e+05 generated an exception: scalar_objective() missing 8 required positional arguments: 'eta_Bob', 'P_dc_value', 'epsilon_sec', 'epsilon_cor', 'f_EC', 'e_mis', 'P_ap', and 'n_event'
+2026-02-05 00:30:32,369 - ERROR - Curve n_X=1e+07 generated an exception: scalar_objective() missing 8 required positional arguments: 'eta_Bob', 'P_dc_value', 'epsilon_sec', 'epsilon_cor', 'f_EC', 'e_mis', 'P_ap', and 'n_event'
+2026-02-05 00:30:32,369 - ERROR - Curve n_X=1e+06 generated an exception: scalar_objective() missing 8 required positional arguments: 'eta_Bob', 'P_dc_value', 'epsilon_sec', 'epsilon_cor', 'f_EC', 'e_mis', 'P_ap', and 'n_event'
+2026-02-05 00:30:32,374 - ERROR - Curve n_X=1e+09 generated an exception: scalar_objective() missing 8 required positional arguments: 'eta_Bob', 'P_dc_value', 'epsilon_sec', 'epsilon_cor', 'f_EC', 'e_mis', 'P_ap', and 'n_event'
+2026-02-05 00:30:32,376 - ERROR - Curve n_X=1e+08 generated an exception: scalar_objective() missing 8 required positional arguments: 'eta_Bob', 'P_dc_value', 'epsilon_sec', 'epsilon_cor', 'f_EC', 'e_mis', 'P_ap', and 'n_event'
+2026-02-05 00:30:32,522 - INFO - Saved results to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/script_version/results_global_old_logic/run_20260205_003031/reordered_qkd_results_old_logic_20260205_003031.json
+2026-02-05 00:30:32,522 - INFO - Generating plots and timing reports...
+2026-02-05 00:30:32,852 - INFO - Plots generated in /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/script_version/results_global_old_logic/run_20260205_003031/detailed_plots
+2026-02-05 00:30:32,852 - INFO - Pipeline Complete.

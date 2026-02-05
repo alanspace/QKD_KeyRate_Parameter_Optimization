@@ -120,3 +120,34 @@ def calculate_key_rates_and_metrics(params, L_values, n_X, alpha, eta_Bob, P_dc_
     key_rates = calculate_R(l_calculated_values, N_values)  # Secret key rate per pulse
 
     return [key_rates] # Return as list to match original signature output[0]
+
+def penalty(key_rates, mu_1, mu_2, mu_3, P_mu_1, P_mu_2, P_mu_3):
+    """Penalty function to enforce constraints (Numpy version)."""
+    # mu_1 > mu_2 + mu_3
+    penalty_mu1_sum = np.where(mu_1 > mu_2 + mu_3, 0.0, 1e250)
+    # mu_2 / mu_1 < 1
+    penalty_mu2_ratio = np.where(mu_2 / mu_1 < 1, 0.0, 1e250)
+    # P sum ~ 1
+    penalty_sum = np.where(np.abs(P_mu_1 + P_mu_2 + P_mu_3 - 1) < 1e-12, 0.0, 1e250)
+    # P_mu_3 > 0
+    penalty_P_mu_3 = np.where(P_mu_3 > 0, 0.0, 1e250)
+    # mu_2 > mu_3
+    penalty_mu2_mu3 = np.where(mu_2 > mu_3, 0.0, 1e250)
+    
+    total_penalty = penalty_mu1_sum + penalty_mu2_ratio + penalty_sum + penalty_mu2_mu3 + penalty_P_mu_3
+    penalized_key_rates = key_rates - total_penalty
+    return penalized_key_rates
+
+def scalar_objective_numpy(params, L_values, n_X, alpha, eta_Bob, P_dc_value, epsilon_sec, epsilon_cor, f_EC, e_mis, P_ap, n_event):
+    """Returns the negative Key Rate (scalar) for minimization."""
+    results = calculate_key_rates_and_metrics(params, L_values, n_X, alpha, eta_Bob, P_dc_value, epsilon_sec, epsilon_cor, f_EC, e_mis, P_ap, n_event)
+    key_rates = results[0]
+    
+    mu_1, mu_2, P_mu_1, P_mu_2, P_X_value = params
+    mu_3 = 2e-4
+    P_mu_3 = 1 - P_mu_1 - P_mu_2
+    
+    penalized_key_rate = penalty(key_rates, mu_1, mu_2, mu_3, P_mu_1, P_mu_2, P_mu_3)
+    
+    # Return negative sum (scalar)
+    return -np.sum(penalized_key_rate)

@@ -1,12 +1,5 @@
-streamlit
-numpy<2.0.0
+numpy
 scipy
-pandas
-torch
-scikit-learn
-joblib
 matplotlib
 tqdm
-tqdm-joblib
-# jax
-# jaxlib
+# Install JAX separately via: pip install jax[cpu]
