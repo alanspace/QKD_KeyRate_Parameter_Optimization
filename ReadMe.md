@@ -1,11 +1,33 @@
-# QKD Key Rate Parameter Optimization
+# Machine Learning for Quantum Key Distribution Network Optimization
 
-## Overview
-This repository contains the optimization pipeline for the BB84 QKD protocol. It is structured to support both a "Legacy" NumPy-based baseline (Tier 1) and a modern JAX-accelerated suite (Tier 3).
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)
+![Framework: PyTorch](https://img.shields.io/badge/Framework-PyTorch-orange.svg)
+![Framework: JAX](https://img.shields.io/badge/Framework-JAX-blueviolet.svg)
+![Build Status](https://github.com/alanspace/QKD_KeyRate_Parameter_Optimization/actions/workflows/ci.yml/badge.svg)
+
+This repository contains the optimization pipeline for the BB84 QKD protocol, investigating the use of neural networks (NNs) to accelerate parameter optimization. It supports both a "Legacy" NumPy-based baseline (Tier 1), a modern JAX-accelerated suite (Tier 3), and a Neural Network surrogate model.
+
+## ⚡️ Interactive Live Dashboard
+
+Experience the power of real-time AI optimization through our interactive dashboard.
+
+[**Launch Live App on Streamlit Cloud**](https://appapppy-jcrvkdozjbapjtbgujxutu.streamlit.app/)
+
+## Abstract
+
+Optimizing parameters is crucial for maximizing the performance of Quantum Key Distribution (QKD) systems. This study investigates the efficacy of neural networks (NNs) as a high-speed alternative to Dual Annealing (DA) for determining optimal operational parameters (signal/decoy intensities `μk`, probabilities `Pμk`, basis choice `Px`) for the finite-key decoy-state BB84 protocol. We demonstrate that a trained NN can predict near-optimal parameters with high accuracy, achieving a **>6,000-fold practical speedup** over traditional legacy solvers.
+
+## Key Results
+
+- **📉 Rate Improvement:** **~47x - 60x higher key rate** at long distances (180 km+).
+- **📏 Range Extension:** **+5.0 km** extended secure communication distance.
+- **⚡ Implementation Speed:** **>6,000-fold practical speedup** (End-to-End Latency).
+- **🎯 High Accuracy:** The NN predictions closely match the numerically optimized ground truth.
 
 ## Directory Structure
 
-*   **`Optimization/`**: Main project folder.
+*   **`Optimization/`**: Main project folder for numerical optimization.
     *   **`run_scripts/`**: Executable scripts for different optimization tiers.
         *   `tier1_legacy_baseline.py`: **Baseline (Tier 1)**. Pure NumPy/SciPy `dual_annealing`. Slow but accurate.
         *   `tier3_global_jax.py`: **Sequential Adaptive (Tier 3)**. JAX-accelerated. The "Gold Standard" for smooth parameters.
@@ -15,10 +37,11 @@ This repository contains the optimization pipeline for the BB84 QKD protocol. It
     *   **`outputs/`**: Centralized storage for all run results.
         *   `tier1_legacy_baseline/`: Logs and JSONs from Tier 1 runs.
         *   `global_jax/`: Logs and JSONs from Tier 3 runs.
-        *   `notebook_comparison/`: Comparison plots against fixed parameters.
-    *   **`notebooks/`**: Jupyter notebooks (Archived).
+    *   **`notebooks/`**: Jupyter notebooks (Archived/Research).
     *   **`tools/`**: Helper utilities (Timing reports, etc.).
 *   **`src/`**: Shared physics library (`qkd.model`, `qkd.model_numpy`).
+*   **`NeuralNetwork/`**: Neural network architecture, training notebooks, and pre-trained models.
+*   **`Analysis/`**: Validation notebooks for the analytical model.
 
 ## Installation
 
@@ -34,7 +57,7 @@ This repository contains the optimization pipeline for the BB84 QKD protocol. It
     ```
 
 3.  **Install JAX (OS-Specific)**:
-    *   **Mac/Linux/Windows (CPU)**: 
+    *   **Mac (Apple Silicon) / Linux / Windows (CPU)**: 
         ```bash
         pip install jax[cpu]
         ```
@@ -43,20 +66,83 @@ This repository contains the optimization pipeline for the BB84 QKD protocol. It
         pip install jax[cuda12]
         ```
 
-## Usage
+## Usage: Optimization Pipeline (New Scripts)
 
-### Running the Baseline (Tier 1)
+For production-grade data generation and benchmarking, use the Python scripts in `Optimization/run_scripts/`.
+
+### 1. Running the Baseline (Tier 1)
+Pure NumPy implementation using `dual_annealing`. Useful for verifying results without JAX dependencies.
 ```bash
 python Optimization/run_scripts/tier1_legacy_baseline.py
 ```
 *   **Output**: `Optimization/outputs/tier1_legacy_baseline/`
 
-### Running the JAX Optimizer (Tier 3)
+### 2. Running the JAX Optimizer (Tier 3)
+The state-of-the-art Adaptive JAX optimizer. Fastest and most robust.
 ```bash
 python Optimization/run_scripts/tier3_global_jax.py
 ```
 *   **Output**: `Optimization/outputs/global_jax/`
 
-## Troubleshooting
-*   **Platform Support**: Scripts are OS-agnostic (Mac, Windows, Linux).
-*   **Cores**: By default, scripts utilize all available CPU cores.
+## Usage: Research Workflow (Notebooks)
+
+Follow these steps to reproduce the full research study, including Model Verification and Neural Network Training.
+
+### 1. Verification of the Analytical Model
+**Notebook:** `Analysis/BB84_Parameters_2014_Analysis_Jax.ipynb`
+*   Verifies the core QKD simulation.
+*   Calculates Secret Key Rate (SKR) using *fixed* parameters to ensure correct exponential decay.
+
+### 2. Neural Network Training and Evaluation
+**Notebook:** `NeuralNetwork/neural_network_updated.ipynb`
+*   Trains the PyTorch model using the dataset generated by the Optimization steps.
+*   Evaluates accuracy and generates relative error plots.
+*   Saves the trained model to `NeuralNetwork/models/`.
+
+## Benchmarks: Speedup Evolution
+
+We benchmarked the Neural Network against traditional solvers.
+
+| Solver Type | Time per Point | Speedup Factor |
+| :--- | :--- | :--- |
+| **Legacy (Dual Annealing)** | $> 10.0$ s | 1x (Baseline) |
+| **Modern (JAX/SciPy)** | $0.01 - 0.05$ s | $1,000\times$ |
+| **Neural Network** | $0.000002$ s | **$>6,000\times$ - $140,000\times$** |
+
+### Data Generation Speedup
+Comparison of the background training data generation process:
+
+| Feature | Old Method (Baseline) | New Method (JAX Adaptive) | Improvement |
+| :--- | :--- | :--- | :--- |
+| **Runtime (6000 pts)** | ~1 hr 30 min | ~2 min | **~45x Faster** ⚡ |
+| **Algorithm** | `scipy.dual_annealing` | `jax.grad` + `Adaptive L-BFGS-B` | **Gradient-based** |
+| **Quality** | Noisy (Staircase artifacts) | Smooth (Physically realistic) | **High Stability** |
+
+## Limitations and Future Work
+
+### Current Limitations
+1.  **Prediction Accuracy Near Physical Limits**: <5% relative error in useful ranges, but higher near zero-key rate (negligible impact).
+2.  **Static Channel Assumption**: Trained for static fiber conditions.
+
+### Future Research Directions
+1.  **Physics-Informed Neural Networks (PINNs)**: Incorporate rate equations into the loss function.
+2.  **Real-Time Adaptation**: Deploy on FPGA/Edge devices for dynamic scenarios.
+3.  **Transfer Learning**: Extend to MDI-QKD or Twin-Field QKD.
+
+## Citation
+
+If you use this work in your research, please cite the original project:
+
+```bibtex
+@mastersthesis{leung2024mlqkd,
+  author       = {Leung, Shek Lun},
+  title        = {Machine Learning for Quantum Key Distribution Network Optimization},
+  school       = {KTH Royal Institute of Technology},
+  year         = {2024},
+  supervisor   = {Svanberg, Erik and Foletto, Giulio and Adya, Vaishali},
+  examiner     = {Gallo, Katia}
+}
+```
+
+This work is based on the analytical model presented in:
+Lim, C. C. W., et al. (2014). "Concise security bounds for practical decoy-state quantum key distribution". Physical Review A, 89(2), 022307.
