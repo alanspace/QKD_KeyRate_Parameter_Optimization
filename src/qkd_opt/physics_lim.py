@@ -26,6 +26,7 @@ from .presets import Consts, Flags
 jax.config.update("jax_enable_x64", True)
 
 LN2 = jnp.log(2.0)
+N_EPS_GRID = 128   # log-grid points used to bracket the greatest eps fixed point
 
 
 def binary_entropy(x):
@@ -117,10 +118,13 @@ def _solve_eps(cnt, n_X, c: Consts, f: Flags):
     """Greatest fixed point of eps = F(eps) := kappa * max(l(eps), 1), differentiable in params.
 
     F is increasing in eps (l grows with eps) and F(kappa n_X) <= kappa n_X (l <= n_X), so
-    iterating from eps0 = kappa n_X decreases monotonically towards the greatest fixed point.
-    The iteration is slow near the horizon (elasticity d ln l / d ln eps -> 1), so after
-    f.n_eps_iter iterations we bisect in log eps on [log kappa, log eps_K] keeping
-    F(hi) < hi and F(lo) >= lo. Both stages run on stop_gradient'ed counts; one implicit-
+    iterating from eps0 = kappa n_X decreases monotonically towards the greatest fixed point
+    (eps_K >= greatest root). The iteration is slow near the horizon, so it is followed by a
+    128-point log-grid scan of g = log F - log eps on [kappa, eps_K] that brackets the largest
+    root, and a 60-step bisection inside that bracket.
+    Note: eps = kappa (l <= 1) is always a fixed point. When the non-trivial root disappears
+    (near the horizon) the greatest fixed point jumps to kappa, so R(p) is DISCONTINUOUS there --
+    a property of the eps_sec = kappa * l convention, not a numerical artefact. Both stages run on stop_gradient'ed counts; one implicit-
     function correction step then restores the exact first derivative
         d eps / dp = kappa dl/dp / (1 - kappa dl/deps)
     while leaving the value unchanged at the fixed point.
@@ -132,8 +136,14 @@ def _solve_eps(cnt, n_X, c: Consts, f: Flags):
         return F(e, cnt_sg), None
 
     eps_hi, _ = lax.scan(it, jnp.asarray(c.kappa * n_X, jnp.float64), None, length=f.n_eps_iter)
-    log_lo = jnp.log(jnp.asarray(c.kappa, jnp.float64))
-    log_hi = jnp.log(eps_hi)
+    # g(eps) = log F(eps) - log eps. eps = kappa is always a (trivial) root with g >= 0, so a
+    # plain bisection on [kappa, eps_hi] can land on it. Scan a log grid first and bracket the
+    # LARGEST grid point with g >= 0; the greatest root lies in (grid[j], grid[j+1]].
+    grid = jnp.linspace(jnp.log(jnp.asarray(c.kappa, jnp.float64)), jnp.log(eps_hi), N_EPS_GRID)
+    g = jax.vmap(lambda le: jnp.log(F(jnp.exp(le), cnt_sg)) - le)(grid)
+    j = jnp.max(jnp.where(g >= 0, jnp.arange(N_EPS_GRID), 0))
+    log_lo = grid[j]
+    log_hi = grid[jnp.minimum(j + 1, N_EPS_GRID - 1)]
 
     def bis(state, _):
         lo, hi = state

@@ -34,3 +34,9 @@ node_modules/
 
 *.pdf
 
+
+# qkd_opt rework: reference data and generated benchmark/analysis summaries are tracked
+!Optimization/reference/*.json
+!results/**/*.json
+results/**/*.npz
+results/logs/
