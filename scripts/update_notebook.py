@@ -187,7 +187,7 @@ def main():
         "",
         "plt.title('Secret Key Rate: Dynamic (AI) vs Static', fontsize=14)",
         "plt.xlabel('Fiber Length (km)', fontsize=12)",
-        "plt.ylabel('Secret Key Rate (bps)', fontsize=12)",
+        "plt.ylabel('Secret Key Rate (bits/pulse)', fontsize=12)",
         "plt.legend(fontsize=12)",
         "plt.grid(True, which='both', linestyle=':', alpha=0.6)",
         "plt.ylim(1e-10, 1e-2)",

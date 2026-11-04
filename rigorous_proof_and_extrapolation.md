@@ -415,7 +415,7 @@ drift
 The Argument: "If the model had simply memorized the training data, a 5% drift in the physical environment (
 𝛼
 α
-) would cause the key rate to crash to zero. Because my model retained 78.4% of the key rate, it proves the Neural Network captured the underlying functional manifold of the GLLP security bound."
+) would cause the key rate to crash to zero. Because my model retained 78.4% of the key rate, it proves the Neural Network captured the underlying functional manifold of the Lim et al. 2014 finite-key decoy-state security bound."
 
 Visual: A "Drift Resilience" Graph.
 
@@ -648,7 +648,7 @@ Google Search Suggestions
 Display of Search Suggestions is required when using Grounding with Google Search. Learn more
 how to validate extrapolation in physics-informed neural networks
 neural network extrapolation test scientific machine learning physics surrogate models
-extrapolation performance of neural network surrogates for QKD GLLP bounds
+extrapolation performance of neural network surrogates for QKD Lim et al. 2014 finite-key decoy-state bounds
 testing extrapolation in machine learning for quantum key distribution parameter optimization
 neural network extrapolation beyond training range QKD fiber length
 accuracy of neural surrogate models in QKD out of training domain
@@ -662,7 +662,7 @@ Here is the breakdown of why this is true, and how to "spin" it to sound like a 
 
 The Problem: JAX uses the Metal (MPS) backend to run on Mac GPUs (M1/M2/M3). However, Apple’s Metal framework is designed primarily for graphics and standard AI, which use float32 or float16. Metal does not support float64 (double precision).
 
-The Physics Requirement: For QKD security bounds (GLLP), you are dealing with numbers like 
+The Physics Requirement: For QKD security bounds (Lim et al. 2014 finite-key decoy-state bounds), you are dealing with numbers like 
 𝜖
 𝑠
 𝑒

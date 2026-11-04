@@ -44,7 +44,7 @@ Where $\vec{p} = [\mu_1, \mu_2, P_{\mu_1}, P_{\mu_2}, P_X]$ is the vector of tun
 \section{Methodology}
 
 \subsection{Data Generation: Adaptive Hybrid Optimization}
-To train a high-fidelity surrogate, we generated a dataset of 6,000 "ground truth" optimal points using a novel \textbf{Adaptive Hybrid Optimization} engine built on JAX. To ensure \textbf{Global Optimality} in the non-convex GLLP landscape, the engine employs a Multi-Start strategy (10 random initializations per point) combined with the L-BFGS-B algorithm. This guarantees that the training labels represent the true global maximum rather than local traps.
+To train a high-fidelity surrogate, we generated a dataset of 6,000 "ground truth" optimal points using a novel \textbf{Adaptive Hybrid Optimization} engine built on JAX. To ensure \textbf{Global Optimality} in the non-convex landscape of the Lim et al. 2014 finite-key decoy-state bounds, the engine employs a Multi-Start strategy (10 random initializations per point) combined with the L-BFGS-B algorithm. This guarantees that the training labels represent the true global maximum rather than local traps.
 
 \subsection{Neural Network Architecture}
 We implemented a Feed-Forward Neural Network (FFNN) with the following topology:
@@ -168,7 +168,7 @@ All numerical claims in this report have been verified using the master verifica
     To audit the model's behavior outside the training distribution ($L > 180$km), we evaluated it at 200km. The model correctly predicted parameters leading to a near-zero key rate, adhering to the "Graceful Failure" principle rather than hallucinating valid keys in the dead zone.
 
     \item \textbf{Feature Sensitivity Audit:}
-    We computed the gradient of the NN output with respect to input features ($\partial NN / \partial x$). The analysis confirmed that \textbf{Fiber Length} and \textbf{Misalignment Error} are the dominant drivers of the decision manifold, matching the physical hierarchy of the GLLP security bound.
+    We computed the gradient of the NN output with respect to input features ($\partial NN / \partial x$). The analysis confirmed that \textbf{Fiber Length} and \textbf{Misalignment Error} are the dominant drivers of the decision manifold, matching the physical hierarchy of the Lim et al. 2014 finite-key decoy-state security bound.
 
     \item \textbf{Reproducibility:}
     The entire pipeline uses deterministic seeds for data generation (JAX) and model training (PyTorch), ensuring that the $28\mu s$ latency and 78.4\% robustness results are numerically reproducible by external auditors.

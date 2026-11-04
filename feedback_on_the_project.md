@@ -48,7 +48,7 @@ There are significant differences in how you report **Speedup** and **Latency** 
 
 | Metric | Makes Sense? | Physics Rationale |
 | :--- | :--- | :--- |
-| **Relative Error < 1%** | **Yes** | Surrogate models (NNs) are excellent at interpolating smooth physical manifolds (GLLP bounds). |
+| **Relative Error < 1%** | **Yes** | Surrogate models (NNs) are excellent at interpolating smooth physical manifolds (Lim et al. 2014 finite-key decoy-state bounds). |
 | **Fiber Range +10km** | **Yes** | By optimizing $\mu_1$ and $P_x$ dynamically, you stay above the "Zero-Rate" threshold longer than a static system could. |
 | **Training on 6,000 points** | **Yes** | For a 4-parameter input space, 6,000 "ground truth" points provide a dense enough manifold to avoid overfitting. |
 | **Sensitivity to $\mu_1$** | **Yes** | In Decoy-State QKD, $\mu_1$ (Signal Intensity) is the primary factor in the Photon Number Splitting (PNS) attack bound. Even small errors here destroy security. |
@@ -130,7 +130,7 @@ Here is a verification of your key parameters against existing research and the 
 ### 2. Prediction Accuracy (< 1% Error)
 *   **Is it sound?** **Yes.** 
 *   **Research Benchmark:** Most literature (Ding et al. 2020, Wang & Lo 2019) reports that neural surrogates consistently preserve **95% to 99.99%** of the theoretical optimal Secret Key Rate.
-*   **Rationale:** The "Parameter Manifold" of the GLLP security bound is continuous and relatively smooth. Neural networks are "Universal Function Approximators" that excel at learning these types of mathematical landscapes, making a <1% error rate the expected standard for a well-trained model.
+*   **Rationale:** The "Parameter Manifold" of the Lim et al. 2014 finite-key decoy-state security bound is continuous and relatively smooth. Neural networks are "Universal Function Approximators" that excel at learning these types of mathematical landscapes, making a <1% error rate the expected standard for a well-trained model.
 
 ### 3. Key Rate Gain (52x at 180 km)
 *   **Is it sound?** **Yes.**

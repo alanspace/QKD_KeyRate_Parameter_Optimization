@@ -116,7 +116,7 @@ def generate_plot():
     
     plt.title('Extrapolation Test: "Graceful Decay" Verification', fontsize=14)
     plt.xlabel('Fiber Length (km)', fontsize=12)
-    plt.ylabel('Secret Key Rate (bps)', fontsize=12)
+    plt.ylabel('Secret Key Rate (bits/pulse)', fontsize=12)
     plt.ylim(1e-10, 1e-4)
     plt.grid(True, which="both", ls="-", alpha=0.2)
     plt.legend()

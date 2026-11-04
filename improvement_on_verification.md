@@ -7,7 +7,7 @@ However, to impress a Professor in Many-Body Physics, the script needs to move f
 =
 𝐶
 A/B=C
-) to physics verification (checking if the results obey the laws of the GLLP bound).
+) to physics verification (checking if the results obey the laws of the Lim et al. 2014 finite-key decoy-state bounds).
 
 Here are the four improvements I recommend to make this script "PhD-defense ready":
 
@@ -17,7 +17,7 @@ Currently, your accuracy check only looks at "Prediction Error." But in QKD, a p
 
 Improvement: Add a function that plugs the NN's predicted parameters back into your JAX physics engine.
 
-The Claim: "The NN predictions never violate the GLLP security bound by more than 
+The Claim: "The NN predictions never violate the Lim et al. 2014 finite-key decoy-state security bound by more than 
 10
 −
 10
@@ -91,7 +91,7 @@ def verify_physics_manifold_consistency():
     print("---------------------------------")
     # Pick a random point at 150km
     # Predict with NN
-    # Calculate SKR with GLLP formula
+    # Calculate SKR with the Lim et al. 2014 finite-key decoy-state formulas
     # Compare with JAX Ground Truth
     print("   -> Checking if NN 'hallucinates' invalid key rates...")
     # Logic: if NN_SKR > JAX_SKR + Tolerance: Fail.
@@ -101,6 +101,6 @@ How to use this in the Interview:
 
 When Professor Molignini asks, "How do you know these machine learning results aren't just artifacts or noise?", you can say:
 
-"I didn't just look at the training loss. I wrote a Master Verification Script (Slide 22) that audits the NN output against the physical GLLP bounds. I verified that the NN never 'hallucinates' a key rate higher than the physical limit, and I benchmarked the Batch-1 latency to ensure it meets real-time FPGA requirements."
+"I didn't just look at the training loss. I wrote a Master Verification Script (Slide 22) that audits the NN output against the physical Lim et al. 2014 finite-key decoy-state bounds. I verified that the NN never 'hallucinates' a key rate higher than the physical limit, and I benchmarked the Batch-1 latency to ensure it meets real-time FPGA requirements."
 
 This answer will immediately distinguish you as a researcher who understands both the code and the consequences of the physics.

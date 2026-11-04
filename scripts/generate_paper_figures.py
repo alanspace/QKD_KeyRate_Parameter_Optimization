@@ -50,7 +50,7 @@ def main():
             plt.semilogy(lengths, rates, label=label, color=colors[i], linewidth=2.0)
             
     plt.xlabel(r'Fiber Length ($L$ in km)')
-    plt.ylabel(r'Secret Key Rate ($R$ in bps)')
+    plt.ylabel(r'Secret Key Rate ($R$ in bits/pulse)')
     plt.title(r'Finite-Size Security Analysis: Impact of Block Size ($n_X$)')
     plt.ylim(1e-10, 1e-2)
     plt.xlim(0, 200)

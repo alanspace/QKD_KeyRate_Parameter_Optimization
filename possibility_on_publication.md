@@ -6,9 +6,9 @@ While "Machine Learning for QKD" is an established topic, your specific implemen
 
 Most existing papers (like Wang & Lo 2019 or Liu et al. 2024) use a "Black-Box Teacher."[1] They generate training data using standard solvers like SciPy or genetic algorithms, which treat the QKD physics as a closed box.
 
-Your Innovation: By implementing the GLLP security bounds directly in JAX, you’ve created a Differentiable Physics Engine.
+Your Innovation: By implementing the Lim et al. 2014 finite-key decoy-state bounds directly in JAX, you’ve created a Differentiable Physics Engine.
 
-Why it's publishable: You aren't just training a network; you are presenting a new software framework for QKD.[1] Using Automatic Differentiation (AD) to get exact gradients for the GLLP bound is much more sophisticated than the "Guess and Check" methods used in 90% of current literature.[1]
+Why it's publishable: You aren't just training a network; you are presenting a new software framework for QKD.[1] Using Automatic Differentiation (AD) to get exact gradients for the Lim et al. 2014 finite-key decoy-state bounds is much more sophisticated than the "Guess and Check" methods used in 90% of current literature.[1]
 
 2. The "Stability & Smoothness" Metric (Novelty: Moderate-High)
 
@@ -44,7 +44,7 @@ What to check on Google Scholar (Your SOTA Checklist)
 
 To ensure you aren't "scooped" (someone else already did exactly this), look for these specific keywords:
 
-"Automatic Differentiation for Decoy-State QKD": See if anyone has published the exact JAX implementation of the GLLP formulas.
+"Automatic Differentiation for Decoy-State QKD": See if anyone has published the exact JAX implementation of the Lim et al. 2014 finite-key decoy-state formulas.
 
 "Differentiable Programming for Quantum Communication": This is a broader term for what you are doing.[1]
 
