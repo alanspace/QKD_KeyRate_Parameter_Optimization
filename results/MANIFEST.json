@@ -151,6 +151,185 @@
     "caffeinate_running": true
    },
    "finished": "2026-11-05 21:28:05"
+  },
+  {
+   "id": "cliff_test:all",
+   "name": "cliff_test",
+   "preset": "all",
+   "cmd": "Optimization/analysis/cliff_test.py",
+   "returncode": 0,
+   "seconds": 132.7,
+   "log": "results/logs/20261105_212924_cliff_test_all.log",
+   "outputs": [
+    "cliff_test_abf88e5525_bf6fb332afdd"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 62,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 21:31:37"
+  },
+  {
+   "id": "dense_scan:all",
+   "name": "dense_scan",
+   "preset": "all",
+   "cmd": "Optimization/analysis/dense_scan.py",
+   "returncode": 0,
+   "seconds": 758.9,
+   "log": "results/logs/20261105_213138_dense_scan_all.log",
+   "outputs": [
+    "dense_scan_abf88e5525_91f81e1652a5"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 62,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 22:34:36"
+  },
+  {
+   "id": "gamma_report:all",
+   "name": "gamma_report",
+   "preset": "all",
+   "cmd": "Optimization/analysis/gamma_report.py",
+   "returncode": 0,
+   "seconds": 3778.4,
+   "log": "results/logs/20261105_213138_gamma_report_all.log",
+   "outputs": [
+    "gamma_report_abf88e5525_5d1dbbb3d1df"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 62,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 22:34:36"
+  },
+  {
+   "id": "physics_diff:all",
+   "name": "physics_diff",
+   "preset": "all",
+   "cmd": "Optimization/analysis/physics_diff.py",
+   "returncode": 0,
+   "seconds": 522.4,
+   "log": "results/logs/20261105_223514_physics_diff_all.log",
+   "outputs": [
+    "jump_refine_a419cc7422_6387473611a6",
+    "physics_diff_a419cc7422_dba94a5ecdc3"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 52,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 22:43:56"
+  },
+  {
+   "id": "benchmark:lim_literal",
+   "name": "benchmark",
+   "preset": "lim_literal",
+   "cmd": "Optimization/benchmark/run_benchmark.py --preset lim_literal",
+   "returncode": 0,
+   "seconds": 220.1,
+   "log": "results/logs/20261105_225011_benchmark_lim_literal.log",
+   "outputs": [
+    "benchmark_lim_literal_dfd7d80292_e98ec9129185"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 52,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 22:53:51"
+  },
+  {
+   "id": "benchmark:legacy",
+   "name": "benchmark",
+   "preset": "legacy",
+   "cmd": "Optimization/benchmark/run_benchmark.py --preset legacy",
+   "returncode": 0,
+   "seconds": 64.5,
+   "log": "results/logs/20261105_225011_benchmark_legacy.log",
+   "outputs": [
+    "benchmark_legacy_dfd7d80292_9eccc560dfd9"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 52,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 22:54:56"
+  },
+  {
+   "id": "unittest:all",
+   "name": "unittest",
+   "preset": "all",
+   "cmd": "-m unittest discover tests",
+   "returncode": 0,
+   "seconds": 445.0,
+   "log": "results/logs/20261105_225011_unittest_all.log",
+   "outputs": [],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 52,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 23:02:21"
+  },
+  {
+   "id": "benchmark:lim",
+   "name": "benchmark",
+   "preset": "lim",
+   "cmd": "Optimization/benchmark/run_benchmark.py --preset lim",
+   "returncode": 0,
+   "seconds": 206.8,
+   "log": "results/logs/20261105_230236_benchmark_lim.log",
+   "outputs": [
+    "benchmark_lim_0c8f47a1f0_530f6d58460c"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 52,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 23:06:03"
+  },
+  {
+   "id": "timing:lim",
+   "name": "timing",
+   "preset": "lim",
+   "cmd": "Optimization/benchmark/timing_benchmark.py --preset lim",
+   "returncode": 0,
+   "seconds": 180.2,
+   "log": "results/logs/20261105_230236_timing_lim.log",
+   "outputs": [
+    "timing_lim_0c8f47a1f0_a412ba8ec55e"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 52,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 23:09:03"
   }
  ]
 }

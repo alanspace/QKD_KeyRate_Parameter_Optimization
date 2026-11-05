@@ -1,0 +1,303 @@
+{
+ "stamp": {
+  "git_commit": "0c8f47a1f0",
+  "git_branch": "optimizer-jax-rework",
+  "src_uncommitted_changes": false,
+  "physics_source_hash": "9564691bc5b0",
+  "config_hash": "a412ba8ec55e",
+  "jax": "0.9.0",
+  "numpy": "2.4.2",
+  "scipy": "1.17.0",
+  "python": "3.13.3",
+  "jax_backend": "cpu",
+  "jax_devices": [
+   "TFRT_CPU_0"
+  ],
+  "x64": true,
+  "cpu": "Apple M2 Pro",
+  "machine": "arm64",
+  "os": "macOS-15.6-arm64-arm-64bit-Mach-O",
+  "n_cpu": 12,
+  "power": {
+   "source": "AC",
+   "battery_percent": 52,
+   "battery_state": "charging",
+   "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+   "caffeinate_running": true
+  }
+ },
+ "config": {
+  "script": "timing_benchmark.py",
+  "preset": "lim",
+  "da_points": [
+   [
+    110,
+    1000000000.0
+   ],
+   [
+    150,
+    1000000000.0
+   ],
+   [
+    190,
+    1000000000.0
+   ],
+   [
+    130,
+    10000.0
+   ],
+   [
+    145,
+    10000.0
+   ]
+  ],
+  "lbfgsb_points": [
+   [
+    0,
+    1000000000.0
+   ],
+   [
+    50,
+    1000000000.0
+   ],
+   [
+    100,
+    1000000000.0
+   ],
+   [
+    50,
+    10000.0
+   ]
+  ]
+ },
+ "backend": "cpu",
+ "legacy_lbfgsb_branch": [
+  {
+   "L": 0.0,
+   "n_X": 1000000000.0,
+   "seconds": 0.010321875000954606,
+   "nfev": 24,
+   "R": 0.009202539614309816
+  },
+  {
+   "L": 50.0,
+   "n_X": 1000000000.0,
+   "seconds": 0.0030041249992791563,
+   "nfev": 21,
+   "R": 0.0008496520055108659
+  },
+  {
+   "L": 100.0,
+   "n_X": 1000000000.0,
+   "seconds": 0.003873416004353203,
+   "nfev": 29,
+   "R": 8.376803926613178e-05
+  },
+  {
+   "L": 50.0,
+   "n_X": 10000.0,
+   "seconds": 0.00073608300590422,
+   "nfev": 5,
+   "R": -6.61685653095335e-05
+  }
+ ],
+ "jax_warm_batch1": {
+  "steady_device_us": {
+   "median": 1198.729,
+   "p90": 1321.5961,
+   "n": 200
+  },
+  "end_to_end_us": {
+   "median": 1466.3955,
+   "p90": 1555.1375,
+   "n": 50
+  },
+  "newton_iterations": 2,
+  "point": {
+   "L_from": 99.5,
+   "L": 100.0,
+   "n_X": 1000000000.0
+  }
+ },
+ "jax_warm_batch1_tail": [
+  {
+   "steady_device_us": {
+    "median": 2123.1245,
+    "p90": 2244.016,
+    "n": 100
+   },
+   "end_to_end_us": {
+    "median": 2459.5,
+    "p90": 2609.8332,
+    "n": 25
+   },
+   "newton_iterations": 4,
+   "point": {
+    "L_from": 124.941,
+    "L": 125.441,
+    "n_X": 10000.0
+   },
+   "horizon_km": 130.44111083324697
+  },
+  {
+   "steady_device_us": {
+    "median": 2097.8334999999997,
+    "p90": 2192.7785000000003,
+    "n": 100
+   },
+   "end_to_end_us": {
+    "median": 2489.625,
+    "p90": 2578.6168,
+    "n": 25
+   },
+   "newton_iterations": 4,
+   "point": {
+    "L_from": 155.106,
+    "L": 155.606,
+    "n_X": 100000.0
+   },
+   "horizon_km": 160.60598243149303
+  },
+  {
+   "steady_device_us": {
+    "median": 2096.3125,
+    "p90": 2199.4539,
+    "n": 100
+   },
+   "end_to_end_us": {
+    "median": 2438.209,
+    "p90": 2572.7668,
+    "n": 25
+   },
+   "newton_iterations": 4,
+   "point": {
+    "L_from": 167.124,
+    "L": 167.624,
+    "n_X": 1000000.0
+   },
+   "horizon_km": 172.62424831103556
+  },
+  {
+   "steady_device_us": {
+    "median": 2553.9375,
+    "p90": 2640.0917000000004,
+    "n": 100
+   },
+   "end_to_end_us": {
+    "median": 2902.625,
+    "p90": 2987.7336,
+    "n": 25
+   },
+   "newton_iterations": 5,
+   "point": {
+    "L_from": 173.168,
+    "L": 173.668,
+    "n_X": 10000000.0
+   },
+   "horizon_km": 178.66779957200055
+  },
+  {
+   "steady_device_us": {
+    "median": 2094.458,
+    "p90": 2172.1548,
+    "n": 100
+   },
+   "end_to_end_us": {
+    "median": 2480.625,
+    "p90": 2664.1248,
+    "n": 25
+   },
+   "newton_iterations": 4,
+   "point": {
+    "L_from": 176.591,
+    "L": 177.091,
+    "n_X": 100000000.0
+   },
+   "horizon_km": 182.09127525339147
+  },
+  {
+   "steady_device_us": {
+    "median": 1653.896,
+    "p90": 1732.3244,
+    "n": 100
+   },
+   "end_to_end_us": {
+    "median": 2024.292,
+    "p90": 2113.6586,
+    "n": 25
+   },
+   "newton_iterations": 3,
+   "point": {
+    "L_from": 178.66,
+    "L": 179.16,
+    "n_X": 1000000000.0
+   },
+   "horizon_km": 184.16035175323486
+  }
+ ],
+ "lookup_table_batch1": {
+  "steady_device_us": {
+   "median": 7.708,
+   "p90": 8.375,
+   "n": 2000
+  },
+  "end_to_end_us": {
+   "median": 10.042,
+   "p90": 10.459,
+   "n": 2000
+  },
+  "table_shape": [
+   6,
+   81,
+   5
+  ]
+ },
+ "legacy_DA": [
+  {
+   "L": 110.0,
+   "n_X": 1000000000.0,
+   "maxiter": 5000,
+   "seconds": 5.808075958993868,
+   "nfev": 50005,
+   "R": 5.206059175991501e-05,
+   "us_per_eval": 116.14990418945841
+  },
+  {
+   "L": 150.0,
+   "n_X": 1000000000.0,
+   "maxiter": 10000,
+   "seconds": 11.69288637500722,
+   "nfev": 100009,
+   "R": 5.672531915562423e-06,
+   "us_per_eval": 116.91834109937325
+  },
+  {
+   "L": 190.0,
+   "n_X": 1000000000.0,
+   "maxiter": 15000,
+   "seconds": 17.606552959012333,
+   "nfev": 150013,
+   "R": -4.077451285588502e-17,
+   "us_per_eval": 117.36684793326134
+  },
+  {
+   "L": 130.0,
+   "n_X": 10000.0,
+   "maxiter": 7500,
+   "seconds": 8.848589832996367,
+   "nfev": 75007,
+   "R": -6.192847384775898e-17,
+   "us_per_eval": 117.97018722247748
+  },
+  {
+   "L": 145.0,
+   "n_X": 10000.0,
+   "maxiter": 10000,
+   "seconds": 11.746314542004257,
+   "nfev": 100009,
+   "R": -3.575451986071837e-15,
+   "us_per_eval": 117.45257468832062
+  }
+ ],
+ "nn_surrogate": "not measured: torch / scikit-learn not installed in this environment"
+}
