@@ -81,6 +81,10 @@ def regret_stats(R_ref, R_m, exclude=None):
     pos = R_ref > 0
     if exclude is not None:
         pos = pos & ~np.asarray(exclude, bool)
+    if not pos.any():   # e.g. every positive point of this subset is cliff_edge
+        nan = float("nan")
+        return dict(n=0, median=nan, p99=nan, max=nan, pct_within_1e6=nan, pct_within_1e4=nan, pct_within_1e3=nan,
+                    pct_within_1e2=nan, n_beats_ref=0, min=nan)
     r = (R_ref[pos] - R_m[pos]) / R_ref[pos]
     r = np.where(np.isfinite(r), r, np.inf)
     return dict(n=int(pos.sum()), median=float(np.median(r)), p99=float(np.quantile(r, 0.99)),
