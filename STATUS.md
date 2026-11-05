@@ -120,3 +120,83 @@ Ran:
       10 points, within 1e-10.
   python -m unittest discover tests: Ran 31 tests in 623 s, OK.
 PASS
+
+2. Reference-builder changes
+----------------------------
+Code (commit 27a358d), build_reference.py:
+  - gradient tiers for points with R > 0:
+      cliff_edge  g > 1e-3          excluded from the 1e-6 regret score, listed
+      noise_floor 1e-6 < g <= 1e-3  scored, counted and listed
+  - neighbour continuation candidates cont_up / cont_down (sweep in L per nX, warm start from the best
+    parameters of the previous grid point). The summary lists the points where continuation beats the
+    best Sobol candidate by more than 1e-12 relative.
+  run_benchmark.py: % within 1e-4 / 1e-3 / 1e-2 added.
+  timing_benchmark.py: tail warm timing 5 km below each reference horizon.
+Smoke test: build_reference.py --preset lim --quick (2^11 Sobol). 126 points; source wins
+  sobol_seed0 44, sobol_seed1 51, cont_up 14, cont_down 17; continuation better at 18 points.
+  Output deleted afterwards.
+Win counts and continuation gains of the full rebuild are reported in step 4.
+PASS (code). Tests were not re-run for step 2: no src/ change since the 31-test run.
+
+4. Rebuild (lim, lim_literal; legacy not rebuilt -- its physics path is unchanged, eps fixed, gamma printed)
+-----------------------------------------------------------------------------------------------------------
+Ran (driver results/logs/step4_driver.log, battery guard at < 25 %):
+  build_reference.py --preset lim             518 s  (battery 67 % at start)
+  build_reference.py --preset lim --tail      843 s
+  build_reference.py --preset lim_literal     461 s
+  build_reference.py --preset lim_literal --tail  694 s
+  crosscheck_scipy.py --preset lim            620 s
+  crosscheck_scipy.py --preset lim --tail     882 s  (battery 34 % at start; on AC power afterwards)
+  All exit code 0.
+  New references: git 27a358d (lim main), c13c45e (others); physics hash 9273ca2e1c08 (pre-fix c20a40fed6fd).
+Comparison with the archived pre-fix references (Optimization/analysis/compare_references.py;
+results/compare_references/COMPARE_REFERENCES.txt):
+  lim main: 105 shared points with R > 0. Max |relative R change| 3.08e-9.
+    better by > 1e-9: 1 (L=160.401 nX=1e5, +3.08e-9, source cont_up). worse: 0.
+    Horizons unchanged to 1e-4 km: 1e4 130.4411, 1e5 160.6060, 1e6 172.6242, 1e7 178.6678, 1e8 182.0913,
+    1e9 184.1604.
+    Tiers (current thresholds, before -> after): cliff_edge 2 -> 2, noise_floor 0 -> 2.
+    Source wins: sobol_seed0 50, sobol_seed1 56, cont_up 11, cont_down 9.
+    Continuation beats the best Sobol candidate at 15 points.
+  lim tail: 180 shared points. Max |relative R change| 1.76e-9.
+    better: 1 (L=181.955 nX=1e8, +1.76e-9).
+    WORSE: 1  L=160.401 km nX=1e5: R_old=1.7329149943e-11, R_new=1.7329149922e-11, rel -1.18e-9.
+      This is a cliff_edge point (l = 307 bits, g = 3.7e8), and the seed-2 / seed-3 candidates of the
+      same build differ by 1.04e-9 there.
+    Tiers: cliff_edge 6 -> 5, noise_floor 27 -> 20 (dropped).
+    Source wins: sobol_seed2 88, sobol_seed3 89, cont_up 8, cont_down 7.
+    Continuation better at 11 points.
+  lim_literal main: 70 shared points, max |relative change| 7.6e-12, better 0, worse 0.
+    Horizons unchanged: 18.9721, 104.5331, 129.4797, 140.0046, 145.8456, 149.3137.
+    Tiers: cliff_edge 2 -> 2, noise_floor 1 -> 1.
+    Source wins: sobol_seed0 37, sobol_seed1 35, cont_up 27, cont_down 27.
+    Continuation better at 51 points.
+  lim_literal tail: 179 shared points, max 2.55e-9.
+    better 2 (L=129.323 nX=1e6 +1.34e-9; L=139.850 nX=1e7 +2.55e-9). worse 0.
+    Tiers: cliff_edge 37 -> 29, noise_floor 27 -> 27.
+    Source wins: sobol_seed2 88, sobol_seed3 77, cont_up 17, cont_down 9.
+    Continuation better at 17 points.
+  No horizon moved by > 0.5 km. No shared-point R change > 1e-6.
+Cross-check (independent SLSQP, p-space, random starts):
+  lim main: 105 points checked, |d| <= 1e-6 at 98.1 %.
+    Reference weaknesses: 0.
+    SLSQP worse by > 1e-6 at 2 points: 130.326 km nX=1e4 and 160.401 km nX=1e5, both cliff_edge, where
+      SLSQP found R <= 0.
+    SLSQP runs not reporting success: 14 of 1680. Infeasible results: 14. Timeouts: 0.
+  lim tail: 180 points checked, |d| <= 1e-6 at 88.3 %.
+    REFERENCE WEAKNESSES: 5 (SLSQP better by > 1e-9):
+      L=171.930 nX=1e6  d=-3.83e-9 (g=7.8e-7, ordinary point)
+      L=178.947 nX=1e8  d=-1.04e-9 (g=4.2e-10, converged_grad)
+      L=179.449 nX=1e8  d=-1.28e-9 (g=4.8e-7)
+      L=181.454 nX=1e9  d=-1.55e-9 (g=7.4e-7)
+      L=181.955 nX=1e9  d=-1.81e-9 (g=9.7e-6, noise_floor)
+    SLSQP worse by > 1e-6 at 21 points. These are the last 1-11 grid points before each horizon (125.3-130.3 km
+      nX=1e4; 159.4/160.4 km nX=1e5; 172.4 nX=1e6; 177.9/178.4 nX=1e7; 181.5/182.0 nX=1e8; 183.0-184.0 nX=1e9),
+      where SLSQP returned R <= 0 or a much smaller R.
+    SLSQP runs not reporting success: 174 of 2880. Infeasible results: 228. Timeouts: 0.
+STOPPED: two stop conditions were met.
+  (a) one WORSE point vs the pre-fix reference: rel -1.18e-9 at a cliff_edge point.
+  (b) 5 reference weaknesses in the lim tail cross-check, up to 3.8e-9 relative, at ordinary tail points.
+  Neither changes a horizon or any R by more than 1e-6. Both indicate that tail reference values are
+  resolved to about 1e-9 relative, not to the 1e-10..1e-12 seen in the bulk.
+  Steps 5-8 have not started; awaiting a decision.
