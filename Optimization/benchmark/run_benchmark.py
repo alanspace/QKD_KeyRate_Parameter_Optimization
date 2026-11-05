@@ -2,7 +2,9 @@
 
 Methods
   reference            Optimization/reference/reference_<preset>.json (build_reference.py)
-  new_cold             qkd_opt.optimize_batch at every reference point (2^12 Sobol, top-8, seed 0)
+  new_cold             qkd_opt.optimize_batch at every reference point (2^12 Sobol, top-8, seed 7)
+                       (seed 7, not 0/1: a scrambled Sobol sequence with the reference's seed would be a
+                       prefix of the reference's own sample, i.e. not an independent comparison)
   new_warm             qkd_opt.optimize_sweep over the full legacy grid linspace(0,200,400), all n_X
   lookup_table         params linearly interpolated in L from a table of new_warm optima on every 4th
                        grid point offset by 2 (so every reference point lies between two table nodes)
@@ -112,9 +114,9 @@ def main():
     ref = json.load(open(ref_path))
     cfg = dict(script="run_benchmark.py", preset=preset.name, reference=os.path.relpath(ref_path, ROOT),
                reference_config_hash=ref["stamp"]["config_hash"], tau=TAU, jump=JUMP,
-               new_cold=dict(n_sobol=4096, top_k=8, seed=0),
+               new_cold=dict(n_sobol=4096, top_k=8, seed=7),
                new_warm=dict(global_every=a.global_every, n_sobol_init=16384, top_k_init=16, n_sobol_check=2048,
-                             top_k_check=4, seed=0),
+                             top_k_check=4, seed=7),
                lookup_nodes="GRID[2::4]", flags=preset.flags._asdict(), consts=preset.consts._asdict())
     st = stamp(cfg)
     out_dir = a.out or os.path.join(ROOT, "results", f"benchmark_{preset.name}_{st['git_commit']}_{st['config_hash']}")

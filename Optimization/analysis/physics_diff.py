@@ -81,7 +81,7 @@ def targets(pre):
             return "MISMATCH"
         return "ok" if abs(v / tgt - 1) <= TOL else "MISMATCH"
     return dict(T1_R0_1e9=T1, T1_status=chk(T1, 1e-2), T2_ratio=T2, T2_status=chk(T2, 1.75),
-                T3_L_at_R_1e-7_nX1e4=T3, T3_status=chk(T3, 135.0), horizon_nX1e4_km=h)
+                T3_L_at_R_1em7_nX1e4=T3, T3_status=chk(T3, 135.0), horizon_nX1e4_km=h)
 
 
 def main():
@@ -118,7 +118,7 @@ def main():
            "| model | T1 R(0,1e9) [~1e-2] | T2 ratio [~1.75] | T3 L at R=1e-7, n_X=1e4 [~135 km] | horizon n_X=1e4 (km) |",
            "|---|---|---|---|---|"]
     for k, v in tg.items():
-        t3 = v["T3_L_at_R_1e-7_nX1e4"]
+        t3 = v["T3_L_at_R_1em7_nX1e4"]
         t3s = f"{t3:.2f}" if isinstance(t3, float) else str(t3)
         md.append(f"| {k} | {v['T1_R0_1e9']:.4e} ({v['T1_status']}) | "
                   f"{'–' if v['T2_ratio'] is None else f'{v['T2_ratio']:.3f}'} ({v['T2_status']}) | "
