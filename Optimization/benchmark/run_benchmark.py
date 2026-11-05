@@ -15,15 +15,24 @@ Metrics (points with R_ref > 0 only)
   regret = (R_ref - R_method) / R_ref: median, p99, max; % of points with regret <= 1e-6;
   count of points where a method beats the reference by > 1e-9 (each one is investigated, not celebrated)
   horizon per n_X: largest L with l > 0 (bisection for reference/new_warm; last grid point for legacy)
-  smoothness on S = {L : R_ref(L) > tau * R_ref(0), L < reference horizon}, tau = 1e-3:
-      TV_S = sum |dp_norm|_1 / km over consecutive grid pairs inside S, p_norm = p / box width;
-      jumps = consecutive pairs in S with |dp_norm|_inf > 0.05 (listed with L)
+  smoothness, two windows per n_X (tau = 1e-3):
+      S    = {L : R_ref(L) > tau * R_ref(0), L < reference horizon}
+      tail = {L : L in [max S, reference horizon)}
+      TV/km = sum |dp_norm|_1 / km over consecutive grid pairs inside the window, p_norm = p / box width,
+              EXCLUDING pairs that are branch-switch events;
+      branch-switch event = a pair (j, j+1) where new_warm changes branch (branch_id) within +/- 1
+              grid point AND the method's R at j and j+1 is within 1e-6 relative of new_warm's
+              (i.e. the method is on the optimal branch on both sides). Events are listed, not counted.
+      jumps = remaining pairs with |dp_norm|_inf > 0.05 (listed with L) -- these are roughness.
+  tail regret: against the dense tail reference (reference_<preset>_tail.json, every 0.5 km grid
+      point from horizon - 15 km to horizon + 1 km), when present.
   timing: wall time and time per point; JIT compile reported separately (first call - second call
       in the same process, identical inputs); hardware stamped.
 
-Usage: python Optimization/benchmark/run_benchmark.py --preset legacy|lim_exact [--out DIR]
+Usage: python Optimization/benchmark/run_benchmark.py --preset lim|lim_literal|legacy [--out DIR]
 """
 import argparse
+import glob
 import json
 import os
 import sys
@@ -76,16 +85,40 @@ def regret_stats(R_ref, R_m):
                 n_beats_ref=int(np.sum(r < -1e-9)), min=float(np.min(r)))
 
 
-def smoothness(params_row, L, S_mask):
+def smoothness(params_row, L, mask, event_pairs):
+    """TV/km and jumps on `mask`, with branch-switch event pairs excluded from both."""
     pn = params_row / BOX
     d = np.abs(np.diff(pn, axis=0))
-    pair = S_mask[1:] & S_mask[:-1]
+    pair = mask[1:] & mask[:-1]
+    ev = np.zeros_like(pair)
+    ev[list(event_pairs)] = True
+    ev &= pair
+    keep = pair & ~ev
     if pair.sum() == 0:
-        return dict(TV_per_km=None, n_jumps=0, jumps_at_km=[])
+        return dict(TV_per_km=None, n_jumps=0, jumps_at_km=[], branch_switch_events_at_km=[])
     span = float(np.sum(np.diff(L)[pair]))
-    tv = float(np.sum(d[pair].sum(axis=1)) / span)
-    jumps = np.where(pair & (d.max(axis=1) > JUMP))[0]
-    return dict(TV_per_km=tv, n_jumps=int(len(jumps)), jumps_at_km=[round(float(L[j]), 3) for j in jumps])
+    tv = float(np.sum(d[keep].sum(axis=1)) / span)
+    jumps = np.where(keep & (d.max(axis=1) > JUMP))[0]
+    return dict(TV_per_km=tv, n_jumps=int(len(jumps)), jumps_at_km=[round(float(L[j]), 3) for j in jumps],
+                branch_switch_events_at_km=[round(float(L[j]), 3) for j in np.where(ev)[0]])
+
+
+def event_pairs_for(P_method_row, R_method_row, sw_branch_row, R_new_row, is_new_warm=False, tol=1e-6):
+    """Branch-switch event pairs (see module doc). new_warm: exactly the pairs where branch_id changes.
+    Other methods: per new_warm switch, at most one pair within +/- 1 grid point where the method is
+    within `tol` of new_warm on both sides -- the one with the largest parameter jump."""
+    sw_pairs = np.where(np.diff(sw_branch_row) != 0)[0]
+    if is_new_warm:
+        return set(int(j) for j in sw_pairs)
+    jump = np.abs(np.diff(P_method_row / BOX, axis=0)).max(axis=1)
+    out = set()
+    for j0 in sw_pairs:
+        cand = [j for j in (j0 - 1, j0, j0 + 1) if 0 <= j < len(R_new_row) - 1 and
+                all(R_new_row[k] > 0 and abs(R_method_row[k] - R_new_row[k]) <= tol * abs(R_new_row[k])
+                    for k in (j, j + 1))]
+        if cand:
+            out.add(int(max(cand, key=lambda j: jump[j])))
+    return out
 
 
 def region_S(ref_L, ref_R, ref_horizon):
@@ -193,13 +226,56 @@ def main():
     smooth = {}
     for i, nx in enumerate(NX):
         sel = rN == nx
-        S = region_S(rL[sel], rR[sel], ref_h.get(nx))
-        smooth[f"{nx:.0e}"] = dict(S_km=[float(GRID[S].min()), float(GRID[S].max())] if S.any() else None,
-                                   new_warm=smoothness(sw["params"][i], GRID, S))
+        hz = ref_h.get(nx)
+        S = region_S(rL[sel], rR[sel], hz)
+        T = np.zeros_like(S)
+        if S.any() and hz is not None:
+            T = (GRID >= GRID[S].max()) & (GRID < hz)
+        rec = dict(S_km=[float(GRID[S].min()), float(GRID[S].max())] if S.any() else None,
+                   tail_km=[float(GRID[T].min()), float(GRID[T].max())] if T.any() else None)
+        curves = {"new_warm": (sw["params"][i], sw["R"][i])}
         for name, d in legacy_full.items():
-            smooth[f"{nx:.0e}"][name] = smoothness(d["params"][i], GRID, S)
+            curves[name] = (d["params"][i], d["R"][i])
+        for m, (P, Rm) in curves.items():
+            ev = event_pairs_for(P, Rm, sw["branch_id"][i], sw["R"][i], is_new_warm=(m == "new_warm"))
+            rec[m] = dict(S=smoothness(P, GRID, S, ev), tail=smoothness(P, GRID, T, ev))
+        smooth[f"{nx:.0e}"] = rec
 
-    summary = dict(stamp=st, config=cfg, backend=backend, regret=table, horizons=horizons, smoothness=smooth,
+    # ---- dense tail reference ----
+    tail = None
+    tpath = os.path.join(ROOT, "Optimization", "reference", f"reference_{preset.name}_tail.json")
+    if os.path.exists(tpath):
+        tref = json.load(open(tpath))
+        tL = np.array([p["L"] for p in tref["points"]])
+        tN = np.array([p["n_X"] for p in tref["points"]])
+        tR = np.array([p["R"] for p in tref["points"]], float)
+        tI = np.array([p["grid_index"] for p in tref["points"]])
+        trows = np.array([nx_index[x] for x in tN])
+        tc = optimize_batch(tL, tN, preset, **cfg["new_cold"])
+        tres = {"new_cold": tc["R"], "new_warm": sw["R"][trows, tI]}
+        LTt = np.zeros((len(tL), 5))
+        for k, (x, i) in enumerate(zip(tL, trows)):
+            LTt[k] = [np.interp(x, GRID[nodes], sw["params"][i, nodes, c]) for c in range(5)]
+        tres["lookup_table"] = _eval_RL(LTt, tL, tN, preset)[0]
+        for name, d in legacy_full.items():
+            tres[name] = d["R"][trows, tI]
+        tail = dict(reference=os.path.relpath(tpath, ROOT), reference_config_hash=tref["stamp"]["config_hash"],
+                    reference_summary=tref["summary"], n_points=len(tL),
+                    regret={m: {"all": regret_stats(tR, np.asarray(v)),
+                                **{f"{nx:.0e}": regret_stats(tR[tN == nx], np.asarray(v)[tN == nx]) for nx in NX
+                                   if np.any((tN == nx) & (tR > 0))}}
+                            for m, v in tres.items()})
+
+    xcheck = {}
+    for tag in ("", "_tail"):
+        for dpath in sorted(glob.glob(os.path.join(ROOT, "results", f"crosscheck_{preset.name}{tag}_*", "crosscheck.json"))):
+            xc = json.load(open(dpath))
+            if xc["config"]["reference_config_hash"] in (ref["stamp"]["config_hash"],
+                                                       (tail or {}).get("reference_config_hash")):
+                xcheck["main" if not tag else "tail"] = dict(path=os.path.relpath(dpath, ROOT), **xc["summary"])
+
+    summary = dict(stamp=st, config=cfg, backend=backend, regret=table, tail_regret=tail, crosscheck=xcheck,
+                   horizons=horizons, smoothness=smooth,
                    timing=timing, sweep_events=sw["events"],
                    new_warm_status_counts={s: int(np.sum(sw["status"] == s)) for s in np.unique(sw["status"])},
                    reference_summary=ref["summary"])
@@ -252,14 +328,37 @@ def write_markdown(out_dir, preset, s):
     L += ["| n_X | " + " | ".join(meths) + " |", "|---|" + "---|" * len(meths)]
     for nx, h in s["horizons"].items():
         L.append(f"| {nx} | " + " | ".join("–" if h[m] is None else f"{h[m]:.3f}" for m in meths) + " |")
-    L += ["", f"## Parameter smoothness on S = {{L : R_ref(L) > {TAU:g}·R_ref(0), L < reference horizon}}", "",
-          "TV/km of box-normalised parameters over consecutive 0.5 km grid pairs inside S; jumps = pairs with "
-          f"max |Δp_norm| > {JUMP}.", ""]
+    if s.get("tail_regret"):
+        t = s["tail_regret"]
+        L += ["", f"## Tail regret vs the dense tail reference ({t['n_points']} grid points, horizon − 15 km … + 1 km)", "",
+              f"Reference: `{t['reference']}` (config `{t['reference_config_hash']}`), summary {json.dumps(to_jsonable(t['reference_summary']))}.", "",
+              "| method | n | median | p99 | max | ≤1e-6 (%) | beats ref |", "|---|---|---|---|---|---|---|"]
+        for m, d in t["regret"].items():
+            a = d["all"]
+            L.append(f"| {m} | {a['n']} | {fmt(a['median'])} | {fmt(a['p99'])} | {fmt(a['max'])} | "
+                     f"{a['pct_within_1e6']:.1f} | {a['n_beats_ref']} |")
+    if s.get("crosscheck"):
+        L += ["", "## Independent solver cross-check of the reference (scipy SLSQP, random starts, p-space)", ""]
+        for k, v in s["crosscheck"].items():
+            L.append(f"- {k}: n={v['n']}, |d| ≤ 1e-6 at {v['pct_agree_1e6']:.1f} %, max d={fmt(v['max_d'])}, "
+                     f"min d={fmt(v['min_d'])}, reference weaknesses={v['n_reference_weakness']} (`{v['path']}`)")
+    L += ["", f"## Parameter smoothness (τ = {TAU:g})", "",
+          "Windows: S = {L : R_ref(L) > τ·R_ref(0), L < horizon}; tail = [max S, horizon). TV/km of box-normalised "
+          "parameters over consecutive 0.5 km grid pairs, branch-switch events excluded; jumps = remaining pairs with "
+          f"max |Δp_norm| > {JUMP} (roughness). Branch-switch events (method switches together with new_warm and is "
+          "optimal, within 1e-6, on both sides) are listed separately and are not roughness.", "",
+          "| n_X | method | S: TV/km | S: jumps | tail: TV/km | tail: jumps (km) | branch-switch events (km) |",
+          "|---|---|---|---|---|---|---|"]
     for nx, d in s["smoothness"].items():
-        L.append(f"- n_X={nx}, S = {d['S_km']} km: " + "; ".join(
-            f"**{m}** TV/km={fmt(v['TV_per_km'], 4)}, jumps={v['n_jumps']}"
-            + (f" at {v['jumps_at_km'][:6]}" if v['n_jumps'] else "")
-            for m, v in d.items() if m != "S_km"))
+        for m, v in d.items():
+            if m in ("S_km", "tail_km"):
+                continue
+            evs = sorted(set(v["S"]["branch_switch_events_at_km"] + v["tail"]["branch_switch_events_at_km"]))
+            L.append(f"| {nx} | {m} | {fmt(v['S']['TV_per_km'], 4)} | {v['S']['n_jumps']}"
+                     f"{' at ' + str(v['S']['jumps_at_km'][:6]) if v['S']['n_jumps'] else ''} | "
+                     f"{fmt(v['tail']['TV_per_km'], 4)} | {v['tail']['n_jumps']}"
+                     f"{' at ' + str(v['tail']['jumps_at_km'][:8]) if v['tail']['n_jumps'] else ''} | {evs if evs else '–'} |")
+        L.append(f"| {nx} | windows | S = {d['S_km']} | | tail = {d['tail_km']} | | |")
     L += ["", "## Timing (this machine, this run)", "",
           "| method | first call (s) | steady (s) | JIT/compile overhead (s) | points | steady ms/point | note |",
           "|---|---|---|---|---|---|---|"]

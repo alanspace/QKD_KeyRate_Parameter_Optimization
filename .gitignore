@@ -12,6 +12,7 @@ __pycache__/
 venv/
 env/
 .venv/
+.venv-nn/
 .conda/
 qkd-opt/
 

@@ -1,7 +1,13 @@
 """Build the trusted reference ("ground truth") for one physics preset.
 
-Points: the legacy 400-point grid linspace(0, 200, 400) subsampled every 20th point plus the last
-point (21 fiber lengths, ~10 km apart, identical L values to the legacy runs) x all six n_X.
+Main reference (default): the legacy 400-point grid linspace(0, 200, 400) subsampled every 20th
+point plus the last point (21 fiber lengths, ~10 km apart, identical L values to the legacy runs)
+x all six n_X.
+
+Tail reference (--tail): every grid point of linspace(0, 200, 400) with
+    horizon_ref(n_X) - 15 km <= L <= horizon_ref(n_X) + 1 km
+for each n_X, using the horizons of the main reference (which must exist). This is where the
+basins are narrowest and the legacy methods failed.
 
 For each point the reference is the best of
   * two independent dense cold solves: 2^17 scrambled-Sobol points (seeds 0 and 1), the 64 best
@@ -11,11 +17,11 @@ For each point the reference is the best of
     methods found.
 The winning source and the seed-0 / seed-1 disagreement are recorded per point.
 
-Reference horizon: for every n_X, bisection (25 steps) on the sign of max_p l between the last
-reference L with l > 0 and the next one, each step a fresh dense cold solve (2^15 Sobol, top-32)
-plus the previous bracket solution as an extra start.
+Main reference horizon: for every n_X, bisection (25 steps) on the sign of max_p l between the
+last reference L with l > 0 and the next one, each step a fresh dense cold solve (2^15 Sobol,
+top-32) plus the previous bracket solution as an extra start.
 
-Usage: python Optimization/reference/build_reference.py --preset legacy|lim_exact [--quick]
+Usage: python Optimization/reference/build_reference.py --preset lim|lim_literal|legacy [--tail] [--quick]
 """
 import argparse
 import json
@@ -30,7 +36,7 @@ sys.path.insert(0, os.path.join(ROOT, "Optimization", "benchmark"))
 import numpy as np  # noqa: E402
 
 from src.qkd_opt import get_preset, check_x64  # noqa: E402
-from src.qkd_opt.optimize import optimize_batch, warm_solve, certify_batch  # noqa: E402
+from src.qkd_opt.optimize import optimize_batch, warm_solve, _finalise  # noqa: E402
 from src.qkd_opt import reparam  # noqa: E402
 from src.qkd_opt.provenance import stamp, to_jsonable  # noqa: E402
 import legacy_runs  # noqa: E402
@@ -38,113 +44,131 @@ import legacy_runs  # noqa: E402
 NX = legacy_runs.NX
 GRID = legacy_runs.GRID
 REF_IDX = list(range(0, 400, 20)) + [399]
+TAIL_BELOW_KM, TAIL_ABOVE_KM = 15.0, 1.0
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--preset", required=True)
-    ap.add_argument("--n-sobol", type=int, default=2**17)
-    ap.add_argument("--top-k", type=int, default=64)
-    ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1])
-    ap.add_argument("--horizon-steps", type=int, default=25)
-    ap.add_argument("--quick", action="store_true", help="tiny budget smoke run (not a reference)")
-    ap.add_argument("--out", default=None)
-    a = ap.parse_args()
-    if a.quick:
-        a.n_sobol, a.top_k, a.horizon_steps = 2**11, 8, 6
-    preset = get_preset(a.preset)
-    backend = check_x64()
-    cfg = dict(script="build_reference.py", preset=preset.name, n_sobol=a.n_sobol, top_k=a.top_k,
-               seeds=a.seeds, ref_idx=REF_IDX, nX=NX, horizon_steps=a.horizon_steps,
-               flags=preset.flags._asdict(), consts=preset.consts._asdict())
-    st = stamp(cfg)
-    t0 = time.perf_counter()
+def ref_path(preset_name, tail=False, quick=False):
+    return os.path.join(ROOT, "Optimization", "reference",
+                        f"reference_{preset_name}{'_tail' if tail else ''}{'_QUICK' if quick else ''}.json")
 
-    Li = GRID[REF_IDX]
-    L = np.tile(Li, len(NX))
-    n = np.repeat(NX, len(Li))
-    P = len(L)
+
+def solve_points(L, n, idx, preset, n_sobol, top_k, seeds):
+    """Dense multi-source solve of points (L[P], n[P]); idx[P] = grid index (for legacy starts)."""
     cands = {}
-    for s in a.seeds:
+    for s in seeds:
         t = time.perf_counter()
-        r = optimize_batch(L, n, preset, n_sobol=a.n_sobol, top_k=a.top_k, seed=s)
-        cands[f"sobol_seed{s}"] = r
+        cands[f"sobol_seed{s}"] = optimize_batch(L, n, preset, n_sobol=n_sobol, top_k=top_k, seed=s)
         print(f"[ref] seed {s}: {time.perf_counter() - t:.1f}s", flush=True)
     if preset.name == "legacy":
+        rows = np.array([NX.index(x) for x in n])
         for name in ("legacy_DA", "legacy_Hessian", "legacy_Hessian_FoR"):
             run = legacy_runs.load(name)
-            p0 = run["params"][:, REF_IDX, :].reshape(-1, 5)
-            th0 = reparam.theta_of_params(p0, preset.consts.mu3)
-            w = warm_solve(th0, L, n, preset)
-            # certify at the refined theta
-            sol = dict(theta=w["theta"], status=w["status"], iters=w["iters"], mode=w["mode"], scale=w["scale"])
-            from src.qkd_opt.optimize import _finalise
-            cands[f"refined_from_{name}"] = _finalise(sol, L, n, preset)
+            p0 = run["params"][rows, idx, :]
+            w = warm_solve(reparam.theta_of_params(p0, preset.consts.mu3), L, n, preset)
+            cands[f"refined_from_{name}"] = _finalise(dict(theta=w["theta"], status=w["status"], iters=w["iters"],
+                                                           mode=w["mode"], scale=w["scale"]), L, n, preset)
             print(f"[ref] refined from {name}", flush=True)
-
     names = list(cands)
-
-    def value(r):  # objective actually compared: R if any candidate has R>0 else l/n_X
-        return r["R"], r["l"] / n
     R_all = np.stack([cands[k]["R"] for k in names])
     l_all = np.stack([cands[k]["l"] / n for k in names])
     pos = np.max(R_all, axis=0) > 0
     score = np.where(pos[None, :], R_all, l_all)
     score = np.where(np.isfinite(score), score, -np.inf)
     win = np.argmax(score, axis=0)
-    best = {k: np.stack([cands[names[w]][k][i] for i, w in enumerate(win)])
-            for k in ("params", "R", "l", "N", "eps_sec", "grad_norm_theta", "hess_eig", "theta")}
-    best["status"] = [cands[names[w]]["status"][i] for i, w in enumerate(win)]
-    best["active_bounds"] = [cands[names[w]]["active_bounds"][i] for i, w in enumerate(win)]
-    best["source"] = [names[w] for w in win]
-    s0, s1 = cands[f"sobol_seed{a.seeds[0]}"]["R"], cands[f"sobol_seed{a.seeds[-1]}"]["R"]
-    seed_rel = np.where(pos, np.abs(s0 - s1) / np.maximum(np.abs(best["R"]), 1e-300), np.nan)
+    s0, s1 = cands[f"sobol_seed{seeds[0]}"]["R"], cands[f"sobol_seed{seeds[-1]}"]["R"]
+    best_R = np.array([cands[names[w]]["R"][i] for i, w in enumerate(win)])
+    seed_rel = np.where(pos, np.abs(s0 - s1) / np.maximum(np.abs(best_R), 1e-300), np.nan)
+    pts = []
+    for i, w in enumerate(win):
+        c = cands[names[w]]
+        pts.append(dict(L=float(L[i]), n_X=float(n[i]), grid_index=int(idx[i]), params=c["params"][i], R=c["R"][i],
+                        l=c["l"][i], N=c["N"][i], eps_sec=c["eps_sec"][i], status=c["status"][i],
+                        active_bounds=list(c["active_bounds"][i]), grad_norm_theta=c["grad_norm_theta"][i],
+                        hess_eig=c["hess_eig"][i], source=names[w],
+                        candidates={k: dict(R=cands[k]["R"][i], l=cands[k]["l"][i]) for k in names},
+                        seed_disagreement_rel=seed_rel[i]))
+    summary = dict(n_points=len(L), n_positive=int(pos.sum()),
+                   source_counts={k: int(np.sum(win == i)) for i, k in enumerate(names)},
+                   seed_disagreement_rel_max=float(np.nanmax(seed_rel)) if pos.any() else None,
+                   seed_disagreement_rel_median=float(np.nanmedian(seed_rel)) if pos.any() else None,
+                   n_points_seed_disagree_gt_1e9=int(np.nansum(seed_rel > 1e-9)))
+    return pts, summary
 
-    # reference horizon per n_X
-    horizons = []
-    Rm = best["R"].reshape(len(NX), len(Li))
-    Pm = best["params"].reshape(len(NX), len(Li), 5)
-    for i, nx in enumerate(NX):
-        posi = np.where(Rm[i] > 0)[0]
-        if len(posi) == 0 or posi[-1] == len(Li) - 1:
-            horizons.append(dict(n_X=nx, horizon_km=None, note="no sign change on reference grid"))
+
+def horizons(pts, preset, n_sobol, top_k, steps):
+    out = []
+    for nx in NX:
+        P = sorted([p for p in pts if p["n_X"] == nx], key=lambda p: p["L"])
+        R = np.array([p["R"] for p in P])
+        posi = np.where(R > 0)[0]
+        if len(posi) == 0 or posi[-1] == len(P) - 1:
+            out.append(dict(n_X=nx, horizon_km=None, note="no sign change on reference grid"))
             continue
         k = posi[-1]
-        lo, hi, p_lo = Li[k], Li[k + 1], Pm[i, k]
-        for step in range(a.horizon_steps):
+        lo, hi, p_lo = P[k]["L"], P[k + 1]["L"], np.asarray(P[k]["params"])
+        for step in range(steps):
             mid = 0.5 * (lo + hi)
-            r = optimize_batch([mid], [nx], preset, n_sobol=max(a.n_sobol // 4, 2048), top_k=max(a.top_k // 2, 4),
+            r = optimize_batch([mid], [nx], preset, n_sobol=max(n_sobol // 4, 2048), top_k=max(top_k // 2, 4),
                                seed=1000 + step, extra_starts=p_lo[None, None, :])
             if r["l"][0] > 0:
                 lo, p_lo = mid, r["params"][0]
             else:
                 hi = mid
-        horizons.append(dict(n_X=nx, horizon_km=lo, bracket_km=[lo, hi]))
+        out.append(dict(n_X=nx, horizon_km=lo, bracket_km=[lo, hi]))
         print(f"[ref] horizon n_X={nx:.0e}: {lo:.6f} km", flush=True)
+    return out
 
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--preset", required=True)
+    ap.add_argument("--tail", action="store_true")
+    ap.add_argument("--n-sobol", type=int, default=2**17)
+    ap.add_argument("--top-k", type=int, default=64)
+    ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1])
+    ap.add_argument("--horizon-steps", type=int, default=25)
+    ap.add_argument("--quick", action="store_true", help="tiny budget smoke run (not a reference)")
+    a = ap.parse_args()
+    if a.quick:
+        a.n_sobol, a.top_k, a.horizon_steps = 2**11, 8, 6
+    preset = get_preset(a.preset)
+    backend = check_x64()
+    t0 = time.perf_counter()
+
+    if a.tail:
+        main_ref = json.load(open(ref_path(preset.name, quick=a.quick)))
+        hz = {h["n_X"]: h.get("horizon_km") for h in main_ref["horizons"]}
+        idx, n = [], []
+        for nx in NX:
+            h = hz.get(nx)
+            if h is None:
+                continue
+            sel = np.where((GRID >= h - TAIL_BELOW_KM) & (GRID <= h + TAIL_ABOVE_KM))[0]
+            idx += sel.tolist()
+            n += [nx] * len(sel)
+        idx, n = np.array(idx), np.array(n, float)
+        L = GRID[idx]
+        window = dict(below_horizon_km=TAIL_BELOW_KM, above_horizon_km=TAIL_ABOVE_KM, main_reference_horizons=hz,
+                      main_reference_config_hash=main_ref["stamp"]["config_hash"])
+    else:
+        idx = np.tile(REF_IDX, len(NX))
+        L = GRID[idx]
+        n = np.repeat(NX, len(REF_IDX)).astype(float)
+        window = None
+
+    cfg = dict(script="build_reference.py", preset=preset.name, tail=a.tail, n_sobol=a.n_sobol, top_k=a.top_k,
+               seeds=a.seeds, nX=NX, horizon_steps=a.horizon_steps, window=window,
+               grid_indices=idx.tolist(), flags=preset.flags._asdict(), consts=preset.consts._asdict())
+    st = stamp(cfg)
+    pts, summary = solve_points(L, n, idx, preset, a.n_sobol, a.top_k, a.seeds)
+    hzs = None if a.tail else horizons(pts, preset, a.n_sobol, a.top_k, a.horizon_steps)
     wall = time.perf_counter() - t0
-    out = dict(
-        description=__doc__, stamp=st, config=cfg, backend=backend, wall_time_s=wall,
-        points=[dict(L=float(L[j]), n_X=float(n[j]), params=best["params"][j], R=best["R"][j], l=best["l"][j],
-                     N=best["N"][j], eps_sec=best["eps_sec"][j], status=best["status"][j],
-                     active_bounds=list(best["active_bounds"][j]), grad_norm_theta=best["grad_norm_theta"][j],
-                     hess_eig=best["hess_eig"][j], source=best["source"][j],
-                     candidates={k: dict(R=cands[k]["R"][j], l=cands[k]["l"][j]) for k in names},
-                     seed_disagreement_rel=seed_rel[j]) for j in range(P)],
-        horizons=horizons,
-        summary=dict(
-            n_points=P, n_positive=int(pos.sum()),
-            source_counts={k: int(np.sum(win == i)) for i, k in enumerate(names)},
-            seed_disagreement_rel_max=float(np.nanmax(seed_rel)),
-            seed_disagreement_rel_median=float(np.nanmedian(seed_rel)),
-            n_points_seed_disagree_gt_1e9=int(np.nansum(seed_rel > 1e-9)),
-        ),
-    )
-    path = a.out or os.path.join(ROOT, "Optimization", "reference",
-                                 f"reference_{preset.name}{'_QUICK' if a.quick else ''}.json")
+    out = dict(description=__doc__, stamp=st, config=cfg, backend=backend, wall_time_s=wall, points=pts,
+               horizons=hzs, summary=summary)
+    path = ref_path(preset.name, tail=a.tail, quick=a.quick)
     with open(path, "w") as fh:
         json.dump(to_jsonable(out), fh, indent=1)
-    print(json.dumps(to_jsonable(out["summary"]), indent=1))
+    print(json.dumps(to_jsonable(summary), indent=1))
     print(f"[ref] wrote {os.path.relpath(path, ROOT)} in {wall:.1f}s")
 
 

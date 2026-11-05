@@ -1,7 +1,7 @@
 """Item A/B: quantify every difference between src/qkd (legacy) and Lim et al. 2014, and check the
 paper's regression targets. All numbers in PHYSICS_DIFF.md come from this script.
 
-Part 1 -- cumulative chain legacy -> lim_exact, one switch at a time, each stage re-optimised
+Part 1 -- cumulative chain legacy -> lim -> lim_literal, one switch at a time, each stage re-optimised
 (cold, 2^14 Sobol, top-16) at L in {0, 50, 100, 150} km x n_X in {1e4, 1e9}. Stage 0 uses the
 physics_lim implementation with legacy switches (verified equal to src/qkd to 1e-8 in tests).
 
@@ -10,7 +10,7 @@ Part 2 -- paper targets (Lim et al. 2014 text / Fig. 1, 15 % tolerance, never tu
   T2  R(100 km, 1e9) / R(100 km, 1e7) ~ 1.75
   T3  n_X = 1e4 "reaches ~1e-7 at ~135 km": the L where the optimised R falls to 1e-7, ~135 km
       (sweep on a 1 km grid, then bisection on log R = -7 with warm-started re-optimisation)
-for: lim_exact, the diagnostic variant lim_exact[emis_eta=sys], and legacy.
+for: lim (default), lim_literal (printed eta_ch, diagnostic), and legacy.
 
 Usage: python Optimization/analysis/physics_diff.py
 """
@@ -23,7 +23,7 @@ sys.path.insert(0, ROOT)
 
 import numpy as np  # noqa: E402
 
-from src.qkd_opt import LEGACY, LIM_EXACT, Preset, check_x64  # noqa: E402
+from src.qkd_opt import LEGACY, LIM, LIM_LITERAL, Preset, check_x64  # noqa: E402
 from src.qkd_opt.optimize import optimize_batch, optimize_sweep, warm_solve, eval_starts  # noqa: E402
 from src.qkd_opt.provenance import stamp, to_jsonable  # noqa: E402
 import jax.numpy as jnp  # noqa: E402
@@ -40,13 +40,14 @@ def chain():
              ("3 p_ap 0 -> 0.04 in e_k", {}, dict(p_ap=0.04)),
              ("4 R_k = D_k(1+p_ap) in counts/N", dict(afterpulse_in_rate=True), {}),
              ("5 eps_sec = kappa*l (kappa=1e-15)", dict(eps_mode="kappa"), {}),
-             ("6 no clamp of n^-, m^- at 0", dict(clamp_minus=False), {}),
-             ("7 eta_ch (paper text) in e_mis term = lim_exact", dict(emis_eta="ch"), {})]
+             ("6 no clamp of n^-, m^- at 0 = lim", dict(clamp_minus=False), {}),
+             ("7 eta_ch (as printed) in e_mis term = lim_literal", dict(emis_eta="ch"), {})]
     out, f, c = [], f0, c0
     for name, df, dc in steps:
         f, c = f._replace(**df), c._replace(**dc)
         out.append(Preset(name=name, flags=f, consts=c))
-    assert out[-1].flags == LIM_EXACT.flags and out[-1].consts == LIM_EXACT.consts, (out[-1], LIM_EXACT)
+    assert out[-2].flags == LIM.flags and out[-2].consts == LIM.consts, (out[-2], LIM)
+    assert out[-1].flags == LIM_LITERAL.flags and out[-1].consts == LIM_LITERAL.consts, (out[-1], LIM_LITERAL)
     return out
 
 
@@ -95,10 +96,8 @@ def main():
         r = optimize_batch(L, N, pre, n_sobol=16384, top_k=16)
         rows.append(dict(stage=pre.name, R=r["R"], params=r["params"], status=list(r["status"])))
         print(f"[diff] {pre.name}: {np.array2string(r['R'], precision=3)}", flush=True)
-    diag = Preset("lim_exact[emis_eta=sys] (diagnostic, NOT a preset)", LIM_EXACT.flags._replace(emis_eta="sys"),
-                  LIM_EXACT.consts)
     tg = {}
-    for pre in (LIM_EXACT, diag, LEGACY):
+    for pre in (LIM, LIM_LITERAL, LEGACY):
         tg[pre.name] = targets(pre)
         print(f"[targets] {pre.name}: {tg[pre.name]}", flush=True)
     out_dir = os.path.join(ROOT, "results", f"physics_diff_{st['git_commit']}_{st['config_hash']}")
@@ -109,7 +108,7 @@ def main():
     md = [f"# Physics differences and paper targets (generated)", "",
           f"`Optimization/analysis/physics_diff.py`, git `{st['git_commit']}`, config `{st['config_hash']}`, "
           f"physics hash `{st['physics_source_hash']}`.", "",
-          "## Cumulative chain legacy → lim_exact (optimised R, bits/pulse)", "",
+          "## Cumulative chain legacy → lim → lim_literal (optimised R, bits/pulse)", "",
           "| stage | " + " | ".join(f"L={l:g}, n_X={n:.0e}" for l, n in zip(L, N)) + " |",
           "|---|" + "---|" * len(L)]
     for r in rows:

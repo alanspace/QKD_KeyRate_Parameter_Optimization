@@ -16,7 +16,7 @@
    while the optimum is positive count as regret 1.
 (Roughness restricted to R > tau is in run_benchmark.py, all n_X labelled.)
 
-Usage: python Optimization/analysis/analyses.py --preset legacy|lim_exact
+Usage: python Optimization/analysis/analyses.py --preset lim|lim_literal|legacy
 """
 import argparse
 import json

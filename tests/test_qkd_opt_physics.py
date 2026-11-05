@@ -8,7 +8,7 @@ import jax.numpy as jnp
 import numpy as np
 from jax.test_util import check_grads
 
-from src.qkd_opt import LEGACY, LIM_EXACT, evaluate, with_flags
+from src.qkd_opt import LEGACY, LEGACY_SRC, LIM, LIM_LITERAL, evaluate
 
 jax.config.update("jax_enable_x64", True)
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,9 +23,9 @@ INTERIOR = [
 
 
 class TestLimImplementation(unittest.TestCase):
-    def test_matches_src_qkd_with_legacy_flags(self):
-        """physics_lim with the legacy switches reproduces src/qkd (validates the transcription)."""
-        lim_as_legacy = with_flags(LEGACY, "lim_as_legacy", model="lim")
+    def test_legacy_preset_matches_src_qkd(self):
+        """The legacy preset (physics_lim with legacy switches) reproduces src/qkd itself (legacy_src)."""
+        lim_as_legacy = LEGACY
         rng = np.random.default_rng(1)
         n = 0
         for L in (0.0, 50.0, 100.0, 140.0):
@@ -33,7 +33,7 @@ class TestLimImplementation(unittest.TestCase):
                 for _ in range(10):
                     p = np.array([rng.uniform(.3, .8), rng.uniform(.05, .25), rng.uniform(.05, .6),
                                   rng.uniform(.1, .35), rng.uniform(.2, .95)])
-                    a = float(evaluate(p, L, nx, LEGACY.consts, LEGACY.flags)["l"])
+                    a = float(evaluate(p, L, nx, LEGACY_SRC.consts, LEGACY_SRC.flags)["l"])
                     b = float(evaluate(p, L, nx, lim_as_legacy.consts, lim_as_legacy.flags)["l"])
                     if a > 0:
                         n += 1
@@ -41,7 +41,7 @@ class TestLimImplementation(unittest.TestCase):
         self.assertGreater(n, 20)
 
     def test_eps_fixed_point(self):
-        c, f = LIM_EXACT.consts, LIM_EXACT.flags
+        c, f = LIM.consts, LIM.flags
         for p, L, nx in INTERIOR:
             out = evaluate(p, L, nx, c, f)
             l = float(out["l"])
@@ -51,7 +51,7 @@ class TestLimImplementation(unittest.TestCase):
 
     def test_gradients_finite_and_correct(self):
         """jax.test_util.check_grads (fwd+rev, 2nd order) on R at several interior points."""
-        for preset in (LEGACY, LIM_EXACT):
+        for preset in (LEGACY, LIM, LIM_LITERAL):
             for p, L, nx in INTERIOR:
                 f = lambda q: evaluate(q, L, nx, preset.consts, preset.flags)["R"] * 1e3
                 g = jax.grad(f)(jnp.asarray(p))
@@ -60,7 +60,7 @@ class TestLimImplementation(unittest.TestCase):
 
     def test_unclipped_beyond_horizon(self):
         """l and R are returned unclipped (negative) far beyond the horizon, with finite gradient."""
-        for preset in (LEGACY, LIM_EXACT):
+        for preset in (LEGACY, LIM, LIM_LITERAL):
             p = jnp.asarray([0.48, 0.35, 0.20, 0.75, 0.875])
             out = evaluate(p, 200.0, 1e4, preset.consts, preset.flags)
             self.assertLess(float(out["l"]), 0.0)
@@ -80,7 +80,7 @@ class TestOptimisedPhysics(unittest.TestCase):
         L = np.array([0.0, 25.0, 50.0, 75.0, 100.0, 125.0])
         cls.L = L
         cls.res = {pr.name: optimize_batch(L, np.full_like(L, 1e9), pr, n_sobol=2048, top_k=6, seed=3)
-                   for pr in (LEGACY, LIM_EXACT)}
+                   for pr in (LEGACY, LIM, LIM_LITERAL)}
 
     def test_monotone_decay_in_L(self):
         for name, r in self.res.items():
@@ -92,16 +92,37 @@ class TestOptimisedPhysics(unittest.TestCase):
         R0 = self.res["legacy"]["R"][0]
         self.assertAlmostEqual(R0 / 1.0899651e-2, 1.0, delta=1e-6)
 
-    def test_lim_exact_value_at_L0(self):
-        """lim_exact at L=0, n_X=1e9: regression value 1.2504692e-3 (your stated Lim value ~1.25e-3)."""
-        R0 = self.res["lim_exact"]["R"][0]
+    def test_lim_literal_value_at_L0(self):
+        """lim_literal (printed eta_ch) at L=0, n_X=1e9: regression value 1.2504692e-3."""
+        R0 = self.res["lim_literal"]["R"][0]
         self.assertAlmostEqual(R0 / 1.2504692e-3, 1.0, delta=1e-5)
+
+    def test_lim_value_at_L0(self):
+        """lim (eta_sys) at L=0, n_X=1e9: regression value 9.2025396e-3 (paper Fig. 1: ~1e-2)."""
+        R0 = self.res["lim"]["R"][0]
+        self.assertAlmostEqual(R0 / 9.2025396e-3, 1.0, delta=1e-5)
 
     def test_certificate_present(self):
         for r in self.res.values():
             for k in ("grad_norm_theta", "hess_eig", "active_bounds", "status"):
                 self.assertIn(k, r)
             self.assertTrue(np.all(r["hess_eig"].min(axis=1) > -1e-6))   # local maxima of R
+
+
+class TestPaperTargetsLim(unittest.TestCase):
+    """Lim et al. 2014 text/Fig. 1 targets for the default 'lim' preset, 15 % tolerance (never tuned).
+    T3 is measured at 118.8 km vs ~135 km (12 % low): inside the tolerance, but the largest deviation."""
+
+    def test_targets(self):
+        from src.qkd_opt.optimize import optimize_batch, optimize_sweep
+        r = optimize_batch([0.0, 100.0, 100.0], [1e9, 1e9, 1e7], LIM, n_sobol=8192, top_k=8, seed=0)
+        self.assertLessEqual(abs(r["R"][0] / 1e-2 - 1), 0.15, r["R"][0])
+        self.assertLessEqual(abs(r["R"][1] / r["R"][2] / 1.75 - 1), 0.15, r["R"][1] / r["R"][2])
+        Lg = np.arange(100.0, 141.0, 1.0)
+        s = optimize_sweep(Lg, [1e4], LIM, global_every=5, refine_horizon=False)
+        above = Lg[s["R"][0] >= 1e-7]
+        self.assertTrue(len(above) > 0)
+        self.assertLessEqual(abs(above[-1] / 135.0 - 1), 0.15, above[-1])
 
 
 class TestLegacyTailRegression(unittest.TestCase):

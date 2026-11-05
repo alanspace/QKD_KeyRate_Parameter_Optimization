@@ -1,7 +1,7 @@
 """Single entry point for the physics: evaluate(params, L, n_X, consts, flags) -> dict(l, N, R, ...).
 
 * flags.model == "lim":        src/qkd_opt/physics_lim.py
-* flags.model == "legacy_src": src/qkd/model.py called UNMODIFIED (the physics in src/qkd is
+* flags.model == "legacy_src": src/qkd/model.py called UNMODIFIED, cross-check only (the physics in src/qkd is
   frozen by project rule); N is reconstructed with the same formula src/qkd uses internally.
 
 No clipping of R or l is performed here: beyond the horizon l < 0 and R < 0 are returned as-is,
