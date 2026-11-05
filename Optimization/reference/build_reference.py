@@ -23,6 +23,10 @@ for points with R > 0:
                                     still listed (eps_sec = kappa*l discontinuity / R -> 0 scaling near the horizon)
   NOISE_GTOL = 1e-6 < g <= 1e-3  -> status "...|noise_floor": scored normally, counted and listed
 
+tol_ref = max(1e-9, 2 x seed_disagreement_rel_max) of the build is recorded in the summary; "worse than a
+previous reference" and "reference weakness" (independent cross-check better) use tol_ref, differences between
+1e-9 and tol_ref are reported as INFO.
+
 Neighbour continuation: after the Sobol (and legacy-start) solves, the points of each n_X are swept in
 increasing L ("cont_up") and then decreasing L ("cont_down"); each point is warm-started from the best
 parameters known at the previous grid point of that sweep (best of all candidates so far, including the
@@ -69,6 +73,11 @@ NOISE_GTOL = 1e-6
 def ref_path(preset_name, tail=False, quick=False):
     return os.path.join(ROOT, "Optimization", "reference",
                         f"reference_{preset_name}{'_tail' if tail else ''}{'_QUICK' if quick else ''}.json")
+
+
+def tol_ref_from(seed_disagreement_rel_max):
+    """Data-driven reference tolerance: max(1e-9, 2 x the build's max seed-to-seed relative disagreement)."""
+    return max(1e-9, 2.0 * float(seed_disagreement_rel_max or 0.0))
 
 
 def _score(R, l, n):
@@ -159,6 +168,7 @@ def solve_points(L, n, idx, preset, n_sobol, top_k, seeds):
                    seed_disagreement_rel_max=float(np.nanmax(seed_rel)) if pos.any() else None,
                    seed_disagreement_rel_median=float(np.nanmedian(seed_rel)) if pos.any() else None,
                    n_points_seed_disagree_gt_1e9=int(np.nansum(seed_rel > 1e-9)),
+                   tol_ref=tol_ref_from(float(np.nanmax(seed_rel)) if pos.any() else 0.0),
                    n_cliff_edge=int(sum(p["cliff_edge"] for p in pts)),
                    cliff_edge_points=[dict(L=p["L"], n_X=p["n_X"], R=p["R"], l=p["l"],
                                            grad_norm_theta=p["grad_norm_theta"]) for p in pts if p["cliff_edge"]],

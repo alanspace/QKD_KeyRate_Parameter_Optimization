@@ -32,6 +32,11 @@ def h2(x):
 
 
 def key_length_indep(mu1, mu2, P1, P2, qx, L, nX, eps_sec, c=C, eta_in_emis="sys"):
+    return key_length_indep_full(mu1, mu2, P1, P2, qx, L, nX, eps_sec, c, eta_in_emis)["l"]
+
+
+def key_length_indep_full(mu1, mu2, P1, P2, qx, L, nX, eps_sec, c=C, eta_in_emis="sys"):
+    """Returns dict(l, flags=dict(sX1_pos, sZ1_pos, b_in_range, s0X_clamped, s0Z_clamped), b, e_obs)."""
     mu = [mu1, mu2, c["mu3"]]
     p = [P1, P2, 1.0 - P1 - P2]
     eta_ch = 10.0 ** (-c["alpha"] * L / 10.0)
@@ -59,18 +64,19 @@ def key_length_indep(mu1, mu2, P1, P2, qx, L, nX, eps_sec, c=C, eta_in_emis="sys
 
     def s0_s1(counts):
         npl, nmi = bounds(counts)
-        s0 = max(tau0 * (mu[1] * nmi[2] - mu[2] * npl[1]) / (mu[1] - mu[2]), 0.0)
+        s0_raw = tau0 * (mu[1] * nmi[2] - mu[2] * npl[1]) / (mu[1] - mu[2])
+        s0 = max(s0_raw, 0.0)
         num = tau1 * mu[0] * (nmi[1] - npl[2] - (mu[1] ** 2 - mu[2] ** 2) / mu[0] ** 2 * (npl[0] - s0 / tau0))
         s1 = num / (mu[0] * (mu[1] - mu[2]) - mu[1] ** 2 + mu[2] ** 2)
-        return s0, s1
+        return s0, s1, s0_raw <= 0
 
-    sX0, sX1 = s0_s1(nX_k)
-    _, sZ1 = s0_s1(nZ_k)
+    sX0, sX1, s0X_cl = s0_s1(nX_k)
+    _, sZ1, s0Z_cl = s0_s1(nZ_k)
     mpl, mmi = bounds(mZ_k)
     vZ1 = tau1 * (mpl[1] - mmi[2]) / (mu[1] - mu[2])
     single = 0.0
+    b = vZ1 / sZ1 if sZ1 > 0 else float("nan")
     if sX1 > 0 and sZ1 > 0:
-        b = vZ1 / sZ1
         if 0 < b < 0.5:
             cc, dd = sZ1, sX1
             inner = (cc + dd) * (1 - b) * b / (cc * dd * math.log(2.0)) * \
@@ -81,7 +87,18 @@ def key_length_indep(mu1, mu2, P1, P2, qx, L, nX, eps_sec, c=C, eta_in_emis="sys
         single = sX1 * (1.0 - h2(phi))
     e_obs = sum(mX_k) / nX
     lam = nX * c["f_ec"] * h2(min(e_obs, 0.5))
-    return sX0 + single - lam - 6.0 * math.log2(21.0 / eps_sec) - math.log2(2.0 / c["eps_cor"])
+    l = sX0 + single - lam - 6.0 * math.log2(21.0 / eps_sec) - math.log2(2.0 / c["eps_cor"])
+    flags = dict(sX1_pos=sX1 > 0, sZ1_pos=sZ1 > 0, b_in_range=bool(sZ1 > 0 and 0 < b < 0.5),
+                 s0X_clamped=bool(s0X_cl), s0Z_clamped=bool(s0Z_cl))
+    return dict(l=l, flags=flags, b=b, e_obs=e_obs, sX1=sX1, sZ1=sZ1)
+
+
+def flags_from_preset(out):
+    """Same branch flags from the output of src.qkd_opt.evaluate (aux fields only, no code shared)."""
+    sX1, sZ1, vZ1 = float(out["sX1"]), float(out["sZ1"]), float(out["vZ1"])
+    b = vZ1 / sZ1 if sZ1 > 0 else float("nan")
+    return dict(sX1_pos=sX1 > 0, sZ1_pos=sZ1 > 0, b_in_range=bool(sZ1 > 0 and 0 < b < 0.5),
+                s0X_clamped=float(out["sX0"]) == 0.0, s0Z_clamped=float(out["sZ0"]) == 0.0)
 
 
 def random_interior(rng, n):
@@ -129,6 +146,98 @@ class TestIndependentPhysics(unittest.TestCase):
                 worst = max(worst, res)
                 self.assertLessEqual(res, 1e-10, (prm, L, nX, eps, li))
         print(f"\n[independent] eps fixed-point max residual: {worst:.3e}")
+
+    def _near_horizon_points(self, per_nx):
+        import json
+        import os
+        root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        ref = json.load(open(os.path.join(root, "Optimization", "reference", "reference_lim_tail.json")))
+        pts = []
+        for nx in (1e4, 1e5, 1e6, 1e7, 1e8, 1e9):
+            pp = sorted([p for p in ref["points"] if p["n_X"] == nx and p["R"] > 0], key=lambda p: p["L"])
+            pts += pp[-per_nx:]
+        return pts
+
+    def test_near_horizon_agreement_and_branches(self):
+        """(a) last 3 positive points per n_X of the lim tail reference, eps = the preset's returned eps."""
+        worst, n = 0.0, 0
+        for p in self._near_horizon_points(3):
+            prm, L, nX = p["params"], p["L"], p["n_X"]
+            eps = float(self.evaluate(self.jnp.asarray(prm), L, nX, self.LIM.consts, self.LIM.flags)["eps_sec"])
+            pre = self.FIXED._replace(consts=self.FIXED.consts._replace(eps_sec=eps))
+            out = self.evaluate(self.jnp.asarray(prm), L, nX, pre.consts, pre.flags)
+            ind = key_length_indep_full(*prm, L, nX, eps)
+            rel = abs(ind["l"] - float(out["l"])) / abs(ind["l"])
+            worst = max(worst, rel)
+            n += 1
+            self.assertLessEqual(rel, 1e-10, (L, nX, ind["l"], float(out["l"]), rel))
+            self.assertEqual(ind["flags"], flags_from_preset(out), (L, nX))
+        self.assertEqual(n, 18)
+        print(f"\n[independent] near-horizon (18 points) max relative difference in l: {worst:.3e}")
+
+    def test_degenerate_branches(self):
+        """(b) points with b >= 0.5, with s_1 <= 0 and with e_obs > 0.5 (found by seeded random search)."""
+        rng = np.random.default_rng(11)
+        want = {"b_ge_half": None, "s1_nonpos": None, "eobs_gt_half": None}
+        tries = 0
+        while any(v is None for v in want.values()) and tries < 20000:
+            tries += 1
+            e_mis = float(rng.choice([5e-3, 0.05, 0.3, 1.2]))
+            L = float(rng.choice([0.0, 100.0, 150.0, 200.0, 250.0, 300.0, 350.0]))
+            nX = float(rng.choice([1e4, 1e6, 1e9]))
+            prm = (rng.uniform(0.05, 0.85), rng.uniform(0.001, 0.2), rng.uniform(0.02, 0.6), rng.uniform(0.02, 0.4),
+                   rng.uniform(0.05, 0.95))
+            if not prm[0] > prm[1] + 2e-4:
+                continue
+            c = dict(C, e_mis=e_mis)
+            ind = key_length_indep_full(*prm, L, nX, 1e-10, c)
+            if want["b_ge_half"] is None and ind["sX1"] > 0 and ind["sZ1"] > 0 and ind["b"] >= 0.5:
+                want["b_ge_half"] = (prm, L, nX, e_mis)
+            if want["s1_nonpos"] is None and (ind["sX1"] <= 0 or ind["sZ1"] <= 0):
+                want["s1_nonpos"] = (prm, L, nX, e_mis)
+            if want["eobs_gt_half"] is None and ind["e_obs"] > 0.5:
+                want["eobs_gt_half"] = (prm, L, nX, e_mis)
+        for k, v in want.items():
+            self.assertIsNotNone(v, f"no {k} point found in {tries} tries")
+            prm, L, nX, e_mis = v
+            c = dict(C, e_mis=e_mis)
+            pre = self.FIXED._replace(consts=self.FIXED.consts._replace(eps_sec=1e-10, e_mis=e_mis))
+            out = self.evaluate(self.jnp.asarray(prm), L, nX, pre.consts, pre.flags)
+            ind = key_length_indep_full(*prm, L, nX, 1e-10, c)
+            rel = abs(ind["l"] - float(out["l"])) / abs(ind["l"])
+            self.assertLessEqual(rel, 1e-10, (k, v, ind["l"], float(out["l"])))
+            self.assertEqual(ind["flags"], flags_from_preset(out), (k, v))
+            print(f"\n[independent] degenerate case {k}: L={L} nX={nX:.0e} e_mis={e_mis} rel diff {rel:.2e}")
+
+    def test_greatest_root(self):
+        """(c) all roots of g(eps) = kappa*max(l_indep(eps), 1) - eps on a 4000-point log grid 1e-30..1e-1; the
+        preset's eps must be the largest root (refined by bisection), at 10 near-horizon and 10 interior points."""
+        rng = np.random.default_rng(5)
+        interior = [(prm, float(rng.choice([0.0, 30.0, 60.0, 90.0])), float(rng.choice([1e5, 1e7, 1e9])))
+                    for prm in random_interior(rng, 10)]
+        near = [(p["params"], p["L"], p["n_X"]) for p in self._near_horizon_points(2)][:10]
+        grid = np.logspace(-30, -1, 4000)
+        worst = 0.0
+        for prm, L, nX in interior + near:
+            eps_p = float(self.evaluate(self.jnp.asarray(prm), L, nX, self.LIM.consts, self.LIM.flags)["eps_sec"])
+            g = np.array([C["kappa"] * max(key_length_indep(*prm, L, nX, e), 1.0) - e for e in grid])
+            sc = np.where(np.sign(g[:-1]) != np.sign(g[1:]))[0]
+            self.assertTrue(len(sc) >= 1, (L, nX))
+            k = sc[-1]
+            lo, hi = np.log(grid[k]), np.log(grid[k + 1])
+            glo = g[k]
+            for _ in range(200):
+                mid = 0.5 * (lo + hi)
+                gm = C["kappa"] * max(key_length_indep(*prm, L, nX, math.exp(mid)), 1.0) - math.exp(mid)
+                if np.sign(gm) == np.sign(glo):
+                    lo = mid
+                else:
+                    hi = mid
+            root = math.exp(0.5 * (lo + hi))
+            rel = abs(root - eps_p) / root
+            worst = max(worst, rel)
+            self.assertLessEqual(rel, 1e-8, (L, nX, eps_p, root, len(sc)))
+        print(f"\n[independent] greatest-root check: 20 points, max relative eps difference {worst:.3e}")
 
     def test_error_budget_identities(self):
         """Supplementary: eps_sec = 2[2 a1 + a2 + a3] + nu_bar + 10 eps1 + 2 eps2; with every term = eps this is

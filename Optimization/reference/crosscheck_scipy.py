@@ -8,8 +8,9 @@ Independent of the qkd_opt optimiser in everything except the physics:
   * local solver:      scipy SLSQP (gradients from jax.grad of the same physics) -- not Newton.
 For every reference point with R_ref > 0: draw 2048 feasible random points, refine the best 16
 (diverse) with SLSQP, keep the best feasible result.
-Reports d = (R_ref - R_xcheck)/R_ref. Any point with d < -1e-9 (cross-check better than the
-reference) is a REFERENCE WEAKNESS and is listed.
+Reports d = (R_ref - R_xcheck)/R_ref. tol_ref = max(1e-9, 2 x seed_disagreement_rel_max of the reference
+build). d < -tol_ref (cross-check better than the reference beyond its own seed-to-seed resolution) is a
+REFERENCE WEAKNESS; -tol_ref <= d < -1e-9 is listed as INFO.
 
 Usage: python Optimization/reference/crosscheck_scipy.py --preset lim|lim_literal|legacy [--tail]
 """
@@ -109,10 +110,13 @@ def main():
         if k % 20 == 0:
             print(f"[xcheck] {k}/{len(ref['points'])} L={L:.2f} n_X={n:.0e} d={d:.2e}", flush=True)
     d = np.array([r["d"] for r in rows])
-    weak = [r for r in rows if r["d"] < -1e-9]
+    tol_ref = max(1e-9, 2.0 * float(ref["summary"].get("seed_disagreement_rel_max") or 0.0))
+    weak = [r for r in rows if r["d"] < -tol_ref]
+    info = [r for r in rows if -tol_ref <= r["d"] < -1e-9]
     summary = dict(n=len(rows), median_d=float(np.median(d)), max_d=float(np.max(d)), min_d=float(np.min(d)),
                    pct_agree_1e6=float(100 * np.mean(np.abs(d) <= 1e-6)),
                    n_xcheck_worse_gt_1e6=int(np.sum(d > 1e-6)), n_reference_weakness=len(weak),
+                   tol_ref=tol_ref, n_info_within_tol_ref=len(info),
                    slsqp_not_success_total=int(sum(r["slsqp_not_success"] for r in rows)),
                    slsqp_runs_total=int(len(rows) * N_REFINE),
                    infeasible_results_total=int(sum(r["infeasible_results"] for r in rows)),
@@ -127,19 +131,22 @@ def main():
     md = [f"# Independent solver cross-check — preset `{pre.name}`{' (tail reference)' if a.tail else ''}", "",
           f"`Optimization/reference/crosscheck_scipy.py`; git `{st['git_commit']}`, config `{st['config_hash']}`; "
           f"reference `{cfg['reference']}` (config `{cfg['reference_config_hash']}`).", "",
-          "d = (R_ref − R_xcheck)/R_ref; d > 0: cross-check worse than reference; d < −1e-9: REFERENCE WEAKNESS.", "",
+          "d = (R_ref − R_xcheck)/R_ref; d > 0: cross-check worse than reference; d < −tol_ref: REFERENCE WEAKNESS.", "",
           f"- points (R_ref > 0): {summary['n']}",
           f"- |d| ≤ 1e-6: {summary['pct_agree_1e6']:.1f} %",
           f"- median d: {summary['median_d']:.2e}; max d: {summary['max_d']:.2e}; min d: {summary['min_d']:.2e}",
           f"- cross-check worse than reference by > 1e-6: {summary['n_xcheck_worse_gt_1e6']} points",
-          f"- **reference weaknesses (cross-check better by > 1e-9): {summary['n_reference_weakness']}**",
+          f"- tol_ref = max(1e-9, 2 x seed disagreement of the reference) = {tol_ref:.3e}",
+          f"- **reference weaknesses (cross-check better by > tol_ref): {summary['n_reference_weakness']}**",
+          f"- INFO (cross-check better by 1e-9 .. tol_ref): {summary['n_info_within_tol_ref']}",
           f"- SLSQP runs not reporting success: {summary['slsqp_not_success_total']} of {summary['slsqp_runs_total']}; "
           f"infeasible results: {summary['infeasible_results_total']}; non-finite: {summary['nonfinite_total']}; "
           f"points hitting the {POINT_BUDGET_S:.0f} s budget: {summary['n_points_timeout']}; "
           f"points with no feasible result: {summary['n_points_no_feasible_result']}"]
-    for r in weak:
-        md.append(f"  - L={r['L']:.3f} km, n_X={r['n_X']:.0e}: R_ref={r['R_ref']:.10e}, R_xcheck={r['R_xcheck']:.10e}, "
-                  f"d={r['d']:.2e}{' (cliff_edge reference point)' if r['cliff_edge'] else ''}")
+    for tag, lst in (("WEAKNESS", weak), ("INFO", info)):
+        for r in lst:
+            md.append(f"  - {tag} L={r['L']:.3f} km, n_X={r['n_X']:.0e}: R_ref={r['R_ref']:.10e}, "
+                      f"R_xcheck={r['R_xcheck']:.10e}, d={r['d']:.2e}{' (cliff_edge reference point)' if r['cliff_edge'] else ''}")
     with open(os.path.join(out_dir, "CROSSCHECK.md"), "w") as fh:
         fh.write("\n".join(md) + "\n")
     print("\n".join(md))

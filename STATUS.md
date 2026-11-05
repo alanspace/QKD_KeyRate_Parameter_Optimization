@@ -200,3 +200,54 @@ STOPPED: two stop conditions were met.
   Neither changes a horizon or any R by more than 1e-6. Both indicate that tail reference values are
   resolved to about 1e-9 relative, not to the 1e-10..1e-12 seen in the bulk.
   Steps 5-8 have not started; awaiting a decision.
+
+Round 3 (decision: option 1 with data-driven tol_ref; no SLSQP candidates)
+--------------------------------------------------------------------------
+1. tol_ref (code; commit below)
+   tol_ref = max(1e-9, 2 x seed_disagreement_rel_max of the reference build). It is recorded in new
+   build summaries and computed from the summary for existing references.
+   crosscheck_scipy.py: weakness if d < -tol_ref; INFO if -tol_ref <= d < -1e-9.
+   compare_references.py: worse if rel < -tol_ref of the new build; INFO between 1e-9 and tol_ref.
+   Values from the current references:
+     lim main 8.111e-10 -> tol_ref 1.622e-9
+       (the prompt said 1e-9; the formula gives 1.62e-9, and the formula is used)
+     lim tail 6.500e-9 -> 1.300e-8
+     lim_literal main 1.0e-9; lim_literal tail 2.486e-8; legacy main 1.0e-9; legacy tail 4.298e-7
+   Re-classification of the step-4 results with tol_ref (no new runs):
+     the 5 lim tail cross-check points (d = -3.83e-9 .. -1.04e-9) and the pre-fix comparison point
+     L=160.401 km nX=1e5 (rel -1.18e-9) all lie within tol_ref = 1.3e-8 (tail) and are INFO.
+2. local_opt_check.py written (1e5 perturbations per point, scales 1e-6..1e-1, last 12 R>0 points per nX).
+   NOT RUN (stopped before, see 3).
+3. tests/test_independent_physics.py extended with (a) near-horizon, (b) degenerate branches,
+   (c) greatest root.
+   Ran: python -m unittest -v tests.test_independent_physics -> 7 tests, 2 FAILED
+     (b) degenerate branches: OK.
+         b >= 0.5: L=100 nX=1e9 e_mis=1.2, rel diff 0
+         s1 <= 0: L=200 nX=1e4 e_mis=0.05, rel diff 2.7e-16
+         e_obs > 0.5: L=100 nX=1e9 e_mis=1.2, rel diff 0
+         Branch flags identical in all three.
+     (a) near-horizon: FAIL. L=159.398 km nX=1e5: l_indep=703.3836538256, l_preset=703.3836548369,
+         rel 1.44e-9 > 1e-10. Branch flags identical at all points checked before the failure.
+     (c) greatest root: FAIL. L=172.431 km nX=1e6: preset eps 2.0831641e-12 vs independent largest root
+         2.0831640e-12, rel 2.4e-8 > 1e-8; 3 sign changes on the grid.
+         The preset eps IS a fixed point of its own l (kappa*l/eps = 1.000000, residual 2.6e-14).
+         The difference comes from the l difference below.
+   Diagnosis (measured; scripts not committed, run inline):
+     All intermediates differ by 1e-11 .. 4e-11 relative between the implementations, including e_obs,
+     which depends only on the detection/error model.
+     Cause: float64 cancellation in 1 - exp(-eta_sys*k) for small eta_sys*k (about 1e-8 for mu3 = 2e-4
+     at 160 km). It appears in D_k and in the e_mis term of e_k. Both implementations evaluate it as
+     printed, and JAX exp and math.exp round differently. Near the horizon l is a small difference of
+     large terms (sum |terms| / |l| = 185 at 159 km and 658 at 172 km), which amplifies it.
+     Relative error of l vs a 60-digit Decimal evaluation of the same formulas:
+                           159.398 km nX=1e5   172.431 km nX=1e6   50 km nX=1e9
+       float naive          5.19e-10            2.26e-9             1.20e-13
+       float expm1          5.85e-14            5.57e-14            1.07e-15
+       preset (JAX naive)   9.05e-10            1.41e-8             1.37e-14
+     The same cancellation exists in src/qkd (legacy).
+   Proposed fix (NOT applied; changes evaluation numerics, needs approval):
+     in physics_lim, write 1 - exp(-x) as -expm1(-x) in D_k and e_k, i.e.
+       D_k = -expm1(-eta k) + 2 p_dc exp(-eta k),  e_mis term = e_mis * (-expm1(-eta k)).
+     The model is unchanged. Values change by about 1e-8 relative at the tail and about 1e-14 in the
+     bulk, so the references and cross-checks would need rebuilding (about 1 h on AC).
+STOPPED (test failures). Steps 5-8 have not started.
