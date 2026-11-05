@@ -42,3 +42,4 @@ node_modules/
 results/**/*.npz
 results/logs/
 !Optimization/reference/prefix_eps_fix/**
+!Optimization/reference/pre_expm1/**

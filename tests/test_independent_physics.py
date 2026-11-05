@@ -4,7 +4,7 @@ listed in PHYSICS_DIFF.md. It does NOT import or read src/qkd_opt/physics_lim.py
 
 Conventions (as printed unless noted):
   eta_ch = 10^(-alpha L/10), eta_sys = eta_Bob eta_ch
-  D_k = 1 - (1 - 2 p_dc) exp(-eta_sys k), R_k = D_k (1 + p_ap)
+  D_k = 1 - (1 - 2 p_dc) exp(-eta_sys k), R_k = D_k (1 + p_ap)   [1 - exp(-x) evaluated as -expm1(-x)]
   e_k = p_dc + e_mis [1 - exp(-eta k)] + p_ap D_k / 2, with eta = eta_sys here (preset lim; the printed text
         says eta_ch -- see PHYSICS_DIFF.md)
   unprinted (PHYSICS_DIFF.md): N = n_X / (q_x^2 sum p_k R_k); n_{B,k} = N q_B^2 p_k R_k; m_{B,k} = N q_B^2 p_k e_k
@@ -42,9 +42,10 @@ def key_length_indep_full(mu1, mu2, P1, P2, qx, L, nX, eps_sec, c=C, eta_in_emis
     eta_ch = 10.0 ** (-c["alpha"] * L / 10.0)
     eta_sys = c["eta_bob"] * eta_ch
     eta_e = eta_sys if eta_in_emis == "sys" else eta_ch
-    D = [1.0 - (1.0 - 2.0 * c["p_dc"]) * math.exp(-eta_sys * k) for k in mu]
+    # 1 - (1 - 2 p_dc) e^{-x} evaluated as -expm1(-x) + 2 p_dc e^{-x} (identical formula, no cancellation)
+    D = [-math.expm1(-eta_sys * k) + 2.0 * c["p_dc"] * math.exp(-eta_sys * k) for k in mu]
     Rk = [d * (1.0 + c["p_ap"]) for d in D]
-    e = [c["p_dc"] + c["e_mis"] * (1.0 - math.exp(-eta_e * k)) + c["p_ap"] * d / 2.0 for k, d in zip(mu, D)]
+    e = [c["p_dc"] + c["e_mis"] * (-math.expm1(-eta_e * k)) + c["p_ap"] * d / 2.0 for k, d in zip(mu, D)]
     qz = 1.0 - qx
     N = nX / (qx * qx * sum(pk * r for pk, r in zip(p, Rk)))
     nX_k = [N * qx * qx * pk * r for pk, r in zip(p, Rk)]

@@ -251,3 +251,27 @@ Round 3 (decision: option 1 with data-driven tol_ref; no SLSQP candidates)
      The model is unchanged. Values change by about 1e-8 relative at the tail and about 1e-14 in the
      bulk, so the references and cross-checks would need rebuilding (about 1 h on AC).
 STOPPED (test failures). Steps 5-8 have not started.
+
+Round 3b (decision: apply the expm1 fix; legacy not patched)
+-------------------------------------------------------------
+Code:
+  physics_lim._counts evaluates 1 - exp(-eta k) as -expm1(-eta k) in D_k and in the e_mis term of e_k,
+  behind Flags.expm1_counts. Default True (lim, lim_literal, lim_tight); False for legacy, which stays
+  bit-identical to src/qkd.
+  The model is unchanged.
+  tests/test_independent_physics.py evaluates the same formula with math.expm1.
+  test_qkd_opt_gamma.test_printed_equals_old now pins the pre-change values with expm1_counts=False
+  (still 1e-12) and checks that the default expm1 values differ from them by < 1e-10.
+  Archive Optimization/reference/pre_expm1/ (6 references, SHA256SUMS.txt, README).
+  compare_references.py --old-dir.
+  run_all.py: step registry with --only / --parallel; MANIFEST records power state at start.
+Ran:
+  pmset -g batt: "Now drawing from 'AC Power'", 63 % charging; caffeinate -dims running (pid 72566).
+  python -m unittest -v tests.test_independent_physics:
+    near-horizon (18 points) max relative difference in l 1.66e-13, flags identical
+    greatest root (20 points) max relative eps difference 6.32e-13
+    fixed eps (360) 1.02e-13
+    eps residual 3.8e-15
+    degenerate cases 0.0
+  python -m unittest discover tests: Ran 34 tests in 434 s, OK.
+PASS

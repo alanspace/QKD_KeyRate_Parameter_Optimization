@@ -115,10 +115,14 @@ def _counts(params, L, n_X, c: Consts, f: Flags):
     pk = jnp.stack([P1, P2, 1.0 - P1 - P2])
     eta_ch = 10.0 ** (-c.alpha * L / 10.0)
     eta_sys = c.eta_bob * eta_ch
-    D = 1.0 - (1.0 - 2.0 * c.p_dc) * jnp.exp(-eta_sys * mu)
+    if f.expm1_counts:   # 1 - exp(-x) as -expm1(-x): no float64 cancellation for small eta*k (long distance)
+        D = -jnp.expm1(-eta_sys * mu) + 2.0 * c.p_dc * jnp.exp(-eta_sys * mu)
+    else:                # legacy evaluation order (bit-identical to src/qkd)
+        D = 1.0 - (1.0 - 2.0 * c.p_dc) * jnp.exp(-eta_sys * mu)
     Rk = D * (1.0 + c.p_ap) if f.afterpulse_in_rate else D
     eta_e = eta_ch if f.emis_eta == "ch" else eta_sys
-    ek = c.p_dc + c.e_mis * (1.0 - jnp.exp(-eta_e * mu)) + c.p_ap * D / 2.0
+    one_m_exp_e = -jnp.expm1(-eta_e * mu) if f.expm1_counts else (1.0 - jnp.exp(-eta_e * mu))
+    ek = c.p_dc + c.e_mis * one_m_exp_e + c.p_ap * D / 2.0
     qz = 1.0 - qx
     N = n_X / (qx**2 * jnp.sum(pk * Rk))
     nXk = N * qx**2 * pk * Rk

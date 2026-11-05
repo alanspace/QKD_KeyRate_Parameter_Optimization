@@ -7,7 +7,7 @@ and gradient-tier counts before vs after. "Before" counts apply the current thre
 noise_floor 1e-6 < g <= 1e-3, R > 0) to the archived certificate gradients, so the counts are comparable.
 Flags: any WORSE point, any horizon change > 0.5 km, any shared-point R change > 1e-6 relative.
 
-Usage: python Optimization/analysis/compare_references.py lim [lim_literal ...]
+Usage: python Optimization/analysis/compare_references.py [--old-dir prefix_eps_fix|pre_expm1] lim [lim_literal ...]
 """
 import json
 import os
@@ -35,11 +35,15 @@ def key(p):
 
 def main():
     out, flags = {}, []
-    lines = []
-    for preset in sys.argv[1:]:
+    args = sys.argv[1:]
+    old_dir = "prefix_eps_fix"
+    if args and args[0] == "--old-dir":
+        old_dir, args = args[1], args[2:]
+    lines = [f"comparison against archived references in Optimization/reference/{old_dir}/"]
+    for preset in args:
         for kind in ("", "_tail"):
             new = json.load(open(os.path.join(REF, f"reference_{preset}{kind}.json")))
-            old = json.load(open(os.path.join(REF, "prefix_eps_fix", f"reference_{preset}{kind}.json")))
+            old = json.load(open(os.path.join(REF, old_dir, f"reference_{preset}{kind}.json")))
             om = {key(p): p for p in old["points"]}
             rows, better, worse, info = [], [], [], []
             tol_ref = max(1e-9, 2.0 * float(new["summary"].get("seed_disagreement_rel_max") or 0.0))
@@ -102,7 +106,7 @@ def main():
                 lines.append("  horizons km (old -> new): " + "; ".join(
                     f"{k}: {v['old']:.4f} -> {v['new']:.4f} ({v['diff']:+.4f})" for k, v in hz.items() if v["diff"] is not None))
     lines.append("FLAGS: " + ("; ".join(flags) if flags else "none"))
-    d = os.path.join(ROOT, "results", "compare_references")
+    d = os.path.join(ROOT, "results", f"compare_references_vs_{old_dir}")
     os.makedirs(d, exist_ok=True)
     json.dump(dict(results=out, flags=flags), open(os.path.join(d, "compare_references.json"), "w"), indent=1, default=float)
     open(os.path.join(d, "COMPARE_REFERENCES.txt"), "w").write("\n".join(lines) + "\n")

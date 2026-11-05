@@ -119,11 +119,16 @@ class TestPrintedUnchanged(unittest.TestCase):
                       271171.5761472615]}
 
     def test_printed_equals_old(self):
+        """gamma_mode='printed' with the pre-expm1 evaluation order (expm1_counts=False) reproduces the recorded
+        values to 1e-12; the default expm1 evaluation differs from them by < 1e-10 (float64 cancellation fix)."""
         for pr in (LIM, LIM_LITERAL, LEGACY):
             self.assertEqual(pr.flags.gamma_mode, "printed")
+            old_order = with_flags(pr, pr.name + "_noexpm1", expm1_counts=False)
             for (p, L, nx), old in zip(self.PTS, self.OLD[pr.name]):
-                new = float(evaluate(jnp.asarray(p), L, nx, pr.consts, pr.flags)["l"])
+                new = float(evaluate(jnp.asarray(p), L, nx, old_order.consts, old_order.flags)["l"])
                 self.assertLessEqual(abs(new - old), 1e-12 * abs(old), (pr.name, L, nx, new, old))
+                cur = float(evaluate(jnp.asarray(p), L, nx, pr.consts, pr.flags)["l"])
+                self.assertLessEqual(abs(cur - old), 1e-10 * abs(old), (pr.name, L, nx, cur, old))
 
 
 if __name__ == "__main__":
