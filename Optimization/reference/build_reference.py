@@ -15,7 +15,15 @@ For each point the reference is the best of
   * (legacy preset only) Newton refinement started from each legacy run's stored parameters
     (old DA, old Hessian, old Hessian_FoR) -- so the reference is never worse than a basin those
     methods found.
-The winning source and the seed-0 / seed-1 disagreement are recorded per point.
+The winning source and the disagreement between the two seeds are recorded per point.
+
+cliff_edge: a point with R > 0 whose certificate gradient norm (inf-norm of the gradient of the
+scaled objective in theta) exceeds CLIFF_GTOL = 1e-6 gets status "...|cliff_edge". These sit on
+the eps_sec = kappa*l discontinuity or similar non-smooth features; their R is still the best
+found, but they are reported separately and excluded from the "within 1e-6" regret score.
+
+Seeds: main reference 0 1; tail reference 2 3 by default (independent of the main reference), and
+the tail build reports the max relative R difference at grid points shared with the main reference.
 
 Main reference horizon: for every n_X, bisection (25 steps) on the sign of max_p l between the
 last reference L with l > 0 and the next one, each step a fresh dense cold solve (2^15 Sobol,
@@ -45,6 +53,7 @@ NX = legacy_runs.NX
 GRID = legacy_runs.GRID
 REF_IDX = list(range(0, 400, 20)) + [399]
 TAIL_BELOW_KM, TAIL_ABOVE_KM = 15.0, 1.0
+CLIFF_GTOL = 1e-6
 
 
 def ref_path(preset_name, tail=False, quick=False):
@@ -81,8 +90,10 @@ def solve_points(L, n, idx, preset, n_sobol, top_k, seeds):
     pts = []
     for i, w in enumerate(win):
         c = cands[names[w]]
+        cliff = bool(c["R"][i] > 0 and c["grad_norm_theta"][i] > CLIFF_GTOL)
         pts.append(dict(L=float(L[i]), n_X=float(n[i]), grid_index=int(idx[i]), params=c["params"][i], R=c["R"][i],
-                        l=c["l"][i], N=c["N"][i], eps_sec=c["eps_sec"][i], status=c["status"][i],
+                        l=c["l"][i], N=c["N"][i], eps_sec=c["eps_sec"][i],
+                        status=c["status"][i] + ("|cliff_edge" if cliff else ""), cliff_edge=cliff,
                         active_bounds=list(c["active_bounds"][i]), grad_norm_theta=c["grad_norm_theta"][i],
                         hess_eig=c["hess_eig"][i], source=names[w],
                         candidates={k: dict(R=cands[k]["R"][i], l=cands[k]["l"][i]) for k in names},
@@ -91,7 +102,10 @@ def solve_points(L, n, idx, preset, n_sobol, top_k, seeds):
                    source_counts={k: int(np.sum(win == i)) for i, k in enumerate(names)},
                    seed_disagreement_rel_max=float(np.nanmax(seed_rel)) if pos.any() else None,
                    seed_disagreement_rel_median=float(np.nanmedian(seed_rel)) if pos.any() else None,
-                   n_points_seed_disagree_gt_1e9=int(np.nansum(seed_rel > 1e-9)))
+                   n_points_seed_disagree_gt_1e9=int(np.nansum(seed_rel > 1e-9)),
+                   n_cliff_edge=int(sum(p["cliff_edge"] for p in pts)),
+                   cliff_edge_points=[dict(L=p["L"], n_X=p["n_X"], R=p["R"], l=p["l"],
+                                           grad_norm_theta=p["grad_norm_theta"]) for p in pts if p["cliff_edge"]])
     return pts, summary
 
 
@@ -125,10 +139,12 @@ def main():
     ap.add_argument("--tail", action="store_true")
     ap.add_argument("--n-sobol", type=int, default=2**17)
     ap.add_argument("--top-k", type=int, default=64)
-    ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1])
+    ap.add_argument("--seeds", type=int, nargs="+", default=None, help="default: 0 1 (main), 2 3 (tail)")
     ap.add_argument("--horizon-steps", type=int, default=25)
     ap.add_argument("--quick", action="store_true", help="tiny budget smoke run (not a reference)")
     a = ap.parse_args()
+    if a.seeds is None:
+        a.seeds = [2, 3] if a.tail else [0, 1]
     if a.quick:
         a.n_sobol, a.top_k, a.horizon_steps = 2**11, 8, 6
     preset = get_preset(a.preset)
@@ -162,6 +178,18 @@ def main():
     st = stamp(cfg)
     pts, summary = solve_points(L, n, idx, preset, a.n_sobol, a.top_k, a.seeds)
     hzs = None if a.tail else horizons(pts, preset, a.n_sobol, a.top_k, a.horizon_steps)
+    if a.tail:   # independent-seed overlap check against the main reference
+        mref = {(p["grid_index"] if "grid_index" in p else int(np.argmin(np.abs(GRID - p["L"]))), p["n_X"]): p
+                for p in main_ref["points"]}
+        ov = []
+        for p in pts:
+            q = mref.get((p["grid_index"], p["n_X"]))
+            if q is not None and q["R"] > 0:
+                ov.append(dict(L=p["L"], n_X=p["n_X"], R_main=q["R"], R_tail=p["R"],
+                               rel_diff=abs(p["R"] - q["R"]) / abs(q["R"]), main_seeds=main_ref["config"]["seeds"],
+                               tail_seeds=a.seeds))
+        summary["overlap_with_main"] = dict(n=len(ov), max_rel_diff=max((o["rel_diff"] for o in ov), default=None),
+                                            points=ov)
     wall = time.perf_counter() - t0
     out = dict(description=__doc__, stamp=st, config=cfg, backend=backend, wall_time_s=wall, points=pts,
                horizons=hzs, summary=summary)

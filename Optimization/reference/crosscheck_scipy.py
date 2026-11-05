@@ -34,6 +34,7 @@ from src.qkd_opt.provenance import stamp, to_jsonable  # noqa: E402
 BOX_LO = np.array([4e-4, 2e-4, 1e-12, 1e-12, 1e-12])
 BOX_HI = np.array([0.9, 0.5, 0.999, 0.999, 0.999])
 N_RANDOM, N_REFINE, MIN_GAP = 2048, 16, 1e-9
+POINT_BUDGET_S = 300.0   # per-point wall budget; remaining SLSQP starts are skipped (counted as timeout)
 
 
 def feasible(P, mu3):
@@ -81,18 +82,30 @@ def main():
                 break
         s = max(abs(R0[order[0]]), 1e-300)
         best, bestp = -np.inf, None
+        n_fail = n_infeas = n_nonfinite = 0
+        timeout = False
+        tp = time.perf_counter()
         for i in starts:
+            if time.perf_counter() - tp > POINT_BUDGET_S:
+                timeout = True
+                break
             fg = lambda x: tuple(np.asarray(v, float) for v in vg(jnp.asarray(x), L, n, s))
             res = minimize(fg, P[i], jac=True, method="SLSQP", bounds=list(zip(BOX_LO, BOX_HI)),
                            constraints=cons, options=dict(ftol=1e-14, maxiter=1000))
+            n_fail += int(not res.success)
             x = np.clip(res.x, BOX_LO, BOX_HI)
             if not feasible(x[None], mu3)[0]:
+                n_infeas += 1
                 continue
             Rx = float(evaluate(jnp.asarray(x), L, n, pre.consts, pre.flags)["R"])
+            n_nonfinite += int(not np.isfinite(Rx))
             if np.isfinite(Rx) and Rx > best:
                 best, bestp = Rx, x
         d = (p["R"] - best) / p["R"]
-        rows.append(dict(L=L, n_X=n, R_ref=p["R"], R_xcheck=best, d=d, params_xcheck=bestp, params_ref=p["params"]))
+        rows.append(dict(L=L, n_X=n, R_ref=p["R"], R_xcheck=best, d=d, params_xcheck=bestp, params_ref=p["params"],
+                         cliff_edge=bool(p.get("cliff_edge", False)), slsqp_not_success=n_fail,
+                         infeasible_results=n_infeas, nonfinite=n_nonfinite, timeout=timeout,
+                         seconds=time.perf_counter() - tp))
         if k % 20 == 0:
             print(f"[xcheck] {k}/{len(ref['points'])} L={L:.2f} n_X={n:.0e} d={d:.2e}", flush=True)
     d = np.array([r["d"] for r in rows])
@@ -100,6 +113,12 @@ def main():
     summary = dict(n=len(rows), median_d=float(np.median(d)), max_d=float(np.max(d)), min_d=float(np.min(d)),
                    pct_agree_1e6=float(100 * np.mean(np.abs(d) <= 1e-6)),
                    n_xcheck_worse_gt_1e6=int(np.sum(d > 1e-6)), n_reference_weakness=len(weak),
+                   slsqp_not_success_total=int(sum(r["slsqp_not_success"] for r in rows)),
+                   slsqp_runs_total=int(len(rows) * N_REFINE),
+                   infeasible_results_total=int(sum(r["infeasible_results"] for r in rows)),
+                   nonfinite_total=int(sum(r["nonfinite"] for r in rows)),
+                   n_points_timeout=int(sum(r["timeout"] for r in rows)),
+                   n_points_no_feasible_result=int(sum(not np.isfinite(r["R_xcheck"]) for r in rows)),
                    wall_time_s=time.perf_counter() - t0)
     out_dir = os.path.join(ROOT, "results", f"crosscheck_{pre.name}{'_tail' if a.tail else ''}_{st['git_commit']}_{st['config_hash']}")
     os.makedirs(out_dir, exist_ok=True)
@@ -113,9 +132,14 @@ def main():
           f"- |d| ≤ 1e-6: {summary['pct_agree_1e6']:.1f} %",
           f"- median d: {summary['median_d']:.2e}; max d: {summary['max_d']:.2e}; min d: {summary['min_d']:.2e}",
           f"- cross-check worse than reference by > 1e-6: {summary['n_xcheck_worse_gt_1e6']} points",
-          f"- **reference weaknesses (cross-check better by > 1e-9): {summary['n_reference_weakness']}**"]
+          f"- **reference weaknesses (cross-check better by > 1e-9): {summary['n_reference_weakness']}**",
+          f"- SLSQP runs not reporting success: {summary['slsqp_not_success_total']} of {summary['slsqp_runs_total']}; "
+          f"infeasible results: {summary['infeasible_results_total']}; non-finite: {summary['nonfinite_total']}; "
+          f"points hitting the {POINT_BUDGET_S:.0f} s budget: {summary['n_points_timeout']}; "
+          f"points with no feasible result: {summary['n_points_no_feasible_result']}"]
     for r in weak:
-        md.append(f"  - L={r['L']:.3f} km, n_X={r['n_X']:.0e}: R_ref={r['R_ref']:.6e}, R_xcheck={r['R_xcheck']:.6e}, d={r['d']:.2e}")
+        md.append(f"  - L={r['L']:.3f} km, n_X={r['n_X']:.0e}: R_ref={r['R_ref']:.10e}, R_xcheck={r['R_xcheck']:.10e}, "
+                  f"d={r['d']:.2e}{' (cliff_edge reference point)' if r['cliff_edge'] else ''}")
     with open(os.path.join(out_dir, "CROSSCHECK.md"), "w") as fh:
         fh.write("\n".join(md) + "\n")
     print("\n".join(md))

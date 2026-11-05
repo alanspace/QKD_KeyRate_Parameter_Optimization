@@ -76,8 +76,11 @@ def _eval_RL(P, L, n, preset):
     return np.asarray(o["R"]), np.asarray(o["l"])
 
 
-def regret_stats(R_ref, R_m):
+def regret_stats(R_ref, R_m, exclude=None):
+    """Regret statistics over points with R_ref > 0, excluding `exclude` (cliff_edge reference points)."""
     pos = R_ref > 0
+    if exclude is not None:
+        pos = pos & ~np.asarray(exclude, bool)
     r = (R_ref[pos] - R_m[pos]) / R_ref[pos]
     r = np.where(np.isfinite(r), r, np.inf)
     return dict(n=int(pos.sum()), median=float(np.median(r)), p99=float(np.quantile(r, 0.99)),
@@ -161,6 +164,7 @@ def main():
     rN = np.array([p["n_X"] for p in pts])
     rR = np.array([p["R"] for p in pts], float)
     rP = np.array([p["params"] for p in pts], float)
+    rC = np.array([bool(p.get("cliff_edge", False)) for p in pts])
     ref_idx = np.array([int(np.argmin(np.abs(GRID - x))) for x in rL])
     ref_h = {h["n_X"]: h.get("horizon_km") for h in ref["horizons"]}
 
@@ -209,10 +213,13 @@ def main():
     # ---- metrics ----
     table = {}
     for m, r in results.items():
-        table[m] = {"all": regret_stats(rR, np.asarray(r["R"]))}
+        table[m] = {"all": regret_stats(rR, np.asarray(r["R"]), rC)}
         for nx in NX:
             sel = rN == nx
-            table[m][f"{nx:.0e}"] = regret_stats(rR[sel], np.asarray(r["R"])[sel])
+            table[m][f"{nx:.0e}"] = regret_stats(rR[sel], np.asarray(r["R"])[sel], rC[sel])
+    cliff_main = [dict(L=float(rL[k]), n_X=float(rN[k]), R_ref=float(rR[k]),
+                       regret={m: float((rR[k] - np.asarray(r["R"])[k]) / rR[k]) for m, r in results.items()})
+                  for k in np.where(rC)[0]]
 
     horizons = {}
     for i, nx in enumerate(NX):
@@ -249,6 +256,7 @@ def main():
         tL = np.array([p["L"] for p in tref["points"]])
         tN = np.array([p["n_X"] for p in tref["points"]])
         tR = np.array([p["R"] for p in tref["points"]], float)
+        tC = np.array([bool(p.get("cliff_edge", False)) for p in tref["points"]])
         tI = np.array([p["grid_index"] for p in tref["points"]])
         trows = np.array([nx_index[x] for x in tN])
         tc = optimize_batch(tL, tN, preset, **cfg["new_cold"])
@@ -261,10 +269,14 @@ def main():
             tres[name] = d["R"][trows, tI]
         tail = dict(reference=os.path.relpath(tpath, ROOT), reference_config_hash=tref["stamp"]["config_hash"],
                     reference_summary=tref["summary"], n_points=len(tL),
-                    regret={m: {"all": regret_stats(tR, np.asarray(v)),
-                                **{f"{nx:.0e}": regret_stats(tR[tN == nx], np.asarray(v)[tN == nx]) for nx in NX
-                                   if np.any((tN == nx) & (tR > 0))}}
-                            for m, v in tres.items()})
+                    regret={m: {"all": regret_stats(tR, np.asarray(v), tC),
+                                **{f"{nx:.0e}": regret_stats(tR[tN == nx], np.asarray(v)[tN == nx], tC[tN == nx])
+                                   for nx in NX if np.any((tN == nx) & (tR > 0) & ~tC)}}
+                            for m, v in tres.items()},
+                    cliff_edge=[dict(L=float(tL[k]), n_X=float(tN[k]), R_ref=float(tR[k]),
+                                     regret={m: float((tR[k] - np.asarray(v)[k]) / tR[k]) for m, v in tres.items()})
+                                for k in np.where(tC)[0]],
+                    tail_values=dict(L=tL, n_X=tN, R_ref=tR, cliff=tC, **{m: np.asarray(v) for m, v in tres.items()}))
 
     xcheck = {}
     for tag in ("", "_tail"):
@@ -274,7 +286,9 @@ def main():
                                                        (tail or {}).get("reference_config_hash")):
                 xcheck["main" if not tag else "tail"] = dict(path=os.path.relpath(dpath, ROOT), **xc["summary"])
 
-    summary = dict(stamp=st, config=cfg, backend=backend, regret=table, tail_regret=tail, crosscheck=xcheck,
+    summary = dict(stamp=st, config=cfg, backend=backend, regret=table, cliff_edge_main=cliff_main,
+                   tail_regret=tail, crosscheck=xcheck,
+                   main_values=dict(L=rL, n_X=rN, R_ref=rR, cliff=rC, **{m: np.asarray(r['R']) for m, r in results.items()}),
                    horizons=horizons, smoothness=smooth,
                    timing=timing, sweep_events=sw["events"],
                    new_warm_status_counts={s: int(np.sum(sw["status"] == s)) for s in np.unique(sw["status"])},
@@ -315,6 +329,11 @@ def write_markdown(out_dir, preset, s):
         a = d["all"]
         L.append(f"| {m} | {a['n']} | {fmt(a['median'])} | {fmt(a['p99'])} | {fmt(a['max'])} | "
                  f"{a['pct_within_1e6']:.1f} | {a['n_beats_ref']} |")
+    L += ["", f"Reference points flagged cliff_edge (R > 0, certificate gradient > 1e-6) are EXCLUDED from the "
+          f"table above; their regret is listed here ({len(s['cliff_edge_main'])} points):"]
+    for c in s["cliff_edge_main"]:
+        L.append(f"- L={c['L']:.3f} km, n_X={c['n_X']:.0e}, R_ref={c['R_ref']:.4e}: " +
+                 ", ".join(f"{m} {v:.2e}" for m, v in c["regret"].items()))
     L += ["", "Per n_X (median / max / ≤1e-6 %):", "", "| method | " + " | ".join(f"{nx:.0e}" for nx in NX) + " |",
           "|---|" + "---|" * len(NX)]
     for m, d in s["regret"].items():
@@ -337,6 +356,10 @@ def write_markdown(out_dir, preset, s):
             a = d["all"]
             L.append(f"| {m} | {a['n']} | {fmt(a['median'])} | {fmt(a['p99'])} | {fmt(a['max'])} | "
                      f"{a['pct_within_1e6']:.1f} | {a['n_beats_ref']} |")
+        L += ["", f"Tail cliff_edge points (excluded above): {len(t['cliff_edge'])}"]
+        for c in t["cliff_edge"]:
+            L.append(f"- L={c['L']:.3f} km, n_X={c['n_X']:.0e}, R_ref={c['R_ref']:.4e}: " +
+                     ", ".join(f"{m} {v:.2e}" for m, v in c["regret"].items()))
     if s.get("crosscheck"):
         L += ["", "## Independent solver cross-check of the reference (scipy SLSQP, random starts, p-space)", ""]
         for k, v in s["crosscheck"].items():
