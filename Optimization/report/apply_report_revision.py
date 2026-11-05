@@ -45,11 +45,11 @@ term (reproduces the paper within $\sim$10\%, not exactly; see \texttt{PHYSICS\_
 \texttt{src/qkd} used for all earlier results (contains the $m_Z$ defect described in \texttt{PHYSICS\_DIFF.md}).
 
 \begin{table}[H]\centering
-\begin{tabular}{lccc}\toprule
-Preset & $R(0,10^9)$ [paper $\sim10^{-2}$] & $R(100,10^9)/R(100,10^7)$ [$\sim1.75$] & reach of $R=10^{-7}$, $n_X=10^4$ [$\sim135$ km]\\\midrule
-lim & \QKDLimTargetROne & \QKDLimTargetRatio & \QKDLimTargetReach\\
-lim\_literal & \QKDLimLiteralTargetROne & \QKDLimLiteralTargetRatio & \QKDLimLiteralTargetReach\\
-legacy & \QKDLegacyTargetROne & \QKDLegacyTargetRatio & \QKDLegacyTargetReach\\\bottomrule
+\begin{tabular}{lcccc}\toprule
+Preset & $R(0,10^9)$ [paper $\sim10^{-2}$] & $R(100,10^9)/R(100,10^7)$ [$\sim1.75$] & horizon, $n_X=10^4$ [$\sim135$ km] & $L$ at $R=10^{-7}$, $n_X=10^4$\\\midrule
+lim & \QKDLimTargetROne & \QKDLimTargetRatio & \QKDLimTargetHorizon & \QKDLimTargetCrossing\\
+lim\_literal & \QKDLimLiteralTargetROne & \QKDLimLiteralTargetRatio & \QKDLimLiteralTargetHorizon & \QKDLimLiteralTargetCrossing\\
+legacy & \QKDLegacyTargetROne & \QKDLegacyTargetRatio & \QKDLegacyTargetHorizon & \QKDLegacyTargetCrossing\\\bottomrule
 \end{tabular}
 \caption{Paper regression targets (Lim et al.\ 2014 text and Fig.~1), 15\% tolerance, never tuned.}
 \end{table}

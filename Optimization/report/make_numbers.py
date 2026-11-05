@@ -9,6 +9,8 @@ import json
 import os
 import sys
 
+import numpy as np
+
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, ROOT)
 
@@ -129,11 +131,15 @@ def main():
             N.add(f"QKD{W}TargetROne", sci(v["T1_R0_1e9"], 3), v["T1_R0_1e9"], src, "R(0, 1e9), paper ~1e-2")
             N.add(f"QKD{W}TargetRatio", fix(v["T2_ratio"], 3) if v["T2_ratio"] else "--", v["T2_ratio"], src,
                   "R(100,1e9)/R(100,1e7), paper ~1.75")
-            t3 = v["T3_L_at_R_1em7_nX1e4"]
-            N.add(f"QKD{W}TargetReach", fix(t3, 1) if isinstance(t3, float) else "--", t3, src,
-                  "km where R falls to 1e-7, n_X=1e4, paper ~135")
+            t3 = v["T3_horizon_nX1e4"]
+            t3b = v["T3b_L_at_R_1em7_nX1e4"]
+            ok = lambda x: isinstance(x, float) and np.isfinite(x)
+            N.add(f"QKD{W}TargetHorizon", fix(t3, 1) if ok(t3) else "--", t3, src,
+                  "T3: horizon (km) at n_X=1e4, paper ~135")
+            N.add(f"QKD{W}TargetCrossing", fix(t3b, 1) if ok(t3b) else "--", t3b, src,
+                  "T3b (secondary): km where R falls to 1e-7 at n_X=1e4")
             for key, val, tgt in (("ROne", v["T1_R0_1e9"], 1e-2), ("Ratio", v["T2_ratio"], 1.75),
-                                  ("Reach", t3 if isinstance(t3, float) else None, 135.0)):
+                                  ("Horizon", t3 if ok(t3) else None, 135.0)):
                 dev = None if val is None else 100.0 * (val / tgt - 1.0)
                 N.add(f"QKD{W}Target{key}DevPct", "--" if dev is None else f"{dev:+.0f}\\%", dev, src,
                       "relative deviation from the paper's stated value, %")

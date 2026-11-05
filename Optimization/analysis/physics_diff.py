@@ -8,8 +8,9 @@ physics_lim implementation with legacy switches (verified equal to src/qkd to 1e
 Part 2 -- paper targets (Lim et al. 2014 text / Fig. 1, 15 % tolerance, never tuned):
   T1  R(L=0, n_X=1e9) ~ 1e-2
   T2  R(100 km, 1e9) / R(100 km, 1e7) ~ 1.75
-  T3  n_X = 1e4 "reaches ~1e-7 at ~135 km": the L where the optimised R falls to 1e-7, ~135 km
-      (sweep on a 1 km grid, then bisection on log R = -7 with warm-started re-optimisation)
+  T3  HORIZON at n_X = 1e4 (largest L with l > 0), paper "~135 km" (redefined; bisection with cold solves)
+  T3b secondary: the L where the optimised R falls to 1e-7 at n_X = 1e4 (1 km sweep + bisection)
+Each chain stage also gets the horizon at n_X = 1e4 and 1e9 (same bisection), for the ablation figure.
 for: lim (default), lim_literal (printed eta_ch, diagnostic), and legacy.
 
 Usage: python Optimization/analysis/physics_diff.py
@@ -51,6 +52,29 @@ def chain():
     return out
 
 
+def horizon_bisect(nx, pre, lo=0.0, hi=260.0, steps=24):
+    """Largest L with max_p l > 0, bisection on [lo, hi]; each step a cold solve (2^14, top-16, seed 4)
+    plus the lower bracket's optimum as an extra start."""
+    def l_at(L, extra=None):
+        r = optimize_batch([L], [nx], pre, n_sobol=2**14, top_k=16, seed=4,
+                           extra_starts=None if extra is None else extra[None, None, :])
+        return float(r["l"][0]), r["params"][0]
+    llo, plo = l_at(lo)
+    if llo <= 0:
+        return None
+    lhi, _ = l_at(hi, plo)
+    if lhi > 0:
+        return float("inf")
+    for _ in range(steps):
+        mid = 0.5 * (lo + hi)
+        lm, pm = l_at(mid, plo)
+        if lm > 0:
+            lo, plo = mid, pm
+        else:
+            hi = mid
+    return lo
+
+
 def targets(pre):
     r = optimize_batch([0.0, 100.0, 100.0], [1e9, 1e9, 1e7], pre, n_sobol=16384, top_k=16)
     T1 = r["R"][0]
@@ -75,14 +99,15 @@ def targets(pre):
         T3 = lo
     elif len(above) == 0:
         T3 = "R < 1e-7 on the whole 60-180 km grid"
-    h = sw["horizon"][0].get("horizon_km")
+    h = horizon_bisect(1e4, pre)
 
     def chk(v, tgt):
-        if not isinstance(v, (float, np.floating)):
+        if not isinstance(v, (float, np.floating)) or not np.isfinite(v):
             return "MISMATCH"
         return "ok" if abs(v / tgt - 1) <= TOL else "MISMATCH"
     return dict(T1_R0_1e9=T1, T1_status=chk(T1, 1e-2), T2_ratio=T2, T2_status=chk(T2, 1.75),
-                T3_L_at_R_1em7_nX1e4=T3, T3_status=chk(T3, 135.0), horizon_nX1e4_km=h)
+                T3_horizon_nX1e4=h, T3_status=chk(h, 135.0),
+                T3b_L_at_R_1em7_nX1e4=T3, T3b_status=chk(T3, 135.0))
 
 
 def main():
@@ -94,7 +119,8 @@ def main():
     rows = []
     for pre in chain():
         r = optimize_batch(L, N, pre, n_sobol=16384, top_k=16)
-        rows.append(dict(stage=pre.name, R=r["R"], params=r["params"], status=list(r["status"])))
+        hz = {f"{nx:.0e}": horizon_bisect(nx, pre) for nx in (1e4, 1e9)}
+        rows.append(dict(stage=pre.name, R=r["R"], params=r["params"], status=list(r["status"]), horizons=hz))
         print(f"[diff] {pre.name}: {np.array2string(r['R'], precision=3)}", flush=True)
     tg = {}
     for pre in (LIM, LIM_LITERAL, LEGACY):
@@ -113,15 +139,17 @@ def main():
           "|---|" + "---|" * len(L)]
     for r in rows:
         md.append(f"| {r['stage']} | " + " | ".join(f"{x:.3e}" if x > 0 else f"({x:.1e}, l≤0)" for x in r["R"]) + " |")
+    md += ["", "## Chain horizons (km, largest L with l > 0)", "", "| stage | n_X=1e4 | n_X=1e9 |", "|---|---|---|"]
+    for r in rows:
+        md.append(f"| {r['stage']} | {r['horizons']['1e+04']} | {r['horizons']['1e+09']} |")
     md += ["", "## Paper targets (15 % tolerance, never tuned)", "",
-           "| model | T1 R(0,1e9) [~1e-2] | T2 ratio [~1.75] | T3 L at R=1e-7, n_X=1e4 [~135 km] | horizon n_X=1e4 (km) |",
+           "| model | T1 R(0,1e9) [~1e-2] | T2 ratio [~1.75] | T3 horizon n_X=1e4 [~135 km] | T3b L at R=1e-7, n_X=1e4 (secondary) |",
            "|---|---|---|---|---|"]
     for k, v in tg.items():
-        t3 = v["T3_L_at_R_1em7_nX1e4"]
-        t3s = f"{t3:.2f}" if isinstance(t3, float) else str(t3)
-        md.append(f"| {k} | {v['T1_R0_1e9']:.4e} ({v['T1_status']}) | "
-                  f"{'–' if v['T2_ratio'] is None else f'{v['T2_ratio']:.3f}'} ({v['T2_status']}) | "
-                  f"{t3s} ({v['T3_status']}) | {v['horizon_nX1e4_km']} |")
+        f3 = lambda x: f"{x:.2f}" if isinstance(x, float) else str(x)
+        t2 = "–" if v["T2_ratio"] is None else f"{v['T2_ratio']:.3f}"
+        md.append(f"| {k} | {v['T1_R0_1e9']:.4e} ({v['T1_status']}) | {t2} ({v['T2_status']}) | "
+                  f"{f3(v['T3_horizon_nX1e4'])} ({v['T3_status']}) | {f3(v['T3b_L_at_R_1em7_nX1e4'])} ({v['T3b_status']}) |")
     with open(os.path.join(out_dir, "PHYSICS_DIFF_TABLES.md"), "w") as fh:
         fh.write("\n".join(md) + "\n")
     print("\n".join(md))
