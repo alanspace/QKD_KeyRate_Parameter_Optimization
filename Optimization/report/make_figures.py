@@ -354,11 +354,11 @@ def main():
     fig.suptitle("Ablation chain legacy -> lim -> lim_literal (each stage re-optimised)")
     fig.tight_layout(rect=(0, 0.03, 1, 0.95))
     save(fig, "fig7_ablation.png",
-         "Effect of each switch from the legacy physics to lim (stages 1-6) and then to the printed eta_ch "
-         "(stage 7, lim_literal), each stage re-optimised: change of log10 R at 100 km and change of the horizon. "
+         "Effect of each switch from the legacy physics to lim (stages 1-7; stage 1 is the expm1 evaluation, numerics "
+         "only) and then to the printed eta_ch (stage 8, lim_literal), each stage re-optimised: change of log10 R at 100 km and change of the horizon. "
          "Bars labelled 'no key' have R <= 0 at that stage or the previous one.",
-         "stage 1 (m_Z fix) log10 R ratio at 100 km, n_X=1e9: "
-         f"{np.log10(ch[1]['R'][int(np.where((Lc == 100.0) & (Nc == 1e9))[0][0])] / ch[0]['R'][int(np.where((Lc == 100.0) & (Nc == 1e9))[0][0])]):+.3f}")
+         "stage 2 (m_Z fix) log10 R ratio at 100 km, n_X=1e9: "
+         f"{np.log10(ch[2]['R'][int(np.where((Lc == 100.0) & (Nc == 1e9))[0][0])] / ch[1]['R'][int(np.where((Lc == 100.0) & (Nc == 1e9))[0][0])]):+.3f}")
 
     # ---------- 8. timing ----------
     fig, ax = plt.subplots(figsize=(9, 4.4))

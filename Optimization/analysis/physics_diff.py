@@ -36,13 +36,14 @@ def chain():
     f0 = LEGACY.flags._replace(model="lim")
     c0 = LEGACY.consts
     steps = [("0 legacy (src/qkd switches)", {}, {}),
-             ("1 m_Z = total Z errors (Eq. 4)", dict(mz_mode="errors"), {}),
-             ("2 e_mis 0.01 -> 5e-3", {}, dict(e_mis=5e-3)),
-             ("3 p_ap 0 -> 0.04 in e_k", {}, dict(p_ap=0.04)),
-             ("4 R_k = D_k(1+p_ap) in counts/N", dict(afterpulse_in_rate=True), {}),
-             ("5 eps_sec = kappa*l (kappa=1e-15)", dict(eps_mode="kappa"), {}),
-             ("6 no clamp of n^-, m^- at 0 = lim", dict(clamp_minus=False), {}),
-             ("7 eta_ch (as printed) in e_mis term = lim_literal", dict(emis_eta="ch"), {})]
+             ("1 expm1 evaluation of 1-exp(-eta k) (numerics only)", dict(expm1_counts=True), {}),
+             ("2 m_Z = total Z errors (Eq. 4)", dict(mz_mode="errors"), {}),
+             ("3 e_mis 0.01 -> 5e-3", {}, dict(e_mis=5e-3)),
+             ("4 p_ap 0 -> 0.04 in e_k", {}, dict(p_ap=0.04)),
+             ("5 R_k = D_k(1+p_ap) in counts/N", dict(afterpulse_in_rate=True), {}),
+             ("6 eps_sec = kappa*l (kappa=1e-15)", dict(eps_mode="kappa"), {}),
+             ("7 no clamp of n^-, m^- at 0 = lim", dict(clamp_minus=False), {}),
+             ("8 eta_ch (as printed) in e_mis term = lim_literal", dict(emis_eta="ch"), {})]
     out, f, c = [], f0, c0
     for name, df, dc in steps:
         f, c = f._replace(**df), c._replace(**dc)
