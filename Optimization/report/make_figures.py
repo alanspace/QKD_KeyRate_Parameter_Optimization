@@ -66,6 +66,7 @@ def ref_arrays(r):
     return dict(L=np.array([p["L"] for p in P]), n=np.array([p["n_X"] for p in P]),
                 R=np.array([p["R"] for p in P], float), l=np.array([p["l"] for p in P], float),
                 g=np.array([p["grad_norm_theta"] for p in P], float),
+                noise=np.array([bool(p.get("noise_floor", False)) for p in P]),
                 params=np.array([p["params"] for p in P], float),
                 cliff=np.array([bool(p.get("cliff_edge", False)) for p in P]))
 
@@ -157,7 +158,7 @@ def main():
         ax.set_xlabel("fiber length L (km)")
         ax.set_xlim(0, 205)
     axes[0].set_ylabel("secret key rate R (bits/pulse)")
-    axes[0].legend(loc="lower left", fontsize=8)
+    axes[0].legend(loc="upper right", fontsize=8)
     fig.suptitle("Physics presets compared (new optimizer, warm sweep)")
     fig.tight_layout(rect=(0, 0.03, 1, 0.95))
     r0 = {p: float(S[p]["sweep"]["R"][NX.index(1e9), 0]) for p in S}
@@ -225,10 +226,12 @@ def main():
             for a, b in djs:
                 ax.axvline(0.5 * (a + b), color=INK, ls=":", lw=0.8)
             ax.set_ylabel(names[c])
-            ax.set_xlim(0, (hzn or 200) + 3)
+            last_leg = max([GRID[legacy[nm]["R"][i] > 0].max() for nm in ("legacy_DA", "legacy_Hessian")
+                            if (legacy[nm]["R"][i] > 0).any()] + [hzn or 0])
+            ax.set_xlim(0, min(last_leg + 3, 205))
         axes[0].plot([], [], color="#eb6834", alpha=0.5, lw=6, label="cliff_edge reference point")
         axes[0].plot([], [], color=M_COL["new_warm"], ls=":", label="branch switch (warm sweep)")
-        axes[0].plot([], [], color=INK, ls=":", label="jump in dense scan")
+        axes[0].plot([], [], color=INK, ls=":", label="dense scan: >0.05 change per km (continuous at 0.1 km)")
         axes[0].legend(fontsize=7, ncol=2, loc="upper left", bbox_to_anchor=(0, 1.45))
         axes[-1].set_xlabel("fiber length L (km)")
         fig.suptitle(f"Optimised parameters vs fiber length, {NXLAB[nx]} (points with R > 0)")
@@ -236,7 +239,8 @@ def main():
         save(fig, f"fig4_params_nx1e{int(np.log10(nx))}.png",
              f"The five optimised parameters for {NXLAB[nx].strip('$')} under the lim preset (warm sweep, reference, "
              "tail reference) and the stored legacy DA/Hessian runs (legacy preset). Orange bands mark cliff_edge "
-             "reference points, dotted lines branch switches found by the warm sweep and jumps in the dense scan.",
+             "reference points, blue dotted lines branch switches logged by the warm sweep, black dotted lines 1 km pairs of "
+             "the dense scan with a normalised parameter change > 0.05 (continuous drift when refined to 0.1 km).",
              f"branch switches (warm sweep) at n_X={nx:.0e}: " +
              (", ".join(f"{0.5 * (a + b):.2f} km" for a, b in bev) or "none"))
 
@@ -250,7 +254,7 @@ def main():
                 axes[r_, j].set_visible(False)
             continue
         L = rt["L"][sel]
-        Rv, lv, gv, cv = rt["R"][sel], rt["l"][sel], rt["g"][sel], rt["cliff"][sel]
+        Rv, lv, gv, cv, nv = rt["R"][sel], rt["l"][sel], rt["g"][sel], rt["cliff"][sel], rt["noise"][sel]
         a0, a1, a2 = axes[0, j], axes[1, j], axes[2, j]
         pos = Rv > 0
         a0.semilogy(L[pos], Rv[pos], "-", color=INK, lw=1)
@@ -262,7 +266,9 @@ def main():
         a1.axhline(0, color="0.5", lw=0.8)
         a2.semilogy(L, np.maximum(gv, 1e-16), "o", ms=3, color=INK)
         a2.semilogy(L[cv], np.maximum(gv[cv], 1e-16), "o", ms=5, color="#eb6834")
-        a2.axhline(1e-6, color="#e34948", ls="--", lw=1)
+        a2.semilogy(L[nv], np.maximum(gv[nv], 1e-16), "s", ms=5, color="#eda100")
+        a2.axhline(1e-3, color="#e34948", ls="--", lw=1)
+        a2.axhline(1e-6, color="#e34948", ls=":", lw=1)
         for a_ in (a0, a1, a2):
             a_.axvline(hzn, color=P_COL["lim"], lw=1, ls="-")
             a_.set_xlim(hzn - 15.5, hzn + 1.5)
@@ -272,18 +278,21 @@ def main():
             a0.set_ylabel("R (bits/pulse), R > 0")
             a1.set_ylabel("key length l (bits)")
             a2.set_ylabel("certificate |grad| (scaled)")
-    axes[0, 0].plot([], [], "o", color="#eb6834", label="cliff_edge point")
+    axes[0, 0].plot([], [], "o", color="#eb6834", label="cliff_edge point (grad > 1e-3)")
+    axes[0, 0].plot([], [], "s", color="#eda100", label="noise_floor point (1e-6 < grad <= 1e-3)")
     axes[0, 0].plot([], [], "o", color=INK, label="regular point")
     axes[0, 0].plot([], [], color=P_COL["lim"], label="reference horizon")
-    axes[0, 0].plot([], [], color="#e34948", ls="--", label="1e-6 gradient threshold")
-    fig.legend(*axes[0, 0].get_legend_handles_labels(), loc="lower center", ncol=4, fontsize=8)
+    axes[0, 0].plot([], [], color="#e34948", ls="--", label="1e-3 (cliff_edge) threshold")
+    axes[0, 0].plot([], [], color="#e34948", ls=":", label="1e-6 (noise_floor) threshold")
+    fig.legend(*axes[0, 0].get_legend_handles_labels(), loc="lower center", ncol=6, fontsize=8)
     fig.suptitle("Tail diagnostics, preset lim: last 15 km before the horizon (dense tail reference, seeds 2 3)")
     fig.tight_layout(rect=(0, 0.05, 1, 0.96))
     ncl = int(rt["cliff"].sum())
     save(fig, "fig5_tail.png",
          "Key rate (log), key length l (linear) and the certificate gradient norm in the last 15 km before the horizon "
          "for every block size, from the dense tail reference of the lim preset. Orange points are cliff_edge points "
-         "(R > 0, gradient > 1e-6), which sit on the eps_sec = kappa*l discontinuity.",
+         "(R > 0, gradient > 1e-3) at the eps_sec = kappa*l discontinuity / R -> 0 scaling, yellow squares noise_floor "
+         "points (gradient 1e-6 .. 1e-3).",
          f"cliff_edge points in the lim tail reference: {ncl} of {int((rt['R'] > 0).sum())} with R > 0")
 
     # ---------- 6. regret ECDFs ----------
@@ -314,9 +323,10 @@ def main():
         ax.set_title(title)
         ax.set_xlabel("regret (R_ref - R)/R_ref, clipped to [1e-16, 1]")
     axes[0].set_ylabel("fraction of points (cliff_edge excluded)")
-    axes[1].legend(fontsize=7, loc="upper left")
+    h6, l6 = axes[1].get_legend_handles_labels()
+    fig.legend(h6, l6, loc="lower center", ncol=3, fontsize=8)
     fig.suptitle("Regret vs the trusted reference: empirical CDFs")
-    fig.tight_layout(rect=(0, 0.03, 1, 0.95))
+    fig.tight_layout(rect=(0, 0.12, 1, 0.95))
     pw = S["lim"]["summary"]["regret"]["new_warm"]["all"]["pct_within_1e6"]
     save(fig, "fig6_regret_cdf.png",
          "Empirical cumulative distribution of the regret against the trusted reference, for the new optimizer and "
@@ -371,6 +381,11 @@ def main():
     w_ = timing["jax_warm_batch1"]
     rows.append(("warm-started solve, batch 1, device-resident", w_["steady_device_us"]["median"] / 1e6, None, M_COL["new_warm"]))
     rows.append(("warm-started solve, batch 1, end-to-end", w_["end_to_end_us"]["median"] / 1e6, None, M_COL["new_warm"]))
+    tw = timing.get("jax_warm_batch1_tail") or []
+    if tw:
+        dv = [t_["steady_device_us"]["median"] / 1e6 for t_ in tw]
+        rows.append((f"warm-started solve, batch 1, device, tail (5 km below horizon, {len(tw)} n_X)", min(dv), max(dv),
+                     M_COL["new_warm"]))
     lt = timing["lookup_table_batch1"]
     rows.append(("lookup table, batch 1, device-resident", lt["steady_device_us"]["median"] / 1e6, None, M_COL["lookup_table"]))
     rows.append(("lookup table, batch 1, end-to-end", lt["end_to_end_us"]["median"] / 1e6, None, M_COL["lookup_table"]))
@@ -392,7 +407,8 @@ def main():
     fig.tight_layout(rect=(0, 0.03, 1, 1))
     save(fig, "fig8_timing.png",
          "Measured wall time per optimisation point for the lim preset: the archived dual-annealing settings, the new "
-         "optimizer (batched cold start, warm sweep, warm-started batch-1 solve) and a lookup table. Compile time is "
+         "optimizer (batched cold start, warm sweep, warm-started batch-1 solve at 100 km and 5 km below each horizon) "
+         "and a lookup table. Compile time is "
          "excluded from the bars and shown as a note; every value is a stopwatch measurement on this machine.",
          f"warm-started batch-1 solve, device-resident median: {w_['steady_device_us']['median']:.0f} us")
 
