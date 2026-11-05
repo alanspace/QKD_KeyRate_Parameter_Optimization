@@ -325,9 +325,9 @@ def main():
         ax.set_xlabel("regret (R_ref - R)/R_ref, clipped to [1e-16, 1]")
     axes[0].set_ylabel("fraction of points (cliff_edge excluded)")
     h6, l6 = axes[1].get_legend_handles_labels()
-    fig.legend(h6, l6, loc="lower center", ncol=3, fontsize=8)
+    fig.legend(h6, l6, loc="lower center", ncol=3, fontsize=8, bbox_to_anchor=(0.5, 0.03))
     fig.suptitle("Regret vs the trusted reference: empirical CDFs")
-    fig.tight_layout(rect=(0, 0.12, 1, 0.95))
+    fig.tight_layout(rect=(0, 0.15, 1, 0.95))
     pw = S["lim"]["summary"]["regret"]["new_warm"]["all"]["pct_within_1e6"]
     save(fig, "fig6_regret_cdf.png",
          "Empirical cumulative distribution of the regret against the trusted reference, for the new optimizer and "
