@@ -48,6 +48,7 @@ def legacy_da(points, reps=1):
     f(jnp.asarray(X0), 120.0, 1e9, *CONST).block_until_ready()  # compile
     out = []
     for L, nx in points:
+        L, nx = float(L), float(nx)
         it = 5000 if L <= 120 else 7500 if L <= 140 else 10000 if L <= 160 else 15000
         nfev = [0]
 
@@ -69,6 +70,7 @@ def legacy_lbfgsb(points):
     objective_val_and_grad(jnp.asarray(X0), 50.0, 1e9, *CONST)
     out = []
     for L, nx in points:
+        L, nx = float(L), float(nx)   # int L would trigger a recompile (weak-type int)
         def fg(p):
             v, g = objective_val_and_grad(p, L, nx, *CONST)
             if not np.isfinite(v):
