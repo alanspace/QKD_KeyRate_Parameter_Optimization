@@ -74,9 +74,11 @@ Optimizing parameters is crucial for maximizing the performance of Quantum Key D
 > by the scripts below, whose outputs are in `results/` and carry the git commit and config hash.
 
 * **Physics presets** (`src/qkd_opt/presets.py`). Every result is labelled with one:
-  * `lim_exact`: Lim et al. 2014 finite-key decoy-state bounds, transcribed literally.
-  * `legacy`: the unmodified `src/qkd` model.
-  * Differences between the two are listed in [`PHYSICS_DIFF.md`](PHYSICS_DIFF.md).
+  * `lim` (default): Lim et al. 2014 finite-key decoy-state bounds with η_sys in the misalignment term. It
+    reproduces the paper within ~10 %, not exactly.
+  * `lim_literal`: the printed η_ch. Diagnostic only.
+  * `legacy`: the physics of `src/qkd`, evaluated by `physics_lim` with legacy switches.
+  * Differences and unprinted model choices are in [`PHYSICS_DIFF.md`](PHYSICS_DIFF.md).
 * **Optimizer** (`src/qkd_opt/optimize.py`):
   * Constraints hold by construction through an unconstrained reparameterisation.
   * A Sobol global stage (jit + vmap) is followed by a batched exact-Hessian Newton solver in float64.
@@ -88,17 +90,23 @@ Optimizing parameters is crucial for maximizing the performance of Quantum Key D
 ```python
 from src.qkd_opt import get_preset
 from src.qkd_opt.optimize import optimize, optimize_batch, optimize_sweep
-res = optimize(100.0, 1e9, get_preset("lim_exact"))      # one point, cold start
+res = optimize(100.0, 1e9, get_preset("lim"))            # one point, cold start
 ```
 
 | step | command | output |
 |---|---|---|
-| trusted reference | `python Optimization/reference/build_reference.py --preset legacy` (or `lim_exact`) | `Optimization/reference/reference_<preset>.json` |
-| benchmark | `python Optimization/benchmark/run_benchmark.py --preset legacy` | `results/benchmark_<preset>_<commit>_<cfg>/RESULTS.md` + figures |
-| timing | `python Optimization/benchmark/timing_benchmark.py` | `results/timing_<commit>_<cfg>/TIMING.md` |
-| analyses | `python Optimization/analysis/analyses.py --preset legacy` | `results/analyses_<preset>_<commit>_<cfg>/ANALYSES.md` |
+| **everything** (references, tail references, cross-checks, physics diff, benchmarks, analyses, timing, tests, report numbers) | `python Optimization/run_all.py` | `results/MANIFEST.json`, `results/NUMBERS.md`, `result_report/generated_numbers.tex` |
+| trusted reference | `python Optimization/reference/build_reference.py --preset lim [--tail]` | `Optimization/reference/reference_<preset>[_tail].json` |
+| independent cross-check | `python Optimization/reference/crosscheck_scipy.py --preset lim [--tail]` | `results/crosscheck_<preset>…/CROSSCHECK.md` |
+| benchmark | `python Optimization/benchmark/run_benchmark.py --preset lim` | `results/benchmark_<preset>_<commit>_<cfg>/RESULTS.md` + figures |
+| timing | `python Optimization/benchmark/timing_benchmark.py --preset lim` | `results/timing_<preset>_<commit>_<cfg>/TIMING.md` |
+| analyses | `python Optimization/analysis/analyses.py --preset lim` | `results/analyses_<preset>_<commit>_<cfg>/ANALYSES.md` |
 | physics diff and paper targets | `python Optimization/analysis/physics_diff.py` | `results/physics_diff_<commit>_<cfg>/PHYSICS_DIFF_TABLES.md` |
 | tests | `python -m unittest discover tests` | |
+
+The report (`result_report/results_report.tex`) imports `generated_numbers.tex`, so its numbers are never
+typed by hand. The NN surrogate runs in a separate environment (`.venv-nn`, `requirements-nn.txt`);
+see [`NN_RETRAIN_PLAN.md`](NN_RETRAIN_PLAN.md).
 
 The previous optimizer variants are archived, unmodified, in `Optimization/archive/jax_variants_2026-02/`.
 See `REVIEW.md` for why.
