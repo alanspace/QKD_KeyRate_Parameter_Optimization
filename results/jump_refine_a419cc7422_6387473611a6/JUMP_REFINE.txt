@@ -1,0 +1,24 @@
+jump refinement at 0.1 km of results/dense_scan_abf88e5525_91f81e1652a5/dense_scan.json, git a419cc7422
+  n_X=1e+05 158->159 km: 1 km jump 0.056; largest 0.1 km step 0.0062 (11% of the 1 km jump); largest relative R step per 0.1 km 0.1303538413336142
+  n_X=1e+05 159->160 km: 1 km jump 0.072; largest 0.1 km step 0.0082 (11% of the 1 km jump); largest relative R step per 0.1 km 0.2868535525777879
+  n_X=1e+05 160->161 km: 1 km jump 0.061; largest 0.1 km step 0.0114 (19% of the 1 km jump); largest relative R step per 0.1 km 0.9755539738141961
+  n_X=1e+06 168->169 km: 1 km jump 0.050; largest 0.1 km step 0.0056 (11% of the 1 km jump); largest relative R step per 0.1 km 0.06158291524126115
+  n_X=1e+06 169->170 km: 1 km jump 0.063; largest 0.1 km step 0.0070 (11% of the 1 km jump); largest relative R step per 0.1 km 0.08537311981127571
+  n_X=1e+06 170->171 km: 1 km jump 0.081; largest 0.1 km step 0.0091 (11% of the 1 km jump); largest relative R step per 0.1 km 0.13472507451247998
+  n_X=1e+06 171->172 km: 1 km jump 0.107; largest 0.1 km step 0.0122 (11% of the 1 km jump); largest relative R step per 0.1 km 0.2959547851295232
+  n_X=1e+06 172->173 km: 1 km jump 0.093; largest 0.1 km step 0.0222 (24% of the 1 km jump); largest relative R step per 0.1 km 0.9428661051865793
+  n_X=1e+07 174->175 km: 1 km jump 0.059; largest 0.1 km step 0.0066 (11% of the 1 km jump); largest relative R step per 0.1 km 0.06082379120522684
+  n_X=1e+07 175->176 km: 1 km jump 0.076; largest 0.1 km step 0.0086 (11% of the 1 km jump); largest relative R step per 0.1 km 0.0848581873677152
+  n_X=1e+07 176->177 km: 1 km jump 0.101; largest 0.1 km step 0.0114 (11% of the 1 km jump); largest relative R step per 0.1 km 0.13444831302391894
+  n_X=1e+07 177->178 km: 1 km jump 0.135; largest 0.1 km step 0.0154 (11% of the 1 km jump); largest relative R step per 0.1 km 0.29077736468272786
+  n_X=1e+07 178->179 km: 1 km jump 0.125; largest 0.1 km step 0.0203 (16% of the 1 km jump); largest relative R step per 0.1 km 0.8386096077150437
+  n_X=1e+08 177->178 km: 1 km jump 0.054; largest 0.1 km step 0.0062 (11% of the 1 km jump); largest relative R step per 0.1 km 0.0522861514507255
+  n_X=1e+08 178->179 km: 1 km jump 0.074; largest 0.1 km step 0.0085 (11% of the 1 km jump); largest relative R step per 0.1 km 0.07122623011632617
+  n_X=1e+08 179->180 km: 1 km jump 0.102; largest 0.1 km step 0.0119 (12% of the 1 km jump); largest relative R step per 0.1 km 0.10748624122315875
+  n_X=1e+08 180->181 km: 1 km jump 0.145; largest 0.1 km step 0.0168 (12% of the 1 km jump); largest relative R step per 0.1 km 0.19899479862981415
+  n_X=1e+08 181->182 km: 1 km jump 0.209; largest 0.1 km step 0.0255 (12% of the 1 km jump); largest relative R step per 0.1 km 0.8029728281154689
+  n_X=1e+09 180->181 km: 1 km jump 0.069; largest 0.1 km step 0.0082 (12% of the 1 km jump); largest relative R step per 0.1 km 0.06592573427499206
+  n_X=1e+09 181->182 km: 1 km jump 0.104; largest 0.1 km step 0.0125 (12% of the 1 km jump); largest relative R step per 0.1 km 0.10012990231857688
+  n_X=1e+09 182->183 km: 1 km jump 0.161; largest 0.1 km step 0.0197 (12% of the 1 km jump); largest relative R step per 0.1 km 0.18608830990842037
+  n_X=1e+09 183->184 km: 1 km jump 0.256; largest 0.1 km step 0.0316 (12% of the 1 km jump); largest relative R step per 0.1 km 0.67883251041891
+  n_X=1e+09 184->185 km: 1 km jump 0.064; largest 0.1 km step 0.0342 (54% of the 1 km jump); largest relative R step per 0.1 km 0.870959889869989
