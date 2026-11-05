@@ -17,10 +17,18 @@ For each point the reference is the best of
     methods found.
 The winning source and the disagreement between the two seeds are recorded per point.
 
-cliff_edge: a point with R > 0 whose certificate gradient norm (inf-norm of the gradient of the
-scaled objective in theta) exceeds CLIFF_GTOL = 1e-6 gets status "...|cliff_edge". These sit on
-the eps_sec = kappa*l discontinuity or similar non-smooth features; their R is still the best
-found, but they are reported separately and excluded from the "within 1e-6" regret score.
+Gradient tiers (certificate gradient norm g = inf-norm of the gradient of the scaled objective in theta),
+for points with R > 0:
+  g > CLIFF_GTOL = 1e-3          -> status "...|cliff_edge": excluded from the "within 1e-6" regret score,
+                                    still listed (eps_sec = kappa*l discontinuity / R -> 0 scaling near the horizon)
+  NOISE_GTOL = 1e-6 < g <= 1e-3  -> status "...|noise_floor": scored normally, counted and listed
+
+Neighbour continuation: after the Sobol (and legacy-start) solves, the points of each n_X are swept in
+increasing L ("cont_up") and then decreasing L ("cont_down"); each point is warm-started from the best
+parameters known at the previous grid point of that sweep (best of all candidates so far, including the
+sweep's own previous result). Both sweeps are candidate sources; the reference is the best candidate.
+The summary reports per-source win counts and every point where a continuation candidate beats the best
+Sobol candidate (relative gain > 1e-12).
 
 Seeds: main reference 0 1; tail reference 2 3 by default (independent of the main reference), and
 the tail build reports the max relative R difference at grid points shared with the main reference.
@@ -44,7 +52,8 @@ sys.path.insert(0, os.path.join(ROOT, "Optimization", "benchmark"))
 import numpy as np  # noqa: E402
 
 from src.qkd_opt import get_preset, check_x64  # noqa: E402
-from src.qkd_opt.optimize import optimize_batch, warm_solve, _finalise  # noqa: E402
+from src.qkd_opt.optimize import optimize_batch, warm_solve, _finalise, eval_starts  # noqa: E402
+import jax.numpy as jnp  # noqa: E402
 from src.qkd_opt import reparam  # noqa: E402
 from src.qkd_opt.provenance import stamp, to_jsonable  # noqa: E402
 import legacy_runs  # noqa: E402
@@ -53,12 +62,56 @@ NX = legacy_runs.NX
 GRID = legacy_runs.GRID
 REF_IDX = list(range(0, 400, 20)) + [399]
 TAIL_BELOW_KM, TAIL_ABOVE_KM = 15.0, 1.0
-CLIFF_GTOL = 1e-6
+CLIFF_GTOL = 1e-3
+NOISE_GTOL = 1e-6
 
 
 def ref_path(preset_name, tail=False, quick=False):
     return os.path.join(ROOT, "Optimization", "reference",
                         f"reference_{preset_name}{'_tail' if tail else ''}{'_QUICK' if quick else ''}.json")
+
+
+def _score(R, l, n):
+    return np.where(np.isfinite(R), R if R > 0 else l / n, -np.inf)
+
+
+def continuation(L, n, preset, cands):
+    """cont_up / cont_down candidates (see module doc). Returns dict name -> finalised arrays [P]."""
+    P = len(L)
+    best_p = np.zeros((P, 5))
+    best_v = np.full(P, -np.inf)
+    for c in cands.values():
+        for i in range(P):
+            v = _score(c["R"][i], c["l"][i], n[i])
+            if v > best_v[i]:
+                best_v[i], best_p[i] = v, c["params"][i]
+    out = {}
+    for name, rev in (("cont_up", False), ("cont_down", True)):
+        th = np.zeros((P, 5))
+        st = np.zeros(P, int)
+        it = np.zeros(P, int)
+        mode = np.zeros(P, int)
+        scale = np.ones(P)
+        for nx in np.unique(n):
+            ids = np.where(n == nx)[0]
+            ids = ids[np.argsort(L[ids])]
+            if rev:
+                ids = ids[::-1]
+            prev = None
+            for k, i in enumerate(ids):
+                start = best_p[i] if prev is None else prev
+                w = warm_solve(reparam.theta_of_params(start[None], preset.consts.mu3), L[i:i + 1], n[i:i + 1], preset)
+                th[i], st[i], it[i], mode[i], scale[i] = w["theta"][0], w["status"][0], w["iters"][0], w["mode"][0], w["scale"][0]
+                pi = np.asarray(reparam.params_of_theta(jnp.asarray(th[i]), preset.consts.mu3))
+                R_i, l_i = eval_starts(jnp.asarray(th[i])[None, None, :], jnp.asarray(L[i:i + 1]),
+                                       jnp.asarray(n[i:i + 1]), preset.consts, preset.flags)
+                v = _score(float(np.asarray(R_i)[0, 0]), float(np.asarray(l_i)[0, 0]), n[i])
+                if v > best_v[i]:
+                    best_v[i], best_p[i] = v, pi
+                prev = best_p[i]
+        out[name] = _finalise(dict(theta=th, status=st, iters=it, mode=mode, scale=scale), L, n, preset)
+        print(f"[ref] continuation {name} done", flush=True)
+    return out
 
 
 def solve_points(L, n, idx, preset, n_sobol, top_k, seeds):
@@ -77,6 +130,7 @@ def solve_points(L, n, idx, preset, n_sobol, top_k, seeds):
             cands[f"refined_from_{name}"] = _finalise(dict(theta=w["theta"], status=w["status"], iters=w["iters"],
                                                            mode=w["mode"], scale=w["scale"]), L, n, preset)
             print(f"[ref] refined from {name}", flush=True)
+    cands.update(continuation(L, n, preset, cands))
     names = list(cands)
     R_all = np.stack([cands[k]["R"] for k in names])
     l_all = np.stack([cands[k]["l"] / n for k in names])
@@ -91,9 +145,11 @@ def solve_points(L, n, idx, preset, n_sobol, top_k, seeds):
     for i, w in enumerate(win):
         c = cands[names[w]]
         cliff = bool(c["R"][i] > 0 and c["grad_norm_theta"][i] > CLIFF_GTOL)
+        noise = bool(c["R"][i] > 0 and NOISE_GTOL < c["grad_norm_theta"][i] <= CLIFF_GTOL)
         pts.append(dict(L=float(L[i]), n_X=float(n[i]), grid_index=int(idx[i]), params=c["params"][i], R=c["R"][i],
                         l=c["l"][i], N=c["N"][i], eps_sec=c["eps_sec"][i],
-                        status=c["status"][i] + ("|cliff_edge" if cliff else ""), cliff_edge=cliff,
+                        status=c["status"][i] + ("|cliff_edge" if cliff else "") + ("|noise_floor" if noise else ""),
+                        cliff_edge=cliff, noise_floor=noise,
                         active_bounds=list(c["active_bounds"][i]), grad_norm_theta=c["grad_norm_theta"][i],
                         hess_eig=c["hess_eig"][i], source=names[w],
                         candidates={k: dict(R=cands[k]["R"][i], l=cands[k]["l"][i]) for k in names},
@@ -105,8 +161,25 @@ def solve_points(L, n, idx, preset, n_sobol, top_k, seeds):
                    n_points_seed_disagree_gt_1e9=int(np.nansum(seed_rel > 1e-9)),
                    n_cliff_edge=int(sum(p["cliff_edge"] for p in pts)),
                    cliff_edge_points=[dict(L=p["L"], n_X=p["n_X"], R=p["R"], l=p["l"],
-                                           grad_norm_theta=p["grad_norm_theta"]) for p in pts if p["cliff_edge"]])
+                                           grad_norm_theta=p["grad_norm_theta"]) for p in pts if p["cliff_edge"]],
+                   n_noise_floor=int(sum(p["noise_floor"] for p in pts)),
+                   noise_floor_points=[dict(L=p["L"], n_X=p["n_X"], R=p["R"], l=p["l"],
+                                            grad_norm_theta=p["grad_norm_theta"]) for p in pts if p["noise_floor"]],
+                   continuation_improves_over_sobol=_cont_gain(cands, names, L, n))
     return pts, summary
+
+
+def _cont_gain(cands, names, L, n):
+    sob = [k for k in names if k.startswith("sobol_seed")]
+    out = []
+    for i in range(len(L)):
+        vs = max(_score(cands[k]["R"][i], cands[k]["l"][i], n[i]) for k in sob)
+        for k in ("cont_up", "cont_down"):
+            vc = _score(cands[k]["R"][i], cands[k]["l"][i], n[i])
+            if np.isfinite(vs) and vc > vs + 1e-12 * abs(vs):
+                out.append(dict(L=float(L[i]), n_X=float(n[i]), source=k, R_best_sobol=float(max(cands[q]["R"][i] for q in sob)),
+                                R_cont=float(cands[k]["R"][i]), rel_gain=float((vc - vs) / abs(vs))))
+    return dict(n_points=len({(o["L"], o["n_X"]) for o in out}), entries=out)
 
 
 def horizons(pts, preset, n_sobol, top_k, steps):

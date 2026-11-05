@@ -101,9 +101,9 @@ def legacy_lbfgsb(points, pre):
     return out
 
 
-def jax_warm(pre, reps=200):
+def jax_warm(pre, reps=200, L1=100.0, nx=1e9):
     """Warm start from the optimum at L-0.5 km, solve at L (one point)."""
-    L0, L1, nx = 99.5, 100.0, 1e9
+    L0 = L1 - 0.5
     base = optimize_batch([L0], [nx], pre, n_sobol=4096, top_k=8)
     th0 = base["theta"]                     # [1,5]
     R0, l0 = eval_starts(jnp.asarray(th0)[:, None, :], jnp.asarray([L1]), jnp.asarray([nx]), pre.consts, pre.flags)
@@ -172,6 +172,16 @@ def main():
     res = dict(stamp=st, config=cfg, backend=backend)
     res["legacy_lbfgsb_branch"] = legacy_lbfgsb(cfg["lbfgsb_points"], pre)
     res["jax_warm_batch1"] = jax_warm(pre)
+    # tail: 5 km below the reference horizon of every n_X (within 10 km of the horizon)
+    rp = os.path.join(ROOT, "Optimization", "reference", f"reference_{pre.name}.json")
+    res["jax_warm_batch1_tail"] = []
+    if os.path.exists(rp):
+        for h in json.load(open(rp))["horizons"]:
+            if h.get("horizon_km") and h["horizon_km"] > 10:
+                r_ = jax_warm(pre, reps=100, L1=round(h["horizon_km"] - 5.0, 3), nx=h["n_X"])
+                r_["horizon_km"] = h["horizon_km"]
+                res["jax_warm_batch1_tail"].append(r_)
+                print("[timing] tail warm:", r_["point"], r_["steady_device_us"], flush=True)
     print("[timing] jax warm:", res["jax_warm_batch1"], flush=True)
     res["lookup_table_batch1"] = lookup(pre)
     print("[timing] lookup:", res["lookup_table_batch1"], flush=True)
@@ -192,6 +202,11 @@ def main():
                  f"{w['newton_iterations']} Newton iterations, warm start from L−0.5 km |")
     lines.append(f"| JAX warm-started solver | end-to-end Python API (µs) | {w['end_to_end_us']['median']:.0f} | "
                  f"{w['end_to_end_us']['p90']:.0f} | numpy in → numpy out |")
+    for t_ in res["jax_warm_batch1_tail"]:
+        lines.append(f"| JAX warm-started solver, tail (horizon {t_['horizon_km']:.2f} km) | batch-1 steady-state device / "
+                     f"end-to-end (µs) | {t_['steady_device_us']['median']:.0f} / {t_['end_to_end_us']['median']:.0f} | "
+                     f"{t_['steady_device_us']['p90']:.0f} / {t_['end_to_end_us']['p90']:.0f} | L={t_['point']['L']} km, "
+                     f"n_X={t_['point']['n_X']:.0e}, {t_['newton_iterations']} Newton iterations |")
     lines.append(f"| lookup-table interpolation | batch-1 steady-state, device-resident (µs) | "
                  f"{lt['steady_device_us']['median']:.1f} | {lt['steady_device_us']['p90']:.1f} | table {lt['table_shape']} |")
     lines.append(f"| lookup-table interpolation | end-to-end (µs) | {lt['end_to_end_us']['median']:.1f} | "

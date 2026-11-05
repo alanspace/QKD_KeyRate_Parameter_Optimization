@@ -85,6 +85,8 @@ def regret_stats(R_ref, R_m, exclude=None):
     r = np.where(np.isfinite(r), r, np.inf)
     return dict(n=int(pos.sum()), median=float(np.median(r)), p99=float(np.quantile(r, 0.99)),
                 max=float(np.max(r)), pct_within_1e6=float(100 * np.mean(r <= 1e-6)),
+                pct_within_1e4=float(100 * np.mean(r <= 1e-4)), pct_within_1e3=float(100 * np.mean(r <= 1e-3)),
+                pct_within_1e2=float(100 * np.mean(r <= 1e-2)),
                 n_beats_ref=int(np.sum(r < -1e-9)), min=float(np.min(r)))
 
 
@@ -324,12 +326,14 @@ def write_markdown(out_dir, preset, s):
          "## Key-rate regret vs reference (points with R_ref > 0)", "",
          "regret = (R_ref − R)/R_ref. `≤1e-6` = % of points within 1e-6 relative. `beats ref` = points where the "
          "method is better than the reference by > 1e-9 relative (a reference weakness, listed for investigation).", "",
-         "| method | n | median | p99 | max | ≤1e-6 (%) | beats ref |", "|---|---|---|---|---|---|---|"]
+         "| method | n | median | p99 | max | ≤1e-6 (%) | ≤1e-4 (%) | ≤1e-3 (%) | ≤1e-2 (%) | beats ref |",
+         "|---|---|---|---|---|---|---|---|---|---|"]
     for m, d in s["regret"].items():
         a = d["all"]
         L.append(f"| {m} | {a['n']} | {fmt(a['median'])} | {fmt(a['p99'])} | {fmt(a['max'])} | "
-                 f"{a['pct_within_1e6']:.1f} | {a['n_beats_ref']} |")
-    L += ["", f"Reference points flagged cliff_edge (R > 0, certificate gradient > 1e-6) are EXCLUDED from the "
+                 f"{a['pct_within_1e6']:.1f} | {a['pct_within_1e4']:.1f} | {a['pct_within_1e3']:.1f} | "
+                 f"{a['pct_within_1e2']:.1f} | {a['n_beats_ref']} |")
+    L += ["", f"Reference points flagged cliff_edge (R > 0, certificate gradient > 1e-3) are EXCLUDED from the "
           f"table above; their regret is listed here ({len(s['cliff_edge_main'])} points):"]
     for c in s["cliff_edge_main"]:
         L.append(f"- L={c['L']:.3f} km, n_X={c['n_X']:.0e}, R_ref={c['R_ref']:.4e}: " +
@@ -351,11 +355,13 @@ def write_markdown(out_dir, preset, s):
         t = s["tail_regret"]
         L += ["", f"## Tail regret vs the dense tail reference ({t['n_points']} grid points, horizon − 15 km … + 1 km)", "",
               f"Reference: `{t['reference']}` (config `{t['reference_config_hash']}`), summary {json.dumps(to_jsonable(t['reference_summary']))}.", "",
-              "| method | n | median | p99 | max | ≤1e-6 (%) | beats ref |", "|---|---|---|---|---|---|---|"]
+              "| method | n | median | p99 | max | ≤1e-6 (%) | ≤1e-4 (%) | ≤1e-3 (%) | ≤1e-2 (%) | beats ref |",
+              "|---|---|---|---|---|---|---|---|---|---|"]
         for m, d in t["regret"].items():
             a = d["all"]
             L.append(f"| {m} | {a['n']} | {fmt(a['median'])} | {fmt(a['p99'])} | {fmt(a['max'])} | "
-                     f"{a['pct_within_1e6']:.1f} | {a['n_beats_ref']} |")
+                     f"{a['pct_within_1e6']:.1f} | {a['pct_within_1e4']:.1f} | {a['pct_within_1e3']:.1f} | "
+                     f"{a['pct_within_1e2']:.1f} | {a['n_beats_ref']} |")
         L += ["", f"Tail cliff_edge points (excluded above): {len(t['cliff_edge'])}"]
         for c in t["cliff_edge"]:
             L.append(f"- L={c['L']:.3f} km, n_X={c['n_X']:.0e}, R_ref={c['R_ref']:.4e}: " +
