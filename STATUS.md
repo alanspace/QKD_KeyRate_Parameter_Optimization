@@ -56,3 +56,22 @@ Observation (not a fix):
 
 PASS (all builds completed; overlap check max 3.5e-9 for lim, 3.2e-10 legacy, 9.8e-12 lim_literal).
 
+
+0. Housekeeping (prompt of 2026-11-05, second round)
+----------------------------------------------------
+Ran:
+  pkill of the A/B driver, crosscheck_scipy.py, build_reference.py and run_all.py. Afterwards no matching
+    process was running.
+  caffeinate -dims started in the background (pid 72566).
+  pmset -g batt: "Now drawing from 'Battery Power'", 38 %, 1:12 remaining.
+    AC power NOT confirmed. Work stopped here (see below).
+Archive (commit after 44d6067):
+  Optimization/reference/prefix_eps_fix/ holds the 6 reference JSONs (lim, lim_literal, legacy; main and
+  tail) and 2 cross-check outputs, with SHA256SUMS.txt and a README.
+  The two cross-check outputs:
+    legacy main: finished before the stop.
+    lim main: also finished before the stop. Pre-fix result: 105 points checked, 0 reference
+      weaknesses, 2 points where the cross-check is worse than the reference by > 1e-6, 3 of 1680
+      SLSQP runs not reporting success, 0 timeouts.
+  The lim tail cross-check was killed mid-run and produced no output.
+Status: PARTIAL. Steps 1-8 have not started; they need AC power.
