@@ -45,6 +45,69 @@ def _gamma(a, b, c, d):
     return jnp.sqrt(jnp.maximum(inner, 0.0))
 
 
+THETA_BISECT_ITERS = 80
+
+
+def _dH(y, delta):
+    """H(y + delta) - H(y) without cancellation (log1p form), for 0 < y, y + delta < 1."""
+    y, delta = jnp.asarray(y), jnp.asarray(delta)
+    return (-y * jnp.log1p(delta / y) - delta * jnp.log(y + delta)
+            - (1.0 - y) * jnp.log1p(-delta / (1.0 - y)) + delta * jnp.log(1.0 - y - delta)) / jnp.log(2.0)
+
+
+def _fmc_log2_tail(theta, a, b, c, d):
+    """g(theta) = log2 P(theta) - log2 a, with the Fung-Ma-Chau tail bound (arXiv:0910.0312, Eq. 18/B9):
+        P < sqrt(N / (c d b (1-b))) * 2^(-N xi(theta)),
+        xi(theta) = H(b + theta - q theta) - q H(b) - (1 - q) H(b + theta),  q = c/N,  N = c + d.
+    N xi is evaluated as  c * dH(b, d theta/N) - d * dH(b + d theta/N, c theta/N)  (algebraically equal,
+    no cancellation of O(1) entropies multiplied by N). g is decreasing in theta on [0, 1-b)."""
+    theta, a, b, c, d = (jnp.asarray(x) for x in (theta, a, b, c, d))
+    N = c + d
+    s = d * theta / N
+    Nxi = c * _dH(b, s) - d * _dH(b + s, c * theta / N)
+    return 0.5 * jnp.log2(N / (c * d * b * (1.0 - b))) - Nxi - jnp.log2(a)
+
+
+def _theta_max(b):
+    return (1.0 - b) * (1.0 - 1e-12)
+
+
+def _theta_bisect(a, b, c, d):
+    lo, hi = jnp.zeros_like(b), _theta_max(b)
+
+    def body(_, st):
+        lo_, hi_ = st
+        mid = 0.5 * (lo_ + hi_)
+        pos = _fmc_log2_tail(mid, a, b, c, d) > 0      # bound still above a: need larger theta
+        return jnp.where(pos, mid, lo_), jnp.where(pos, hi_, mid)
+
+    lo, hi = lax.fori_loop(0, THETA_BISECT_ITERS, body, (lo, hi))
+    th = 0.5 * (lo + hi)
+    th = jnp.where(_fmc_log2_tail(jnp.zeros_like(b), a, b, c, d) <= 0, 0.0, th)       # bound already <= a
+    return jnp.where(_fmc_log2_tail(_theta_max(b), a, b, c, d) > 0, _theta_max(b), th)  # no root: cap
+
+
+@jax.custom_jvp
+def theta_exact(a, b, c, d):
+    """Smallest theta with P(theta) <= a (exact Fung-Ma-Chau), by bisection. Differentiable to any order
+    through the implicit-function rule d theta = -(dg/dx . dx) / (dg/dtheta) at interior roots."""
+    return _theta_bisect(a, b, c, d)
+
+
+@theta_exact.defjvp
+def _theta_exact_jvp(primals, tangents):
+    a, b, c, d = primals
+    th = theta_exact(a, b, c, d)
+    g_th = jax.grad(_fmc_log2_tail, argnums=0)(th, a, b, c, d)
+    interior = (th > 0) & (th < _theta_max(b)) & (g_th < 0)
+    g_th_safe = jnp.where(interior, g_th, -1.0)
+    th_safe = jnp.where(interior, th, 0.5 * _theta_max(b))
+    _, g_dot = jax.jvp(lambda a_, b_, c_, d_: _fmc_log2_tail(th_safe, a_, b_, c_, d_), primals, tangents)
+    th_max_dot = jax.jvp(_theta_max, (b,), (tangents[1],))[1]
+    th_dot = jnp.where(interior, -g_dot / g_th_safe, jnp.where(th > 0, th_max_dot, 0.0))
+    return th, th_dot
+
+
 def _counts(params, L, n_X, c: Consts, f: Flags):
     mu1, mu2, P1, P2, qx = params[0], params[1], params[2], params[3], params[4]
     mu3 = c.mu3
@@ -104,7 +167,12 @@ def _length_given_eps(eps, cnt, n_X, c: Consts, f: Flags):
     b = vZ1 / sZ1s
     b_ok = ok & (b > 0) & (b < 0.5)
     bs = jnp.where(b_ok, b, 0.25)
-    phi = jnp.where(b_ok, jnp.minimum(bs + _gamma(eps, bs, sZ1s, sX1s), 0.5), 0.5)
+    if f.gamma_mode == "printed":
+        gam = _gamma(eps, bs, sZ1s, sX1s)
+    else:
+        th_ex = theta_exact(eps / 21.0, bs, sZ1s, sX1s)
+        gam = th_ex if f.gamma_mode == "exact" else jnp.maximum(_gamma(eps, bs, sZ1s, sX1s), th_ex)
+    phi = jnp.where(b_ok, jnp.minimum(bs + gam, 0.5), 0.5)
     h_phi = binary_entropy(phi)
     single = jnp.where(ok, sX1s * (1.0 - h_phi), 0.0)
 
