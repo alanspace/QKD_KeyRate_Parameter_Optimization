@@ -275,3 +275,53 @@ Ran:
     degenerate cases 0.0
   python -m unittest discover tests: Ran 34 tests in 434 s, OK.
 PASS
+
+4 (redo after the expm1 fix). Rebuild, comparison, cross-check, local optimality
+--------------------------------------------------------------------------------
+Ran (python Optimization/run_all.py --only ...; results/MANIFEST.json; on AC power):
+  reference:lim 302 s, reference_tail:lim 435 s, reference:lim_literal 297 s, reference_tail:lim_literal 485 s,
+  crosscheck:lim 423 s, crosscheck_tail:lim 718 s, compare_references 0.1 s, local_opt_check:lim 26 s.
+  All exit code 0. The references are stamped git 9b2938e, physics hash 9564691bc5b0, power AC.
+Seed-to-seed max relative disagreement (expm1 / pre-expm1):
+  lim main 3.30e-13 / 8.11e-10
+  lim tail 7.56e-13 / 6.50e-9
+  lim_literal main 4.6e-14
+  lim_literal tail 1.1e-12
+  tol_ref is therefore 1e-9 (the floor) for all four builds.
+Tiers (current thresholds, after):
+  lim main:         cliff_edge 2,  noise_floor 0 (before 2)
+  lim tail:         cliff_edge 5,  noise_floor 1 (before 20)
+  lim_literal main: cliff_edge 2,  noise_floor 0
+  lim_literal tail: cliff_edge 33, noise_floor 5 (before 27)
+  The noise_floor count dropped in all four builds.
+Continuation beats the best Sobol candidate at: lim main 14, lim tail 12, lim_literal main 54,
+  lim_literal tail 13 points.
+Horizons: all 12 (lim and lim_literal, six nX each) are unchanged to 1e-4 km vs pre-expm1.
+  lim: 130.4411 160.6060 172.6242 178.6678 182.0913 184.1604
+  lim_literal: 18.9721 104.5331 129.4797 140.0046 145.8456 149.3137
+Comparison with the pre-expm1 references (compare_references --old-dir pre_expm1): the stored R decreased at
+  5 main and 37 tail lim points, and at 39 lim_literal tail points. All decreases are in the last ~3-15 km before
+  each horizon; the largest is -4.46e-8 (L=181.955 nX=1e8). No horizon changed.
+  Explanation, measured with Optimization/analysis/compare_same_objective.py: re-evaluating the OLD reference
+  parameters with the current (expm1) objective reproduces these decreases.
+    Evaluation change of the old params: lim tail min -4.46e-8, lim_literal tail min -2.92e-8.
+    The new references are then never worse than the old parameters:
+      gap (new ref - current R(old params)) min -1.8e-16 (lim main), +1.4e-15 (lim tail),
+      +4.2e-15 / +7.8e-15 (lim_literal main / tail).
+      WORSE 0 in all four builds.
+  So the decrease is the removal of the float64 overestimate, not an optimisation regression.
+  This matches the 60-digit Decimal check: the pre-expm1 l at 172.431 km nX=1e6 was 1.41e-8 too high.
+Cross-check (independent SLSQP):
+  lim main: 105 points, |d| <= 1e-6 at 98.1 %, min d -2.66e-15.
+    Reference weaknesses (> tol_ref) 0. INFO 0.
+    SLSQP worse by > 1e-6: 2 points (130.3 km nX=1e4, 160.4 km nX=1e5, both cliff_edge).
+    SLSQP not reporting success: 11 of 1680. Infeasible results 12. Timeouts 0.
+  lim tail: 180 points, |d| <= 1e-6 at 87.8 %, min d -2.01e-14.
+    Reference weaknesses 0. INFO 0.
+    SLSQP worse by > 1e-6 at 22 points, all within the last ~5 km before each horizon (L km / nX):
+      125.3-130.3 / 1e4 (11 points), 159.4 159.9 160.4 / 1e5, 172.4 / 1e6, 177.9 178.4 / 1e7,
+      181.5 182.0 / 1e8, 183.0 183.5 184.0 / 1e9.
+    SLSQP not reporting success: 167 of 2880. Infeasible results 236. Timeouts 0.
+Local-optimality perturbation check (lim tail, last 12 R>0 points per nX = 72 points, 1e5 perturbations each,
+  scales 1e-6..1e-1): max relative improvement 4.86e-13; points improving by > tol_ref: 0. Wall 25 s.
+PASS (no worse point under the same objective, 0 reference weaknesses, no horizon change).

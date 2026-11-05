@@ -1,0 +1,156 @@
+{
+ "steps": [
+  {
+   "id": "reference:lim",
+   "name": "reference",
+   "preset": "lim",
+   "cmd": "Optimization/reference/build_reference.py --preset lim",
+   "returncode": 0,
+   "seconds": 301.7,
+   "log": "results/logs/20261105_204320_reference_lim.log",
+   "outputs": [],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 64,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 20:48:22"
+  },
+  {
+   "id": "reference_tail:lim",
+   "name": "reference_tail",
+   "preset": "lim",
+   "cmd": "Optimization/reference/build_reference.py --preset lim --tail",
+   "returncode": 0,
+   "seconds": 434.7,
+   "log": "results/logs/20261105_204320_reference_tail_lim.log",
+   "outputs": [],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 64,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 20:55:37"
+  },
+  {
+   "id": "reference:lim_literal",
+   "name": "reference",
+   "preset": "lim_literal",
+   "cmd": "Optimization/reference/build_reference.py --preset lim_literal",
+   "returncode": 0,
+   "seconds": 296.8,
+   "log": "results/logs/20261105_204320_reference_lim_literal.log",
+   "outputs": [],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 64,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 21:00:34"
+  },
+  {
+   "id": "reference_tail:lim_literal",
+   "name": "reference_tail",
+   "preset": "lim_literal",
+   "cmd": "Optimization/reference/build_reference.py --preset lim_literal --tail",
+   "returncode": 0,
+   "seconds": 485.2,
+   "log": "results/logs/20261105_204320_reference_tail_lim_literal.log",
+   "outputs": [],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 64,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 21:08:39"
+  },
+  {
+   "id": "crosscheck:lim",
+   "name": "crosscheck",
+   "preset": "lim",
+   "cmd": "Optimization/reference/crosscheck_scipy.py --preset lim",
+   "returncode": 0,
+   "seconds": 422.5,
+   "log": "results/logs/20261105_204320_crosscheck_lim.log",
+   "outputs": [
+    "crosscheck_lim_9b2938e502_5f2044220b48"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 62,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 21:15:42"
+  },
+  {
+   "id": "crosscheck_tail:lim",
+   "name": "crosscheck_tail",
+   "preset": "lim",
+   "cmd": "Optimization/reference/crosscheck_scipy.py --preset lim --tail",
+   "returncode": 0,
+   "seconds": 717.6,
+   "log": "results/logs/20261105_204320_crosscheck_tail_lim.log",
+   "outputs": [
+    "crosscheck_lim_tail_9b2938e502_ae76974bf9d9"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 62,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 21:27:39"
+  },
+  {
+   "id": "compare_references:all",
+   "name": "compare_references",
+   "preset": "all",
+   "cmd": "Optimization/analysis/compare_references.py --old-dir pre_expm1 lim lim_literal",
+   "returncode": 0,
+   "seconds": 0.1,
+   "log": "results/logs/20261105_204320_compare_references_all.log",
+   "outputs": [
+    "compare_references_vs_pre_expm1"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 62,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 21:27:39"
+  },
+  {
+   "id": "local_opt_check:lim",
+   "name": "local_opt_check",
+   "preset": "lim",
+   "cmd": "Optimization/analysis/local_opt_check.py --preset lim",
+   "returncode": 0,
+   "seconds": 26.0,
+   "log": "results/logs/20261105_204320_local_opt_check_lim.log",
+   "outputs": [
+    "local_opt_check_lim_9b2938e502_15dfaf6ca3d0"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 62,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 21:28:05"
+  }
+ ]
+}

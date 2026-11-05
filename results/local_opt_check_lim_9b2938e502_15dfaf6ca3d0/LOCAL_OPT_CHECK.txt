@@ -1,0 +1,3 @@
+local-optimality perturbation check, preset lim, git 9b2938e502, config 15dfaf6ca3d0
+points: 72 (last 12 with R>0 per n_X of the tail reference); 100000 perturbations each, scales 1e-6..1e-1 (log-uniform), tol_ref = 1.000e-09; wall 25 s
+max relative improvement found: 4.860e-13; points with improvement > tol_ref: 0

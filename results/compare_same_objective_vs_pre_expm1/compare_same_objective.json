@@ -1,0 +1,42 @@
+{
+ "lim_main": {
+  "n": 105,
+  "tol_ref": 1e-09,
+  "min_gap": -1.7553238349086886e-16,
+  "max_gap": 1.3088035232025589e-10,
+  "n_worse": 0,
+  "worse": [],
+  "eval_change_min": -8.788793481502151e-09,
+  "eval_change_max": 3.555072134358791e-12
+ },
+ "lim_tail": {
+  "n": 180,
+  "tol_ref": 1e-09,
+  "min_gap": 1.395485632764548e-15,
+  "max_gap": 8.801582964197518e-10,
+  "n_worse": 0,
+  "worse": [],
+  "eval_change_min": -4.455771994627924e-08,
+  "eval_change_max": 2.593150736874079e-10
+ },
+ "lim_literal_main": {
+  "n": 70,
+  "tol_ref": 1e-09,
+  "min_gap": 4.1725228837173876e-15,
+  "max_gap": 7.231132534237827e-13,
+  "n_worse": 0,
+  "worse": [],
+  "eval_change_min": -7.740596125653557e-10,
+  "eval_change_max": 7.039926802849615e-12
+ },
+ "lim_literal_tail": {
+  "n": 179,
+  "tol_ref": 1e-09,
+  "min_gap": 7.75352681384967e-15,
+  "max_gap": 8.13773725535059e-11,
+  "n_worse": 0,
+  "worse": [],
+  "eval_change_min": -2.9169405215813494e-08,
+  "eval_change_max": 2.9767045957167554e-10
+ }
+}

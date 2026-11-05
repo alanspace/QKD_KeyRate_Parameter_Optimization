@@ -1,0 +1,250 @@
+comparison against archived references in Optimization/reference/pre_expm1/
+lim_main: new git 9b2938e502 phys 9564691bc5b0 vs old git 27a358d442 phys 9273ca2e1c08
+  shared points 105, max |rel R diff| 8.657913130332175e-09, better 0, worse (> tol_ref 1.000e-09) 5, INFO (worse by 1e-9..tol_ref) 0
+    WORSE  L=130.326 nX=1e+04 R_old=4.1232335794e-12 R_new=4.1232335644e-12 rel=-3.653e-09
+    WORSE  L=160.401 nX=1e+05 R_old=1.7329149936e-11 R_new=1.7329149786e-11 rel=-8.658e-09
+    WORSE  L=170.426 nX=1e+06 R_old=5.9162106130e-09 R_new=5.9162106021e-09 rel=-1.836e-09
+    WORSE  L=180.451 nX=1e+08 R_old=7.0117897928e-09 R_new=7.0117897621e-09 rel=-4.380e-09
+    WORSE  L=180.451 nX=1e+09 R_old=7.3367909193e-08 R_new=7.3367909073e-08 rel=-1.638e-09
+  tiers (current thresholds): cliff_edge 2 -> 2; noise_floor 2 -> 0
+  source wins: {'sobol_seed0': 63, 'sobol_seed1': 45, 'cont_up': 8, 'cont_down': 10}
+  continuation improves over best Sobol at 14 points
+    cont_down L=140.351 nX=1e+04 R_sobol=-1.9221245329e-25 R_cont=-2.2968385713e-26 gain=3.697e-10
+    cont_up L=150.376 nX=1e+04 R_sobol=-9.1645416128e-25 R_cont=-3.9123248672e-26 gain=3.734e-10
+    cont_up L=160.401 nX=1e+04 R_sobol=-1.3551984882e-24 R_cont=-2.8716917227e-26 gain=3.878e-10
+    cont_down L=170.426 nX=1e+04 R_sobol=-9.6232747383e-08 R_cont=-1.3591809424e-07 gain=5.554e-10
+    cont_up L=180.451 nX=1e+04 R_sobol=-1.8332592917e-07 R_cont=-1.3085131897e-07 gain=4.622e-10
+    cont_down L=180.451 nX=1e+04 R_sobol=-1.8332592917e-07 R_cont=-1.3084682628e-07 gain=4.658e-10
+    cont_up L=190.476 nX=1e+04 R_sobol=-1.3308462339e-08 R_cont=-1.2707574343e-07 gain=4.164e-10
+    cont_down L=190.476 nX=1e+04 R_sobol=-1.3308462339e-08 R_cont=-1.2706044066e-07 gain=4.158e-10
+    cont_up L=200.000 nX=1e+04 R_sobol=-5.8663335753e-08 R_cont=-1.2437581597e-07 gain=3.684e-10
+    cont_down L=200.000 nX=1e+04 R_sobol=-5.8663335753e-08 R_cont=-1.2437581601e-07 gain=1.163e-10
+    cont_down L=180.451 nX=1e+05 R_sobol=-9.3870844482e-08 R_cont=-1.0954184128e-07 gain=5.653e-10
+    cont_up L=190.476 nX=1e+05 R_sobol=-7.3965786319e-08 R_cont=-1.0672295043e-07 gain=3.863e-10
+    cont_down L=190.476 nX=1e+05 R_sobol=-7.3965786319e-08 R_cont=-1.0673756558e-07 gain=4.090e-10
+    cont_up L=200.000 nX=1e+05 R_sobol=-2.8575295629e-08 R_cont=-1.0476624531e-07 gain=4.279e-10
+    cont_down L=200.000 nX=1e+05 R_sobol=-2.8575295629e-08 R_cont=-1.0476624533e-07 gain=2.365e-10
+    cont_down L=190.476 nX=1e+06 R_sobol=-2.0452690504e-11 R_cont=-2.0447227115e-11 gain=4.293e-10
+    cont_up L=200.000 nX=1e+06 R_sobol=-1.4380507554e-10 R_cont=-2.0181588942e-11 gain=4.146e-10
+    cont_down L=200.000 nX=1e+06 R_sobol=-1.4380507554e-10 R_cont=-2.0181588944e-11 gain=2.924e-10
+    cont_down L=180.451 nX=1e+07 R_sobol=-1.9828628128e-26 R_cont=-2.7422569491e-27 gain=3.782e-10
+    cont_up L=190.476 nX=1e+07 R_sobol=-1.0549797103e-24 R_cont=-1.2074445430e-26 gain=3.700e-10
+  horizons km (old -> new): 1e+04: 130.4411 -> 130.4411 (+0.0000); 1e+05: 160.6060 -> 160.6060 (+0.0000); 1e+06: 172.6242 -> 172.6242 (+0.0000); 1e+07: 178.6678 -> 178.6678 (+0.0000); 1e+08: 182.0913 -> 182.0913 (+0.0000); 1e+09: 184.1604 -> 184.1604 (+0.0000)
+lim_tail: new git 9b2938e502 phys 9564691bc5b0 vs old git c13c45ea83 phys 9273ca2e1c08
+  shared points 180, max |rel R diff| 4.4556689570400665e-08, better 0, worse (> tol_ref 1.000e-09) 37, INFO (worse by 1e-9..tol_ref) 0
+    WORSE  L=130.326 nX=1e+04 R_old=4.1232335784e-12 R_new=4.1232335644e-12 rel=-3.396e-09
+    WORSE  L=158.897 nX=1e+05 R_old=1.7870639796e-09 R_new=1.7870639773e-09 rel=-1.285e-09
+    WORSE  L=159.398 nX=1e+05 R_old=8.0339079644e-10 R_new=8.0339079498e-10 rel=-1.816e-09
+    WORSE  L=159.900 nX=1e+05 R_old=2.3920110334e-10 R_new=2.3920110260e-10 rel=-3.087e-09
+    WORSE  L=160.401 nX=1e+05 R_old=1.7329149922e-11 R_new=1.7329149786e-11 rel=-7.867e-09
+    WORSE  L=169.424 nX=1e+06 R_old=1.4500626039e-08 R_new=1.4500626023e-08 rel=-1.079e-09
+    WORSE  L=169.925 nX=1e+06 R_old=9.6799608927e-09 R_new=9.6799608818e-09 rel=-1.126e-09
+    WORSE  L=170.426 nX=1e+06 R_old=5.9162106132e-09 R_new=5.9162106021e-09 rel=-1.870e-09
+    WORSE  L=170.927 nX=1e+06 R_old=3.1659384974e-09 R_new=3.1659384907e-09 rel=-2.116e-09
+    WORSE  L=171.429 nX=1e+06 R_old=1.3560405389e-09 R_new=1.3560405352e-09 rel=-2.684e-09
+    WORSE  L=171.930 nX=1e+06 R_old=3.6889749357e-10 R_new=3.6889749161e-10 rel=-5.314e-09
+    WORSE  L=172.431 nX=1e+06 R_old=2.0631074865e-11 R_new=2.0631074434e-11 rel=-2.090e-08
+    WORSE  L=174.937 nX=1e+07 R_old=3.2639425723e-08 R_new=3.2639425688e-08 rel=-1.079e-09
+    WORSE  L=175.439 nX=1e+07 R_old=2.3249101644e-08 R_new=2.3249101619e-08 rel=-1.060e-09
+    WORSE  L=175.940 nX=1e+07 R_old=1.5535557400e-08 R_new=1.5535557372e-08 rel=-1.806e-09
+    WORSE  L=176.441 nX=1e+07 R_old=9.4876193888e-09 R_new=9.4876193684e-09 rel=-2.151e-09
+    WORSE  L=176.942 nX=1e+07 R_old=5.0602552838e-09 R_new=5.0602552720e-09 rel=-2.341e-09
+    WORSE  L=177.444 nX=1e+07 R_old=2.1533744523e-09 R_new=2.1533744440e-09 rel=-3.887e-09
+    WORSE  L=177.945 nX=1e+07 R_old=5.8201429795e-10 R_new=5.8201429309e-10 rel=-8.365e-09
+    WORSE  L=178.446 nX=1e+07 R_old=3.5648697102e-11 R_new=3.5648696373e-11 rel=-2.044e-08
+    WORSE  L=177.945 nX=1e+08 R_old=6.3289712152e-08 R_new=6.3289712076e-08 rel=-1.200e-09
+    WORSE  L=178.446 nX=1e+08 R_old=4.7383940882e-08 R_new=4.7383940829e-08 rel=-1.125e-09
+    WORSE  L=178.947 nX=1e+08 R_old=3.3742089995e-08 R_new=3.3742089949e-08 rel=-1.349e-09
+    WORSE  L=179.449 nX=1e+08 R_old=2.2438548469e-08 R_new=2.2438548424e-08 rel=-1.985e-09
+    WORSE  L=179.950 nX=1e+08 R_old=1.3526861418e-08 R_new=1.3526861384e-08 rel=-2.542e-09
+    WORSE  L=180.451 nX=1e+08 R_old=7.0117897929e-09 R_new=7.0117897621e-09 rel=-4.395e-09
+    WORSE  L=180.952 nX=1e+08 R_old=2.8031529596e-09 R_new=2.8031529498e-09 rel=-3.527e-09
+    WORSE  L=181.454 nX=1e+08 R_old=6.4506167603e-10 R_new=6.4506167129e-10 rel=-7.341e-09
+    WORSE  L=181.955 nX=1e+08 R_old=1.6149977717e-11 R_new=1.6149976997e-11 rel=-4.456e-08
+    WORSE  L=179.950 nX=1e+09 R_old=9.5824515285e-08 R_new=9.5824515183e-08 rel=-1.071e-09
+    WORSE  L=180.451 nX=1e+09 R_old=7.3367909193e-08 R_new=7.3367909073e-08 rel=-1.641e-09
+    WORSE  L=181.454 nX=1e+09 R_old=3.6748169050e-08 R_new=3.6748168997e-08 rel=-1.457e-09
+    WORSE  L=181.955 nX=1e+09 R_old=2.2967104125e-08 R_new=2.2967104058e-08 rel=-2.917e-09
+    WORSE  L=182.456 nX=1e+09 R_old=1.2450801668e-08 R_new=1.2450801609e-08 rel=-4.735e-09
+    WORSE  L=182.957 nX=1e+09 R_old=5.2922331690e-09 R_new=5.2922331292e-09 rel=-7.525e-09
+    WORSE  L=183.459 nX=1e+09 R_old=1.3605295140e-09 R_new=1.3605295023e-09 rel=-8.578e-09
+    WORSE  L=183.960 nX=1e+09 R_old=6.2052365097e-11 R_new=6.2052363782e-11 rel=-2.120e-08
+  tiers (current thresholds): cliff_edge 5 -> 5; noise_floor 20 -> 1
+  source wins: {'sobol_seed2': 89, 'sobol_seed3': 86, 'cont_up': 7, 'cont_down': 10}
+  continuation improves over best Sobol at 12 points
+    cont_up L=130.827 nX=1e+04 R_sobol=-7.3637783379e-27 R_cont=-6.7891689158e-27 gain=6.992e-11
+    cont_down L=130.827 nX=1e+04 R_sobol=-7.3637783379e-27 R_cont=-4.8797847534e-27 gain=3.266e-10
+    cont_up L=131.328 nX=1e+04 R_sobol=-1.0790241971e-26 R_cont=-6.2159623192e-27 gain=3.530e-10
+    cont_down L=160.902 nX=1e+05 R_sobol=-3.1411091135e-27 R_cont=-1.7445885005e-27 gain=3.011e-10
+    cont_up L=161.404 nX=1e+05 R_sobol=-5.4426458685e-27 R_cont=-2.4137003474e-27 gain=3.153e-10
+    cont_down L=172.932 nX=1e+06 R_sobol=-2.4132237909e-27 R_cont=-1.2573386764e-27 gain=2.854e-10
+    cont_up L=173.434 nX=1e+06 R_sobol=-5.4938865565e-27 R_cont=-1.9132577075e-27 gain=3.344e-10
+    cont_down L=173.434 nX=1e+06 R_sobol=-5.4938865565e-27 R_cont=-4.7000870292e-27 gain=6.127e-11
+    cont_down L=178.947 nX=1e+07 R_sobol=-2.0967441698e-27 R_cont=-1.0059855071e-27 gain=3.156e-10
+    cont_up L=179.449 nX=1e+07 R_sobol=-5.4767705273e-27 R_cont=-1.6791383211e-27 gain=3.395e-10
+    cont_down L=179.449 nX=1e+07 R_sobol=-5.4767705273e-27 R_cont=-4.1418445343e-27 gain=9.915e-11
+    cont_down L=182.456 nX=1e+08 R_sobol=-2.5663028728e-27 R_cont=-1.0407327476e-27 gain=3.249e-10
+    cont_up L=182.957 nX=1e+08 R_sobol=-7.4017588834e-27 R_cont=-1.7684970048e-27 gain=3.481e-10
+    cont_down L=182.957 nX=1e+08 R_sobol=-7.4017588834e-27 R_cont=-4.1554978041e-27 gain=1.708e-10
+    cont_down L=184.461 nX=1e+09 R_sobol=-2.2827498432e-27 R_cont=-9.3890301245e-28 gain=3.166e-10
+    cont_up L=184.962 nX=1e+09 R_sobol=-8.1699675159e-27 R_cont=-1.8018651808e-27 gain=3.387e-10
+    cont_down L=184.962 nX=1e+09 R_sobol=-8.1699675159e-27 R_cont=-3.7388231177e-27 gain=2.066e-10
+lim_literal_main: new git 9b2938e502 phys 9564691bc5b0 vs old git c13c45ea83 phys 9273ca2e1c08
+  shared points 70, max |rel R diff| 7.73978524004917e-10, better 0, worse (> tol_ref 1.000e-09) 0, INFO (worse by 1e-9..tol_ref) 0
+  tiers (current thresholds): cliff_edge 2 -> 2; noise_floor 1 -> 0
+  source wins: {'sobol_seed0': 41, 'sobol_seed1': 30, 'cont_up': 29, 'cont_down': 26}
+  continuation improves over best Sobol at 54 points
+    cont_up L=20.050 nX=1e+04 R_sobol=-4.8245102674e-26 R_cont=-3.3265040875e-26 gain=3.713e-10
+    cont_down L=20.050 nX=1e+04 R_sobol=-4.8245102674e-26 R_cont=-1.8364910100e-26 gain=8.383e-10
+    cont_up L=30.075 nX=1e+04 R_sobol=-1.1799985599e-25 R_cont=-3.5731114520e-26 gain=4.903e-10
+    cont_down L=30.075 nX=1e+04 R_sobol=-1.1799985599e-25 R_cont=-3.6155923961e-26 gain=4.868e-10
+    cont_up L=40.100 nX=1e+04 R_sobol=-2.5205204210e-25 R_cont=-5.0378510406e-26 gain=4.671e-10
+    cont_down L=40.100 nX=1e+04 R_sobol=-2.5205204210e-25 R_cont=-5.0908480938e-26 gain=4.651e-10
+    cont_up L=50.125 nX=1e+04 R_sobol=-3.8351145393e-25 R_cont=-6.2544404695e-26 gain=3.992e-10
+    cont_down L=50.125 nX=1e+04 R_sobol=-3.8351145393e-25 R_cont=-6.3115008613e-26 gain=3.980e-10
+    cont_up L=60.150 nX=1e+04 R_sobol=-5.8316506468e-25 R_cont=-7.2469491275e-26 gain=3.802e-10
+    cont_down L=60.150 nX=1e+04 R_sobol=-5.8316506468e-25 R_cont=-7.3025780999e-26 gain=3.794e-10
+    cont_up L=70.175 nX=1e+04 R_sobol=-8.5566749171e-25 R_cont=-8.0303569996e-26 gain=3.734e-10
+    cont_down L=70.175 nX=1e+04 R_sobol=-8.5566749171e-25 R_cont=-8.0793605555e-26 gain=3.729e-10
+    cont_up L=80.201 nX=1e+04 R_sobol=-1.3254756204e-24 R_cont=-8.6165519762e-26 gain=3.938e-10
+    cont_down L=80.201 nX=1e+04 R_sobol=-1.3254756204e-24 R_cont=-8.6536763045e-26 gain=3.935e-10
+    cont_up L=90.226 nX=1e+04 R_sobol=-1.7778719542e-24 R_cont=-9.0171019617e-26 gain=3.851e-10
+    cont_down L=90.226 nX=1e+04 R_sobol=-1.7778719542e-24 R_cont=-9.0365961405e-26 gain=3.850e-10
+    cont_up L=100.251 nX=1e+04 R_sobol=-2.3937524297e-24 R_cont=-9.2447719846e-26 gain=3.839e-10
+    cont_down L=100.251 nX=1e+04 R_sobol=-2.3937524297e-24 R_cont=-9.2394576803e-26 gain=3.840e-10
+    cont_up L=110.276 nX=1e+04 R_sobol=-2.9576278325e-24 R_cont=-9.3140085671e-26 gain=3.669e-10
+    cont_down L=110.276 nX=1e+04 R_sobol=-2.9576278325e-24 R_cont=-9.2744870608e-26 gain=3.671e-10
+    cont_up L=120.301 nX=1e+04 R_sobol=-4.0348322391e-24 R_cont=-9.2423630070e-26 gain=3.742e-10
+    cont_down L=120.301 nX=1e+04 R_sobol=-4.0348322391e-24 R_cont=-9.1548561282e-26 gain=3.746e-10
+    cont_up L=130.326 nX=1e+04 R_sobol=-5.1473523261e-24 R_cont=-9.0530174831e-26 gain=3.662e-10
+    cont_down L=140.351 nX=1e+04 R_sobol=-5.8610298320e-09 R_cont=-5.8604822705e-09 gain=9.368e-10
+    cont_up L=150.376 nX=1e+04 R_sobol=-4.8446787893e-08 R_cont=-5.3978237491e-09 gain=4.341e-10
+    cont_down L=150.376 nX=1e+04 R_sobol=-4.8446787893e-08 R_cont=-5.3974585797e-09 gain=4.846e-10
+    cont_up L=160.401 nX=1e+04 R_sobol=-1.1287602181e-07 R_cont=-5.0635465798e-09 gain=5.189e-10
+    cont_down L=160.401 nX=1e+04 R_sobol=-1.1287602181e-07 R_cont=-5.0621880099e-09 gain=5.194e-10
+    cont_up L=170.426 nX=1e+04 R_sobol=-6.8081217275e-08 R_cont=-4.8172915738e-09 gain=3.989e-10
+    cont_down L=170.426 nX=1e+04 R_sobol=-6.8081217275e-08 R_cont=-4.8174153576e-09 gain=3.978e-10
+    cont_up L=180.451 nX=1e+04 R_sobol=-1.5451001015e-10 R_cont=-4.6367049959e-09 gain=4.311e-10
+    cont_down L=180.451 nX=1e+04 R_sobol=-1.5451001015e-10 R_cont=-4.6371679629e-09 gain=4.297e-10
+    cont_up L=190.476 nX=1e+04 R_sobol=-1.4930402975e-08 R_cont=-4.5034933087e-09 gain=4.211e-10
+    cont_down L=190.476 nX=1e+04 R_sobol=-1.4930402975e-08 R_cont=-4.5028481320e-09 gain=4.199e-10
+    cont_up L=200.000 nX=1e+04 R_sobol=-5.8681651663e-08 R_cont=-4.4055726479e-09 gain=3.697e-10
+    cont_down L=200.000 nX=1e+04 R_sobol=-5.8681651663e-08 R_cont=-4.4055726493e-09 gain=1.177e-10
+    cont_down L=110.276 nX=1e+05 R_sobol=-4.7513116304e-26 R_cont=-9.0893765636e-27 gain=3.984e-10
+    cont_up L=120.301 nX=1e+05 R_sobol=-2.7778071184e-25 R_cont=-1.8101767079e-26 gain=3.939e-10
+    cont_down L=120.301 nX=1e+05 R_sobol=-2.7778071184e-25 R_cont=-1.7550305183e-26 gain=3.959e-10
+    cont_up L=130.326 nX=1e+05 R_sobol=-6.9006546631e-25 R_cont=-2.2871580685e-26 gain=3.710e-10
+    cont_down L=130.326 nX=1e+05 R_sobol=-6.9006546631e-25 R_cont=-2.2968600813e-26 gain=3.708e-10
+    cont_up L=140.351 nX=1e+05 R_sobol=-1.3408880785e-24 R_cont=-2.5683675481e-26 gain=3.667e-10
+    cont_down L=140.351 nX=1e+05 R_sobol=-1.3408880785e-24 R_cont=-2.5738537628e-26 gain=3.666e-10
+    cont_up L=150.376 nX=1e+05 R_sobol=-2.2261340758e-24 R_cont=-2.6250090681e-26 gain=3.700e-10
+    cont_down L=160.401 nX=1e+05 R_sobol=-1.0050763636e-07 R_cont=-1.0051806534e-07 gain=5.357e-10
+    cont_up L=170.426 nX=1e+05 R_sobol=-6.7921976573e-10 R_cont=-9.5942585573e-08 gain=4.589e-10
+    cont_down L=170.426 nX=1e+05 R_sobol=-6.7921976573e-10 R_cont=-9.5944715071e-08 gain=4.739e-10
+    cont_up L=180.451 nX=1e+05 R_sobol=-4.7031586437e-08 R_cont=-9.2667035648e-08 gain=4.270e-10
+    cont_down L=180.451 nX=1e+05 R_sobol=-4.7031586437e-08 R_cont=-9.2659267540e-08 gain=4.337e-10
+    cont_up L=190.476 nX=1e+05 R_sobol=-7.3968671150e-08 R_cont=-9.0299527713e-08 gain=4.061e-10
+    cont_down L=190.476 nX=1e+05 R_sobol=-7.3968671150e-08 R_cont=-9.0288403793e-08 gain=4.110e-10
+    cont_up L=200.000 nX=1e+05 R_sobol=-5.8847955347e-08 R_cont=-8.8631754104e-08 gain=4.516e-10
+    cont_down L=200.000 nX=1e+05 R_sobol=-5.8847955347e-08 R_cont=-8.8631754124e-08 gain=2.612e-10
+    cont_down L=130.326 nX=1e+06 R_sobol=-6.3853357624e-27 R_cont=-2.1114281498e-27 gain=4.154e-10
+    cont_up L=140.351 nX=1e+06 R_sobol=-2.7591956407e-25 R_cont=-1.0066234581e-26 gain=3.765e-10
+    cont_down L=140.351 nX=1e+06 R_sobol=-2.7591956407e-25 R_cont=-1.0774299884e-26 gain=3.734e-10
+    cont_up L=150.376 nX=1e+06 R_sobol=-1.0609892980e-24 R_cont=-1.6013729048e-26 gain=3.732e-10
+    cont_down L=150.376 nX=1e+06 R_sobol=-1.0609892980e-24 R_cont=-1.6917862611e-26 gain=3.717e-10
+    cont_up L=160.401 nX=1e+06 R_sobol=-2.3298912525e-24 R_cont=-1.7791547319e-26 gain=3.778e-10
+    cont_down L=180.451 nX=1e+06 R_sobol=-4.2180700960e-08 R_cont=-1.8427814432e-07 gain=4.177e-10
+    cont_up L=190.476 nX=1e+06 R_sobol=-4.1319271516e-08 R_cont=-1.8055179454e-07 gain=3.618e-10
+    cont_down L=190.476 nX=1e+06 R_sobol=-4.1319271516e-08 R_cont=-1.8055253101e-07 gain=3.696e-10
+    cont_up L=200.000 nX=1e+06 R_sobol=-9.5726277765e-11 R_cont=-1.7802141858e-07 gain=4.125e-10
+    cont_down L=200.000 nX=1e+06 R_sobol=-9.5726277765e-11 R_cont=-1.7802141860e-07 gain=2.940e-10
+    cont_down L=140.351 nX=1e+07 R_sobol=-2.3246932593e-27 R_cont=-1.2441643698e-27 gain=2.903e-10
+    cont_up L=150.376 nX=1e+07 R_sobol=-3.1569479732e-25 R_cont=-9.9018456571e-27 gain=3.614e-10
+    cont_down L=150.376 nX=1e+07 R_sobol=-3.1569479732e-25 R_cont=-1.0552501361e-26 gain=3.589e-10
+    cont_up L=160.401 nX=1e+07 R_sobol=-1.5136103420e-24 R_cont=-1.6166789996e-26 gain=3.754e-10
+    cont_down L=160.401 nX=1e+07 R_sobol=-1.5136103420e-24 R_cont=-1.6223294878e-26 gain=3.754e-10
+    cont_up L=170.426 nX=1e+07 R_sobol=-3.5185071111e-24 R_cont=-1.8555949228e-26 gain=3.759e-10
+    cont_down L=180.451 nX=1e+07 R_sobol=-3.7362726327e-23 R_cont=-2.9330121839e-27 gain=3.759e-10
+    cont_up L=190.476 nX=1e+07 R_sobol=-6.8667109012e-27 R_cont=-3.2721245171e-27 gain=1.112e-12
+    cont_down L=150.376 nX=1e+08 R_sobol=-8.6636332228e-26 R_cont=-5.9638803157e-27 gain=3.843e-10
+    cont_up L=160.401 nX=1e+08 R_sobol=-1.1123933980e-24 R_cont=-1.6483588606e-26 gain=3.636e-10
+    cont_down L=160.401 nX=1e+08 R_sobol=-1.1123933980e-24 R_cont=-1.4442213575e-26 gain=3.668e-10
+    cont_up L=170.426 nX=1e+08 R_sobol=-3.6995188427e-24 R_cont=-1.8762632452e-26 gain=3.707e-10
+    cont_down L=180.451 nX=1e+08 R_sobol=-1.1245119323e-22 R_cont=-3.4240476503e-27 gain=3.759e-10
+    cont_up L=190.476 nX=1e+08 R_sobol=-1.1882412669e-22 R_cont=-1.3905675637e-26 gain=3.097e-10
+    cont_down L=190.476 nX=1e+08 R_sobol=-1.1882412669e-22 R_cont=-3.2808972638e-27 gain=3.115e-10
+    cont_up L=200.000 nX=1e+08 R_sobol=-1.7361872459e-24 R_cont=-3.1054462943e-27 gain=2.812e-11
+    cont_down L=200.000 nX=1e+08 R_sobol=-1.7361872459e-24 R_cont=-8.1848019450e-27 gain=2.735e-11
+    cont_down L=150.376 nX=1e+09 R_sobol=-7.8394677890e-27 R_cont=-2.1294297613e-27 gain=3.404e-10
+    cont_up L=160.401 nX=1e+09 R_sobol=-9.9223656012e-25 R_cont=-1.4836262584e-26 gain=3.647e-10
+    cont_down L=160.401 nX=1e+09 R_sobol=-9.9223656012e-25 R_cont=-1.3595478521e-26 gain=3.668e-10
+    cont_up L=170.426 nX=1e+09 R_sobol=-4.5719940724e-24 R_cont=-1.9998613554e-26 gain=3.679e-10
+    cont_down L=180.451 nX=1e+09 R_sobol=-4.1074495576e-22 R_cont=-3.6300814433e-27 gain=3.768e-10
+    cont_up L=190.476 nX=1e+09 R_sobol=-4.0179732132e-22 R_cont=-1.9948619778e-25 gain=3.023e-10
+    cont_down L=190.476 nX=1e+09 R_sobol=-4.0179732132e-22 R_cont=-3.3322551938e-27 gain=3.083e-10
+    cont_up L=200.000 nX=1e+09 R_sobol=-2.0874104732e-22 R_cont=-3.7728447577e-27 gain=1.821e-10
+    cont_down L=200.000 nX=1e+09 R_sobol=-2.0874104732e-22 R_cont=-8.1145295326e-27 gain=1.817e-10
+  horizons km (old -> new): 1e+04: 18.9721 -> 18.9721 (+0.0000); 1e+05: 104.5331 -> 104.5331 (+0.0000); 1e+06: 129.4797 -> 129.4797 (+0.0000); 1e+07: 140.0046 -> 140.0046 (+0.0000); 1e+08: 145.8456 -> 145.8456 (+0.0000); 1e+09: 149.3137 -> 149.3137 (+0.0000)
+lim_literal_tail: new git 9b2938e502 phys 9564691bc5b0 vs old git c13c45ea83 phys 9273ca2e1c08
+  shared points 179, max |rel R diff| 2.916722987512743e-08, better 0, worse (> tol_ref 1.000e-09) 39, INFO (worse by 1e-9..tol_ref) 0
+    WORSE  L=103.258 nX=1e+05 R_old=2.9970723382e-10 R_new=2.9970723351e-10 rel=-1.049e-09
+    WORSE  L=103.759 nX=1e+05 R_old=1.0275770603e-10 R_new=1.0275770581e-10 rel=-2.151e-09
+    WORSE  L=104.261 nX=1e+05 R_old=1.2380979549e-11 R_new=1.2380979468e-11 rel=-6.525e-09
+    WORSE  L=126.817 nX=1e+06 R_old=4.0755113985e-09 R_new=4.0755113940e-09 rel=-1.114e-09
+    WORSE  L=127.318 nX=1e+06 R_old=2.5083041551e-09 R_new=2.5083041515e-09 rel=-1.433e-09
+    WORSE  L=127.820 nX=1e+06 R_old=1.3562010789e-09 R_new=1.3562010764e-09 rel=-1.866e-09
+    WORSE  L=128.321 nX=1e+06 R_old=5.8898309325e-10 R_new=5.8898309165e-10 rel=-2.714e-09
+    WORSE  L=128.822 nX=1e+06 R_old=1.6199621229e-10 R_new=1.6199621157e-10 rel=-4.466e-09
+    WORSE  L=129.323 nX=1e+06 R_old=7.7874490433e-12 R_new=7.7874489108e-12 rel=-1.701e-08
+    WORSE  L=135.338 nX=1e+07 R_old=2.3255913587e-08 R_new=2.3255913564e-08 rel=-1.007e-09
+    WORSE  L=135.840 nX=1e+07 R_old=1.7667417445e-08 R_new=1.7667417421e-08 rel=-1.364e-09
+    WORSE  L=136.341 nX=1e+07 R_old=1.2918729938e-08 R_new=1.2918729920e-08 rel=-1.380e-09
+    WORSE  L=136.842 nX=1e+07 R_old=8.9918497424e-09 R_new=8.9918497287e-09 rel=-1.532e-09
+    WORSE  L=137.343 nX=1e+07 R_old=5.8593036199e-09 R_new=5.8593036078e-09 rel=-2.054e-09
+    WORSE  L=137.845 nX=1e+07 R_old=3.4808626141e-09 R_new=3.4808626036e-09 rel=-3.004e-09
+    WORSE  L=138.346 nX=1e+07 R_old=1.7994894793e-09 R_new=1.7994894719e-09 rel=-4.098e-09
+    WORSE  L=138.847 nX=1e+07 R_old=7.3652798786e-10 R_new=7.3652798404e-10 rel=-5.184e-09
+    WORSE  L=139.348 nX=1e+07 R_old=1.8608887087e-10 R_new=1.8608886935e-10 rel=-8.177e-09
+    WORSE  L=139.850 nX=1e+07 R_old=7.7647439746e-12 R_new=7.7647437481e-12 rel=-2.917e-08
+    WORSE  L=140.852 nX=1e+08 R_old=4.1369434854e-08 R_new=4.1369434807e-08 rel=-1.140e-09
+    WORSE  L=141.353 nX=1e+08 R_old=3.2249825735e-08 R_new=3.2249825688e-08 rel=-1.458e-09
+    WORSE  L=141.855 nX=1e+08 R_old=2.4311637418e-08 R_new=2.4311637381e-08 rel=-1.525e-09
+    WORSE  L=142.356 nX=1e+08 R_old=1.7561296944e-08 R_new=1.7561296923e-08 rel=-1.218e-09
+    WORSE  L=142.857 nX=1e+08 R_old=1.1994588221e-08 R_new=1.1994588193e-08 rel=-2.354e-09
+    WORSE  L=143.358 nX=1e+08 R_old=7.5908240508e-09 R_new=7.5908240278e-09 rel=-3.025e-09
+    WORSE  L=143.860 nX=1e+08 R_old=4.3051118205e-09 R_new=4.3051118068e-09 rel=-3.165e-09
+    WORSE  L=144.361 nX=1e+08 R_old=2.0585713409e-09 R_new=2.0585713307e-09 rel=-4.919e-09
+    WORSE  L=144.862 nX=1e+08 R_old=7.2669846824e-10 R_new=7.2669846182e-10 rel=-8.835e-09
+    WORSE  L=145.363 nX=1e+08 R_old=1.2636152746e-10 R_new=1.2636152635e-10 rel=-8.827e-09
+    WORSE  L=143.358 nX=1e+09 R_old=9.1883676556e-08 R_new=9.1883676460e-08 rel=-1.043e-09
+    WORSE  L=144.361 nX=1e+09 R_old=6.1254756947e-08 R_new=6.1254756871e-08 rel=-1.244e-09
+    WORSE  L=144.862 nX=1e+09 R_old=4.8145378534e-08 R_new=4.8145378452e-08 rel=-1.705e-09
+    WORSE  L=145.865 nX=1e+09 R_old=2.6595163295e-08 R_new=2.6595163264e-08 rel=-1.155e-09
+    WORSE  L=146.366 nX=1e+09 R_old=1.8247424879e-08 R_new=1.8247424819e-08 rel=-3.306e-09
+    WORSE  L=146.867 nX=1e+09 R_old=1.1556447658e-08 R_new=1.1556447619e-08 rel=-3.365e-09
+    WORSE  L=147.368 nX=1e+09 R_old=6.5130066093e-09 R_new=6.5130065810e-09 rel=-4.350e-09
+    WORSE  L=147.870 nX=1e+09 R_old=3.0519829284e-09 R_new=3.0519829143e-09 rel=-4.637e-09
+    WORSE  L=148.371 nX=1e+09 R_old=1.0223701925e-09 R_new=1.0223701870e-09 rel=-5.402e-09
+    WORSE  L=148.872 nX=1e+09 R_old=1.5089921812e-10 R_new=1.5089921452e-10 rel=-2.391e-08
+  tiers (current thresholds): cliff_edge 29 -> 33; noise_floor 27 -> 5
+  source wins: {'sobol_seed2': 84, 'sobol_seed3': 84, 'cont_up': 13, 'cont_down': 10}
+  continuation improves over best Sobol at 13 points
+    cont_up L=19.048 nX=1e+04 R_sobol=-3.6084590746e-26 R_cont=-3.3813432160e-26 gain=7.284e-11
+    cont_down L=19.048 nX=1e+04 R_sobol=-3.6084590746e-26 R_cont=-1.7535898196e-26 gain=6.895e-10
+    cont_up L=19.549 nX=1e+04 R_sobol=-3.8470050290e-26 R_cont=-1.8585744041e-26 gain=6.516e-10
+    cont_down L=19.549 nX=1e+04 R_sobol=-3.8470050290e-26 R_cont=-2.5518730857e-26 gain=3.965e-10
+    cont_down L=104.762 nX=1e+05 R_sobol=-5.7209043360e-27 R_cont=-3.2773643436e-27 gain=3.483e-10
+    cont_up L=105.263 nX=1e+05 R_sobol=-6.9031059335e-27 R_cont=-3.9319804934e-27 gain=2.911e-10
+    cont_down L=129.323 nX=1e+06 R_sobol=7.7874489108e-12 R_cont=7.7874489108e-12 gain=1.179e-12
+    cont_down L=129.825 nX=1e+06 R_sobol=-3.9877634831e-27 R_cont=-1.8676730905e-27 gain=3.851e-10
+    cont_up L=130.326 nX=1e+06 R_sobol=-6.8546788099e-27 R_cont=-2.5530977630e-27 gain=3.947e-10
+    cont_down L=130.326 nX=1e+06 R_sobol=-6.8546788099e-27 R_cont=-5.0285638090e-27 gain=1.453e-10
+    cont_down L=140.351 nX=1e+07 R_sobol=-2.9459493510e-27 R_cont=-1.3681246462e-27 gain=3.875e-10
+    cont_up L=140.852 nX=1e+07 R_sobol=-5.4617423388e-27 R_cont=-1.9860702039e-27 gain=3.740e-10
+    cont_down L=140.852 nX=1e+07 R_sobol=-5.4617423388e-27 R_cont=-4.2670166848e-27 gain=1.094e-10
+    cont_down L=145.865 nX=1e+08 R_sobol=-1.3074359227e-27 R_cont=-7.7796610293e-28 gain=3.827e-10
+    cont_up L=146.366 nX=1e+08 R_sobol=-2.7324246027e-27 R_cont=-1.4705701147e-27 gain=2.463e-10
+    cont_down L=149.373 nX=1e+09 R_sobol=-1.6917861237e-27 R_cont=-7.5621743166e-28 gain=6.058e-10
+    cont_up L=149.875 nX=1e+09 R_sobol=-4.0288969062e-27 R_cont=-1.6762516439e-27 gain=3.365e-10
+    cont_down L=149.875 nX=1e+09 R_sobol=-4.0288969062e-27 R_cont=-2.7013232270e-27 gain=1.717e-10
+FLAGS: lim_main: 5 points WORSE than pre-fix reference; lim_tail: 37 points WORSE than pre-fix reference; lim_literal_tail: 39 points WORSE than pre-fix reference

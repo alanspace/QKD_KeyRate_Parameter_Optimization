@@ -1,0 +1,5 @@
+same-objective comparison: new references vs OLD params (pre_expm1) re-evaluated with the current objective
+lim_main: 105 shared points, tol_ref 1.00e-09; gap (new ref vs old params under current objective) min -1.76e-16 max +1.31e-10; WORSE 0; evaluation change of the old params (current vs stored R) min -8.79e-09 max +3.56e-12
+lim_tail: 180 shared points, tol_ref 1.00e-09; gap (new ref vs old params under current objective) min +1.40e-15 max +8.80e-10; WORSE 0; evaluation change of the old params (current vs stored R) min -4.46e-08 max +2.59e-10
+lim_literal_main: 70 shared points, tol_ref 1.00e-09; gap (new ref vs old params under current objective) min +4.17e-15 max +7.23e-13; WORSE 0; evaluation change of the old params (current vs stored R) min -7.74e-10 max +7.04e-12
+lim_literal_tail: 179 shared points, tol_ref 1.00e-09; gap (new ref vs old params under current objective) min +7.75e-15 max +8.14e-11; WORSE 0; evaluation change of the old params (current vs stored R) min -2.92e-08 max +2.98e-10
