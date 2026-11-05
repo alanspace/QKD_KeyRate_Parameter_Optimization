@@ -285,11 +285,14 @@ def main():
                     tail_values=dict(L=tL, n_X=tN, R_ref=tR, cliff=tC, **{m: np.asarray(v) for m, v in tres.items()}))
 
     xcheck = {}
-    for tag in ("", "_tail"):
-        for dpath in sorted(glob.glob(os.path.join(ROOT, "results", f"crosscheck_{preset.name}{tag}_*", "crosscheck.json"))):
+    for tag, want in (("", ref["stamp"]["config_hash"]), ("_tail", (tail or {}).get("reference_config_hash"))):
+        for dpath in sorted(glob.glob(os.path.join(ROOT, "results", f"crosscheck_{preset.name}{tag}_*", "crosscheck.json")),
+                            key=os.path.getmtime):
+            name = os.path.basename(os.path.dirname(dpath))
+            if not tag and name.startswith(f"crosscheck_{preset.name}_tail_"):
+                continue   # the main glob also matches the tail directories
             xc = json.load(open(dpath))
-            if xc["config"]["reference_config_hash"] in (ref["stamp"]["config_hash"],
-                                                       (tail or {}).get("reference_config_hash")):
+            if want is not None and xc["config"]["reference_config_hash"] == want:
                 xcheck["main" if not tag else "tail"] = dict(path=os.path.relpath(dpath, ROOT), **xc["summary"])
 
     summary = dict(stamp=st, config=cfg, backend=backend, regret=table, cliff_edge_main=cliff_main,
