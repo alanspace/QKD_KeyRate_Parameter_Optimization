@@ -159,6 +159,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--preset", required=True)
     pre = get_preset(ap.parse_args().preset)
+    from src.qkd_opt.provenance import power_state
+    pw = power_state()
+    if pw["source"] != "AC":
+        sys.exit(f"timing_benchmark: refusing to run, power source is {pw['source']!r} "
+                 f"({pw['battery_percent']}% {pw['battery_state']}); connect AC power")
     backend = check_x64()
     cfg = dict(script="timing_benchmark.py", preset=pre.name, da_points=[[110, 1e9], [150, 1e9], [190, 1e9],
                                                                          [130, 1e4], [145, 1e4]],

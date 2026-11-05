@@ -53,6 +53,41 @@ def cpu_model():
     return platform.processor()
 
 
+def _run(cmd):
+    try:
+        return subprocess.run(cmd, capture_output=True, text=True, timeout=10).stdout.strip()
+    except Exception:
+        return ""
+
+
+def power_state() -> dict:
+    """AC/battery source, charge, thermal warnings and whether caffeinate is running (macOS; Linux best effort)."""
+    out = dict(source=None, battery_percent=None, battery_state=None, thermal=None, caffeinate_running=None)
+    if sys.platform == "darwin":
+        b = _run(["pmset", "-g", "batt"])
+        if "AC Power" in b:
+            out["source"] = "AC"
+        elif "Battery Power" in b:
+            out["source"] = "battery"
+        import re
+        m = re.search(r"(\d+)%;\s*([a-zA-Z ]+);", b)
+        if m:
+            out["battery_percent"], out["battery_state"] = int(m.group(1)), m.group(2).strip()
+        t = _run(["pmset", "-g", "therm"])
+        out["thermal"] = " | ".join(line.strip() for line in t.splitlines() if line.strip()) or None
+        out["caffeinate_running"] = bool(_run(["pgrep", "-x", "caffeinate"]))
+    else:
+        try:
+            for d in os.listdir("/sys/class/power_supply"):
+                with open(f"/sys/class/power_supply/{d}/type") as fh:
+                    if fh.read().strip() == "Mains":
+                        with open(f"/sys/class/power_supply/{d}/online") as g:
+                            out["source"] = "AC" if g.read().strip() == "1" else "battery"
+        except Exception:
+            pass
+    return out
+
+
 def stamp(config: dict | None = None) -> dict:
     import jax
     import numpy as np
@@ -70,13 +105,15 @@ def stamp(config: dict | None = None) -> dict:
         jax_backend=jax.default_backend(), jax_devices=[str(d) for d in devs],
         x64=bool(jax.config.read("jax_enable_x64")),
         cpu=cpu_model(), machine=platform.machine(), os=platform.platform(), n_cpu=os.cpu_count(),
+        power=power_state(),
     )
 
 
 def stamp_text(st: dict) -> str:
     dirty = "+dirty-src" if st.get("src_uncommitted_changes") else ""
+    pw = st.get("power") or {}
     return (f"git {st['git_commit']}{dirty} | cfg {st['config_hash']} | phys {st['physics_source_hash']} | "
-            f"{st['jax_backend']} {st['cpu']} | jax {st['jax']}")
+            f"{st['jax_backend']} {st['cpu']} | jax {st['jax']} | power {pw.get('source')}")
 
 
 def stamp_figure(fig, st: dict):
