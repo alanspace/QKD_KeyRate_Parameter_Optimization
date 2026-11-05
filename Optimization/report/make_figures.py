@@ -194,7 +194,7 @@ def main():
          "Horizon (largest fiber length with positive key length at the optimum) vs block size for the lim preset "
          "with printed, exact (Fung-Ma-Chau) and max gamma, the legacy preset, the horizons claimed in the earlier "
          "thesis material, and the ~135 km stated by Lim et al. for n_X = 1e4.",
-         f"n_X=1e4 horizon: lim printed {hp} km, lim exact {he} km, paper ~135 km")
+         f"n_X=1e4 horizon: lim printed {hp:.2f} km, lim exact {he:.2f} km, paper ~135 km")
 
     # ---------- 4. parameters vs L ----------
     names = ["mu_1", "mu_2", "P_mu_1", "P_mu_2", "q_x (P_X)"]
@@ -241,8 +241,10 @@ def main():
              "tail reference) and the stored legacy DA/Hessian runs (legacy preset). Orange bands mark cliff_edge "
              "reference points, blue dotted lines branch switches logged by the warm sweep, black dotted lines 1 km pairs of "
              "the dense scan with a normalised parameter change > 0.05 (continuous drift when refined to 0.1 km).",
-             f"branch switches (warm sweep) at n_X={nx:.0e}: " +
-             (", ".join(f"{0.5 * (a + b):.2f} km" for a, b in bev) or "none"))
+             f"branch switches logged by the warm sweep at n_X={nx:.0e} below the horizon ({hzn:.2f} km): " +
+             (", ".join(f"{0.5 * (a + b):.2f} km" for a, b in bev if 0.5 * (a + b) < hzn) or "none") +
+             "; beyond the horizon (objective l/n_X, R <= 0): " +
+             (", ".join(f"{0.5 * (a + b):.2f} km" for a, b in bev if 0.5 * (a + b) >= hzn) or "none"))
 
     # ---------- 5. tail diagnostics ----------
     fig, axes = plt.subplots(3, 6, figsize=(17, 8.2))
