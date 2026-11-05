@@ -17,6 +17,8 @@ Deliberate, documented departures from a literal transcription (all keep the bou
   * if s_{X,1} <= 0 or s_{Z,1} <= 0 the single-photon term contributes nothing (h(phi)=1);
   * phi_X is capped at 1/2 (h is symmetric; phi >= 1/2 yields no single-photon key).
 """
+import functools
+
 import jax
 import jax.numpy as jnp
 from jax import lax
@@ -114,8 +116,8 @@ def _length_given_eps(eps, cnt, n_X, c: Consts, f: Flags):
     return l, aux
 
 
-def _solve_eps(cnt, n_X, c: Consts, f: Flags):
-    """Greatest fixed point of eps = F(eps) := kappa * max(l(eps), 1), differentiable in params.
+def _solve_eps_value(cnt, n_X, c: Consts, f: Flags):
+    """Greatest fixed point of eps = F(eps) := kappa * max(l(eps), 1) (value only).
 
     F is increasing in eps (l grows with eps) and F(kappa n_X) <= kappa n_X (l <= n_X), so
     iterating from eps0 = kappa n_X decreases monotonically towards the greatest fixed point
@@ -124,23 +126,16 @@ def _solve_eps(cnt, n_X, c: Consts, f: Flags):
     root, and a 60-step bisection inside that bracket.
     Note: eps = kappa (l <= 1) is always a fixed point. When the non-trivial root disappears
     (near the horizon) the greatest fixed point jumps to kappa, so R(p) is DISCONTINUOUS there --
-    a property of the eps_sec = kappa * l convention, not a numerical artefact. Both stages run on stop_gradient'ed counts; one implicit-
-    function correction step then restores the exact first derivative
-        d eps / dp = kappa dl/dp / (1 - kappa dl/deps)
-    while leaving the value unchanged at the fixed point.
+    a property of the eps_sec = kappa * l convention, not a numerical artefact.
     """
-    cnt_sg = jax.tree_util.tree_map(lax.stop_gradient, cnt)
-    F = lambda e, cn: c.kappa * jnp.maximum(_length_given_eps(e, cn, n_X, c, f)[0], 1.0)
+    F = lambda e: c.kappa * jnp.maximum(_length_given_eps(e, cnt, n_X, c, f)[0], 1.0)
 
     def it(e, _):
-        return F(e, cnt_sg), None
+        return F(e), None
 
     eps_hi, _ = lax.scan(it, jnp.asarray(c.kappa * n_X, jnp.float64), None, length=f.n_eps_iter)
-    # g(eps) = log F(eps) - log eps. eps = kappa is always a (trivial) root with g >= 0, so a
-    # plain bisection on [kappa, eps_hi] can land on it. Scan a log grid first and bracket the
-    # LARGEST grid point with g >= 0; the greatest root lies in (grid[j], grid[j+1]].
     grid = jnp.linspace(jnp.log(jnp.asarray(c.kappa, jnp.float64)), jnp.log(eps_hi), N_EPS_GRID)
-    g = jax.vmap(lambda le: jnp.log(F(jnp.exp(le), cnt_sg)) - le)(grid)
+    g = jax.vmap(lambda le: jnp.log(F(jnp.exp(le))) - le)(grid)
     j = jnp.max(jnp.where(g >= 0, jnp.arange(N_EPS_GRID), 0))
     log_lo = grid[j]
     log_hi = grid[jnp.minimum(j + 1, N_EPS_GRID - 1)]
@@ -148,14 +143,33 @@ def _solve_eps(cnt, n_X, c: Consts, f: Flags):
     def bis(state, _):
         lo, hi = state
         mid = 0.5 * (lo + hi)
-        ok = F(jnp.exp(mid), cnt_sg) >= jnp.exp(mid)
+        ok = F(jnp.exp(mid)) >= jnp.exp(mid)
         return (jnp.where(ok, mid, lo), jnp.where(ok, hi, mid)), None
 
     (log_lo, log_hi), _ = lax.scan(bis, (log_lo, log_hi), None, length=60)
-    e_star = lax.stop_gradient(jnp.exp(log_lo))
-    # implicit-function correction (value unchanged at the fixed point, exact first derivative)
-    dF = jax.grad(lambda e: F(e, cnt))(e_star)
-    return e_star + (F(e_star, cnt) - e_star) / (1.0 - lax.stop_gradient(dF))
+    return jnp.exp(log_lo)
+
+
+def _F_eps(e, params, L, n_X, c, f):
+    cnt = _counts(params, L, n_X, c, f)
+    return c.kappa * jnp.maximum(_length_given_eps(e, cnt, n_X, c, f)[0], 1.0)
+
+
+@functools.partial(jax.custom_jvp, nondiff_argnums=(4,))
+def _eps_star(params, L, n_X, c, f):
+    """eps_sec = greatest fixed point of kappa * max(l(eps), 1), differentiable to any order via the
+    implicit-function rule  d eps = (dF/dx . dx) / (1 - dF/deps)  (custom_jvp, so higher derivatives
+    are exact, unlike a one-step correction)."""
+    return _solve_eps_value(_counts(params, L, n_X, c, f), n_X, c, f)
+
+
+@_eps_star.defjvp
+def _eps_star_jvp(f, primals, tangents):
+    params, L, n_X, c = primals
+    e = _eps_star(params, L, n_X, c, f)
+    dFde = jax.grad(_F_eps, argnums=0)(e, params, L, n_X, c, f)
+    _, dF = jax.jvp(lambda p_, L_, n_, c_: _F_eps(e, p_, L_, n_, c_, f), primals, tangents)
+    return e, dF / (1.0 - dFde)
 
 
 def key_length(params, L, n_X, c: Consts, f: Flags):
@@ -167,7 +181,7 @@ def key_length(params, L, n_X, c: Consts, f: Flags):
         l, aux = _length_given_eps(eps, cnt, n_X, c, f)
         resid = jnp.asarray(0.0)
     else:
-        eps = _solve_eps(cnt, n_X, c, f)
+        eps = _eps_star(params, L, n_X, c, f)
         l, aux = _length_given_eps(eps, cnt, n_X, c, f)
         resid = jnp.abs(c.kappa * jnp.maximum(l, 1.0) - eps) / eps
     N = cnt["N"]
