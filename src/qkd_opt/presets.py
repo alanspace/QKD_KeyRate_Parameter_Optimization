@@ -12,6 +12,9 @@
   misses all three by far, so eta_ch is treated as a probable typo. Model choices the paper does
   not print are listed in PHYSICS_DIFF.md ("Unprinted model choices").
 * ``lim_literal`` (diagnostic only): identical to ``lim`` but with the printed eta_ch.
+* ``lim_tight`` (diagnostic only): ``lim`` with gamma_mode="exact" -- the Fung-Ma-Chau tail bound
+  (arXiv:0910.0312, Eq. 18/B9) solved exactly for theta with a = eps_sec/21, instead of Lim's closed
+  form gamma. Not a default; see Flags.gamma_mode.
 * ``legacy``: the physics of src/qkd (e_mis = 0.01, p_ap = 0, eps_sec = 1e-10 fixed,
   m_Z = sum of n_X terms, eta_sys in e_k, n^-/m^- clamped at 0), evaluated by
   src/qkd_opt/physics_lim.py with legacy switches. This is tested equal to src/qkd to < 1e-8
@@ -47,6 +50,8 @@ class Flags(NamedTuple):
     afterpulse_in_rate: bool = True   # R_k = D_k (1 + p_ap) used for counts and N
     clamp_minus: bool = False     # clamp n^-, m^- at 0 (legacy behaviour); Lim's formulas do not
     n_eps_iter: int = 8           # monotone fixed-point iterations before log-bisection (eps_sec = kappa * l)
+    gamma_mode: str = "printed"   # gamma in Eq. (5): "printed" (Lim's closed form) | "exact" (Fung-Ma-Chau tail
+                                  # bound solved for theta, a = eps_sec/21) | "max" (max of the two)
 
 
 class Preset(NamedTuple):
@@ -59,6 +64,8 @@ LIM = Preset(name="lim", flags=Flags(), consts=Consts())
 
 LIM_LITERAL = Preset(name="lim_literal", flags=Flags(emis_eta="ch"), consts=Consts())
 
+LIM_TIGHT = Preset(name="lim_tight", flags=Flags(gamma_mode="exact"), consts=Consts())
+
 _LEGACY_FLAGS = Flags(model="lim", emis_eta="sys", mz_mode="nx_legacy", eps_mode="fixed",
                       afterpulse_in_rate=False, clamp_minus=True)
 _LEGACY_CONSTS = Consts(e_mis=0.01, p_ap=0.0, eps_sec=1e-10)
@@ -67,7 +74,7 @@ LEGACY = Preset(name="legacy", flags=_LEGACY_FLAGS, consts=_LEGACY_CONSTS)
 
 LEGACY_SRC = Preset(name="legacy_src", flags=_LEGACY_FLAGS._replace(model="legacy_src"), consts=_LEGACY_CONSTS)
 
-PRESETS = {p.name: p for p in (LIM, LIM_LITERAL, LEGACY, LEGACY_SRC)}
+PRESETS = {p.name: p for p in (LIM, LIM_LITERAL, LIM_TIGHT, LEGACY, LEGACY_SRC)}
 RENAMED = {"lim_exact": "lim_literal"}
 
 
