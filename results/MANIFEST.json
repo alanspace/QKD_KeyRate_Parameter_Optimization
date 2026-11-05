@@ -274,24 +274,6 @@
    "finished": "2026-11-05 22:54:56"
   },
   {
-   "id": "unittest:all",
-   "name": "unittest",
-   "preset": "all",
-   "cmd": "-m unittest discover tests",
-   "returncode": 0,
-   "seconds": 445.0,
-   "log": "results/logs/20261105_225011_unittest_all.log",
-   "outputs": [],
-   "power_at_start": {
-    "source": "AC",
-    "battery_percent": 52,
-    "battery_state": "charging",
-    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
-    "caffeinate_running": true
-   },
-   "finished": "2026-11-05 23:02:21"
-  },
-  {
    "id": "benchmark:lim",
    "name": "benchmark",
    "preset": "lim",
@@ -330,6 +312,62 @@
     "caffeinate_running": true
    },
    "finished": "2026-11-05 23:09:03"
+  },
+  {
+   "id": "unittest:all",
+   "name": "unittest",
+   "preset": "all",
+   "cmd": "-m unittest discover tests",
+   "returncode": 0,
+   "seconds": 431.8,
+   "log": "results/logs/20261105_231436_unittest_all.log",
+   "outputs": [],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 54,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 23:21:48"
+  },
+  {
+   "id": "make_figures:all",
+   "name": "make_figures",
+   "preset": "all",
+   "cmd": "Optimization/report/make_figures.py",
+   "returncode": 0,
+   "seconds": 45.1,
+   "log": "results/logs/20261105_232202_make_figures_all.log",
+   "outputs": [
+    "figures"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 55,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 23:22:48"
+  },
+  {
+   "id": "numbers:all",
+   "name": "numbers",
+   "preset": "all",
+   "cmd": "Optimization/report/make_numbers.py",
+   "returncode": 0,
+   "seconds": 0.1,
+   "log": "results/logs/20261105_232202_numbers_all.log",
+   "outputs": [],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 55,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "finished": "2026-11-05 23:22:48"
   }
  ]
 }

@@ -1,0 +1,58 @@
+{
+ "stamp": {
+  "git_commit": "900d9f88a8",
+  "git_branch": "optimizer-jax-rework",
+  "src_uncommitted_changes": false,
+  "physics_source_hash": "9564691bc5b0",
+  "config_hash": "58c9f38705cd",
+  "jax": "0.9.0",
+  "numpy": "2.4.2",
+  "scipy": "1.17.0",
+  "python": "3.13.3",
+  "jax_backend": "cpu",
+  "jax_devices": [
+   "TFRT_CPU_0"
+  ],
+  "x64": true,
+  "cpu": "Apple M2 Pro",
+  "machine": "arm64",
+  "os": "macOS-15.6-arm64-arm-64bit-Mach-O",
+  "n_cpu": 12,
+  "power": {
+   "source": "AC",
+   "battery_percent": 55,
+   "battery_state": "charging",
+   "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+   "caffeinate_running": true
+  }
+ },
+ "config": {
+  "script": "make_figures.py",
+  "inputs": {
+   "lim": "results/benchmark_lim_0c8f47a1f0_530f6d58460c",
+   "lim_literal": "results/benchmark_lim_literal_dfd7d80292_e98ec9129185",
+   "legacy": "results/benchmark_legacy_dfd7d80292_9eccc560dfd9"
+  },
+  "references": {
+   "lim": "5671a043fc90",
+   "lim_literal": "6d30cd042974",
+   "legacy": "57bd0e7de31c"
+  },
+  "timing": "a412ba8ec55e",
+  "physics_diff": "dba94a5ecdc3",
+  "gamma_report": "5d1dbbb3d1df",
+  "dense_scan": "91f81e1652a5"
+ },
+ "figures": [
+  "fig1_keyrate.png",
+  "fig2_presets.png",
+  "fig3_horizon.png",
+  "fig4_params_nx1e4.png",
+  "fig4_params_nx1e9.png",
+  "fig5_tail.png",
+  "fig6_regret_cdf.png",
+  "fig7_ablation.png",
+  "fig8_timing.png",
+  "fig9_gamma.png"
+ ]
+}

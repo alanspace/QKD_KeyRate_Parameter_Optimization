@@ -325,3 +325,151 @@ Cross-check (independent SLSQP):
 Local-optimality perturbation check (lim tail, last 12 R>0 points per nX = 72 points, 1e5 perturbations each,
   scales 1e-6..1e-1): max relative improvement 4.86e-13; points improving by > tol_ref: 0. Wall 25 s.
 PASS (no worse point under the same objective, 0 reference weaknesses, no horizon change).
+
+5. Tasks C, D, E (preset lim, expm1 evaluation; all on AC; via run_all, results/MANIFEST.json)
+------------------------------------------------------------------------------------------
+5C cliff test (results/cliff_test_abf88e5525_bf6fb332afdd, 133 s):
+  nX=1e4, L=128..131 km step 0.25. Method 1 = greatest-fixed-point objective; method 2 = outer fixed-eps loop.
+    Method 1 gives larger l at every grid point with l > 0 under both methods
+      (e.g. 128.00 km: l 120.15 vs 89.38; 129.75 km: 64.53 vs 24.65).
+    Method 2 did not converge within 80 outer iterations at 5 of 13 points (128.00, 128.50, 128.75, 129.25,
+      129.75 km).
+    Horizon method 1: 130.4458 km. Method 2: 129.8708 km. |difference| 0.575 km -> differs by > 0.5 km: YES.
+  nX=1e9, L=182..184.5 km step 0.25: all method-2 runs converged; method 1 again gives larger l.
+    Horizon method 1: 184.1641 km. Method 2: 184.1448 km. |difference| 0.019 km -> no.
+  Default unchanged (as instructed). The method-1 horizon agrees with the reference horizon
+  (130.4411 / 184.1604 km) to 0.005 km.
+5D dense scan (results/dense_scan_abf88e5525_91f81e1652a5, 759 s, run in parallel with 5E):
+  lim, L 100 km .. horizon+1 at 1 km, all six nX, 2^17 Sobol, top-64, seeds 2 3.
+  Jumps > 0.05 (normalised) per nX: 1e4 0, 1e5 3, 1e6 5, 1e7 5, 1e8 5, 1e9 5. All lie in the last ~5 km
+    before each horizon.
+  The script's R-continuity classification marks most of them "R discontinuous / no branch crossing".
+    That classification is not reliable near the horizon: log R -> -inf, and the u-space persistence test
+    (0.02) is smaller than the per-km drift of a continuous optimum.
+  Refinement (Optimization/analysis/jump_refine.py, 0.1 km warm continuation + cold 2^14 per step):
+    for every jump below the horizon the largest 0.1 km step is 11-12 % of the 1 km jump, i.e. continuous
+    drift. The pairs that cross the horizon reach 16-54 %.
+    -> lim has NO branch switch between 100 km and the horizon for any nX.
+  Legacy comparison at nX=1e9 (dense scan 140..160 km, legacy preset): one jump at 154->155 km, classified
+    branch crossing with R continuous.
+    Stored legacy runs, same window: legacy_Hessian 148.37->148.87 (jump 0.230); legacy_DA 5 jumps
+    (150.9..157.4); legacy_Hessian_FoR 5 jumps (148.4..151.9).
+  The 148-155 km legacy events have no counterpart in lim.
+5E gamma report (results/gamma_report_abf88e5525_5d1dbbb3d1df, 3778 s):
+  Horizons (km), nX 1e4 / 1e5 / 1e6 / 1e7 / 1e8 / 1e9:
+    printed 130.44 / 160.61 / 172.62 / 178.66 / 182.09 / 184.16
+    exact   132.35 / 161.31 / 172.83 / 178.73 / 182.11 / 184.17
+    max     identical to printed: printed gamma >= exact theta at every point checked
+  R(0,1e9): printed 9.2025e-3, exact 9.2252e-3.
+  R(100,1e9)/R(100,1e7): printed 1.7911, exact 1.7687.
+  T3 (horizon nX=1e4, paper ~135 km): printed 130.44 (-3 %), exact 132.35 (-2 %).
+  T3b (R = 1e-7 crossing): printed 118.78 km, exact 121.07 km.
+  Printed gamma / exact theta at the 105 lim reference operating points: min 1.283, median 1.413, max 1.442.
+physics_diff (results/physics_diff_a419cc7422_dba94a5ecdc3, 522 s; chain now has the expm1 stage):
+  Targets: lim T1 9.2025e-3, T2 1.791, T3 horizon 130.44 km, T3b 118.78 km, all ok at 15 %.
+    lim_literal: MISMATCH on all.
+    legacy: ok on all (148.17 km horizon).
+  The expm1 stage changes no chain horizon.
+PASS (stop conditions: none. The 0.575 km difference in 5C is a requested comparison between two methods,
+  not a change of a previously reported horizon.)
+
+6. Benchmark and timing (all on AC)
+-----------------------------------
+Benchmarks:
+  results/benchmark_lim_0c8f47a1f0_530f6d58460c (207 s; rerun after fixing the cross-check matching bug)
+  results/benchmark_lim_literal_dfd7d80292_e98ec9129185 (220 s)
+  results/benchmark_legacy_dfd7d80292_9eccc560dfd9 (65 s)
+  cliff_edge points excluded, noise_floor included.
+  lim bulk (103 points):
+    new_cold:     100 % within 1e-6; max 9.1e-14
+    new_warm:     100 %; max 1.0e-13
+    lookup table: 81.6 / 96.1 / 96.1 / 98.1 % within 1e-6 / 1e-4 / 1e-3 / 1e-2;
+                  median 1.36e-9, p99 1.27e-2, max 2.17e-2
+  lim tail (175 points):
+    new_cold:     100 %; max 6.5e-13
+    new_warm:     100 %; max 9.5e-13
+    lookup table: 24.6 / 68.0 / 82.3 / 93.7 %; median 1.51e-5, p99 18.2, max 23.1
+  lim horizons, new_warm vs reference: within 0.008 km at all nX.
+  lim_literal tail (146 points): new_cold 97.9 % within 1e-6 (max 8.7e-2); new_warm 98.6 % (max 5.3e-2).
+    See open issues.
+  legacy bulk (109 points):
+    new_cold/new_warm 100 %
+    old DA 3.7 %
+    old Hessian 96.3 %
+    old Hessian_FoR 81.7 %
+  legacy tail (142 points):
+    new_warm 100 %
+    new_cold 99.3 % (1 point max 0.114)
+    old DA 0 %
+    old Hessian 95.8 %
+    old Hessian_FoR 0 %
+  Benchmark timing (lim): cold batched 40.0 ms/point (compile 38.4 s); warm sweep 4.27 ms/point
+    (compile 80.9 s).
+Timing (results/timing_lim_0c8f47a1f0_a412ba8ec55e, 180 s), run last on an idle machine:
+  Before: 0 other Python jobs; pmset AC Power; no thermal or performance warning; caffeinate running.
+  The stamp records power AC, 52 % charging.
+  Old DA algorithm, archived settings on the lim objective: 5.8 / 11.7 / 17.6 s per point
+    (110 / 150 / 190 km, nX=1e9), 8.8 / 11.7 s (130 / 145 km, nX=1e4); 116-118 us per evaluation.
+  Old L-BFGS-B branch: 1-10 ms per point.
+  JAX warm, batch 1, L=100 km nX=1e9:
+    device-resident median 1199 us (p90 1322)
+    end-to-end 1466 us
+  JAX warm, batch 1, tail (5 km below each horizon, 6 nX):
+    device-resident medians 1654-2554 us
+    end-to-end 2024-2903 us
+    3-5 Newton iterations
+  Lookup table: device 7.7 us, end-to-end 10.0 us.
+  NN: not measured.
+PASS
+
+7. Figures (results/figures/900d9f88a8_58c9f38705cd/)
+------------------------------------------------------------
+Nine figures (fig4 has two n_X panels -> 10 PNG files, 200 dpi) plus FIGURES.md (caption and read-off
+number each) and figures.json. Every PNG was opened and checked. Fixes made, each followed by
+regenerating and re-checking:
+  fig2: legend covered the lim_literal curve in the n_X=1e4 panel -> moved to the upper right.
+  fig4: x-range cut off the legacy runs at lim horizon + 3 km -> extended to all series.
+        Dense-scan lines relabelled ">0.05 change per km (continuous at 0.1 km)".
+  fig5: showed only a 1e-6 line -> both tiers drawn (1e-3 cliff_edge, 1e-6 noise_floor; noise_floor points
+        coloured); legend overlapped the stamp -> moved.
+  fig6: legend covered the new-optimizer curves -> moved below the panels; then cleared the stamp.
+  fig8: tail warm timing row was missing -> added.
+  FIGURES.md read-offs:
+    fig4 now separates branch switches below the horizon (none for 1e4 and 1e9) from those beyond it
+      (objective l/n_X).
+    fig3 horizons rounded.
+  fig1, fig3, fig7, fig9: no problems found.
+PASS
+
+8. Finish
+---------
+  python -m unittest discover tests (via run_all unittest:all): Ran 34 tests in 423 s, OK.
+  python Optimization/report/make_numbers.py (via run_all numbers:all):
+    wrote 127 values to result_report/generated_numbers.tex and results/NUMBERS.md from results/MANIFEST.json.
+    Report prose not edited.
+  apply_report_revision.py NOT applied (not requested this round).
+PASS
+
+Open issues
+-----------
+1. Silent small parameter step in the lim warm sweep at nX=1e9, 77.694 -> 78.195 km.
+   mu1 0.43918 -> 0.43850 and P_mu1 0.75799 -> 0.75578 (about 0.002 normalised); R smooth.
+   No event was logged: the warm local solve moved between two global checks.
+   "Log every branch switch" is therefore not strictly met for small steps that need no global check.
+   Proposed: log a "drift_step" event when |dp_norm|_inf > 1e-3 between consecutive warm solves.
+2. lim_literal tail: new_cold / new_warm miss the reference by up to 8.7e-2 / 5.3e-2 at 3 / 2 of 146 tail
+   points (diagnostic preset; points not yet listed or investigated).
+3. legacy tail: new_cold has one point with regret 0.114.
+   The legacy tail reference was built before tol_ref / continuation / the expm1 work (legacy is unchanged by
+   expm1) and was not rebuilt this round.
+4. 5C: the outer fixed-eps loop does not converge at 5/13 points and gives a 0.575 km shorter horizon at
+   nX=1e4. Method 1 (default) gives larger l at every point and matches the reference.
+5. dense_scan.py's R-continuity / persistence classification is unreliable near the horizon; jump_refine.py
+   should replace or complement it.
+6. analyses.py (sensitivity, robustness, extrapolation) was not re-run after the expm1 fix.
+   make_numbers therefore has no Drift* macros, and the report's regenerated-results section would not
+   compile until it is re-run.
+7. The legacy references (main, tail) were not rebuilt with the continuation candidates; their tol_ref is
+   1e-9 / 4.3e-7.
+8. timing_benchmark prints "NN surrogate not measured (torch not installed)". Torch is installed in
+   .venv-nn; the NN was not retrained, so there is still nothing to time.
