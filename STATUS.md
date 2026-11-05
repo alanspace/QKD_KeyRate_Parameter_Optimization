@@ -75,3 +75,48 @@ Archive (commit after 44d6067):
       SLSQP runs not reporting success, 0 timeouts.
   The lim tail cross-check was killed mid-run and produced no output.
 Status: PARTIAL. Steps 1-8 have not started; they need AC power.
+
+Power check before continuing (2026-11-05 17:54 CET)
+------------------------------------------------------
+pmset -g batt: Now drawing from 'Battery Power'  -InternalBattery-0 (id=23068771) 79%; discharging; 6:07 remaining present: true 
+pmset -g therm: no thermal warning level recorded; no performance warning level recorded.
+caffeinate: 72566 caffeinate -dims
+NOTE: still on battery (discharging). Proceeding with the light steps 1 and 3; power is re-checked before the heavy steps.
+
+1. Merge e-gamma
+----------------
+Ran:
+  git merge --no-ff e-gamma -> 7778967 (eps_sec custom_jvp, Flags.gamma_mode, preset lim_tight, gamma tests)
+  Provenance stamp extended with power source / battery / thermal / caffeinate status; timing_benchmark.py
+    exits unless on AC (commit bbbd12b). Verified: it refused to run with "power source is 'battery'
+    (78% discharging)".
+  python -m unittest discover tests: Ran 27 tests in 619 s, OK.
+  Value check (Optimization/analysis/eps_fix_value_check.py): preset lim evaluated with the pre-fix commit
+    c3ed7ce (detached worktree) and the merged code, at 50 random interior points and 10 near-horizon
+    points (last R>0 points of the archived pre-fix lim tail reference).
+    Max relative difference:
+      l   3.33e-13 (interior 8.0e-16, near-horizon 3.3e-13)
+      R   3.33e-13
+      eps 4.03e-13
+    The maximum is at L=130.326 km, nX=1e4 in all three. Requirement 1e-10: met.
+PASS
+
+3. Independent physics test
+---------------------------
+New file tests/test_independent_physics.py. It is a float64 + Decimal implementation of Eqs. (1)-(5),
+written from the paper text and the unprinted choices in PHYSICS_DIFF.md; it does not import physics_lim.
+It uses the printed gamma with log 2 = ln 2.
+Ran:
+  python -m unittest tests.test_independent_physics: 4 tests OK
+    - fixed eps_sec = 1e-10, lim switches (emis_eta sys, gamma printed): 30 random interior parameter
+      sets x L {0,50,100,140} x nX {1e4,1e6,1e9} = 360 evaluations.
+      Max relative difference in l: 4.81e-13 (requirement 1e-10).
+    - eps = kappa*max(l,1) fixed point: eps from the default lim preset, l from the independent code.
+      80 points, max residual 2.21e-12.
+    - error budget (supplementary, 80-digit Decimal): 2[2a1+a2+a3]+nu_bar+10eps1+2eps2 = 21 eps.
+      6 log2(21/eps_sec) = 6 log2(1/eps). The key-length constant from beta=(a2 a3 nu_bar)^2 equals
+      Eq. (1)'s constant. All exact to 1e-60.
+    - the float64 independent implementation vs a 50-digit Decimal evaluation of the same formulas:
+      10 points, within 1e-10.
+  python -m unittest discover tests: Ran 31 tests in 623 s, OK.
+PASS
