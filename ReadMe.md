@@ -66,6 +66,43 @@ Optimizing parameters is crucial for maximizing the performance of Quantum Key D
         pip install jax[cuda12]
         ```
 
+## Optimizer rework: `src/qkd_opt` (JAX-native, branch `optimizer-jax-rework`)
+
+> **Audit notice.** The numeric claims in the Abstract, Key Results and Benchmarks sections of this
+> README, and in `result_report/` and `assets/Optimization_Speedup_Math.*`, are audited in
+> [`CLAIMS.md`](CLAIMS.md). Use the status shown there. The only numbers to rely on are those produced
+> by the scripts below, whose outputs are in `results/` and carry the git commit and config hash.
+
+* **Physics presets** (`src/qkd_opt/presets.py`). Every result is labelled with one:
+  * `lim_exact`: Lim et al. 2014 finite-key decoy-state bounds, transcribed literally.
+  * `legacy`: the unmodified `src/qkd` model.
+  * Differences between the two are listed in [`PHYSICS_DIFF.md`](PHYSICS_DIFF.md).
+* **Optimizer** (`src/qkd_opt/optimize.py`):
+  * Constraints hold by construction through an unconstrained reparameterisation.
+  * A Sobol global stage (jit + vmap) is followed by a batched exact-Hessian Newton solver in float64.
+  * Continuation along L uses periodic global branch checks, logs every branch switch, and backfills after a switch.
+  * The horizon is defined as l > 0 and found by bisection.
+  * Every point carries a status flag and a certificate: gradient norm, Hessian eigenvalues, active bounds, branch id.
+  * It runs on CPU or GPU with no code change. On Apple silicon use `JAX_PLATFORMS=cpu`, because Metal has no float64.
+
+```python
+from src.qkd_opt import get_preset
+from src.qkd_opt.optimize import optimize, optimize_batch, optimize_sweep
+res = optimize(100.0, 1e9, get_preset("lim_exact"))      # one point, cold start
+```
+
+| step | command | output |
+|---|---|---|
+| trusted reference | `python Optimization/reference/build_reference.py --preset legacy` (or `lim_exact`) | `Optimization/reference/reference_<preset>.json` |
+| benchmark | `python Optimization/benchmark/run_benchmark.py --preset legacy` | `results/benchmark_<preset>_<commit>_<cfg>/RESULTS.md` + figures |
+| timing | `python Optimization/benchmark/timing_benchmark.py` | `results/timing_<commit>_<cfg>/TIMING.md` |
+| analyses | `python Optimization/analysis/analyses.py --preset legacy` | `results/analyses_<preset>_<commit>_<cfg>/ANALYSES.md` |
+| physics diff and paper targets | `python Optimization/analysis/physics_diff.py` | `results/physics_diff_<commit>_<cfg>/PHYSICS_DIFF_TABLES.md` |
+| tests | `python -m unittest discover tests` | |
+
+The previous optimizer variants are archived, unmodified, in `Optimization/archive/jax_variants_2026-02/`.
+See `REVIEW.md` for why.
+
 ## Usage: Optimization Pipeline (New Scripts)
 
 For production-grade data generation and benchmarking, use the Python scripts in `Optimization/run_scripts/`.

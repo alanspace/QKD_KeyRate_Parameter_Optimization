@@ -1,0 +1,180 @@
+{
+ "stamp": {
+  "git_commit": "76155eb48a",
+  "git_branch": "optimizer-jax-rework",
+  "src_uncommitted_changes": true,
+  "physics_source_hash": "e6edcf3d1d1d",
+  "config_hash": "b1cac5b411b3",
+  "jax": "0.9.0",
+  "numpy": "2.4.2",
+  "scipy": "1.17.0",
+  "python": "3.13.3",
+  "jax_backend": "cpu",
+  "jax_devices": [
+   "TFRT_CPU_0"
+  ],
+  "x64": true,
+  "cpu": "Apple M2 Pro",
+  "machine": "arm64",
+  "os": "macOS-15.6-arm64-arm-64bit-Mach-O",
+  "n_cpu": 12
+ },
+ "config": {
+  "script": "timing_benchmark.py",
+  "preset": "legacy",
+  "da_points": [
+   [
+    110,
+    1000000000.0
+   ],
+   [
+    150,
+    1000000000.0
+   ],
+   [
+    190,
+    1000000000.0
+   ],
+   [
+    130,
+    10000.0
+   ],
+   [
+    145,
+    10000.0
+   ]
+  ],
+  "lbfgsb_points": [
+   [
+    0,
+    1000000000.0
+   ],
+   [
+    50,
+    1000000000.0
+   ],
+   [
+    100,
+    1000000000.0
+   ],
+   [
+    50,
+    10000.0
+   ]
+  ]
+ },
+ "backend": "cpu",
+ "legacy_lbfgsb_branch": [
+  {
+   "L": 0.0,
+   "n_X": 1000000000.0,
+   "seconds": 0.002477709000231698,
+   "nfev": 19,
+   "R": 0.01089965182780633
+  },
+  {
+   "L": 50.0,
+   "n_X": 1000000000.0,
+   "seconds": 0.0008407080022152513,
+   "nfev": 10,
+   "R": 0.0010522205118242529
+  },
+  {
+   "L": 100.0,
+   "n_X": 1000000000.0,
+   "seconds": 0.0006764169993402902,
+   "nfev": 8,
+   "R": 9.87662254797524e-05
+  },
+  {
+   "L": 50.0,
+   "n_X": 10000.0,
+   "seconds": 0.00040845799958333373,
+   "nfev": 5,
+   "R": -3.523901142542572e-05
+  }
+ ],
+ "jax_warm_batch1": {
+  "steady_device_us": {
+   "median": 297.396,
+   "p90": 333.31699999999995,
+   "n": 200
+  },
+  "end_to_end_us": {
+   "median": 578.1044999999999,
+   "p90": 685.0042000000001,
+   "n": 50
+  },
+  "newton_iterations": 2,
+  "point": {
+   "L_from": 99.5,
+   "L": 100.0,
+   "n_X": 1000000000.0
+  }
+ },
+ "lookup_table_batch1": {
+  "steady_device_us": {
+   "median": 8.25,
+   "p90": 8.875,
+   "n": 2000
+  },
+  "end_to_end_us": {
+   "median": 10.708,
+   "p90": 10.917,
+   "n": 2000
+  },
+  "table_shape": [
+   6,
+   81,
+   5
+  ]
+ },
+ "legacy_DA": [
+  {
+   "L": 110.0,
+   "n_X": 1000000000.0,
+   "maxiter": 5000,
+   "seconds": 3.278430667000066,
+   "nfev": 50005,
+   "R": 5.9858992738702294e-05,
+   "us_per_eval": 65.5620571342879
+  },
+  {
+   "L": 150.0,
+   "n_X": 1000000000.0,
+   "maxiter": 10000,
+   "seconds": 6.689011875001597,
+   "nfev": 100009,
+   "R": 5.737923448053806e-06,
+   "us_per_eval": 66.88409918108968
+  },
+  {
+   "L": 190.0,
+   "n_X": 1000000000.0,
+   "maxiter": 15000,
+   "seconds": 9.886862916002428,
+   "nfev": 150013,
+   "R": 7.223437986281775e-10,
+   "us_per_eval": 65.90670752536398
+  },
+  {
+   "L": 130.0,
+   "n_X": 10000.0,
+   "maxiter": 7500,
+   "seconds": 5.020234208001057,
+   "nfev": 75007,
+   "R": 1.6667483418707364e-07,
+   "us_per_eval": 66.93020928714729
+  },
+  {
+   "L": 145.0,
+   "n_X": 10000.0,
+   "maxiter": 10000,
+   "seconds": 6.556668249999348,
+   "nfev": 100009,
+   "R": 2.0419765519020743e-09,
+   "us_per_eval": 65.56078202961082
+  }
+ ],
+ "nn_surrogate": "not measured: torch / scikit-learn not installed in this environment"
+}
