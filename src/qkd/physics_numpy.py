@@ -89,7 +89,7 @@ def calculate_tau_n(n, mu_k_values, p_mu_k_values):
     return np.sum(tau_values)
 
 def calculate_S_0(tau_0, mu_2, mu_3, n_minus_mu_3, n_plus_mu_2):
-    result = tau_0 * (mu_2 * n_minus_mu_3 - mu_3 * n_plus_mu_2) / (mu_2 - mu_3)
+    result = tau_0 * (mu_2 * n_minus_mu_3 - mu_3 * n_plus_mu_2) / (mu_2 - mu_3 + 1e-15)
     return np.maximum(result, 0)
 
 def calculate_S_1(tau_1, mu_1, mu_2, mu_3, n_minus_mu_2, n_plus_mu_3, n_plus_mu_1, s_0, tau_0):
@@ -138,9 +138,10 @@ def calculate_gamma(a, b, c, d):
     c = np.atleast_1d(c)
     d = np.atleast_1d(d)
     
-    term1 = (c + d) * (1 - b) * b / (c * d * np.log(2))
+    term1 = (c + d) * (1 - b) * b / (c * d * np.log(2) + 1e-15)
     # Avoid division by zero in log2 argument safety
-    safe_arg = (c + d) / (c * d * (1 - b) * b) * (21**2 / a**2)
+    denominator_safe = (c * d * (1 - b) * b) + 1e-15
+    safe_arg = (c + d) / denominator_safe * (21**2 / a**2)
     safe_arg = np.maximum(safe_arg, 1e-20)
     term2 = np.log2(safe_arg)
     
@@ -166,7 +167,7 @@ def calculate_gamma(a, b, c, d):
     return false_val
 
 def calculate_Phi(v_Z_1, s_Z_1, gamma_result):
-    result = v_Z_1 / s_Z_1 + gamma_result
+    result = v_Z_1 / (s_Z_1 + 1e-15) + gamma_result
     return np.minimum(result, 0.5)
 
 def calculate_LastTwoTerm(epsilon_sec, epsilon_cor):

@@ -160,7 +160,7 @@ def calculate_S_0(tau_0, mu_2, mu_3, n_minus_mu_3, n_plus_mu_2):
     """
     Calculate S_0 for the basis (X or Z).
     """
-    result = tau_0 * (mu_2 * n_minus_mu_3 - mu_3 * n_plus_mu_2) / (mu_2 - mu_3)
+    result = tau_0 * (mu_2 * n_minus_mu_3 - mu_3 * n_plus_mu_2) / (mu_2 - mu_3 + 1e-15)
 
     return jnp.maximum(result, 0)
 
@@ -240,10 +240,10 @@ def calculate_gamma(a, b, c, d):
     b_safe = jnp.where(condition, 0.5, b)
     b_safe = jnp.clip(b_safe, 1e-6, 1.0 - 1e-6)
     
-    denom_log = c_safe * d_safe * jnp.log(2)
+    denom_log = c_safe * d_safe * jnp.log(2) + 1e-15
     term1 = (c_safe + d_safe) * (1 - b_safe) * b_safe / denom_log
     
-    denom = c_safe * d_safe * (1 - b_safe) * b_safe
+    denom = c_safe * d_safe * (1 - b_safe) * b_safe + 1e-15
     term2 = jnp.log2(((c_safe + d_safe) / denom) * (21**2 / a**2))
     
     inner = term1 * term2
@@ -264,7 +264,7 @@ def calculate_Phi(v_Z_1, s_Z_1, gamma_result):
     
     # If s is effectively 0, term should likely be capped or large
     # But to avoid gradient Inf, we bound the division
-    term1 = v_Z_1 / s_safe
+    term1 = v_Z_1 / (s_safe + 1e-15)
     
     # Additional safety: clip term1 
     term1 = jnp.clip(term1, -10.0, 10.0) 
