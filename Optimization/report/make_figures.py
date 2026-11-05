@@ -284,9 +284,10 @@ def main():
     axes[0, 0].plot([], [], color=P_COL["lim"], label="reference horizon")
     axes[0, 0].plot([], [], color="#e34948", ls="--", label="1e-3 (cliff_edge) threshold")
     axes[0, 0].plot([], [], color="#e34948", ls=":", label="1e-6 (noise_floor) threshold")
-    fig.legend(*axes[0, 0].get_legend_handles_labels(), loc="lower center", ncol=6, fontsize=8)
+    fig.legend(*axes[0, 0].get_legend_handles_labels(), loc="lower center", ncol=6, fontsize=8,
+               bbox_to_anchor=(0.5, 0.025))
     fig.suptitle("Tail diagnostics, preset lim: last 15 km before the horizon (dense tail reference, seeds 2 3)")
-    fig.tight_layout(rect=(0, 0.05, 1, 0.96))
+    fig.tight_layout(rect=(0, 0.08, 1, 0.96))
     ncl = int(rt["cliff"].sum())
     save(fig, "fig5_tail.png",
          "Key rate (log), key length l (linear) and the certificate gradient norm in the last 15 km before the horizon "
