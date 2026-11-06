@@ -19,6 +19,7 @@ Usage: .venv/bin/python qml/certify.py --pilot [--labels FILE]
 """
 import argparse
 import glob
+import json
 import os
 import sys
 import time
@@ -181,18 +182,232 @@ def pilot(d, path):
     print(f"[certify pilot] wrote {os.path.relpath(od, ROOT)}", flush=True)
 
 
+# ---------------------------------------------------------------- Phase 4
+THRESH = (1e-6, 1e-4, 1e-3, 1e-2)
+
+
+def metrics(r, u_err=None, iters=None):
+    r = np.asarray(r, np.float64)
+    if r.size == 0:
+        return dict(n=0)
+    out = dict(n=int(r.size), median=float(np.median(r)), p99=float(np.percentile(r, 99)), max=float(np.max(r)),
+               **{f"pct_le_{t:g}": float(100 * np.mean(r <= t)) for t in THRESH},
+               pct_no_key=float(100 * np.mean(r >= 1)))
+    if u_err is not None:
+        out.update(u_err_median=float(np.median(u_err)), u_err_max=float(np.max(u_err)))
+    if iters is not None:
+        out.update(iters_mean=float(np.mean(iters)))
+    return out
+
+
+def groups(d):
+    """Named boolean masks over all label points (PREREGISTRATION section 4, Amendment 2, supplementary score)."""
+    sc, xo = d["scored"], d["in_crossover"]
+    agg = sc & ~xo
+    g = {}
+    for rg in ("bulk", "tail"):
+        reg = d["region"] == rg
+        g[f"test_{rg}"] = agg & (d["split"] == "test") & reg
+        g[f"ref_{rg}"] = agg & (d["split"] == "ref") & reg
+        for nx in C.HELDOUT_NX:
+            g[f"heldout_{nx:.0e}_{rg}"] = agg & (d["split"] == "heldout") & (d["n_X"] == nx) & reg
+        for nx in C.EXTRAP_NX:
+            g[f"extrap_{nx:.0e}_{rg}"] = agg & (d["split"] == "extrap") & (d["n_X"] == nx) & reg
+        # supplementary (owner request after the cliff_edge diagnosis): ref points INCLUDING the reference cliff_edge
+        g[f"supp_ref_incl_cliff_{rg}"] = (d["split"] == "ref") & (d["R_ref"] > 0) & ~xo & reg
+    ev = np.isin(d["split"], ["test", "ref", "heldout", "extrap"])
+    g["crossover_windows"] = sc & xo & ev
+    g["drift_window_listed"] = sc & d["in_drift"] & ev
+    return g
+
+
+def eval_union(d):
+    g = groups(d)
+    m = np.zeros(len(d["L"]), bool)
+    for v in g.values():
+        m |= v
+    return m
+
+
+def latest(pattern):
+    fs = sorted(glob.glob(os.path.join(C.RESULTS, pattern)), key=os.path.getmtime)
+    if not fs:
+        sys.exit(f"no {pattern}")
+    return fs[-1]
+
+
+def cmd_select(d, path):
+    from src.qkd_opt.provenance import stamp, to_jsonable
+    f = latest("qml_tune_*/predictions_val.npz")
+    P = dict(np.load(f))
+    meta = json.load(open(os.path.join(os.path.dirname(f), "tune.json")))
+    idx = P.pop("idx")
+    keep = d["scored"][idx] & ~d["in_crossover"][idx]
+    cfg = dict(script="qml/certify.py --select", tune=os.path.relpath(f, ROOT), labels=os.path.basename(path),
+               criterion="median validation regret, bulk and tail pooled, crossover windows excluded; "
+                         "ties broken by fewer parameters")
+    rows = {}
+    for key, u in P.items():
+        c = certify(d, idx[keep], u[keep])
+        fam, ci = key.split("__")
+        npar = next(r["n_params"] for r in meta["runs"] if r["key"] == f"{fam}|{ci}")
+        rows[key] = dict(family=fam, config_index=int(ci), n_params=npar, **metrics(c["regret"], c["u_err"]))
+        print(f"[select] {key}: median {rows[key]['median']:.3e} within1e-6 {rows[key]['pct_le_1e-06']:.1f}%", flush=True)
+    selected = {}
+    for fam in ("PQC-full", "PQC-product", "NN", "RFF-ridge"):
+        cand = [r for r in rows.values() if r["family"] == fam]
+        best = min(cand, key=lambda r: (r["median"], r["n_params"]))
+        selected[fam] = best["config_index"]
+    od = C.out_dir("select", cfg)
+    C.write_json(os.path.join(od, "selection.json"), to_jsonable(dict(stamp=stamp(cfg), config=cfg, val=rows,
+                                                                        selected=selected)))
+    print(f"[select] selected {selected}; wrote {os.path.relpath(od, ROOT)}", flush=True)
+
+
+def neighbours(d, idx):
+    """Scenario (ii) start: TRAIN n_X -> nearest lower dense training node; other n_X -> nearest lower lattice label."""
+    nb = np.full(len(idx), -1)
+    for nx in np.unique(d["n_X"][idx]):
+        if np.isin(nx, [10.0 ** e for e in C.TRAIN_LOG10NX]):
+            pool = np.where((d["n_X"] == nx) & (d["split"] == "train") & d["scored"])[0]
+        else:
+            pool = np.where((d["n_X"] == nx) & d["on_lattice"] & (d["R"] > 0))[0]
+        pool = pool[np.argsort(d["L"][pool])]
+        sel = np.where(d["n_X"][idx] == nx)[0]
+        j = np.searchsorted(d["L"][pool], d["L"][idx[sel]], side="left") - 1
+        nb[sel] = np.where(j >= 0, pool[np.clip(j, 0, None)], -1)
+    return nb
+
+
+def horizon_errors(d, R_all, idxq):
+    out = {}
+    for nx in np.unique(d["n_X"]):
+        m = (d["n_X"][idxq] == nx) & d["on_lattice"][idxq]
+        if not m.any():
+            continue
+        L, R = d["L"][idxq][m], R_all[m]
+        h = float(d["horizon_label"][idxq][m][0])
+        ok = np.isfinite(R)
+        pos = L[ok & (R > 0)]
+        out[f"{nx:.4g}"] = dict(h_label=h, h_pred=float(pos.max()) if pos.size else None,
+                                err_km=float(pos.max() - h) if pos.size else None,
+                                capped_at_grid_end=bool(pos.size and pos.max() >= L[ok].max()))
+    return out
+
+
+def cmd_final(d, path, skip_baselines=False):
+    from src.qkd_opt.provenance import stamp, to_jsonable
+    f = latest("qml_final_*/predictions_query.npz")
+    P = dict(np.load(f))
+    idxq = P.pop("idx")
+    pos_in_q = {int(i): k for k, i in enumerate(idxq)}
+    ev_all = eval_union(d)
+    ev = np.where(ev_all)[0]
+    smoke = int(os.environ.get("QML_SMOKE_EVAL", 0))   # smoke runs only: subsample evaluation points (recorded in cfg)
+    if smoke:
+        ev = np.sort(np.random.default_rng(0).choice(ev, smoke, replace=False))
+    assert all(int(i) in pos_in_q for i in ev), "an evaluation point is missing from the query set"
+    evq = np.array([pos_in_q[int(i)] for i in ev])
+    G = groups(d)
+    cfg = dict(script="qml/certify.py --final", predictions=os.path.relpath(f, ROOT), labels=os.path.basename(path),
+               n_eval=int(ev.size), hybrid_k=[1, 2, 3], cold="optimize_batch 2^12 Sobol top-8 seed 7 (batched)",
+               warm="warm_solve max_iter 200 from neighbours()", smoke_eval=smoke)
+    C.require_ac("certify --final")
+    res = dict(stamp=stamp(cfg), config=cfg, keys={}, baselines={}, timing={})
+    perpoint = {"ev_idx": ev}
+    for key, uq in P.items():
+        var, model, seed = key.split("__")
+        ok = np.all(np.isfinite(uq[evq]), axis=1)
+        e_idx, u_e = ev[ok], uq[evq][ok]
+        c = certify(d, e_idx, u_e)
+        reg = np.full(ev.size, np.nan); reg[ok] = c["regret"]
+        uer = np.full(ev.size, np.nan); uer[ok] = c["u_err"]
+        hk = {}
+        for k in (1, 2, 3):
+            h = hybrid(d, e_idx, u_e, k)
+            rk = np.full(ev.size, np.nan); rk[ok] = h["regret"]
+            it = np.full(ev.size, np.nan); it[ok] = h["iters"]
+            hk[k] = (rk, it)
+            perpoint[f"{key}__k{k}"] = rk
+        perpoint[f"{key}__k0"] = reg
+        # horizon: R at every query lattice point
+        qok = np.all(np.isfinite(uq), axis=1)
+        Rq = np.full(len(idxq), np.nan)
+        Rq[qok], _ = R_at(theta_of(uq[qok]), d["L"][idxq[qok]], d["n_X"][idxq[qok]])
+        out = dict(variant=var, model=model, seed=int(seed[1:]), groups={}, horizon=horizon_errors(d, Rq, idxq))
+        for gname, gm in G.items():
+            sel = gm[ev]
+            okg = sel & np.isfinite(reg)
+            out["groups"][gname] = dict(k0=metrics(reg[okg], uer[okg]),
+                                        **{f"k{k}": metrics(hk[k][0][okg], iters=hk[k][1][okg]) for k in (1, 2, 3)})
+        res["keys"][key] = out
+        g = out["groups"]
+        print(f"[final] {key}: test_bulk median {g['test_bulk']['k0'].get('median', float('nan')):.2e} "
+              f"tail {g['test_tail']['k0'].get('median', float('nan')):.2e}", flush=True)
+
+    if not skip_baselines:
+        # scenario (i): cold solve at every evaluation point (batched), regret vs the same references
+        t = time.perf_counter()
+        cold = O.optimize_batch(d["L"][ev], d["n_X"][ev], PRE, n_sobol=4096, top_k=8, seed=7)
+        rc = (reference_R(d, ev) - cold["R"]) / reference_R(d, ev)
+        res["baselines"]["cold_batched_s"] = time.perf_counter() - t
+        perpoint["cold"] = rc
+        # scenario (ii): warm solve from the neighbour
+        nb = neighbours(d, ev)
+        okn = nb >= 0
+        t = time.perf_counter()
+        w = O.warm_solve(d["theta"][nb[okn]], d["L"][ev[okn]], d["n_X"][ev[okn]], PRE)
+        res["baselines"]["warm_batched_s"] = time.perf_counter() - t
+        Rw, _ = R_at(w["theta"], d["L"][ev[okn]], d["n_X"][ev[okn]])
+        rw = np.full(ev.size, np.nan); rw[okn] = (reference_R(d, ev[okn]) - Rw) / reference_R(d, ev[okn])
+        itw = np.full(ev.size, np.nan); itw[okn] = w["iters"]
+        dist = np.full(ev.size, np.nan); dist[okn] = d["L"][ev[okn]] - d["L"][nb[okn]]
+        perpoint["warm"] = rw
+        perpoint["warm_neighbour_km"] = dist
+        for name, arr, it in (("cold", rc, None), ("warm", rw, itw)):
+            res["baselines"][name] = {gname: metrics(arr[gm[ev] & np.isfinite(arr)],
+                                                     iters=None if it is None else it[gm[ev] & np.isfinite(arr)])
+                                      for gname, gm in G.items()}
+        res["baselines"]["warm_neighbour_km"] = {
+            rg: dict(median=float(np.nanmedian(dist[(d["region"][ev] == rg)])),
+                     values=sorted(set(np.round(dist[(d["region"][ev] == rg) & np.isfinite(dist)], 5).tolist()))[:12])
+            for rg in ("bulk", "tail")}
+        # batch-1 timing: k-step from real surrogate predictions (dense PQC-full seed 0), cold, warm
+        rng = np.random.default_rng(1)
+        tb = np.where(G["test_bulk"][ev])[0]
+        tt = np.where(G["test_tail"][ev])[0]
+        pick = np.concatenate([rng.choice(tb, min(35, tb.size), replace=False), rng.choice(tt, min(15, tt.size), replace=False)])
+        u_pick = P["dense__PQC-full__s0"][evq[pick]]
+        res["timing"]["batch1_kstep"] = [time_kstep(d, ev[pick], u_pick, k) for k in (1, 2, 3)]
+        res["timing"]["batch1_cold"] = time_cold(d, ev[pick[:20]])
+        res["timing"]["batch1_warm"] = time_warm(d, ev[pick])
+        print("[final] timing", res["timing"], flush=True)
+
+    od = C.out_dir("certify_final", cfg)
+    np.savez_compressed(os.path.join(od, "perpoint.npz"), **perpoint)
+    C.write_json(os.path.join(od, "metrics.json"), to_jsonable(res))
+    print(f"[final] wrote {os.path.relpath(od, ROOT)}", flush=True)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--labels", default=None)
     ap.add_argument("--pilot", action="store_true")
+    ap.add_argument("--select", action="store_true")
+    ap.add_argument("--final", action="store_true")
+    ap.add_argument("--skip-baselines", action="store_true")
     a = ap.parse_args()
     check_x64()
     path, d = load_labels(a.labels)
     if a.pilot:
         C.require_ac("certify --pilot")
         pilot(d, path)
+    elif a.select:
+        cmd_select(d, path)
+    elif a.final:
+        cmd_final(d, path, a.skip_baselines)
     else:
-        sys.exit("Phase 4 mode not implemented yet")
+        sys.exit("choose --pilot, --select or --final")
 
 
 if __name__ == "__main__":

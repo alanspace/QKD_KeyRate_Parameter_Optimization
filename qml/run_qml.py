@@ -11,6 +11,13 @@ Steps:
   pilot_train      qml   qml/pilot_train.py                  one training step per model configuration
   pilot_certify    main  qml/certify.py --pilot              1000 predictions: R, k = 1..3 Newton steps; batch-1
                                                              cold / warm solver timing
+  tune             qml   qml/train.py tune                   6 configs x 3 families + ridge, seed 0, val predictions
+  select           main  qml/certify.py --select             median validation regret -> selection.json
+  final            qml   qml/train.py final                  selected configs x 5 seeds x {dense, sparse} + lookups
+  latency          qml   qml/train.py latency                batch-1 / batch-1024 timing of the final models
+  certify_final    main  qml/certify.py --final              all metrics, hybrid k = 1..3, baselines, timing
+  report           main  qml/report.py                       qml/RESULTS.md + figures
+  numbers          main  qml/make_numbers_qml.py             result_report/generated_numbers_qml.tex
 
 Usage: python qml/run_qml.py --only STEP [STEP ...]
 """
@@ -30,6 +37,13 @@ STEPS = {
     "labels": ("main", ["qml/labels.py"]),
     "pilot_train": ("qml", ["qml/pilot_train.py"]),
     "pilot_certify": ("main", ["qml/certify.py", "--pilot"]),
+    "tune": ("qml", ["qml/train.py", "tune"]),
+    "select": ("main", ["qml/certify.py", "--select"]),
+    "final": ("qml", ["qml/train.py", "final"]),
+    "latency": ("qml", ["qml/train.py", "latency"]),
+    "certify_final": ("main", ["qml/certify.py", "--final"]),
+    "report": ("main", ["qml/report.py"]),
+    "numbers": ("main", ["qml/make_numbers_qml.py"]),
 }
 WATCH = [os.path.join(ROOT, "results"), os.path.join(ROOT, "qml", "data")]
 
