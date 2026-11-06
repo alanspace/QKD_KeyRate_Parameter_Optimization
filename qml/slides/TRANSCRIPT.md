@@ -1,6 +1,6 @@
 # Pitch transcript: "A tiny quantum circuit that tunes a quantum-secure link"
 
-For `pitch.html`, 12 slides, about 9–10 minutes. Plain language; technical detail is in `slides.html`.
+For `pitch.html`, 13 slides plus an appendix, about 10–11 minutes. Plain language; technical detail is in `slides.html`.
 
 [Brackets] are stage notes. **PENDING** marks lines to finish once the benchmark run is done. Each pending line has
 both versions, so you can read the true one.
@@ -11,6 +11,10 @@ both versions, so you can read the true one.
 
 Quantum key distribution, QKD, lets two places share a secret key over an optical fiber. Its security rests on the
 laws of physics, not on how hard some maths problem is.
+
+Why does that matter? QKD is the only way to share keys whose security rests on physics rather than on hard maths
+problems, so it stays safe even against future computers. But it has a quiet failure mode: with the wrong settings, a
+link can produce zero key without anything visibly breaking.
 
 There is a practical catch. The sender's laser has five settings, and the right values depend on the link. How long
 is the fiber? How much data are we collecting in one session? Get the settings wrong and you throw away secret key.
@@ -49,13 +53,14 @@ We built an exact solver. Two situations:
 
 Both find the best settings every time we checked, against an independently built reference.
 
-With this solver we built our dataset: 61,875 examples. Each example is one link, a fiber length and a session size,
-together with its five best settings. That's 15 session sizes times about 4,000 fiber lengths, and it took
-4.6 minutes on a laptop.
+[point at the three cards]
+- **61,875 verified examples.** Each example is one link, a fiber length and a session size, with its five best
+  settings. That's 15 session sizes times about 4,000 fiber lengths.
+- **Physics bug fixed.** The earlier key-rate model had a bug. Fixed, it now matches the published reference within
+  about 8 %.
+- **Built in 4.6 minutes** on a laptop.
 
-We also found and fixed a bug in the earlier physics model. It now matches the published reference within 8 %.
-
-## Slide 4 · All five settings across distance (50 s)
+## Slide 4 · What has to be learned (50 s)
 
 Here are those best settings: one panel per session size, five coloured lines for the five knobs.
 
@@ -65,32 +70,38 @@ Here are those best settings: one panel per session size, five coloured lines fo
 to zero. The signal probability, the green line, shoots up.
 
 [point at a triangle] The small triangles mark places where the best setting switches between two options that are
-almost equally good. The key rate itself does not jump there; only the recipe changes.
+almost equally good. The key rate itself doesn't jump there; only the recipe changes.
 
 So a good tuner has to be easy in the middle, accurate at the edge, and careful at the switches.
 
-## Slide 5 · The challenge (50 s)
+## Slide 5 · The challenge (60 s)
 
 So why not just store a big table of answers and look them up?
 
-One: the edge is unforgiving. Near the maximum distance, small mistakes in the settings can cost most of the key.
-There, a simple table is exactly right only about one time in four.
+One: the edge is unforgiving. Near the maximum distance the key falls about a million-fold in the last 15 kilometres,
+and small mistakes in the settings can cost all of it. There, even our earlier table was exactly right only about one
+time in four.
 
-Two: the recipe sometimes jumps. At a dozen or so distances, the best settings suddenly switch to a different recipe
-that's just as good. If a model averages the two recipes, it gets a bad one.
+Two: the recipe sometimes jumps. At a dozen or so distances, the best settings switch suddenly to a different recipe
+that's just as good. Averaging the two recipes gives a bad one.
 
 Three: real links have more knobs than our two inputs. Detector noise, alignment, fiber quality. Every extra knob
 multiplies the size of a table, while a learned model stays small.
 
-To be fair to the table: with today's two inputs, a big table still works well, and we compare against it honestly.
+To be fair to the table: with today's two inputs a big table still works well, and we compare against it honestly.
 The learned tuner pays off as inputs are added.
+
+[point at the blue box] So we need a learned function, not a table. And the question for the quantum circuit is
+whether it is a *good* function for this job, not whether it is *faster*.
 
 ## Slide 6 · Our quantum idea (70 s)
 
 Here is our circuit. It's deliberately tiny: five qubits.
 
-Why five? Because there are five settings. We measure each qubit and read off one setting, and one run of the
-circuit gives all five at once. The read-out is built so that it can only produce allowed settings. The circuit can
+Five qubits always carry the five settings: we measure each of them and read off one setting, and one run of the
+circuit gives all five at once. We also tested giving the circuit extra "helper" qubits with no answer of their own,
+just more room to think before deciding. The best circuit found uses 8 qubits: 5 answers plus 3 helpers. [point at
+the helper wires at the bottom] The read-out is built so that it can only produce allowed settings. The circuit can
 be inaccurate, but never invalid.
 
 Why the connecting wires between the qubits? Because the settings are connected.
@@ -106,21 +117,48 @@ as well, the wires weren't needed, and we'll say so.
 What we do not claim: no quantum advantage and no speed-up on today's hardware. The circuit runs on a simulator. The
 question is how accurately it learns, for its size.
 
-## Slide 7 · How it works (50 s)
+## Slide 7 · Why 8 qubits × 6 layers (70 s)
 
-Here's the whole pipeline.
+[point at the left] What is a "layer"? One block of: feed in the inputs, apply some learned turns, link the qubits.
+The six layers are applied one after another to the same eight qubits, like six blocks in a chain, and then we measure
+once. It's not six runs that get averaged.
 
-Top row: the exact solver generates the 61,875 examples. We train a tuner on them, either the quantum circuit or a
-classical neural network, and get a trained tuner that maps a link to five settings.
+Why feed the inputs in six times? Each time the inputs go in, the circuit's output can contain one more "wave", so it
+can bend more sharply. That's exactly what it needs near the cliff at the maximum distance. In our tests, six layers
+lost three to nine times less key than three layers with the same number of qubits.
 
-Bottom row: a new link comes in, with its fiber length and session size. We ask the tuner, which is one quick
-prediction, and get five settings that are always valid.
+What does it learn? To copy the teacher's five settings as closely as possible. The key rate is how we grade it, and
+how we picked the winning shape.
 
-Then the important part, in orange: the physics check. We plug the predicted settings into the exact physics and
-compare the key they produce with the key from the best settings. That ratio is our score. We never use a model's
-own estimate of how good it is.
+How many numbers does it learn? Eight qubits times six layers gives 48 slots. Each slot learns five numbers: a scale
+for the distance, a scale for the session size, and three rotation angles. 48 times 5 is 240.
 
-## Slide 8 · How we test it fairly (45 s)
+[point at the table] "Key lost" means: put the predicted settings into the exact physics, compare with the key from
+the best settings, and take the shortfall. The median is over about 4,700 validation links held back from training.
+We tried six shapes and kept the one that lost the least: 8 qubits by 6 layers, at 0.54 %.
+
+Why three helpers and not one, two or four? Honestly, we tested only zero, one and three, because every extra qubit
+doubles the cost of simulating the circuit; the 8-qubit version already takes over 20 minutes to train. One helper
+didn't help; three did. But the 8 × 6 circuit also has the most numbers to learn, so we can't yet say whether the
+helpers or the size made the difference. Two and four helpers are the next experiment.
+
+## Slide 8 · Teacher, student, exam (50 s)
+
+Think of it as a classroom.
+
+The **teacher** is our exact solver: slow-ish, but always right. It writes a **textbook** of 61,875 worked examples:
+"for this link, these are the best five settings."
+
+The **student** studies the textbook. The student is either our quantum circuit or a classical neural network. After
+studying, it can answer instantly: give it a link, and it gives five settings.
+
+Then the **exam**: links the student has never seen. The student answers, and the answer is always a valid set of
+settings.
+
+And the **grading**, in orange: we don't ask the student how well it did. We plug its answer into the exact physics
+and compare the key it produces with the teacher's key. That ratio is the grade.
+
+## Slide 9 · How we test it fairly (45 s)
 
 The test has three steps.
 
@@ -137,30 +175,30 @@ its size. The classical network takes seconds. [PENDING: say the measured NN tim
 We wrote these rules down before training started. So if the quantum circuit ties or loses, that's a valid result,
 and we'll report it.
 
-## Slide 9 · Scoreboard (60 s)
+## Slide 10 · Scoreboard (70 s)
 
-[PENDING: read the row values once filled]
+[Preliminary numbers from held-back validation links and one training run. Replace with the final test numbers when
+the run finishes; the story is unlikely to flip, but say "preliminary".]
 
 Top row: our exact solver. 100 % of the best key, in 1.6 to 30 milliseconds. That's the bar.
 
-The question for each learned model: how much of that key does it deliver, at typical distances and near the edge,
-and how fast is each answer?
+The dense lookup table is essentially perfect at typical distances. Near the maximum distance it leaves fewer than
+1 % of links without key. With only two inputs, a dense table is very hard to beat; we said so up front.
 
-**PENDING. If the quantum circuit is close to the neural network:** "At the same size, the quantum circuit delivers
-X % of the best key, similar to a classical neural network with Y %. So it learns this problem about as well. We
-don't see an advantage, and we don't see a disadvantage."
+The classical neural network delivers 99.96 % of the key at typical distances, but near the edge it leaves about 9 %
+of links with no key.
 
-**PENDING. If it is clearly behind:** "The quantum circuit delivers X %, behind the classical network's Y %. On this
-small problem, the classical model wins."
+Our quantum circuit delivers 99.7 % at typical distances and 96.4 % near the edge, and leaves about 12 % of links near
+the edge with no key. On this problem, the classical models win.
 
-**PENDING. If it is ahead:** "The quantum circuit delivers X % against Y % for a network of the same size. That's an
-encouraging sign for its accuracy per parameter. It's a simulation result, not a speed claim."
+Two things are encouraging, though. First, the connections matter: the same circuit without them did clearly worse.
+Second, the fix-up step: take the circuit's answer and run one exact correction step, under a millisecond. That brings
+it to 99.998 % at typical distances and 99.7 % near the edge.
 
-The last row is the practical trick. Take the circuit's guess and add one exact fix-up step from the solver. In our
-pilot, a guess that is 1 % off loses about 0.4 % of the key. Two fix-up steps, about one and a half milliseconds,
-bring it back almost exactly to 100 %.
+So the honest summary: as a stand-alone tuner the quantum circuit doesn't beat the classical options yet. As a quick
+first guess plus a fix-up, it gets very close to the best key.
 
-## Slide 10 · Showcase (40 s)
+## Slide 11 · Showcase (40 s)
 
 [PENDING: show the figure once drawn]
 
@@ -170,7 +208,7 @@ along the fiber.
 
 [point at the edge] Watch the last few kilometres. That's where the models separate.
 
-## Slide 11 · Why it matters (50 s)
+## Slide 12 · Why it matters (50 s)
 
 Why should anyone care?
 
@@ -184,7 +222,7 @@ A fast, learned tuner can retune every link in milliseconds, and it scales to mo
 further ahead, quantum networks will have small quantum processors in their nodes, and a tuner like this is a natural
 first job for them.
 
-## Slide 12 · Next (30 s)
+## Slide 13 · Next (30 s)
 
 Next steps.
 
@@ -200,18 +238,22 @@ Thank you. Happy to take questions.
 
 ---
 
-### Likely questions (short answers)
+## Slide 14 · Appendix (not presented)
 
-- **"Is this a quantum advantage?"** No, and we don't claim one. The circuit runs on a classical simulator. We are
-  testing whether it learns this problem as well as a classical model of the same size.
-- **"Why not just use the solver?"** You can. It takes 1.6–30 ms. A learned tuner is about cheap instant answers,
-  scaling to many inputs, and running where a full solver can't, such as small controllers.
-- **"How many shots would real hardware need?"** About a thousand per prediction for 1 %-level accuracy, and about
-  100,000 for 0.1 %. That's why the fix-up step matters.
-- **"Why did the old method get only 4 %?"** It was a general-purpose search with loose settings, and the physics model
-  also had a bug. Both are fixed and documented.
-- **"Why are the qubits connected?"** The settings depend on each other: physics rules, plus correlations of about
-  0.97 in the data. We also train the same circuit without connections to test whether it matters.
-- **"Why does training the quantum circuit take minutes when the NN takes seconds?"** On a laptop we simulate the
-  quantum state exactly. Each extra qubit doubles that work. On real hardware, the cost moves to the number of
-  measurements instead.
+Notes and sources for every [n] mark on the slides. Show it only if someone asks where a number comes from.
+
+---
+
+### Anticipated questions
+
+- **"Are you claiming a quantum advantage?"** No. The circuit runs on a classical simulator, and we compare it with a
+  classical network of the same size. We are testing whether it is a good function for this job, not whether it is faster.
+- **"Why not just use a bigger table?"** With two inputs a dense table does well. But near the maximum distance even our
+  earlier table was exactly right at only about 25 % of points, and every extra input multiplies a table's size.
+- **"Has it run on real quantum hardware?"** Not yet. Hardware runs are paused and nothing has been submitted. It's the
+  next step, once the budget and the run plan are approved.
+- **"What if the quantum circuit loses?"** Then we report it. The rules were fixed before training, so a loss is a
+  valid result. And a rough guess is still useful: in our pilot, an error of 1 % of each setting's range cost about
+  0.4 % of the key, and two exact fix-up steps (1.4 ms) brought it back to within 2 parts per billion (median).
+- **"Why not always use the exact solver?"** You can. It takes 1.6 ms on a running link and 30 ms on a new one. A
+  learned tuner matters as an instant first guess, and as inputs are added.

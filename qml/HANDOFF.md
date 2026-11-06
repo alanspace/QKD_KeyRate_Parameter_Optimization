@@ -7,7 +7,7 @@ This file is for whoever finishes the study, human or AI. Read it fully before r
 | item | value |
 |---|---|
 | Worktree | `QBAI_Code_Workspace/QKD/QKD_qml_surrogate_wt` (git worktree of `QKD/QKD_KeyRate_Parameter_Optimization`) |
-| Branch | `qml-surrogate`; latest commit `4f5e480`. **Local only. Do NOT push to GitHub.** |
+| Branch | `qml-surrogate` on GitHub (`origin/qml-surrogate`). Work on this branch. **Do not merge it into `main` without the owner's approval**; the study is unfinished. |
 | Main `.venv` | Physics, JAX 0.9.0, float64, CPU. Symlinked from the main checkout: `.venv -> ../QKD_KeyRate_Parameter_Optimization/.venv` |
 | `.venv-qml` | Models: PennyLane 0.45.1, JAX **0.10.2**. jax 0.11 / 0.12 break PennyLane at runtime. No physics import is allowed in this env. |
 | Run everything with | `JAX_PLATFORMS=cpu PYTHONPATH=.` from the worktree root. `qml/run_qml.py` sets both itself. |
@@ -15,9 +15,16 @@ This file is for whoever finishes the study, human or AI. Read it fully before r
 | Log | `STATUS.md` sections 10–10e (measured numbers only) |
 | Step records | `results/MANIFEST_qml.json`, logs in `results/logs_qml/` |
 
-**Uncommitted, awaiting the owner's approval:**
-- `qml/slides/pitch.html` and `qml/slides/TRANSCRIPT.md`: the presentation pass and the 8×6 explanation slides.
-- `qml/data/weights_*_dense_s0.npz`: redundant, because the same weights are inside `qml/data/final_parts/`.
+**Setup from GitHub (fresh machine):**
+```bash
+git clone https://github.com/alanspace/QKD_KeyRate_Parameter_Optimization.git && cd QKD_KeyRate_Parameter_Optimization
+git checkout qml-surrogate
+python3.13 -m venv .venv && .venv/bin/pip install -r requirements.txt "jax[cpu]==0.9.0"   # physics env (main .venv)
+python3.13 -m venv .venv-qml && .venv-qml/bin/pip install -r qml/requirements-qml.txt      # models env (jax 0.10.2)
+JAX_PLATFORMS=cpu .venv/bin/python -m unittest tests.qml.test_qml_main                     # sanity check
+```
+The original machine used a git worktree and symlinked `.venv` from the main checkout. A plain clone with the two
+environments above is equivalent.
 
 ## 1. Rules that bind every remaining step
 
@@ -33,7 +40,7 @@ This file is for whoever finishes the study, human or AI. Read it fully before r
      shots and estimated credits.
    - The token comes only from the env var `IQM_TOKEN`; never print, log or commit it.
 6. **STATUS.md:** a dated section per step, with measured numbers only.
-7. **Commits:** local commits, with the attribution line used so far. **No push.**
+7. **Commits:** commit on `qml-surrogate` with the attribution line used so far. Pushing that branch is fine. **Never merge into `main` or push to `main`** without the owner.
 8. **Presentation language:** no "advantage", "breakthrough" or "proves". A negative result is valid. The preliminary
    validation numbers already point to the classical models winning (section 6).
 
@@ -174,7 +181,7 @@ JAX_PLATFORMS=cpu PYTHONPATH=. .venv-qml/bin/python qml/iqm/rebuild.py --check  
 ```
 
 - Write STATUS section 10f: the measured numbers of steps A–E.
-- Commit locally. **No push.**
+- Commit on `qml-surrogate` and push the branch. Do not merge into `main`.
 - Report to the owner at **STOP 3**:
   - the RESULTS summary;
   - the kill-criterion outcome;
