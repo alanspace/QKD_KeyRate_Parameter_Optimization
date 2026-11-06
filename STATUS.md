@@ -656,3 +656,15 @@ the bulk and 0.125 km in the tail".
   The registered rule is "nearest lower training node". For test points that is 0.25 or 0.375 km in the bulk,
   and 0.0625 or 0.094 km in the tail; the pilot median was 0.25 km.
   The rule is implemented as registered, and the distance is reported.
+
+10c. Owner decisions and presentation (2026-11-06)
+---------------------------------------------------
+IQM hardware: paused by the owner. Phase 5a not started; nothing submitted, no token used.
+Slides: qml/slides/slides.html (28 slides, HTML). Sections:
+  introduction and motivation; previous dataset and results; QML implementation; quantum results (pending);
+  comparison; conclusion and future improvement.
+Figures:
+  - Copied from results/figures/900d9f88a8_58c9f38705cd. Checked as current: same physics hash 9564691bc5b0,
+    inputs are the latest benchmark runs.
+  - Two caveats are stated on the slides: fig5 cliff_edge colouring (see 10a) and fig4's switch statement (see 10).
+  - New: dataset_splits.png (from the label file) and pqc_circuit.png (PennyLane drawing, structure only).

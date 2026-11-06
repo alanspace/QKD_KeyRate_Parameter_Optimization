@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Optimal decoy-state BB84 parameters: verified classical baseline and a quantum-circuit surrogate</title>
+<!--
+  EDITING
+  - Each slide is one <section class="slide">. Add, remove or reorder freely; numbering updates itself.
+  - Keys: right / space / PageDown = next, left / PageUp = previous, Home / End, "o" = overview of all slides.
+  - Print to PDF from the browser (landscape): one slide per page.
+  - Images live in ./assets (copied with provenance; see assets/SOURCES.md).
+  - Boxes with class "pending" mark content that will be filled from qml/RESULTS.md at STOP 3.
+  - Numbers: every number is copied from a result file named in the slide's "src" line.
+-->
+<style>
+  :root {
+    --surface: #fcfcfb; --ink: #0b0b0b; --ink2: #52514e; --muted: #8a8984; --rule: #e6e5e0;
+    --blue: #2a78d6; --orange: #eb6834; --aqua: #1baf7a; --accent: #2a78d6;
+    --w: 1280px; --h: 720px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #2b2b2a; font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--ink); }
+  .deck { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 24px 0; }
+  .slide {
+    width: var(--w); height: var(--h); background: var(--surface); position: relative; overflow: hidden;
+    padding: 46px 64px 54px; display: none; flex-direction: column;
+  }
+  .slide.active { display: flex; }
+  body.overview .slide { display: flex; transform: scale(0.32); transform-origin: top left; margin: 0 -870px -490px 0; cursor: pointer; }
+  body.overview .deck { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  h1 { font-size: 40px; margin: 0 0 14px; line-height: 1.15; }
+  h2 { font-size: 30px; margin: 0 0 18px; }
+  h3 { font-size: 20px; margin: 10px 0 8px; color: var(--ink2); }
+  p, li { font-size: 19px; line-height: 1.42; }
+  ul { margin: 6px 0 6px 0; padding-left: 26px; }
+  li { margin: 3px 0; }
+  .kicker { font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
+  .section-title { justify-content: center; }
+  .section-title h1 { font-size: 52px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; flex: 1; min-height: 0; }
+  .cols.wide-left { grid-template-columns: 1.35fr 1fr; }
+  .cols.wide-right { grid-template-columns: 1fr 1.5fr; }
+  img.fig { max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: 0 auto; }
+  .figbox { display: flex; align-items: center; justify-content: center; min-height: 0; flex: 1; }
+  table { border-collapse: collapse; font-size: 16px; width: 100%; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { color: var(--ink2); font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .note { font-size: 14px; color: var(--ink2); }
+  .src { position: absolute; left: 64px; bottom: 18px; font-size: 11px; color: var(--muted); max-width: 1000px; }
+  .num-badge { position: absolute; right: 28px; bottom: 16px; font-size: 13px; color: var(--muted); }
+  .callout { border-left: 4px solid var(--accent); padding: 8px 14px; background: #f3f2ee; font-size: 17px; margin: 8px 0; }
+  .warn { border-left-color: var(--orange); }
+  .pending { border: 2px dashed var(--muted); border-radius: 8px; padding: 14px 18px; color: var(--ink2); background: #f6f6f3; }
+  .pending b { color: var(--ink); }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: .88em; background: #f0efea; padding: 1px 4px; border-radius: 3px; }
+  .tag { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #ecebe6; color: var(--ink2); margin-right: 6px; }
+  .big { font-size: 46px; font-weight: 700; line-height: 1; }
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 10px 0 14px; }
+  .stat .lbl { font-size: 14px; color: var(--ink2); }
+  svg text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+  @media print {
+    html, body { background: white; }
+    .deck { padding: 0; gap: 0; }
+    .slide { display: flex !important; page-break-after: always; break-after: page; }
+    @page { size: 1280px 720px; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+<!-- ============================== TITLE ============================== -->
+<section class="slide section-title">
+  <div class="kicker">QuantumBridge AI · work in progress · November 2026</div>
+  <h1>Optimal parameters for finite-key decoy-state BB84:<br>a verified classical baseline and a quantum-circuit surrogate</h1>
+  <p style="font-size:22px;color:var(--ink2)">Shek Lun Leung</p>
+  <div class="callout" style="max-width:900px">Status: classical baseline complete and verified. Quantum-circuit study preregistered,
+    labels and pilot done, <b>training and evaluation running</b>. Quantum results are marked <span class="tag">pending</span>.
+    IQM hardware runs are paused.</div>
+  <div class="src">Repository QKD/QKD_KeyRate_Parameter_Optimization (main e796420); branch qml-surrogate.</div>
+</section>
+
+<!-- ============================== 1. INTRODUCTION ============================== -->
+<section class="slide section-title">
+  <div class="kicker">Part 1</div>
+  <h1>Introduction and motivation</h1>
+</section>
+
+<section class="slide">
+  <div class="kicker">Introduction</div>
+  <h2>The problem: five parameters per operating point</h2>
+  <div class="cols wide-left">
+    <div>
+      <ul>
+        <li>Decoy-state BB84 with finite-key security (Lim, Curty, Walenta, Xu, Zbinden, PRA 89, 022307, 2014).</li>
+        <li>Alice chooses intensities μ<sub>1</sub>, μ<sub>2</sub> (μ<sub>3</sub> = 2·10<sup>−4</sup> fixed), their probabilities
+          P<sub>μ1</sub>, P<sub>μ2</sub>, and the basis probability q<sub>x</sub>.</li>
+        <li>The secret key rate R = ℓ/N depends on them strongly. The best choice depends on the fiber length L and the
+          block size n<sub>X</sub>.</li>
+        <li>Re-optimising whenever the channel changes is the motivation for fast <b>surrogates</b>: a model that predicts the
+          optimal parameters directly.</li>
+      </ul>
+      <div class="callout">A surrogate is only as good as (a) the physics that defines R and (b) the optimizer that
+        produced its training labels. So the baseline had to be verified first.</div>
+    </div>
+    <div>
+      <h3>What is optimised</h3>
+      <table>
+        <tr><th>parameter</th><th>constraint (holds by construction)</th></tr>
+        <tr><td>μ<sub>1</sub></td><td>μ<sub>2</sub> + μ<sub>3</sub> &lt; μ<sub>1</sub> &lt; 0.9</td></tr>
+        <tr><td>μ<sub>2</sub></td><td>μ<sub>3</sub> &lt; μ<sub>2</sub> &lt; 0.5</td></tr>
+        <tr><td>P<sub>μ1</sub>, P<sub>μ2</sub></td><td>&gt; 0, with P<sub>μ3</sub> = 1 − P<sub>μ1</sub> − P<sub>μ2</sub> &gt; 0</td></tr>
+        <tr><td>q<sub>x</sub></td><td>0 &lt; q<sub>x</sub> &lt; 1</td></tr>
+      </table>
+      <p class="note">Inputs: L ∈ [0, 200] km, n<sub>X</sub> ∈ [10<sup>4</sup>, 10<sup>9</sup>]. Physics preset <code>lim</code>
+        (Lim et al. 2014, with η<sub>sys</sub> in the misalignment term; see PHYSICS_DIFF.md).</p>
+    </div>
+  </div>
+  <div class="src">src: result_report/final_report.tex §1–2; src/qkd_opt/reparam.py</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Introduction</div>
+  <h2>Why a quantum circuit, and what we will (not) claim</h2>
+  <div class="cols">
+    <div>
+      <h3>Question</h3>
+      <p>Can a small parameterised quantum circuit (PQC) learn x = (L, log n<sub>X</sub>) ↦ optimal parameters
+        p*(x) as well as classical surrogates of the same size, and is it <i>useful</i> under a fixed criterion?</p>
+      <h3>Usefulness criterion (fixed before training)</h3>
+      <ul>
+        <li>(a) reach the warm exact solver's regret class at lower latency, or</li>
+        <li>(b) beat the lookup table's regret at comparable latency.</li>
+        <li>Plus the hybrid: surrogate prediction + k = 1, 2, 3 Newton steps.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Ground rules</h3>
+      <ul>
+        <li>Preregistered (protocol committed before any training); changes only as dated amendments.</li>
+        <li>Every reported key rate is recomputed by the exact float64 model at the predicted parameters.</li>
+        <li>Classical comparators of matched parameter count; equal tuning budget.</li>
+        <li><b>No quantum-advantage claim.</b> Circuits are simulated classically. A negative or parity result is a valid outcome.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">src: result_report/final_report.tex §7 (binding protocol); qml/PREREGISTRATION.md</div>
+</section>
+
+<!-- ============================== 2. PREVIOUS ============================== -->
+<section class="slide section-title">
+  <div class="kicker">Part 2</div>
+  <h1>Previous dataset and results</h1>
+  <p style="color:var(--ink2)">2025 MSc thesis → 2026 results report → audit and verified rework (final report, Nov 2026)</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Previous work</div>
+  <h2>What the earlier pipeline produced, and what the audit found</h2>
+  <div class="cols">
+    <div>
+      <h3>Earlier dataset and model</h3>
+      <ul>
+        <li>2025 thesis: 6,000 dual-annealing (DA) labels, NN with 4 inputs → 5 outputs; reported "±6 % SKR error" and "270×".</li>
+        <li>2026 report: labels from a regularised Hessian run; headline "5.9·10<sup>6</sup>× speed-up", "129× stability", "20 km+ reach".</li>
+      </ul>
+      <h3>Audit findings</h3>
+      <ul>
+        <li>Physics defect: m<sub>Z</sub> used X-basis detections instead of Z-basis errors (Eq. 4), plus four further departures from the paper.</li>
+        <li>Labels were not optimal (next slides).</li>
+        <li>Headline numbers not reproducible or ill-defined → <b>withdrawn</b> (CLAIMS.md).</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Effect of the corrections (n<sub>X</sub> = 10<sup>4</sup>)</h3>
+      <table>
+        <tr><th>stage</th><th class="num">R(100 km)</th><th class="num">horizon km</th></tr>
+        <tr><td>earlier physics</td><td class="num">2.60e-6</td><td class="num">148.17</td></tr>
+        <tr><td>m<sub>Z</sub> defect fixed</td><td class="num">5.39e-6</td><td class="num">148.17</td></tr>
+        <tr><td>+ e<sub>mis</sub>, afterpulsing, ε<sub>sec</sub> = κℓ</td><td class="num">1.07e-6</td><td class="num">130.44</td></tr>
+        <tr><td>corrected model (<code>lim</code>)</td><td class="num">9.91e-7</td><td class="num">130.44</td></tr>
+      </table>
+      <p class="note">The earlier physics overstated the n<sub>X</sub> = 10<sup>4</sup> reach by 17.7 km.</p>
+    </div>
+  </div>
+  <div class="src">src: final_report.tex Table 2 (results/physics_diff_a419cc7422_dba94a5ecdc3); CLAIMS.md; Appendix A</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Previous work · corrected physics</div>
+  <h2>The corrected model reproduces the paper to within 8 %</h2>
+  <div class="cols wide-right">
+    <div>
+      <table>
+        <tr><th>quantity</th><th class="num">paper</th><th class="num"><code>lim</code></th></tr>
+        <tr><td>R(0, 10<sup>9</sup>)</td><td class="num">~1e-2</td><td class="num">9.20e-3 (−8 %)</td></tr>
+        <tr><td>R(100,10<sup>9</sup>)/R(100,10<sup>7</sup>)</td><td class="num">~1.75</td><td class="num">1.79 (+2 %)</td></tr>
+        <tr><td>horizon, n<sub>X</sub> = 10<sup>4</sup></td><td class="num">~135 km</td><td class="num">130.44 (−3 %)</td></tr>
+      </table>
+      <ul>
+        <li>No constant tuned to these targets. The η<sub>sys</sub> vs printed η<sub>ch</sub> choice was made against them.</li>
+        <li>Independent float64/Decimal re-implementation agrees on ℓ to ≤ 2·10<sup>−13</sup>.</li>
+      </ul>
+    </div>
+    <div class="figbox"><img class="fig" src="assets/fig7_ablation.png" alt="ablation chain"></div>
+  </div>
+  <div class="src">src: results/NUMBERS.md (QKDLimTarget*); final_report.tex §2.5–2.6; fig7 (results/figures/900d9f88a8_58c9f38705cd)</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Previous work · verified optimizer</div>
+  <h2>New optimizer: at the reference everywhere; earlier labels were not</h2>
+  <div class="cols wide-right">
+    <div>
+      <table>
+        <tr><th>method</th><th class="num">≤1e-6, bulk</th><th class="num">≤1e-6, tail</th></tr>
+        <tr><td>new optimizer (warm)</td><td class="num">100 %</td><td class="num">100 %</td></tr>
+        <tr><td>lookup table (2 km)</td><td class="num">81.6 %</td><td class="num">24.6 %</td></tr>
+        <tr><td>earlier DA run<sup>†</sup></td><td class="num">3.7 %</td><td class="num">0 %</td></tr>
+        <tr><td>earlier Hessian run<sup>†</sup></td><td class="num">96.3 %</td><td class="num">95.8 %</td></tr>
+        <tr><td>earlier Hessian_FoR (NN labels)<sup>†</sup></td><td class="num">81.7 %</td><td class="num">0 %</td></tr>
+      </table>
+      <p class="note">Regret = (R<sub>ref</sub> − R)/R<sub>ref</sub> against an independently cross-checked reference.
+        <sup>†</sup> scored on the physics they were optimised for (preset <code>legacy</code>).</p>
+    </div>
+    <div class="figbox"><img class="fig" src="assets/fig6_regret_cdf.png" alt="regret CDF"></div>
+  </div>
+  <div class="src">src: results/NUMBERS.md; benchmark_lim_0c8f47a1f0_530f6d58460c, benchmark_legacy_dfd7d80292_9eccc560dfd9; fig6</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Previous work · key rate</div>
+  <h2>Optimal key rate and maximum distance</h2>
+  <div class="figbox" style="flex:1"><img class="fig" src="assets/fig1_keyrate.png" alt="key rate"></div>
+  <table style="margin-top:8px">
+    <tr><th>n<sub>X</sub></th><th class="num">10<sup>4</sup></th><th class="num">10<sup>5</sup></th><th class="num">10<sup>6</sup></th>
+      <th class="num">10<sup>7</sup></th><th class="num">10<sup>8</sup></th><th class="num">10<sup>9</sup></th></tr>
+    <tr><td>horizon (km, ℓ &gt; 0)</td><td class="num">130.44</td><td class="num">160.61</td><td class="num">172.62</td>
+      <td class="num">178.67</td><td class="num">182.09</td><td class="num">184.16</td></tr>
+  </table>
+  <div class="src">src: results/NUMBERS.md (QKDLimRefHorizon*); fig1</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Previous work · parameters</div>
+  <h2>Optimal parameters vs distance (n<sub>X</sub> = 10<sup>9</sup>)</h2>
+  <div class="cols wide-left">
+    <div class="figbox"><img class="fig" src="assets/fig4_params_nx1e9.png" alt="parameters vs L"></div>
+    <div>
+      <ul>
+        <li>New optimizer (blue): smooth curves, apart from small branch switches (see update).</li>
+        <li>Earlier runs: repeated jumps at 148–157 km (DA 5, Hessian_FoR 5, Hessian 1).</li>
+        <li>Parameter <i>values</i> are not comparable across the two physics models; only continuity is.</li>
+      </ul>
+      <div class="callout warn"><b>Update (Nov 6):</b> a denser label sweep found <b>13</b> genuine branch switches below the horizon
+        across 15 block sizes, including a small one at n<sub>X</sub> = 10<sup>9</sup>, 128.67 km (u-jump 0.005). The report's
+        "two switches" statement is incomplete; the figure shows the coarser benchmark sweep.</div>
+    </div>
+  </div>
+  <div class="src">src: fig4 (results/figures/900d9f88a8_58c9f38705cd); STATUS.md §10, §10a; qml/PREREGISTRATION.md Amendment 2</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Previous work · cost</div>
+  <h2>Measured cost per operating point</h2>
+  <div class="cols wide-left">
+    <div class="figbox"><img class="fig" src="assets/fig8_timing.png" alt="timing"></div>
+    <div>
+      <ul>
+        <li>Earlier DA settings: 5.8–17.6 s per point (the 17.6 s point lies beyond the horizon).</li>
+        <li>New optimizer, warm start: 1.2 ms device, 1.5 ms end-to-end.</li>
+        <li>Lookup table: 7.7 µs / 10.0 µs, at lower accuracy (previous slide).</li>
+        <li><b>New:</b> batch-1 <b>cold</b> solve, first measurement: 29.7 ms median.</li>
+      </ul>
+      <p class="note">Apple M2 Pro, CPU, float64, on AC power. Compile time reported separately.</p>
+    </div>
+  </div>
+  <div class="src">src: results/NUMBERS.md; timing_lim_0c8f47a1f0_a412ba8ec55e; results/qml_pilot_summary_d118356a45_d36bcf048d7d/PILOT.md</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Previous work · a finding from this week</div>
+  <h2>"cliff_edge" points are converged optima, not discontinuities</h2>
+  <div class="cols wide-left">
+    <div class="figbox"><img class="fig" src="assets/fig5_tail.png" alt="tail diagnostics"></div>
+    <div>
+      <ul>
+        <li>The report flagged 7 reference points (orange) as "cliff_edge": certificate gradient &gt; 10<sup>−3</sup>.</li>
+        <li>Diagnosis: the stored gradient is divided by |R| at the solver's <i>starting</i> point (~10<sup>−27</sup>), not at the solution
+          (10<sup>−12</sup>–10<sup>−10</sup>).</li>
+        <li>Relative to R at the solution the gradient is 3·10<sup>−13</sup>–1.1·10<sup>−6</sup>: converged.</li>
+        <li>Report §4.1 explanation not supported; to be corrected on main. The QML study scores both ways.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">src: STATUS.md §10a (re-runs of the winning solves reproduce R to 11 digits); fig5</div>
+</section>
+
+<!-- ============================== 3. QML IMPLEMENTATION ============================== -->
+<section class="slide section-title">
+  <div class="kicker">Part 3</div>
+  <h1>Our quantum machine learning implementation</h1>
+</section>
+
+<section class="slide">
+  <div class="kicker">Implementation · scheme</div>
+  <h2>Pipeline: physics and models never share a process</h2>
+  <svg viewBox="0 0 1150 470" width="100%" style="flex:1">
+    <defs>
+      <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#52514e"/></marker>
+    </defs>
+    <!-- environment bands -->
+    <rect x="10" y="10" width="1130" height="190" rx="12" fill="#eef4fc"/>
+    <text x="24" y="34" font-size="15" fill="#2a78d6" font-weight="600">main .venv: physics (float64 lim model, JAX 0.9)</text>
+    <rect x="10" y="270" width="1130" height="190" rx="12" fill="#fdf0ea"/>
+    <text x="24" y="294" font-size="15" fill="#eb6834" font-weight="600">.venv-qml: models (PennyLane 0.45.1, JAX 0.10.2), no physics import</text>
+    <!-- main env boxes -->
+    <g font-size="15" fill="#0b0b0b">
+      <rect x="30" y="55" width="200" height="120" rx="8" fill="white" stroke="#2a78d6"/>
+      <text x="44" y="82" font-weight="600">1 · Labels</text>
+      <text x="44" y="106">verified optimizer, warm</text><text x="44" y="126">sweep, 15 block sizes</text>
+      <text x="44" y="150" fill="#52514e">61,875 labels + certificates</text>
+
+      <rect x="490" y="55" width="210" height="120" rx="8" fill="white" stroke="#2a78d6"/>
+      <text x="504" y="82" font-weight="600">4 · Certify</text>
+      <text x="504" y="106">R(p̂) by exact model</text><text x="504" y="126">regret vs label / reference</text>
+      <text x="504" y="150" fill="#52514e">+ k = 1, 2, 3 Newton steps</text>
+
+      <rect x="900" y="55" width="220" height="120" rx="8" fill="white" stroke="#2a78d6"/>
+      <text x="914" y="82" font-weight="600">5 · Compare</text>
+      <text x="914" y="106">vs lookup, NN, ridge,</text><text x="914" y="126">cold and warm solver</text>
+      <text x="914" y="150" fill="#52514e">Section 7 usefulness</text>
+
+      <!-- qml env boxes -->
+      <rect x="30" y="315" width="200" height="120" rx="8" fill="white" stroke="#eb6834"/>
+      <text x="44" y="342" font-weight="600">2 · Inputs</text>
+      <text x="44" y="366">u_L = L / L̂_h(n_X)</text><text x="44" y="386">v = (log n_X − 4)/5</text>
+      <text x="44" y="410" fill="#52514e">same for all models</text>
+
+      <rect x="290" y="315" width="250" height="120" rx="8" fill="white" stroke="#eb6834"/>
+      <text x="304" y="342" font-weight="600">3 · Model → ⟨Z_i⟩ ∈ [−1, 1]</text>
+      <text x="304" y="366">PQC-full / PQC-product /</text><text x="304" y="386">NN / RFF ridge / lookup</text>
+      <text x="304" y="410" fill="#52514e">equal tuning budget</text>
+
+      <rect x="600" y="315" width="250" height="120" rx="8" fill="white" stroke="#eb6834"/>
+      <text x="614" y="342" font-weight="600">Fixed map → feasible p̂</text>
+      <text x="614" y="366">z ↦ u (affine, fixed)</text><text x="614" y="386">u ↦ (μ1, μ2, Pμ1, Pμ2, q_x)</text>
+      <text x="614" y="410" fill="#52514e">constraints by construction</text>
+    </g>
+    <!-- arrows -->
+    <g stroke="#52514e" stroke-width="2" fill="none" marker-end="url(#arr)">
+      <path d="M130 175 L130 312"/>
+      <path d="M230 375 L287 375"/>
+      <path d="M540 375 L597 375"/>
+      <path d="M725 315 L640 178"/>
+      <path d="M700 115 L897 115"/>
+    </g>
+    <g font-size="13" fill="#52514e">
+      <text x="140" y="240">labels .npz (files only)</text>
+      <text x="690" y="250">û .npz (files only)</text>
+    </g>
+  </svg>
+  <div class="src">src: qml/labels.py, qml/train.py, qml/certify.py, qml/run_qml.py (steps recorded in results/MANIFEST_qml.json)</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Implementation · data</div>
+  <h2>Training data: 61,875 certified labels, split by grid position</h2>
+  <div class="figbox" style="flex:1"><img class="fig" src="assets/dataset_splits.png" alt="dataset and splits"></div>
+  <table style="margin-top:6px;font-size:15px">
+    <tr><th>quality gate vs reference</th><th class="num">train</th><th class="num">val</th><th class="num">test</th>
+      <th class="num">reference pts</th><th class="num">held-out n<sub>X</sub></th><th class="num">extrapolation</th></tr>
+    <tr><td>103 + 175 shared points, 0 worse (≥ −9.5e-13)</td><td class="num">4,727</td><td class="num">4,722</td>
+      <td class="num">9,437</td><td class="num">263</td><td class="num">6,708</td><td class="num">4,724</td></tr>
+  </table>
+  <div class="src">src: qml/data/labels_0d8bef1402_9fa16da52f39.json; STATUS.md §10 (bulk + tail counts summed); sweep wall time 275.9 s</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Implementation · circuit</div>
+  <h2>The quantum circuit: data re-uploading, five measured outputs</h2>
+  <div class="cols wide-left">
+    <div class="figbox"><img class="fig" src="assets/pqc_circuit.png" alt="PQC one layer"></div>
+    <div>
+      <ul>
+        <li>Each layer: RX(a·u<sub>L</sub>), RY(b·v) with <b>trainable input scalings</b>, a trainable Rot, then a CZ ring.</li>
+        <li>Repeated L times; measure ⟨Z<sub>0</sub>⟩…⟨Z<sub>4</sub>⟩ in one circuit (they commute).</li>
+        <li>Grid (qubits × layers): 5×3, 6×3, 8×3, 5×6, 6×6, 8×6 → 75…240 parameters.</li>
+        <li>PQC-product: identical, no CZ gates (tests whether entanglement matters).</li>
+        <li>RFF ridge: classical regression on frequencies sampled from the trained circuit's spectrum.</li>
+      </ul>
+      <p class="note">Simulated with PennyLane <code>default.qubit</code>, analytic expectations (no shot noise), JAX backprop.</p>
+    </div>
+  </div>
+  <div class="src">src: qml/models.py; drawing qml/slides/draw_circuit.py (structure only, placeholder angles)</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Implementation · comparison set</div>
+  <h2>Models, budget and metrics (preregistered)</h2>
+  <div class="cols">
+    <div>
+      <table>
+        <tr><th>model</th><th>role</th></tr>
+        <tr><td>PQC-full</td><td>quantum circuit under study</td></tr>
+        <tr><td>PQC-product</td><td>same circuit, no entanglement</td></tr>
+        <tr><td>NN (tuned / matched)</td><td>classical, matched parameter count ±10 %</td></tr>
+        <tr><td>RFF ridge</td><td>classical, on the PQC's frequency spectrum</td></tr>
+        <tr><td>lookup 2-D / per-n<sub>X</sub></td><td>floor to beat (same labels)</td></tr>
+        <tr><td>cold / warm exact solver</td><td>references for the hybrid</td></tr>
+      </table>
+      <p class="note">6 configurations × 1 seed per family for tuning, 2000 full-batch Adam steps; selected configuration × 5 seeds.
+        Sparse variant: same models on 2 km labels (label efficiency).</p>
+    </div>
+    <div>
+      <h3>Metrics</h3>
+      <ul>
+        <li>Regret of the recomputed R: median, p99, max, % within 10<sup>−6</sup>…10<sup>−2</sup>, % no key.</li>
+        <li>Scored separately: bulk, tail, reference points, held-out n<sub>X</sub>, extrapolation, crossover windows.</li>
+        <li>Horizon error; parameter error in u-space.</li>
+        <li>Hybrid k = 1, 2, 3: regret, iterations, wall time.</li>
+        <li>Latency: batch-1 device and end-to-end, batched throughput; for the PQC also shots per prediction.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">src: qml/PREREGISTRATION.md §5–7, Amendments 1–3</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Implementation · pilot</div>
+  <h2>Pilot: what the Newton steps can do from an approximate prediction</h2>
+  <div class="stats">
+    <div class="stat"><span class="big">29.7 ms</span><span class="lbl">batch-1 cold solve (median)</span></div>
+    <div class="stat"><span class="big">1.63 ms</span><span class="lbl">batch-1 warm solve (neighbour 0.25 km)</span></div>
+    <div class="stat"><span class="big">0.90 ms</span><span class="lbl">one Newton step, batch-1 end-to-end</span></div>
+    <div class="stat"><span class="big">≤ 0.6 s</span><span class="lbl">largest PQC, one training step (4,727 pts)</span></div>
+  </div>
+  <table>
+    <tr><th>stand-in prediction: label + 1 % noise in u</th><th class="num">k = 0</th><th class="num">k = 1</th><th class="num">k = 2</th><th class="num">k = 3</th></tr>
+    <tr><td>median regret</td><td class="num">4.1e-3</td><td class="num">2.0e-5</td><td class="num">2.0e-9</td><td class="num">2.8e-15</td></tr>
+    <tr><td>batch-1 end-to-end (Newton part)</td><td class="num">–</td><td class="num">0.90 ms</td><td class="num">1.37 ms</td><td class="num">1.83 ms</td></tr>
+  </table>
+  <p class="note">Implication (stated before results): with 2–3 Newton steps even a rough surrogate reaches high accuracy faster than a cold solve,
+    so the hybrid scenarios may separate the surrogates only weakly; the surrogate's own regret (k = 0) is the sharper test.</p>
+  <div class="src">src: results/qml_pilot_summary_d118356a45_d36bcf048d7d/PILOT.md; STATUS.md §10b</div>
+</section>
+
+<!-- ============================== 4. QUANTUM RESULTS ============================== -->
+<section class="slide section-title">
+  <div class="kicker">Part 4</div>
+  <h1>The quantum results</h1>
+  <p style="color:var(--ink2)">Training and evaluation running · filled from qml/RESULTS.md at STOP 3</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Results · surrogate accuracy</div>
+  <h2>Regret of the predicted parameters (no Newton steps)</h2>
+  <div class="pending" style="flex:1">
+    <b>Pending.</b> Regret CDFs, bulk and tail (<code>results/qml_certify_final_*/regret_cdf_dense.png</code>), and the table:
+    median / p99 / max regret and % within 10<sup>−6</sup> for PQC-full, PQC-product, NN-tuned, NN-matched, RFF ridge, lookup (mean ± sd over 5 seeds).
+    Kill criterion: PQC-full median bulk regret &gt; 10<sup>−2</sup> → negative result.
+  </div>
+  <div class="src">src (to come): qml/RESULTS.md · Primary metric</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Results · generalisation</div>
+  <h2>Held-out block sizes, extrapolation, crossover windows, horizon error</h2>
+  <div class="pending" style="flex:1">
+    <b>Pending.</b> Held-out n<sub>X</sub> = 3·10<sup>6</sup>, 5·10<sup>8</sup>; extrapolation 5·10<sup>3</sup>, 2·10<sup>9</sup>;
+    ±1 km windows around the 13 crossovers; reference points with and without the 7 former "cliff_edge" points; horizon error per n<sub>X</sub>.
+  </div>
+  <div class="src">src (to come): qml/RESULTS.md</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Results · hybrid and latency</div>
+  <h2>Surrogate + Newton steps, and what each prediction costs</h2>
+  <div class="pending" style="flex:1">
+    <b>Pending.</b> Hybrid k = 1, 2, 3 regret and iterations vs cold (29.7 ms) and warm (1.63 ms) solves;
+    batch-1 latency of each model; shots per prediction a hardware PQC would need; training cost; Fourier spectrum of the trained circuit;
+    sparse-training (2 km labels) variant.
+  </div>
+  <div class="src">src (to come): qml/RESULTS.md · Hybrid, Latency, Sparse</div>
+</section>
+
+<!-- ============================== 5. COMPARISON ============================== -->
+<section class="slide section-title">
+  <div class="kicker">Part 5</div>
+  <h1>Comparison</h1>
+</section>
+
+<section class="slide">
+  <div class="kicker">Comparison</div>
+  <h2>From the earlier pipeline to the quantum surrogate</h2>
+  <table style="font-size:15px">
+    <tr><th>approach</th><th>labels / physics</th><th class="num">≤1e-6 bulk</th><th class="num">≤1e-6 tail</th><th class="num">time / point</th><th>status</th></tr>
+    <tr><td>2025 thesis NN</td><td>DA labels, earlier physics</td><td class="num">–</td><td class="num">–</td><td class="num">–</td><td>not reproducible</td></tr>
+    <tr><td>earlier DA run</td><td>earlier physics<sup>†</sup></td><td class="num">3.7 %</td><td class="num">0 %</td><td class="num">5.8–17.6 s</td><td>superseded</td></tr>
+    <tr><td>earlier Hessian_FoR (NN labels)</td><td>earlier physics<sup>†</sup></td><td class="num">81.7 %</td><td class="num">0 %</td><td class="num">–</td><td>superseded</td></tr>
+    <tr><td>new optimizer, warm</td><td>verified, <code>lim</code></td><td class="num">100 %</td><td class="num">100 %</td><td class="num">1.5 ms</td><td>reference method</td></tr>
+    <tr><td>new optimizer, cold (batch 1)</td><td>verified, <code>lim</code></td><td class="num">100 %</td><td class="num">100 %</td><td class="num">29.7 ms</td><td>measured Nov 6</td></tr>
+    <tr><td>lookup table (2 km nodes)</td><td><code>lim</code></td><td class="num">81.6 %</td><td class="num">24.6 %</td><td class="num">10 µs</td><td>floor</td></tr>
+    <tr class="pending"><td>lookup / NN / ridge (QML study labels)</td><td><code>lim</code></td><td class="num">pending</td><td class="num">pending</td><td class="num">pending</td><td>running</td></tr>
+    <tr class="pending"><td><b>PQC-full</b> (and PQC-product)</td><td><code>lim</code></td><td class="num">pending</td><td class="num">pending</td><td class="num">pending</td><td>running</td></tr>
+    <tr class="pending"><td>PQC + k Newton steps</td><td><code>lim</code></td><td class="num">pending</td><td class="num">pending</td><td class="num">pending</td><td>running</td></tr>
+  </table>
+  <p class="note"><sup>†</sup> scored on the physics they were optimised for. The QML study's lookup uses 0.5/0.125 km nodes (denser than the report's 2 km table),
+    so the classical floor in the QML comparison is stronger than the 81.6 % / 24.6 % shown here.</p>
+  <div class="src">src: results/NUMBERS.md; PILOT.md; QML rows from qml/RESULTS.md at STOP 3</div>
+</section>
+
+<!-- ============================== 6. CONCLUSION ============================== -->
+<section class="slide section-title">
+  <div class="kicker">Part 6</div>
+  <h1>Conclusion and future improvement</h1>
+</section>
+
+<section class="slide">
+  <div class="kicker">Conclusion</div>
+  <h2>What is established so far</h2>
+  <ul>
+    <li>A corrected physics model (within 8 % of the paper's stated numbers) and a verified optimizer: 100 % of points within 10<sup>−6</sup> of an
+      independently cross-checked reference, bulk and tail.</li>
+    <li>The earlier labels and headline claims did not hold; they are withdrawn and documented.</li>
+    <li>A preregistered, reproducible QML benchmark: 61,875 certified labels, fixed splits, equal tuning budgets, every R recomputed exactly.</li>
+    <li>Two findings on the way: the "cliff_edge" points are converged optima (certificate normalisation), and the optimal parameters switch
+      branch at 13 places below the horizon, not 2.</li>
+  </ul>
+  <div class="pending" style="margin-top:12px"><b>Pending:</b> whether the PQC is useful under Section 7 in either scenario, and how it compares
+    with matched classical models (STOP 3).</div>
+  <div class="src">src: final_report.tex; STATUS.md §10–10b; qml/PREREGISTRATION.md</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Future improvement</div>
+  <h2>Next steps</h2>
+  <div class="cols">
+    <div>
+      <h3>Quantum</h3>
+      <ul>
+        <li>IQM inference demo (fake backend, then hardware) — <b>paused</b>; requires the Qiskit rebuild check (≤ 10<sup>−10</sup>) and an approved
+          shot / credit budget.</li>
+        <li>Shot budget is the practical limit: ~1 % parameter error already gives ~4·10<sup>−3</sup> regret; the hybrid is the realistic use.</li>
+        <li>Extended inputs (e<sub>mis</sub>, p<sub>dc</sub>, α), where a lookup table scales poorly.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Classical baseline</h3>
+      <ul>
+        <li>Correct the report's cliff_edge and "two switches" statements on main.</li>
+        <li>Generate larger label sets on cloud CPU/GPU.</li>
+        <li>Retrain the torch NN per NN_RETRAIN_PLAN.md.</li>
+        <li>Remaining open issues (STATUS.md).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">src: qml/PREREGISTRATION.md §10; STATUS.md open issues</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Backup</div>
+  <h2>Reproducibility and provenance</h2>
+  <ul>
+    <li>Classical results: <code>python Optimization/run_all.py</code> → results/MANIFEST.json; numbers via make_numbers.py; figures via make_figures.py (git 900d9f88a8).</li>
+    <li>QML study: <code>python qml/run_qml.py --only STEP</code> → results/MANIFEST_qml.json; every output stamped with git commit, config hash, versions, power state.</li>
+    <li>Environments: <code>.venv</code> (JAX 0.9.0, physics) and <code>.venv-qml</code> (PennyLane 0.45.1, JAX 0.10.2; PennyLane fails at runtime with JAX 0.11–0.12).</li>
+    <li>Slide images: assets/SOURCES.md lists each file's source path and SHA-256.</li>
+  </ul>
+  <div class="src">src: README.md; qml/PREREGISTRATION.md §11</div>
+</section>
+
+</div>
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let i = Math.max(0, Math.min(slides.length - 1, parseInt(location.hash.slice(1) || '1', 10) - 1));
+  slides.forEach((s, k) => { const b = document.createElement('div'); b.className = 'num-badge'; b.textContent = (k + 1) + ' / ' + slides.length; s.appendChild(b);
+    s.addEventListener('click', () => { if (document.body.classList.contains('overview')) { document.body.classList.remove('overview'); show(k); } }); });
+  function show(k) { i = Math.max(0, Math.min(slides.length - 1, k)); slides.forEach((s, n) => s.classList.toggle('active', n === i)); history.replaceState(null, '', '#' + (i + 1)); }
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    else if (e.key === 'Home') show(0); else if (e.key === 'End') show(slides.length - 1);
+    else if (e.key === 'o') document.body.classList.toggle('overview');
+  });
+  show(i);
+</script>
+</body>
+</html>
