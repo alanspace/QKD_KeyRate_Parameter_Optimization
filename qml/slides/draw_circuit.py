@@ -45,5 +45,32 @@ def main():
     print(txt)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and len(sys.argv) == 1:
     main()
+
+
+def draw_labelled(n=8):
+    """One layer of the selected PQC-full shape with wires named: 5 answer qubits (measured) + helper qubits."""
+    names = ["answer: μ₁", "answer: μ₂", "answer: P(μ₁)", "answer: P(μ₂)", "answer: q_x"] + \
+            [f"helper {k + 1}" for k in range(n - 5)]
+    dev = qml.device("default.qubit", wires=names)
+
+    @qml.qnode(dev)
+    def circuit(uL, v):
+        for w in names:
+            qml.RX(1.0 * uL, wires=w, id="distance")
+            qml.RY(1.0 * v, wires=w, id="session")
+            qml.Rot(0.0, 0.0, 0.0, wires=w, id="learned")
+        for k in range(n):
+            qml.CZ(wires=[names[k], names[(k + 1) % n]])
+        return [qml.expval(qml.PauliZ(w)) for w in names[:5]]
+    fig, _ = qml.draw_mpl(circuit, decimals=None, style="pennylane")(0.3, 0.6)
+    fig.suptitle(f"One layer of the selected circuit ({n} qubits); the layer is repeated 6 times, then only the 5 answer qubits are read out. "
+                 "Every qubit takes the inputs and is linked to its neighbours.", fontsize=9)
+    out = os.path.join(A, f"pqc_circuit_{n}q_labelled.png")
+    fig.savefig(out, dpi=170, bbox_inches="tight")
+    print("wrote", out)
+
+
+if __name__ == "__main__" and len(sys.argv) > 1 and sys.argv[1] == "--labelled":
+    draw_labelled(8)

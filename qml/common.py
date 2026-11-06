@@ -47,7 +47,11 @@ def power_state():
 
 
 def require_ac(step: str):
+    """Laptop power guard (macOS). On cluster / cloud nodes (not darwin) there is no battery: record and continue."""
     pw = power_state()
+    if sys.platform != "darwin":
+        pw["note"] = "non-macOS host: power guard not applicable"
+        return pw
     if pw["source"] != "AC":
         sys.exit(f"{step}: refusing to run, power source is {pw['source']!r} "
                  f"({pw['battery_percent']}% {pw['battery_state']}); connect AC power")

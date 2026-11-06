@@ -77,6 +77,87 @@
    },
    "git": "d118356a45",
    "finished": "2026-11-06 11:05:38"
+  },
+  {
+   "step": "tune",
+   "env": "qml",
+   "command": [
+    ".venv-qml/bin/python",
+    "qml/train.py",
+    "tune"
+   ],
+   "returncode": 0,
+   "wall_s": 4814.1,
+   "log": "results/logs_qml/tune_20261106_124150.log",
+   "outputs": [
+    "results/.DS_Store",
+    "results/logs_qml",
+    "results/qml_pilot_summary_d118356a45_d36bcf048d7d",
+    "results/qml_tune_7218993cb5_32f0e26b35fd"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 100,
+    "battery_state": "charged",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "7218993cb5",
+   "finished": "2026-11-06 14:02:04"
+  },
+  {
+   "step": "select",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/certify.py",
+    "--select"
+   ],
+   "returncode": 0,
+   "wall_s": 2.0,
+   "log": "results/logs_qml/select_20261106_140204.log",
+   "outputs": [
+    "results/logs_qml",
+    "results/qml_select_7218993cb5_feab976f711d"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 62,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": false
+   },
+   "git": "7218993cb5",
+   "finished": "2026-11-06 14:02:06"
+  },
+  {
+   "step": "final",
+   "env": "qml",
+   "command": [
+    ".venv-qml/bin/python",
+    "qml/train.py",
+    "final"
+   ],
+   "returncode": null,
+   "status": "stopped by owner at 2026-11-06 14:36 (CPU too slow; moving final training to Leonardo GPUs)",
+   "wall_s": 2040.0,
+   "log": "results/logs_qml/final_20261106_140206.log",
+   "outputs": [
+    "qml/data/weights_PQC-full_dense_s0.npz",
+    "qml/data/weights_PQC-product_dense_s0.npz",
+    "qml/data/weights_NN-tuned_dense_s0.npz",
+    "qml/data/weights_NN-matched_dense_s0.npz",
+    "qml/data/weights_RFF-ridge_dense_s0.npz"
+   ],
+   "completed_units": [
+    "dense PQC-full s0 (1196 s)",
+    "dense PQC-product s0 (224 s)",
+    "dense NN-tuned s0 (2 s)",
+    "dense NN-matched s0 (2 s)",
+    "dense RFF-ridge s0"
+   ],
+   "lost": "dense PQC-full s1 (~9 min of training, in memory only)",
+   "finished": "2026-11-06 14:37:02"
   }
  ]
 }

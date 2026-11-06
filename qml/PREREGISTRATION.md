@@ -378,3 +378,25 @@ labels. Afterwards:
    - No model is retrained. The 4 affected training targets stay as in the original labels, and this is stated.
 5. **Crossover windows.** These are recomputed from the logged switches of both sweeps plus the unlogged jumps.
    Any change to the window list is reported.
+
+## Amendment 5 (2026-11-06): final training moved to Leonardo GPUs; resume from checkpoints (owner decision)
+
+The final training on the laptop CPU was stopped by the owner at 14:36. At about 25 min per seed, the remaining
+~3 h on the CPU was not worth it. Nothing in the protocol changes: same code, data, selected configurations,
+E = 2000 steps, seeds 0-4, float64.
+
+**Kept from the stopped run.** Dense seed 0 for all five trained models (PQC-full 8×6, PQC-product 6×6, NN-tuned,
+NN-matched, RFF-ridge).
+- Their weights were saved when each finished.
+- `train.py final --import-cpu-s0` turned them into parts. Predictions were recomputed from the weights, with no
+  retraining. The recomputed training losses equal the run log.
+- The RFF-ridge λ of seed 0 was not saved and is recorded as missing.
+
+**Remaining 45 parts** (dense seeds 1-4, sparse seeds 0-4) are trained on CINECA Leonardo A100 GPUs, one
+(variant, seed) per job, with `jax[cuda12]` 0.10.2 and float64.
+
+**Reporting.** Training time is reported per hardware (CPU seed 0 vs GPU seeds) and never pooled. The hardware of
+each part is stored in its metadata.
+
+**Cross-hardware check.** If GPU time allows, dense seed 0 is also retrained on the GPU and compared with the CPU
+part (weights, loss, predictions); the difference is reported. The CPU part remains the one used for seed 0.

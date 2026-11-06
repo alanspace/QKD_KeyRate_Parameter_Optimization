@@ -704,3 +704,23 @@ Effect on the running Phase 4 (labels 0d8bef1402):
   - 4 of 4727 training targets are off by <= 0.011 in u.
   - Regret against the label is underestimated by <= 6e-4 at 11 test and 11 heldout points.
   - Decision on repair requested from the owner; no change made.
+
+10e. Phase 4 paused; final training moves to Leonardo (2026-11-06)
+------------------------------------------------------------------
+Completed and saved:
+  tune   4814 s (80 min): 6 configs × {PQC-full, PQC-product, NN} + RFF ridge, seed 0
+  select 2 s: PQC-full 8×6 (240 params), PQC-product 6×6, NN h=12, RFF-ridge on the 5×6 spectrum
+  Validation (seed 0, median regret, bulk+tail pooled, crossover windows excluded):
+    NN 9.1e-4; PQC-full 5.4e-3; RFF 1.3e-2; PQC-product 2.0e-2
+final: started 14:02, stopped by the owner at 14:36 (CPU too slow).
+  Dense seed 0 completed for all 5 models (PQC-full 1196 s, PQC-product 224 s, NNs 2 s each, ridge).
+  Weights saved; imported as parts (qml/data/final_parts/, 5 of 50). Recomputed losses equal the log.
+  Lost: dense PQC-full seed 1, about 9 min in.
+  MANIFEST_qml.json has a 'final' record with returncode null and status "stopped by owner".
+train.py final: per-part checkpoints and resume (skip existing parts); --seeds / --variants / --assemble /
+  --import-cpu-s0. The power guard does not apply on non-macOS hosts.
+Mac GPU checked and NOT usable: jax-metal 0.1.1 has no complex64 or float64 (state-vector simulation fails).
+Leonardo scripts: qml/leonardo/ (push, setup_env, final_array.sbatch with 9 tasks, pull).
+  Waiting for the owner to: renew the SSH certificate (expired 2026-11-04 04:46), give the username and SLURM
+  account, and approve the allocation use.
+Note: NN-tuned and NN-matched are the same configuration in this run (both index 5, h=12).

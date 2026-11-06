@@ -1,0 +1,4 @@
+[final] dense PQC-full s0 (8, 6): train 1196s loss 3.787e-03
+[final] dense PQC-product s0 (6, 6): train 224s loss 5.885e-03
+[final] dense NN-tuned s0 12: train 2s loss 1.701e-03
+[final] dense NN-matched s0 12: train 2s loss 1.701e-03

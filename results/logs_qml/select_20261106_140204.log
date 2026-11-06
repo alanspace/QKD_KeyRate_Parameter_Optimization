@@ -1,0 +1,25 @@
+[select] PQC-full__0: median 6.533e-02 within1e-6 0.0%
+[select] PQC-full__1: median 4.184e-02 within1e-6 0.0%
+[select] PQC-full__2: median 5.109e-02 within1e-6 0.0%
+[select] PQC-full__3: median 1.431e-02 within1e-6 0.0%
+[select] PQC-full__4: median 1.504e-02 within1e-6 0.0%
+[select] PQC-full__5: median 5.391e-03 within1e-6 0.0%
+[select] PQC-product__0: median 4.826e-02 within1e-6 0.0%
+[select] PQC-product__1: median 2.347e-02 within1e-6 0.0%
+[select] PQC-product__2: median 4.357e-02 within1e-6 0.0%
+[select] PQC-product__3: median 1.006e-01 within1e-6 0.0%
+[select] PQC-product__4: median 1.992e-02 within1e-6 0.0%
+[select] PQC-product__5: median 2.458e-02 within1e-6 0.0%
+[select] NN__0: median 1.327e-02 within1e-6 0.0%
+[select] NN__1: median 2.609e-03 within1e-6 0.0%
+[select] NN__2: median 3.029e-03 within1e-6 0.0%
+[select] NN__3: median 1.033e-03 within1e-6 0.0%
+[select] NN__4: median 2.497e-03 within1e-6 0.0%
+[select] NN__5: median 9.078e-04 within1e-6 0.1%
+[select] RFF-ridge__0: median 1.189e-01 within1e-6 0.0%
+[select] RFF-ridge__1: median 6.041e-02 within1e-6 0.0%
+[select] RFF-ridge__2: median 3.494e-01 within1e-6 0.0%
+[select] RFF-ridge__3: median 1.321e-02 within1e-6 0.0%
+[select] RFF-ridge__4: median 1.466e-02 within1e-6 0.0%
+[select] RFF-ridge__5: median 6.726e-02 within1e-6 0.0%
+[select] selected {'PQC-full': 5, 'PQC-product': 4, 'NN': 5, 'RFF-ridge': 3}; wrote results/qml_select_7218993cb5_feab976f711d
