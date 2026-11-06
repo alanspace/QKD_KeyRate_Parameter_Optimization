@@ -579,3 +579,45 @@ Tests: tests/qml/test_qml_main.py, 4 tests OK in .venv.
   tests/qml/test_qml_models.py: skipped in .venv with the reason printed; 2 tests OK in .venv-qml.
   The model test found PQC_GRID out of order relative to the parameter-count matching of PREREGISTRATION
   section 5. It was reordered to (5,3) (6,3) (8,3) (5,6) (6,6) (8,6) = 75 90 120 150 180 240 before any training.
+
+10a. cliff_edge discrepancy: diagnosis (2026-11-06; diagnosis only, no code or reference changed)
+---------------------------------------------------------------------------------------------------
+Question: why does the label sweep flag 0 cliff_edge points where the reference flags 7?
+
+Stale write: ruled out.
+  Both reference files are stamped git 9b2938e, physics_source_hash 9564691bc5b0, src clean.
+  The current hash is also 9564691bc5b0. It covers every .py file in src/qkd and src/qkd_opt, including
+  optimize._finalise / certify_batch, so the certificate code is unchanged.
+
+Root cause: the stored grad_norm_theta is normalised differently.
+  It is max|d(-objective/scale)/dtheta| of the winning candidate solve, with scale = |objective at that solve's
+  best start| (optimize._solve).
+  At all 7 cliff_edge points the best start had a near-zero key rate. Implied scale (raw gradient / stored g):
+  1.4e-28 .. 8.6e-27, against R = 4.1e-12 .. 4.4e-10 at the solution.
+  The stored g is therefore inflated by R/scale, about 1e15-1e17.
+  labels.py's certificate comes from optimize_sweep, which re-normalises by the objective at the final point
+  (scale = |R_final|). So the two fields measure the same gradient in different units.
+
+Re-runs of the winning Sobol solve (same seed, 2^17, top-64; 5 of the 7 points; the other 2 won by continuation):
+  - R reproduced to all 11 printed digits;
+  - scale 5.8e-28 .. 8.6e-27, matching the implied scale;
+  - g = 5.96e3 .. 3.0e8, same order of magnitude as stored but not identical. The raw gradient is at float64
+    noise level (|dR/dtheta|_inf 2.4e-24 .. 1.6e-17), so noise / 1e-27 is large and not reproducible. This also
+    explains the stored 9.96e3 vs 1.32e9 at the duplicated point (1e4, 130.326 km).
+At the stored reference parameters, the gradient relative to R (scale |R|) is 2.8e-13 .. 1.1e-6.
+
+Conclusions:
+  - The 7 reference cliff_edge points are converged optima. The flag records "the best start of the winning
+    solve had a near-zero key rate", not a discontinuity of R(p).
+  - final_report.tex Section 4.1 and STATUS section A group (i) are not supported in this respect. The
+    noise_floor tier uses the same g and may be affected too.
+  - Not edited here (diagnosis only); to be resolved on main.
+  - This study keeps the registered rule on label certificates (0 label points flagged). The ref splits keep the
+    reference flags (7 excluded), as preregistered.
+
+The crossover list (Amendment 2) is unaffected: switch detection uses R values and u-distance, not g.
+  All 13 switches are genuine branch crossings. Across the 1/32 km step at each crossover:
+    - max |du| is 168 .. 1034x the median neighbouring step (within +-3 km);
+    - |dR|/R equals the neighbouring steps (R continuous).
+  Why the benchmark sweep logged only 2 of the switches at its six n_X is not verified. Candidate explanation:
+  0.5 km steps with global checks every 5 km, so a warm start can land in the other basin without an event.
