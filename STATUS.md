@@ -490,3 +490,92 @@ An independent read-only audit (separate agent, against result files and code) f
   Benchmark scores are unaffected (backfill puts the sweep on the better branch; 100 % within 1e-6).
 Open issue 9 (new): characterise both optima at these crossovers, and make dense_scan sensitive to switches of
   this size.
+
+
+10. QML surrogate study, branch qml-surrogate (2026-11-06)
+-----------------------------------------------------------
+Worktree ../QKD_qml_surrogate_wt, created from main at e796420.
+Preregistration: qml/PREREGISTRATION.md, committed 6867b44 before any training; Amendments 1-3.
+
+Environment .venv-qml (Python 3.13.3):
+  pennylane 0.45.1, pennylane_lightning 0.45.0, jax/jaxlib 0.10.2, iqm-client 36.0.0, qiskit 2.1.2,
+  qiskit-aer 0.17.2, numpy 2.5.4, scipy 1.18.1.
+  The first install resolved jax 0.12.0.1; jax.__version__ reports that string.
+  PennyLane 0.45.1 fails at runtime with jax 0.12.0.1 and 0.11.2:
+    AttributeError: module 'jax.core' has no attribute 'is_concrete'
+  It passes the jit+grad+vmap smoke test with 0.10.2 and 0.9.2. Pinned to 0.10.2.
+
+Phase 2 labels
+  Ran: qml/run_qml.py --only labels (qml/labels.py at 0d8bef1; on AC).
+  Design: one optimize_sweep (preset lim), 15 n_X x 4125 grid points = 61875 points.
+  Sweep wall time 275.9 s.
+  Output: qml/data/labels_0d8bef1402_9fa16da52f39.{npz,json}, SHA256SUMS.
+  Quality gate vs the reference JSONs, at every shared point that is not cliff_edge:
+    main: 103 points, 0 worse, min relative difference -9.5e-14
+    tail: 175 points, 0 worse, min relative difference -9.5e-13
+    PASS
+  Label horizons minus reference horizons (km): 1e4 -0.0002, 1e5 -0.0009, 1e6 -0.0071, 1e7 -0.0057, 1e8 -0.0073,
+  1e9 -0.0021 (max |diff| 0.0073 km; the label sweep's horizon bisection is warm-started, 30 steps).
+  Scored points by split:
+    train  bulk 3407, tail 1320
+    val    bulk 3402, tail 1320
+    test   bulk 6797, tail 2640
+    ref    bulk 88,   tail 175
+    heldout (3e6, 5e8)  bulk 5748, tail 960
+    extrap  (5e3, 2e9)  bulk 3812, tail 912
+  401 scored points fall in crossover windows (Amendment 2). noise_floor 6.
+
+L = 0 overlap (labels split rule):
+  The reference grids contain L = 0 and L = 200 km. Both lie on the label lattice.
+  The 12 points (6 reference n_X x {0, 200} km) keep their lattice split (train) and are not scored as ref.
+  This keeps PREREGISTRATION section 4's train rule. It contradicts that section's sentence that reference
+  points are "not on the lattice".
+  The L = 200 km points have R <= 0, so they are not trained on either.
+  Effect: the ref split scores 88 bulk + 175 tail points, instead of 103 + 175 minus the 9 points shared by
+  both reference files.
+
+Below-horizon branch switches (objective R) logged by the dense label sweep: 13 (table in PREREGISTRATION
+Amendment 2).
+  At the report's six n_X:
+    1e4: none
+    1e5: 130.547 km
+    1e6: 118.547 km
+    1e7: 105.953 and 138.234 km
+    1e8: 134.766 km
+    1e9: 128.672 km
+  The benchmark sweep (results/benchmark_lim_0c8f47a1f0_530f6d58460c) logged only n_X=1e5 and 1e6.
+  Its crossovers 130.3-130.8 and 118.3-118.8 km contain the label sweep's 130.547 and 118.547.
+  Effect on the report: final_report.tex Section 5.3 says the sweep "logged two switches between competing
+  local optima while the key is positive" and "No switch was logged below the horizon for n_X = 10^4, 10^7,
+  10^8 and 10^9".
+    - That is accurate for the benchmark sweep.
+    - The denser label sweep shows at least 4 further switches at n_X = 1e7 (2), 1e8 and 1e9. They have
+      u-distance 0.005-0.014 and gain at detection 2.8e-5 to 1.2e-3.
+  So the report's statement is incomplete for 1e7, 1e8 and 1e9. The report was NOT edited (as instructed).
+
+cliff_edge certificate (finding; report not edited):
+  At all 7 reference cliff_edge points:
+    - label R and l equal the reference values;
+    - the label grad_norm_theta is 3e-13 .. 1.4e-7, while the reference stores 9.7e3 .. 1.8e9.
+  The registered rule (grad > 1e-3) therefore flags 0 label points.
+  Re-certified with the current code (certify_batch, objective R, scale |R|), the reference's own parameters
+  give 3e-13 .. 1.1e-6.
+  Strongest evidence: n_X=1e4, L=130.326 km appears in both reference files.
+    - Their parameters agree to |du|_inf 2.1e-11 and R agrees to 11 digits.
+    - The stored gradients are 9.96e3 and 1.32e9.
+  So the stored cliff_edge gradient is not a property of the solution.
+  Hypothesis (not yet tested): the certificate's normalisation, scale = |value at the best start| (optimize._solve),
+  inflates the gradient by about R/scale when the best start had a tiny key rate.
+  Affected text:
+    - final_report.tex Section 4.1 ("where the greatest fixed point of eps_sec = kappa*l disappears and R(p) is
+      discontinuous")
+    - STATUS section A group (i)
+  Both may be unsupported. To be resolved outside this study.
+  In this study:
+    - label points: the registered rule as written (0 flagged);
+    - ref split: the reference's own flags.
+
+Tests: tests/qml/test_qml_main.py, 4 tests OK in .venv.
+  tests/qml/test_qml_models.py: skipped in .venv with the reason printed; 2 tests OK in .venv-qml.
+  The model test found PQC_GRID out of order relative to the parameter-count matching of PREREGISTRATION
+  section 5. It was reordered to (5,3) (6,3) (8,3) (5,6) (6,6) (8,6) = 75 90 120 150 180 240 before any training.

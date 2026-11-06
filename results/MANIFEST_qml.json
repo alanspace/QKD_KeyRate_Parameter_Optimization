@@ -1,0 +1,32 @@
+{
+ "runs": [
+  {
+   "step": "labels",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/labels.py"
+   ],
+   "returncode": 0,
+   "wall_s": 278.8,
+   "log": "results/logs_qml/labels_20261106_105044.log",
+   "outputs": [
+    "qml/data/SHA256SUMS",
+    "qml/data/labels_0d8bef1402_9fa16da52f39.json",
+    "qml/data/labels_0d8bef1402_9fa16da52f39.npz",
+    "results/.DS_Store",
+    "results/logs_qml",
+    "results/qml_labels_0d8bef1402_9fa16da52f39"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 76,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "0d8bef1402",
+   "finished": "2026-11-06 10:55:23"
+  }
+ ]
+}

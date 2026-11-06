@@ -299,3 +299,50 @@ laptop". For this study, labels are generated **locally on AC power**.
 The design in Section 3 (about 15 chains × ~4,200 grid points, warm sweep) is therefore minutes of compute.
 
 Section 7's original sentence is unchanged. The same amendment is added, dated, under Section 7 of the report.
+
+## Amendment 2 (2026-11-06): crossover windows from every below-horizon switch
+
+Committed after the Phase 2 label run and before any model has been trained or has seen test data.
+
+**Rule.** Section 4's crossover rule is made generic. It is now ±1 km around **every below-horizon switch logged by
+the label sweep**: every `branch_switch` event with objective R whose crossover lies below the label horizon of its
+n_X. The crossover km is the midpoint of the backfill bracket.
+
+Points in these windows are excluded from the bulk/tail aggregates and reported separately.
+
+**Switches.** The label sweep (`qml/data/labels_0d8bef1402_9fa16da52f39.json`) logged 13:
+
+| n_X | crossover km (bracket) | detected at km | rel. gain at detection | u-distance |
+|---|---|---|---|---|
+| 3.162e+04 | 135.359 (135.344–135.375) | 135.531 | 7.06e-03 | 0.0954 |
+| 1e+05 | 130.547 (130.531–130.562) | 130.594 | 6.19e-04 | 0.0616 |
+| 3.162e+05 | 124.797 (124.781–124.812) | 125.000 | 1.14e-03 | 0.0412 |
+| 1e+06 | 118.547 (118.531–118.562) | 118.812 | 8.48e-04 | 0.0284 |
+| 3e+06 | 112.328 (112.312–112.344) | 112.469 | 3.11e-04 | 0.0203 |
+| 3.162e+06 | 112.016 (112.000–112.031) | 112.156 | 2.85e-04 | 0.0200 |
+| 1e+07 | 105.953 (105.938–105.969) | 106.250 | 1.16e-03 | 0.0143 |
+| 1e+07 | 138.234 (138.219–138.250) | 138.344 | 8.51e-05 | 0.0079 |
+| 1e+08 | 134.766 (134.750–134.781) | 134.906 | 6.11e-05 | 0.0076 |
+| 3.162e+08 | 132.078 (132.062–132.094) | 132.094 | 6.71e-06 | 0.0064 |
+| 5e+08 | 130.797 (130.781–130.812) | 130.875 | 1.83e-05 | 0.0059 |
+| 1e+09 | 128.672 (128.656–128.688) | 128.822 | 2.76e-05 | 0.0050 |
+| 2e+09 | 126.297 (126.281–126.312) | 126.469 | 2.27e-05 | 0.0041 |
+
+"Rel. gain at detection" is the gain at the global check that found the switch. Global checks run every 10 grid
+points, i.e. every 0.3125 km in this region. It is not the size of the discontinuity at the crossover. With these
+windows, 401 scored points fall inside crossover windows.
+
+## Amendment 3 (2026-11-06): sparse-training variant (label efficiency)
+
+Also committed before any training.
+
+- **Training set.** The same models and seeds, trained only on the training labels with L ≡ 0 (mod 2 km), i.e.
+  lattice k ≡ 0 (mod 64), in both bulk and tail regions, per n_X.
+- **No new tuning.** The configurations selected in the dense study are reused unchanged.
+- **Built from the sparse set:** the output mapping (Section 6, same rule), both lookup tables, and the RFF
+  frequencies (from the sparse-trained PQC-full of the same seed).
+- **Evaluation.** The same test, ref, heldout and extrap sets. Reported as its own table; never pooled with the
+  dense study.
+- **Purpose.** Label efficiency, relevant to Phase 5b.
+- **Condition.** It is included in the Phase 3 projection. If including it brings the projected total above 12 h,
+  it is not run, and this is reported at STOP 2.
