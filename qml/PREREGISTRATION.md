@@ -346,3 +346,35 @@ Also committed before any training.
 - **Purpose.** Label efficiency, relevant to Phase 5b.
 - **Condition.** It is included in the Phase 3 projection. If including it brings the projected total above 12 h,
   it is not run, and this is reported at STOP 2.
+
+## Amendment 4 (2026-11-06): label repair after the run; re-certification without retraining (owner decision)
+
+Committed while Phase 4 tuning was running on labels `0d8bef1402_9fa16da52f39`. No final model had been trained
+yet. No test-set results had been seen.
+
+**Finding.** STATUS 10d: 12 unlogged branch switches in the label sweep. Before 10 of them the sweep stayed on the
+worse branch. 58 lattice labels are sub-optimal by up to 6.0e-4 relative R:
+- train 4, val 6, test 11, heldout 11, extrap 2;
+- the other 24 are unused.
+
+**Decision.** The running Phase 4 (tune, select, final, latency, certify_final) finishes unchanged on the original
+labels. Afterwards:
+
+1. **Repair** (`qml/repair_labels.py`, main `.venv`, on AC):
+   - Run a backward warm sweep (same grid, same n_X, `optimize_sweep` on L descending).
+   - Per point, take the better of the forward label and the backward solution: R where either is positive,
+     otherwise ℓ/n_X. This is the cont_up / cont_down rule of `build_reference.py`.
+   - Splits, inputs and flags stay unchanged. Repaired points are flagged.
+2. **Gate on the repaired labels.** Cold solves (2^14 Sobol, top-16) at:
+   - every lattice point within ±3 km of every isolated jump of either sweep;
+   - 1,000 random scored points.
+
+   Pass if no repaired label is worse than a cold solve by more than 1e-9 relative. The reference-point gate of
+   Section 3.4 is repeated.
+3. **Storage.** Repaired labels go to `qml/data/repaired/`. No step picks them up automatically.
+4. **Re-certification.** The predictions of the finished run are re-certified against the repaired labels
+   (`certify.py --final --labels <repaired>`). RESULTS.md reports both certifications.
+   - The primary metric uses the repaired labels.
+   - No model is retrained. The 4 affected training targets stay as in the original labels, and this is stated.
+5. **Crossover windows.** These are recomputed from the logged switches of both sweeps plus the unlogged jumps.
+   Any change to the window list is reported.
