@@ -72,13 +72,12 @@ Prerequisites from the owner:
 - **approval to use the allocation.**
 
 ```bash
-bash qml/leonardo/push.sh                      # Mac: git bundle of qml-surrogate + the 5 finished parts
-ssh $LEO_USER@login.leonardo.cineca.it
-git clone -b qml-surrogate $WORK/qkd_qml_in/qkd_qml.bundle $WORK/qkd_qml     # first time only
-bash $WORK/qkd_qml/qml/leonardo/setup_env.sh  # creates .venv-qml (CUDA JAX, float64); copies the 5 parts
+# on the Leonardo login node (the repo is public; no bundle or credentials needed to read it)
+curl -O https://raw.githubusercontent.com/alanspace/QKD_KeyRate_Parameter_Optimization/qml-surrogate/qml/leonardo/setup_env.sh
+bash setup_env.sh                              # clones qml-surrogate into $WORK/qkd_qml, builds .venv-qml (CUDA)
 cd $WORK/qkd_qml && sbatch --account=$LEO_ACCOUNT qml/leonardo/final_array.sbatch   # 9 tasks: dense s1-4, sparse s0-4
 squeue -u $USER                                # monitor; each task prints its devices and that float64 is in use
-bash qml/leonardo/pull.sh                      # Mac: copy the parts back (expect 50 files)
+bash qml/leonardo/pull.sh                      # Mac: copy the parts back (expect 50 files), or push them from Leonardo
 ```
 
 Checks:
@@ -187,6 +186,19 @@ JAX_PLATFORMS=cpu PYTHONPATH=. .venv-qml/bin/python qml/iqm/rebuild.py --check  
   - the kill-criterion outcome;
   - the usefulness verdicts;
   - the open items.
+
+### Step H: dual-annealing dataset on Leonardo CPUs (main-project task; code on `main`, merged here)
+
+`Optimization/benchmark/da_dataset.py` and `hpc/leonardo/{setup_env_main.sh,da_array.sbatch,da_merge.sbatch}`; see
+`hpc/leonardo/README.md`.
+
+- It regenerates the 6,000-point thesis-grid dataset with the archived DA pipeline and scores it against the verified
+  optimizer.
+- Cost: about 10 CPU-hours, as 100 array tasks of 1 core.
+- Default preset `lim`. The thesis's own physics (e_mis 5e-3, p_ap 0, fixed eps) is not a defined preset.
+- Smoke test on the Mac: a 0.4 km point (L-BFGS-B branch) gave R < 0 where the verified optimizer finds a key.
+- The output goes into STATUS (new section) and resolves Appendix A's "to be regenerated on cloud compute" in
+  `final_report.tex`. The report text itself is edited only on `main`, with the owner's approval.
 
 ### Step G (only with the owner's approval): Phase 5a IQM inference demo
 

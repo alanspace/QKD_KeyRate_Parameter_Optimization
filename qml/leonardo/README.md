@@ -10,11 +10,12 @@ see Amendment 5.
 
 Fill in `LEO_USER` and `LEO_ACCOUNT` in `env.sh` first. The SSH certificate is renewed by the owner.
 
-1. `bash qml/leonardo/push.sh` (on the Mac): git bundle of branch qml-surrogate + the finished parts → Leonardo.
-2. `bash qml/leonardo/setup_env.sh` (on the Leonardo login node; compute nodes have no internet):
-   clone from the bundle, create `.venv-qml` with jax[cuda12]==0.10.2 and pennylane==0.45.1.
-3. `sbatch qml/leonardo/final_array.sbatch` (on Leonardo): 9 tasks.
-4. `bash qml/leonardo/pull.sh` (on the Mac): copy the parts back.
-   Then, locally: `train.py final --assemble`, then run_qml steps `latency`, `certify_final`, and Amendment 4.
+1. On the Leonardo login node: `bash setup_env.sh`. Get the script with
+   `curl -O https://raw.githubusercontent.com/alanspace/QKD_KeyRate_Parameter_Optimization/qml-surrogate/qml/leonardo/setup_env.sh`,
+   or copy it. It clones `qml-surrogate` from GitHub into `$WORK/qkd_qml` and builds `.venv-qml`.
+2. `cd $WORK/qkd_qml && sbatch --account=<ACCOUNT> qml/leonardo/final_array.sbatch` (9 tasks).
+3. `bash qml/leonardo/pull.sh` on the Mac copies the parts back. Alternatively, commit and push them from Leonardo,
+   if a GitHub credential is configured there.
+   Then locally: `train.py final --assemble`, run_qml steps `latency` and `certify_final`, then Amendment 4.
 
 Nothing here is submitted without the owner's approval of the allocation use.
