@@ -1,0 +1,29 @@
+🚀 JAX Devices available: [CpuDevice(id=0)]
+2026-02-07 09:06:03,704 - INFO - 🚀 Starting JAX Optimization. Logs at /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/run_scripts/results_global_jax/run_20260207_090603/optimization_jax.log
+2026-02-07 09:06:03,704 - INFO - 📂 Run Directory: /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/run_scripts/results_global_jax/run_20260207_090603
+🏎️  Starting JAX Optimization (Parallel Scipy Minimization)
+📂 Output Folder: /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/run_scripts/results_global_jax/run_20260207_090603
+🏎️  Starting Parallel Optimization using 12 cores...
+2026-02-07 09:06:03,704 - INFO - Using 12 parallel workers
+2026-02-07 09:06:19,408 - INFO - ✅ Segment n_X=1e+04-SEQ completed in 15.07s
+✅ Finished n_X=1e+04 in 15.07s (20 points)
+2026-02-07 09:06:19,408 - INFO - ✅ Finished n_X=1e+04 in 15.07s (20 points)
+🚀 JAX Devices available: [CpuDevice(id=0)]
+   ... n_X=1e+04-SEQ processing L=0.0km (0/20)
+   ... n_X=1e+04-SEQ processing L=21.1km (2/20)
+   ... n_X=1e+04-SEQ processing L=42.1km (4/20)
+   ... n_X=1e+04-SEQ processing L=63.2km (6/20)
+   ... n_X=1e+04-SEQ processing L=84.2km (8/20)
+   ... n_X=1e+04-SEQ processing L=105.3km (10/20)
+   ... n_X=1e+04-SEQ processing L=126.3km (12/20)
+   ... n_X=1e+04-SEQ processing L=147.4km (14/20)
+   ... n_X=1e+04-SEQ processing L=168.4km (16/20)
+   ... n_X=1e+04-SEQ processing L=189.5km (18/20)
+🎯 Total optimization time (sum of all n_X): 15.07s (0.25 min)
+2026-02-07 09:06:19,512 - INFO - 🎯 Total optimization time (sum of all n_X): 15.07s (0.25 min)
+Sample Result: {'fiber_length': 0.0, 'n_X': 10000, 'key_rate': 0.0, 'optimized_parameters': {'mu_1': 0.65, 'mu_2': 0.15, 'P_mu_1': 0.05, 'P_mu_2': 0.61, 'P_X_value': 0.425}, 'initial_guess': {}}
+✅ Saved JAX results to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/run_scripts/results_global_jax/run_20260207_090603/reordered_qkd_results_jax_20260207_090603.json with 20 entries.
+
+📊 Generating Plots and Reports...
+✅ Timing summary saved to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/run_scripts/results_global_jax/run_20260207_090603/timing_summary.png
+✅ Text report saved to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/run_scripts/results_global_jax/run_20260207_090603/timing_report.txt

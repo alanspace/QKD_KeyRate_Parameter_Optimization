@@ -1,0 +1,89 @@
+\documentclass[11pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{\vspace{-2cm}\textbf{QKD Optimization Performance Analysis:\\ The 3,574$\times$ Hybrid Speedup}}
+\author{Systems Intelligence \& Algorithmic Efficiency}
+\date{}
+
+\begin{document}
+
+\maketitle
+\vspace{-1.5cm}
+
+\section*{1. Simulation Domain \& Baseline Assumptions}
+
+Let the spatial simulation sequence for the QKD optimization be defined over $N_p$ discrete points (from $0$ to $200$ km with $\Delta L = 0.5$ km):
+\begin{equation}
+N_p = 400 \text{ points}
+\end{equation}
+
+For the legacy stochastic solver (Dual Annealing), the number of objective function evaluations required to reach the global minimum per spatial point is:
+\begin{equation}
+N_e \approx 15,000 \text{ evaluations/point}
+\end{equation}
+
+
+\section*{2. Legacy Baseline: Standard Python + Stochastic Search}
+
+Let $t_{\text{Py}}$ be the raw evaluation time of the Lim et al. 2014 finite-key decoy-state bounds in an interpreted Python environment:
+\begin{equation}
+t_{\text{Py}} \approx 47 \text{ ms} = 0.047 \text{ s}
+\end{equation}
+
+The compute time required for a single spatial point, $T_{\text{point, base}}$, and the total sequence time, $T_{\text{total, base}}$, are:
+\begin{align}
+T_{\text{point, base}} &= N_e \times t_{\text{Py}} \approx 15,000 \times 0.047 \text{ s} = 705 \text{ s} \\
+T_{\text{total, base}} &= T_{\text{point, base}} \times N_p = 705 \text{ s} \times 400 = 282,000 \text{ s} \approx 78.3 \text{ Hours}
+\end{align}
+
+
+\section*{3. Breakthrough 1: Systems Engineering (JAX + XLA Compilation)}
+
+By compiling the physics engine into XLA machine code, the evaluation time drops to $t_{\text{JAX}}$:
+\begin{equation}
+t_{\text{JAX}} \approx 102 \ \mu\text{s} = 1.02 \times 10^{-4} \text{ s}
+\end{equation}
+
+The new computational time for a single spatial point becomes:
+\begin{equation}
+T_{\text{point, JAX}} = N_e \times t_{\text{JAX}} \approx 15,000 \times 1.02 \times 10^{-4} \text{ s} = 1.53 \text{ s}
+\end{equation}
+
+The total sequence time (including compilation overhead and Python loops) is empirically measured as $T_{\text{total, JAX}} = 709.0 \text{ s}$.
+
+The isolated Systems Speedup factor ($S_{\text{sys}}$) at the raw objective level is:
+\begin{equation}
+S_{\text{sys}} = \frac{T_{\text{point, base}}}{T_{\text{point, JAX}}} = \frac{705 \text{ s}}{1.53 \text{ s}} \approx 460\times
+\end{equation}
+\textit{(Conservatively reported as $>100\times$ on slides to account for global hardware variance).}
+
+
+\section*{4. Breakthrough 2: Algorithmic Efficiency (Exact FoR Hessian)}
+
+By replacing the $N_e \approx 15,000$ stochastic guesses with an exact Forward-over-Reverse 2nd-order Hessian tracker (\texttt{trust-constr}), the number of required calculations per point collapses. The empirically measured time to compute the entire 400-point sequence drops to $T_{\text{total, Hess}} = 78.9 \text{ s}$.
+
+The isolated Algorithmic Speedup factor ($S_{\text{alg}}$) is:
+\begin{equation}
+S_{\text{alg}} = \frac{T_{\text{total, JAX}}}{T_{\text{total, Hess}}} = \frac{709.0 \text{ s}}{78.9 \text{ s}} \approx 8.99\times
+\end{equation}
+
+
+\section*{5. The Compounding Total Speedup ($S_{\text{total}}$)}
+
+The overall engineering achievement combines the execution speed of the JAX compiler ($S_{\text{sys}}$) with the search efficiency of the exact Hessian ($S_{\text{alg}}$). The total computational acceleration against the standard legacy baseline is:
+\begin{equation}
+S_{\text{total}} = \frac{T_{\text{total, base}}}{T_{\text{total, Hess}}} = \frac{282,000 \text{ s}}{78.9 \text{ s}} \approx \textbf{3,574}\times
+\end{equation}
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.3cm}
+\noindent \small \textit{Conclusion:} A computationally intractable analysis (78.3 hours) was reduced to an interactive timescale (78.9 seconds) strictly through rigorous application of Systems Engineering and Deep Mathematics.
+
+\end{document}

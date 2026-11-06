@@ -1,0 +1,60 @@
+2026-02-07 11:08:46,735 - INFO - Starting optimization in SEQUENTIAL mode (Adaptive)...
+   ... Processing n_X=1e+04, L=0.0
+INFO:2026-02-07 11:08:46,748:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 11:08:46,748 - INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+   ... Processing n_X=1e+04, L=10.0
+   ... Processing n_X=1e+04, L=20.0
+   ... Processing n_X=1e+04, L=30.0
+   ... Processing n_X=1e+04, L=40.0
+   ... Processing n_X=1e+04, L=50.1
+   ... Processing n_X=1e+04, L=60.1
+   ... Processing n_X=1e+04, L=70.1
+   ... Processing n_X=1e+04, L=80.1
+   ... Processing n_X=1e+04, L=90.1
+   ... Processing n_X=1e+04, L=100.1
+   ... Processing n_X=1e+04, L=110.1
+   ... Processing n_X=1e+04, L=120.1
+   ... Processing n_X=1e+04, L=130.1
+   ... Processing n_X=1e+04, L=140.1
+   ... Processing n_X=1e+04, L=150.2
+   ... Processing n_X=1e+04, L=160.2
+   ... Processing n_X=1e+04, L=170.2
+   ... Processing n_X=1e+04, L=180.2
+   ... Processing n_X=1e+04, L=190.2
+2026-02-07 11:50:46,964 - INFO - ✅ Finished n_X=1e+04 in 2520.23s
+2026-02-07 11:50:46,964 - INFO - Completed n_X=10000.0 in 2520.23s
+   ... Processing n_X=1e+05, L=0.0
+   ... Processing n_X=1e+05, L=10.0
+   ... Processing n_X=1e+05, L=20.0
+   ... Processing n_X=1e+05, L=30.0
+   ... Processing n_X=1e+05, L=40.0
+   ... Processing n_X=1e+05, L=50.1
+   ... Processing n_X=1e+05, L=60.1
+   ... Processing n_X=1e+05, L=70.1
+   ... Processing n_X=1e+05, L=80.1
+   ... Processing n_X=1e+05, L=90.1
+   ... Processing n_X=1e+05, L=100.1
+   ... Processing n_X=1e+05, L=110.1
+   ... Processing n_X=1e+05, L=120.1
+   ... Processing n_X=1e+05, L=130.1
+   ... Processing n_X=1e+05, L=140.1
+   ... Processing n_X=1e+05, L=150.2
+   ... Processing n_X=1e+05, L=160.2
+   ... Processing n_X=1e+05, L=170.2
+   ... Processing n_X=1e+05, L=180.2
+   ... Processing n_X=1e+05, L=190.2
+2026-02-07 12:23:28,740 - INFO - ✅ Finished n_X=1e+05 in 1961.78s
+2026-02-07 12:23:28,740 - INFO - Completed n_X=100000.0 in 1961.78s
+   ... Processing n_X=1e+06, L=0.0
+   ... Processing n_X=1e+06, L=10.0
+   ... Processing n_X=1e+06, L=20.0
+   ... Processing n_X=1e+06, L=30.0
+   ... Processing n_X=1e+06, L=40.0
+   ... Processing n_X=1e+06, L=50.1
+   ... Processing n_X=1e+06, L=60.1
+   ... Processing n_X=1e+06, L=70.1
+   ... Processing n_X=1e+06, L=80.1
+   ... Processing n_X=1e+06, L=90.1
+   ... Processing n_X=1e+06, L=100.1
+   ... Processing n_X=1e+06, L=110.1
+   ... Processing n_X=1e+06, L=120.1

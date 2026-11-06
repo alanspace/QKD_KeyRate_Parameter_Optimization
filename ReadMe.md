@@ -90,6 +90,8 @@ thesis.
 | `tests/` | 34 unit tests, including an independent re-implementation of the bounds |
 | `Optimization/run_scripts/`, `Optimization/archive/`, `Optimization/notebooks/`, `NeuralNetwork/`, `Analysis/`, `Project_Report/` | Earlier code, notebooks, NN and the 2025 thesis; kept as historical record (see `REVIEW.md`) |
 
+Running on HPC (CINECA Leonardo: CPU dual-annealing dataset, GPU training): [`hpc/leonardo/README.md`](hpc/leonardo/README.md).
+
 Further documentation:
 - [`PHYSICS_DIFF.md`](PHYSICS_DIFF.md): presets, unprinted model choices, and differences from the paper.
 - [`REVIEW.md`](REVIEW.md): review of the earlier optimizers.

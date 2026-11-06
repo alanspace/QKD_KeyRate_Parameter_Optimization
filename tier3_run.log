@@ -1,0 +1,7 @@
+🚀 JAX Devices available: [CpuDevice(id=0)]
+2026-02-07 08:49:04,727 - INFO - 🚀 Starting JAX Optimization. Logs at /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/run_scripts/results_global_jax/run_20260207_084904/optimization_jax.log
+2026-02-07 08:49:04,727 - INFO - 📂 Run Directory: /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/run_scripts/results_global_jax/run_20260207_084904
+🏎️  Starting JAX Optimization (Parallel Scipy Minimization)
+📂 Output Folder: /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/run_scripts/results_global_jax/run_20260207_084904
+🏎️  Starting Parallel Optimization using 12 cores...
+2026-02-07 08:49:04,727 - INFO - Using 12 parallel workers
