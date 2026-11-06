@@ -1,0 +1,232 @@
+2026-02-07 18:17:17,439 [99197] INFO - 🚀 Launching Generation 4 Optimization (Parallel-6)...
+2026-02-07 18:17:18,142 [99288] INFO - Worker 99288 starting GEN-4 curve n_X=1e+04 (Mixed Resolution)
+2026-02-07 18:17:18,142 [99290] INFO - Worker 99290 starting GEN-4 curve n_X=1e+05 (Mixed Resolution)
+2026-02-07 18:17:18,142 [99287] INFO - Worker 99287 starting GEN-4 curve n_X=1e+06 (Mixed Resolution)
+2026-02-07 18:17:18,142 [99285] INFO - Worker 99285 starting GEN-4 curve n_X=1e+07 (Mixed Resolution)
+2026-02-07 18:17:18,143 [99286] INFO - Worker 99286 starting GEN-4 curve n_X=1e+08 (Mixed Resolution)
+2026-02-07 18:17:18,144 [99289] INFO - Worker 99289 starting GEN-4 curve n_X=1e+09 (Mixed Resolution)
+INFO:2026-02-07 18:17:18,159:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 18:17:18,159:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 18:17:18,159:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 18:17:18,159:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 18:17:18,159:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 18:17:18,159:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:17:18,159 [99289] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:17:18,159 [99288] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:17:18,159 [99287] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:17:18,159 [99290] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:17:18,159 [99285] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:17:18,159 [99286] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:17:31,770 [99287] INFO - Worker 99287 | n_X=1e+06 | L=0.0 | Rate=3.70e-03
+2026-02-07 18:17:31,935 [99285] INFO - Worker 99285 | n_X=1e+07 | L=0.0 | Rate=6.18e-03
+2026-02-07 18:17:31,935 [99289] INFO - Worker 99289 | n_X=1e+09 | L=0.0 | Rate=1.09e-02
+2026-02-07 18:17:31,935 [99286] INFO - Worker 99286 | n_X=1e+08 | L=0.0 | Rate=8.68e-03
+2026-02-07 18:17:31,947 [99290] INFO - Worker 99290 | n_X=1e+05 | L=0.0 | Rate=1.65e-03
+2026-02-07 18:17:31,948 [99288] INFO - Worker 99288 | n_X=1e+04 | L=0.0 | Rate=3.80e-04
+2026-02-07 18:17:35,771 [99287] INFO - Worker 99287 | n_X=1e+06 | L=50.0 | Rate=0.00e+00
+2026-02-07 18:17:36,429 [99290] INFO - Worker 99290 | n_X=1e+05 | L=50.0 | Rate=1.57e-04
+2026-02-07 18:17:36,530 [99286] INFO - Worker 99286 | n_X=1e+08 | L=50.0 | Rate=8.37e-04
+2026-02-07 18:17:36,557 [99285] INFO - Worker 99285 | n_X=1e+07 | L=50.0 | Rate=5.95e-04
+2026-02-07 18:17:36,876 [99288] INFO - Worker 99288 | n_X=1e+04 | L=50.0 | Rate=3.54e-05
+2026-02-07 18:17:36,913 [99289] INFO - Worker 99289 | n_X=1e+09 | L=50.0 | Rate=1.05e-03
+2026-02-07 18:17:39,381 [99287] INFO - Worker 99287 | n_X=1e+06 | L=100.0 | Rate=0.00e+00
+2026-02-07 18:17:39,529 [99290] INFO - Worker 99290 | n_X=1e+05 | L=100.0 | Rate=0.00e+00
+2026-02-07 18:17:40,364 [99288] INFO - Worker 99288 | n_X=1e+04 | L=100.0 | Rate=0.00e+00
+2026-02-07 18:17:40,970 [99285] INFO - Worker 99285 | n_X=1e+07 | L=100.0 | Rate=5.52e-05
+2026-02-07 18:17:41,228 [99286] INFO - Worker 99286 | n_X=1e+08 | L=100.0 | Rate=7.82e-05
+2026-02-07 18:17:41,439 [99287] INFO - Worker 99287 | n_X=1e+06 | L=110.0 | Rate=0.00e+00
+2026-02-07 18:17:41,609 [99290] INFO - Worker 99290 | n_X=1e+05 | L=110.0 | Rate=0.00e+00
+2026-02-07 18:17:41,945 [99289] INFO - Worker 99289 | n_X=1e+09 | L=100.0 | Rate=9.88e-05
+2026-02-07 18:17:42,590 [99288] INFO - Worker 99288 | n_X=1e+04 | L=110.0 | Rate=0.00e+00
+2026-02-07 18:17:43,351 [99287] INFO - Worker 99287 | n_X=1e+06 | L=120.0 | Rate=0.00e+00
+2026-02-07 18:17:43,510 [99290] INFO - Worker 99290 | n_X=1e+05 | L=120.0 | Rate=0.00e+00
+2026-02-07 18:17:44,622 [99288] INFO - Worker 99288 | n_X=1e+04 | L=120.0 | Rate=0.00e+00
+2026-02-07 18:17:45,088 [99287] INFO - Worker 99287 | n_X=1e+06 | L=130.0 | Rate=0.00e+00
+2026-02-07 18:17:45,209 [99290] INFO - Worker 99290 | n_X=1e+05 | L=130.0 | Rate=0.00e+00
+2026-02-07 18:17:45,571 [99285] INFO - Worker 99285 | n_X=1e+07 | L=110.0 | Rate=3.32e-05
+2026-02-07 18:17:46,050 [99286] INFO - Worker 99286 | n_X=1e+08 | L=110.0 | Rate=4.73e-05
+2026-02-07 18:17:46,305 [99288] INFO - Worker 99288 | n_X=1e+04 | L=130.0 | Rate=0.00e+00
+2026-02-07 18:17:46,607 [99287] INFO - Worker 99287 | n_X=1e+06 | L=140.0 | Rate=0.00e+00
+2026-02-07 18:17:46,634 [99289] INFO - Worker 99289 | n_X=1e+09 | L=110.0 | Rate=6.04e-05
+2026-02-07 18:17:46,733 [99290] INFO - Worker 99290 | n_X=1e+05 | L=140.0 | Rate=0.00e+00
+2026-02-07 18:17:47,942 [99288] INFO - Worker 99288 | n_X=1e+04 | L=140.0 | Rate=0.00e+00
+2026-02-07 18:17:48,059 [99287] INFO - Worker 99287 | n_X=1e+06 | L=150.0 | Rate=0.00e+00
+2026-02-07 18:17:48,212 [99290] INFO - Worker 99290 | n_X=1e+05 | L=150.0 | Rate=0.00e+00
+2026-02-07 18:17:49,569 [99287] INFO - Worker 99287 | n_X=1e+06 | L=152.0 | Rate=0.00e+00
+2026-02-07 18:17:49,576 [99288] INFO - Worker 99288 | n_X=1e+04 | L=150.0 | Rate=0.00e+00
+2026-02-07 18:17:49,697 [99290] INFO - Worker 99290 | n_X=1e+05 | L=152.0 | Rate=0.00e+00
+2026-02-07 18:17:50,094 [99285] INFO - Worker 99285 | n_X=1e+07 | L=120.0 | Rate=1.94e-05
+2026-02-07 18:17:50,621 [99286] INFO - Worker 99286 | n_X=1e+08 | L=120.0 | Rate=2.82e-05
+2026-02-07 18:17:51,044 [99289] INFO - Worker 99289 | n_X=1e+09 | L=120.0 | Rate=3.62e-05
+2026-02-07 18:17:51,046 [99288] INFO - Worker 99288 | n_X=1e+04 | L=152.0 | Rate=0.00e+00
+2026-02-07 18:17:51,083 [99287] INFO - Worker 99287 | n_X=1e+06 | L=154.0 | Rate=0.00e+00
+2026-02-07 18:17:51,177 [99290] INFO - Worker 99290 | n_X=1e+05 | L=154.0 | Rate=0.00e+00
+2026-02-07 18:17:52,375 [99288] INFO - Worker 99288 | n_X=1e+04 | L=154.0 | Rate=0.00e+00
+2026-02-07 18:17:52,421 [99287] INFO - Worker 99287 | n_X=1e+06 | L=156.0 | Rate=0.00e+00
+2026-02-07 18:17:52,517 [99290] INFO - Worker 99290 | n_X=1e+05 | L=156.0 | Rate=0.00e+00
+2026-02-07 18:17:53,686 [99288] INFO - Worker 99288 | n_X=1e+04 | L=156.0 | Rate=0.00e+00
+2026-02-07 18:17:53,739 [99287] INFO - Worker 99287 | n_X=1e+06 | L=158.0 | Rate=0.00e+00
+2026-02-07 18:17:53,758 [99285] INFO - Worker 99285 | n_X=1e+07 | L=130.0 | Rate=1.09e-05
+2026-02-07 18:17:53,856 [99290] INFO - Worker 99290 | n_X=1e+05 | L=158.0 | Rate=0.00e+00
+2026-02-07 18:17:54,591 [99286] INFO - Worker 99286 | n_X=1e+08 | L=130.0 | Rate=1.62e-05
+2026-02-07 18:17:54,775 [99289] INFO - Worker 99289 | n_X=1e+09 | L=130.0 | Rate=2.10e-05
+2026-02-07 18:17:55,009 [99288] INFO - Worker 99288 | n_X=1e+04 | L=158.0 | Rate=0.00e+00
+2026-02-07 18:17:55,051 [99287] INFO - Worker 99287 | n_X=1e+06 | L=160.0 | Rate=0.00e+00
+2026-02-07 18:17:55,150 [99290] INFO - Worker 99290 | n_X=1e+05 | L=160.0 | Rate=0.00e+00
+2026-02-07 18:17:56,422 [99287] INFO - Worker 99287 | n_X=1e+06 | L=162.0 | Rate=0.00e+00
+2026-02-07 18:17:56,454 [99288] INFO - Worker 99288 | n_X=1e+04 | L=160.0 | Rate=0.00e+00
+2026-02-07 18:17:56,506 [99290] INFO - Worker 99290 | n_X=1e+05 | L=162.0 | Rate=0.00e+00
+2026-02-07 18:17:57,157 [99285] INFO - Worker 99285 | n_X=1e+07 | L=140.0 | Rate=5.77e-06
+2026-02-07 18:17:57,793 [99287] INFO - Worker 99287 | n_X=1e+06 | L=164.0 | Rate=0.00e+00
+2026-02-07 18:17:57,853 [99290] INFO - Worker 99290 | n_X=1e+05 | L=164.0 | Rate=0.00e+00
+2026-02-07 18:17:57,854 [99288] INFO - Worker 99288 | n_X=1e+04 | L=162.0 | Rate=0.00e+00
+2026-02-07 18:17:58,512 [99286] INFO - Worker 99286 | n_X=1e+08 | L=140.0 | Rate=8.82e-06
+2026-02-07 18:17:58,806 [99289] INFO - Worker 99289 | n_X=1e+09 | L=140.0 | Rate=1.16e-05
+2026-02-07 18:17:58,875 [99285] INFO - Worker 99285 | n_X=1e+07 | L=150.0 | Rate=0.00e+00
+2026-02-07 18:17:59,154 [99287] INFO - Worker 99287 | n_X=1e+06 | L=166.0 | Rate=0.00e+00
+2026-02-07 18:17:59,201 [99288] INFO - Worker 99288 | n_X=1e+04 | L=164.0 | Rate=0.00e+00
+2026-02-07 18:17:59,201 [99290] INFO - Worker 99290 | n_X=1e+05 | L=166.0 | Rate=0.00e+00
+2026-02-07 18:18:00,191 [99285] INFO - Worker 99285 | n_X=1e+07 | L=152.0 | Rate=0.00e+00
+2026-02-07 18:18:00,480 [99287] INFO - Worker 99287 | n_X=1e+06 | L=168.0 | Rate=0.00e+00
+2026-02-07 18:18:00,510 [99288] INFO - Worker 99288 | n_X=1e+04 | L=166.0 | Rate=0.00e+00
+2026-02-07 18:18:00,522 [99290] INFO - Worker 99290 | n_X=1e+05 | L=168.0 | Rate=0.00e+00
+2026-02-07 18:18:01,580 [99285] INFO - Worker 99285 | n_X=1e+07 | L=154.0 | Rate=0.00e+00
+2026-02-07 18:18:01,832 [99287] INFO - Worker 99287 | n_X=1e+06 | L=170.0 | Rate=0.00e+00
+2026-02-07 18:18:01,854 [99288] INFO - Worker 99288 | n_X=1e+04 | L=168.0 | Rate=0.00e+00
+2026-02-07 18:18:01,864 [99290] INFO - Worker 99290 | n_X=1e+05 | L=170.0 | Rate=0.00e+00
+2026-02-07 18:18:02,759 [99289] INFO - Worker 99289 | n_X=1e+09 | L=150.0 | Rate=5.85e-06
+2026-02-07 18:18:02,921 [99285] INFO - Worker 99285 | n_X=1e+07 | L=156.0 | Rate=0.00e+00
+2026-02-07 18:18:02,929 [99286] INFO - Worker 99286 | n_X=1e+08 | L=150.0 | Rate=4.31e-06
+2026-02-07 18:18:03,150 [99287] INFO - Worker 99287 | n_X=1e+06 | L=172.0 | Rate=0.00e+00
+2026-02-07 18:18:03,155 [99288] INFO - Worker 99288 | n_X=1e+04 | L=170.0 | Rate=0.00e+00
+2026-02-07 18:18:03,162 [99290] INFO - Worker 99290 | n_X=1e+05 | L=172.0 | Rate=0.00e+00
+2026-02-07 18:18:04,235 [99285] INFO - Worker 99285 | n_X=1e+07 | L=158.0 | Rate=0.00e+00
+2026-02-07 18:18:04,473 [99288] INFO - Worker 99288 | n_X=1e+04 | L=172.0 | Rate=0.00e+00
+2026-02-07 18:18:04,474 [99290] INFO - Worker 99290 | n_X=1e+05 | L=174.0 | Rate=0.00e+00
+2026-02-07 18:18:04,497 [99287] INFO - Worker 99287 | n_X=1e+06 | L=174.0 | Rate=0.00e+00
+2026-02-07 18:18:05,559 [99285] INFO - Worker 99285 | n_X=1e+07 | L=160.0 | Rate=0.00e+00
+2026-02-07 18:18:05,765 [99288] INFO - Worker 99288 | n_X=1e+04 | L=174.0 | Rate=0.00e+00
+2026-02-07 18:18:05,767 [99290] INFO - Worker 99290 | n_X=1e+05 | L=176.0 | Rate=0.00e+00
+2026-02-07 18:18:05,815 [99287] INFO - Worker 99287 | n_X=1e+06 | L=176.0 | Rate=0.00e+00
+2026-02-07 18:18:06,873 [99285] INFO - Worker 99285 | n_X=1e+07 | L=162.0 | Rate=0.00e+00
+2026-02-07 18:18:06,942 [99289] INFO - Worker 99289 | n_X=1e+09 | L=152.0 | Rate=5.01e-06
+2026-02-07 18:18:07,059 [99288] INFO - Worker 99288 | n_X=1e+04 | L=176.0 | Rate=0.00e+00
+2026-02-07 18:18:07,065 [99290] INFO - Worker 99290 | n_X=1e+05 | L=178.0 | Rate=0.00e+00
+2026-02-07 18:18:07,083 [99286] INFO - Worker 99286 | n_X=1e+08 | L=152.0 | Rate=3.65e-06
+2026-02-07 18:18:07,124 [99287] INFO - Worker 99287 | n_X=1e+06 | L=178.0 | Rate=0.00e+00
+2026-02-07 18:18:08,184 [99285] INFO - Worker 99285 | n_X=1e+07 | L=164.0 | Rate=0.00e+00
+2026-02-07 18:18:08,370 [99288] INFO - Worker 99288 | n_X=1e+04 | L=178.0 | Rate=0.00e+00
+2026-02-07 18:18:08,379 [99290] INFO - Worker 99290 | n_X=1e+05 | L=180.0 | Rate=0.00e+00
+2026-02-07 18:18:08,456 [99287] INFO - Worker 99287 | n_X=1e+06 | L=180.0 | Rate=0.00e+00
+2026-02-07 18:18:09,533 [99285] INFO - Worker 99285 | n_X=1e+07 | L=166.0 | Rate=0.00e+00
+2026-02-07 18:18:09,723 [99288] INFO - Worker 99288 | n_X=1e+04 | L=180.0 | Rate=0.00e+00
+2026-02-07 18:18:09,735 [99290] INFO - Worker 99290 | n_X=1e+05 | L=182.0 | Rate=0.00e+00
+2026-02-07 18:18:09,820 [99287] INFO - Worker 99287 | n_X=1e+06 | L=182.0 | Rate=0.00e+00
+2026-02-07 18:18:10,909 [99285] INFO - Worker 99285 | n_X=1e+07 | L=168.0 | Rate=0.00e+00
+2026-02-07 18:18:11,078 [99288] INFO - Worker 99288 | n_X=1e+04 | L=182.0 | Rate=0.00e+00
+2026-02-07 18:18:11,084 [99290] INFO - Worker 99290 | n_X=1e+05 | L=184.0 | Rate=0.00e+00
+2026-02-07 18:18:11,181 [99287] INFO - Worker 99287 | n_X=1e+06 | L=184.0 | Rate=0.00e+00
+2026-02-07 18:18:11,288 [99289] INFO - Worker 99289 | n_X=1e+09 | L=154.0 | Rate=4.24e-06
+2026-02-07 18:18:11,362 [99286] INFO - Worker 99286 | n_X=1e+08 | L=154.0 | Rate=3.06e-06
+2026-02-07 18:18:12,246 [99285] INFO - Worker 99285 | n_X=1e+07 | L=170.0 | Rate=0.00e+00
+2026-02-07 18:18:12,393 [99290] INFO - Worker 99290 | n_X=1e+05 | L=186.0 | Rate=0.00e+00
+2026-02-07 18:18:12,396 [99288] INFO - Worker 99288 | n_X=1e+04 | L=184.0 | Rate=0.00e+00
+2026-02-07 18:18:12,518 [99287] INFO - Worker 99287 | n_X=1e+06 | L=186.0 | Rate=0.00e+00
+2026-02-07 18:18:13,608 [99285] INFO - Worker 99285 | n_X=1e+07 | L=172.0 | Rate=0.00e+00
+2026-02-07 18:18:13,730 [99290] INFO - Worker 99290 | n_X=1e+05 | L=188.0 | Rate=0.00e+00
+2026-02-07 18:18:13,736 [99288] INFO - Worker 99288 | n_X=1e+04 | L=186.0 | Rate=0.00e+00
+2026-02-07 18:18:13,866 [99287] INFO - Worker 99287 | n_X=1e+06 | L=188.0 | Rate=0.00e+00
+2026-02-07 18:18:14,940 [99285] INFO - Worker 99285 | n_X=1e+07 | L=174.0 | Rate=0.00e+00
+2026-02-07 18:18:15,040 [99290] INFO - Worker 99290 | n_X=1e+05 | L=190.0 | Rate=0.00e+00
+2026-02-07 18:18:15,052 [99288] INFO - Worker 99288 | n_X=1e+04 | L=188.0 | Rate=0.00e+00
+2026-02-07 18:18:15,192 [99287] INFO - Worker 99287 | n_X=1e+06 | L=190.0 | Rate=0.00e+00
+2026-02-07 18:18:15,503 [99289] INFO - Worker 99289 | n_X=1e+09 | L=156.0 | Rate=3.56e-06
+2026-02-07 18:18:15,540 [99286] INFO - Worker 99286 | n_X=1e+08 | L=156.0 | Rate=2.53e-06
+2026-02-07 18:18:16,268 [99285] INFO - Worker 99285 | n_X=1e+07 | L=176.0 | Rate=0.00e+00
+2026-02-07 18:18:16,357 [99290] INFO - Worker 99290 | n_X=1e+05 | L=192.0 | Rate=0.00e+00
+2026-02-07 18:18:16,370 [99288] INFO - Worker 99288 | n_X=1e+04 | L=190.0 | Rate=0.00e+00
+2026-02-07 18:18:16,531 [99287] INFO - Worker 99287 | n_X=1e+06 | L=192.0 | Rate=0.00e+00
+2026-02-07 18:18:17,594 [99285] INFO - Worker 99285 | n_X=1e+07 | L=178.0 | Rate=0.00e+00
+2026-02-07 18:18:17,656 [99290] INFO - Worker 99290 | n_X=1e+05 | L=194.0 | Rate=0.00e+00
+2026-02-07 18:18:17,677 [99288] INFO - Worker 99288 | n_X=1e+04 | L=192.0 | Rate=0.00e+00
+2026-02-07 18:18:17,850 [99287] INFO - Worker 99287 | n_X=1e+06 | L=194.0 | Rate=0.00e+00
+2026-02-07 18:18:18,972 [99285] INFO - Worker 99285 | n_X=1e+07 | L=180.0 | Rate=0.00e+00
+2026-02-07 18:18:19,018 [99290] INFO - Worker 99290 | n_X=1e+05 | L=196.0 | Rate=0.00e+00
+2026-02-07 18:18:19,043 [99288] INFO - Worker 99288 | n_X=1e+04 | L=194.0 | Rate=0.00e+00
+2026-02-07 18:18:19,238 [99287] INFO - Worker 99287 | n_X=1e+06 | L=196.0 | Rate=0.00e+00
+2026-02-07 18:18:19,736 [99286] INFO - Worker 99286 | n_X=1e+08 | L=158.0 | Rate=2.06e-06
+2026-02-07 18:18:19,745 [99289] INFO - Worker 99289 | n_X=1e+09 | L=158.0 | Rate=2.94e-06
+2026-02-07 18:18:20,315 [99285] INFO - Worker 99285 | n_X=1e+07 | L=182.0 | Rate=0.00e+00
+2026-02-07 18:18:20,344 [99290] INFO - Worker 99290 | n_X=1e+05 | L=198.0 | Rate=0.00e+00
+2026-02-07 18:18:20,370 [99288] INFO - Worker 99288 | n_X=1e+04 | L=196.0 | Rate=0.00e+00
+2026-02-07 18:18:20,575 [99287] INFO - Worker 99287 | n_X=1e+06 | L=198.0 | Rate=0.00e+00
+2026-02-07 18:18:21,643 [99285] INFO - Worker 99285 | n_X=1e+07 | L=184.0 | Rate=0.00e+00
+2026-02-07 18:18:21,646 [99290] INFO - Worker 99290 | n_X=1e+05 | L=200.0 | Rate=0.00e+00
+2026-02-07 18:18:21,658 [99290] INFO - ✅ Worker 99290 finished GEN-4 n_X=1e+05 in 63.52s
+2026-02-07 18:18:21,680 [99288] INFO - Worker 99288 | n_X=1e+04 | L=198.0 | Rate=0.00e+00
+2026-02-07 18:18:21,882 [99287] INFO - Worker 99287 | n_X=1e+06 | L=200.0 | Rate=0.00e+00
+2026-02-07 18:18:21,895 [99287] INFO - ✅ Worker 99287 finished GEN-4 n_X=1e+06 in 63.75s
+2026-02-07 18:18:22,886 [99285] INFO - Worker 99285 | n_X=1e+07 | L=186.0 | Rate=0.00e+00
+2026-02-07 18:18:22,911 [99288] INFO - Worker 99288 | n_X=1e+04 | L=200.0 | Rate=0.00e+00
+2026-02-07 18:18:22,924 [99288] INFO - ✅ Worker 99288 finished GEN-4 n_X=1e+04 in 64.78s
+2026-02-07 18:18:23,585 [99286] INFO - Worker 99286 | n_X=1e+08 | L=160.0 | Rate=1.64e-06
+2026-02-07 18:18:23,686 [99289] INFO - Worker 99289 | n_X=1e+09 | L=160.0 | Rate=2.39e-06
+2026-02-07 18:18:24,100 [99285] INFO - Worker 99285 | n_X=1e+07 | L=188.0 | Rate=0.00e+00
+2026-02-07 18:18:25,324 [99285] INFO - Worker 99285 | n_X=1e+07 | L=190.0 | Rate=0.00e+00
+2026-02-07 18:18:26,544 [99285] INFO - Worker 99285 | n_X=1e+07 | L=192.0 | Rate=0.00e+00
+2026-02-07 18:18:27,099 [99286] INFO - Worker 99286 | n_X=1e+08 | L=162.0 | Rate=1.26e-06
+2026-02-07 18:18:27,342 [99289] INFO - Worker 99289 | n_X=1e+09 | L=162.0 | Rate=1.89e-06
+2026-02-07 18:18:27,769 [99285] INFO - Worker 99285 | n_X=1e+07 | L=194.0 | Rate=0.00e+00
+2026-02-07 18:18:28,999 [99285] INFO - Worker 99285 | n_X=1e+07 | L=196.0 | Rate=0.00e+00
+2026-02-07 18:18:30,220 [99285] INFO - Worker 99285 | n_X=1e+07 | L=198.0 | Rate=0.00e+00
+2026-02-07 18:18:30,530 [99286] INFO - Worker 99286 | n_X=1e+08 | L=164.0 | Rate=1.17e-06
+2026-02-07 18:18:30,952 [99289] INFO - Worker 99289 | n_X=1e+09 | L=164.0 | Rate=1.46e-06
+2026-02-07 18:18:31,458 [99285] INFO - Worker 99285 | n_X=1e+07 | L=200.0 | Rate=0.00e+00
+2026-02-07 18:18:31,470 [99285] INFO - ✅ Worker 99285 finished GEN-4 n_X=1e+07 in 73.33s
+2026-02-07 18:18:33,843 [99286] INFO - Worker 99286 | n_X=1e+08 | L=166.0 | Rate=1.10e-06
+2026-02-07 18:18:34,297 [99289] INFO - Worker 99289 | n_X=1e+09 | L=166.0 | Rate=1.63e-06
+2026-02-07 18:18:37,007 [99286] INFO - Worker 99286 | n_X=1e+08 | L=168.0 | Rate=9.00e-07
+2026-02-07 18:18:37,414 [99289] INFO - Worker 99289 | n_X=1e+09 | L=168.0 | Rate=1.36e-06
+2026-02-07 18:18:40,035 [99286] INFO - Worker 99286 | n_X=1e+08 | L=170.0 | Rate=7.21e-07
+2026-02-07 18:18:40,611 [99289] INFO - Worker 99289 | n_X=1e+09 | L=170.0 | Rate=1.11e-06
+2026-02-07 18:18:42,989 [99286] INFO - Worker 99286 | n_X=1e+08 | L=172.0 | Rate=5.63e-07
+2026-02-07 18:18:43,923 [99289] INFO - Worker 99289 | n_X=1e+09 | L=172.0 | Rate=8.84e-07
+2026-02-07 18:18:46,352 [99286] INFO - Worker 99286 | n_X=1e+08 | L=174.0 | Rate=4.25e-07
+2026-02-07 18:18:47,018 [99289] INFO - Worker 99289 | n_X=1e+09 | L=174.0 | Rate=6.89e-07
+2026-02-07 18:18:49,142 [99286] INFO - Worker 99286 | n_X=1e+08 | L=176.0 | Rate=3.07e-07
+2026-02-07 18:18:49,969 [99289] INFO - Worker 99289 | n_X=1e+09 | L=176.0 | Rate=5.19e-07
+2026-02-07 18:18:51,748 [99286] INFO - Worker 99286 | n_X=1e+08 | L=178.0 | Rate=0.00e+00
+2026-02-07 18:18:52,893 [99286] INFO - Worker 99286 | n_X=1e+08 | L=180.0 | Rate=0.00e+00
+2026-02-07 18:18:53,026 [99289] INFO - Worker 99289 | n_X=1e+09 | L=178.0 | Rate=3.71e-07
+2026-02-07 18:18:54,062 [99286] INFO - Worker 99286 | n_X=1e+08 | L=182.0 | Rate=0.00e+00
+2026-02-07 18:18:55,227 [99286] INFO - Worker 99286 | n_X=1e+08 | L=184.0 | Rate=0.00e+00
+2026-02-07 18:18:55,990 [99289] INFO - Worker 99289 | n_X=1e+09 | L=180.0 | Rate=2.46e-07
+2026-02-07 18:18:56,424 [99286] INFO - Worker 99286 | n_X=1e+08 | L=186.0 | Rate=0.00e+00
+2026-02-07 18:18:57,599 [99286] INFO - Worker 99286 | n_X=1e+08 | L=188.0 | Rate=0.00e+00
+2026-02-07 18:18:58,784 [99286] INFO - Worker 99286 | n_X=1e+08 | L=190.0 | Rate=0.00e+00
+2026-02-07 18:18:58,820 [99289] INFO - Worker 99289 | n_X=1e+09 | L=182.0 | Rate=1.40e-07
+2026-02-07 18:18:59,943 [99286] INFO - Worker 99286 | n_X=1e+08 | L=192.0 | Rate=0.00e+00
+2026-02-07 18:19:01,140 [99286] INFO - Worker 99286 | n_X=1e+08 | L=194.0 | Rate=0.00e+00
+2026-02-07 18:19:01,590 [99289] INFO - Worker 99289 | n_X=1e+09 | L=184.0 | Rate=5.41e-08
+2026-02-07 18:19:02,330 [99286] INFO - Worker 99286 | n_X=1e+08 | L=196.0 | Rate=0.00e+00
+2026-02-07 18:19:03,479 [99286] INFO - Worker 99286 | n_X=1e+08 | L=198.0 | Rate=0.00e+00
+2026-02-07 18:19:04,438 [99289] INFO - Worker 99289 | n_X=1e+09 | L=186.0 | Rate=0.00e+00
+2026-02-07 18:19:04,650 [99286] INFO - Worker 99286 | n_X=1e+08 | L=200.0 | Rate=0.00e+00
+2026-02-07 18:19:04,663 [99286] INFO - ✅ Worker 99286 finished GEN-4 n_X=1e+08 in 106.52s
+2026-02-07 18:19:07,692 [99289] INFO - Worker 99289 | n_X=1e+09 | L=188.0 | Rate=0.00e+00
+2026-02-07 18:19:10,853 [99289] INFO - Worker 99289 | n_X=1e+09 | L=190.0 | Rate=0.00e+00
+2026-02-07 18:19:14,070 [99289] INFO - Worker 99289 | n_X=1e+09 | L=192.0 | Rate=0.00e+00
+2026-02-07 18:19:17,381 [99289] INFO - Worker 99289 | n_X=1e+09 | L=194.0 | Rate=0.00e+00
+2026-02-07 18:19:20,552 [99289] INFO - Worker 99289 | n_X=1e+09 | L=196.0 | Rate=0.00e+00
+2026-02-07 18:19:23,760 [99289] INFO - Worker 99289 | n_X=1e+09 | L=198.0 | Rate=0.00e+00
+2026-02-07 18:19:26,957 [99289] INFO - Worker 99289 | n_X=1e+09 | L=200.0 | Rate=0.00e+00
+2026-02-07 18:19:26,988 [99289] INFO - ✅ Worker 99289 finished GEN-4 n_X=1e+09 in 128.84s
+✅ Timing summary saved to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_generation4_jax/run_20260207_181717/Gen4_timing_summary.png
+✅ Text report saved to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_generation4_jax/run_20260207_181717/Gen4_timing_report.txt
+📊 Loading results from /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_generation4_jax/run_20260207_181717/gen4_results_jax_20260207_181717.json
+   ... Generating Summary Plot
+INFO:2026-02-07 18:19:28,021:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:19:28,021 [99197] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+   ... Generating Detailed Per-n_X Plots
+✅ All plots saved to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_generation4_jax/run_20260207_181717
+2026-02-07 18:19:40,486 [99197] INFO - ✅ FINAL GEN-4 SUCCESS! Path: /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_generation4_jax/run_20260207_181717

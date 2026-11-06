@@ -1,0 +1,118 @@
+2026-02-07 18:04:03,060 [98345] INFO - 🚀 Launching Generation 4 Optimization (Parallel-6)...
+2026-02-07 18:04:03,784 [98439] INFO - Worker 98439 starting GEN-4 curve n_X=1e+04 (Mixed Resolution)
+2026-02-07 18:04:03,784 [98440] INFO - Worker 98440 starting GEN-4 curve n_X=1e+05 (Mixed Resolution)
+2026-02-07 18:04:03,784 [98438] INFO - Worker 98438 starting GEN-4 curve n_X=1e+06 (Mixed Resolution)
+2026-02-07 18:04:03,784 [98442] INFO - Worker 98442 starting GEN-4 curve n_X=1e+07 (Mixed Resolution)
+2026-02-07 18:04:03,784 [98441] INFO - Worker 98441 starting GEN-4 curve n_X=1e+08 (Mixed Resolution)
+2026-02-07 18:04:03,784 [98437] INFO - Worker 98437 starting GEN-4 curve n_X=1e+09 (Mixed Resolution)
+INFO:2026-02-07 18:04:03,800:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 18:04:03,800:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 18:04:03,800:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 18:04:03,800:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:04:03,800 [98440] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 18:04:03,800:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:04:03,800 [98439] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 18:04:03,800:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:04:03,800 [98437] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:04:03,800 [98438] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:04:03,800 [98442] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:04:03,800 [98441] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:04:15,979 [98437] INFO - Worker 98437 | n_X=1e+09 | L=0.0 | Rate=1.09e-02
+2026-02-07 18:04:16,046 [98438] INFO - Worker 98438 | n_X=1e+06 | L=0.0 | Rate=3.66e-03
+2026-02-07 18:04:16,081 [98442] INFO - Worker 98442 | n_X=1e+07 | L=0.0 | Rate=6.18e-03
+2026-02-07 18:04:16,152 [98440] INFO - Worker 98440 | n_X=1e+05 | L=0.0 | Rate=1.65e-03
+2026-02-07 18:04:16,200 [98439] INFO - Worker 98439 | n_X=1e+04 | L=0.0 | Rate=3.79e-04
+2026-02-07 18:04:16,344 [98441] INFO - Worker 98441 | n_X=1e+08 | L=0.0 | Rate=8.68e-03
+2026-02-07 18:04:19,466 [98439] INFO - Worker 98439 | n_X=1e+04 | L=100.0 | Rate=2.56e-06
+2026-02-07 18:04:20,010 [98440] INFO - Worker 98440 | n_X=1e+05 | L=100.0 | Rate=1.38e-05
+2026-02-07 18:04:20,260 [98438] INFO - Worker 98438 | n_X=1e+06 | L=100.0 | Rate=3.24e-05
+2026-02-07 18:04:20,276 [98442] INFO - Worker 98442 | n_X=1e+07 | L=100.0 | Rate=5.52e-05
+2026-02-07 18:04:20,401 [98437] INFO - Worker 98437 | n_X=1e+09 | L=100.0 | Rate=9.88e-05
+2026-02-07 18:04:20,594 [98441] INFO - Worker 98441 | n_X=1e+08 | L=100.0 | Rate=7.82e-05
+2026-02-07 18:04:22,283 [98439] INFO - Worker 98439 | n_X=1e+04 | L=120.0 | Rate=4.79e-07
+2026-02-07 18:04:23,328 [98440] INFO - Worker 98440 | n_X=1e+05 | L=120.0 | Rate=4.34e-06
+2026-02-07 18:04:23,366 [98438] INFO - Worker 98438 | n_X=1e+06 | L=120.0 | Rate=1.11e-05
+2026-02-07 18:04:23,784 [98442] INFO - Worker 98442 | n_X=1e+07 | L=120.0 | Rate=1.94e-05
+2026-02-07 18:04:23,985 [98441] INFO - Worker 98441 | n_X=1e+08 | L=120.0 | Rate=2.82e-05
+2026-02-07 18:04:24,119 [98437] INFO - Worker 98437 | n_X=1e+09 | L=120.0 | Rate=3.62e-05
+2026-02-07 18:04:25,638 [98439] INFO - Worker 98439 | n_X=1e+04 | L=140.0 | Rate=0.00e+00
+2026-02-07 18:04:26,503 [98440] INFO - Worker 98440 | n_X=1e+05 | L=140.0 | Rate=7.49e-07
+2026-02-07 18:04:26,679 [98438] INFO - Worker 98438 | n_X=1e+06 | L=140.0 | Rate=2.82e-06
+2026-02-07 18:04:27,282 [98442] INFO - Worker 98442 | n_X=1e+07 | L=140.0 | Rate=5.75e-06
+2026-02-07 18:04:27,589 [98441] INFO - Worker 98441 | n_X=1e+08 | L=140.0 | Rate=8.80e-06
+2026-02-07 18:04:27,873 [98437] INFO - Worker 98437 | n_X=1e+09 | L=140.0 | Rate=1.16e-05
+2026-02-07 18:04:29,120 [98439] INFO - Worker 98439 | n_X=1e+04 | L=152.5 | Rate=0.00e+00
+2026-02-07 18:04:29,969 [98438] INFO - Worker 98438 | n_X=1e+06 | L=152.5 | Rate=7.81e-07
+2026-02-07 18:04:30,248 [98440] INFO - Worker 98440 | n_X=1e+05 | L=152.5 | Rate=0.00e+00
+2026-02-07 18:04:30,770 [98442] INFO - Worker 98442 | n_X=1e+07 | L=152.5 | Rate=2.06e-06
+2026-02-07 18:04:31,005 [98441] INFO - Worker 98441 | n_X=1e+08 | L=152.5 | Rate=3.47e-06
+2026-02-07 18:04:31,832 [98437] INFO - Worker 98437 | n_X=1e+09 | L=152.5 | Rate=4.79e-06
+2026-02-07 18:04:32,433 [98439] INFO - Worker 98439 | n_X=1e+04 | L=157.5 | Rate=0.00e+00
+2026-02-07 18:04:33,405 [98438] INFO - Worker 98438 | n_X=1e+06 | L=157.5 | Rate=2.78e-07
+2026-02-07 18:04:34,371 [98441] INFO - Worker 98441 | n_X=1e+08 | L=157.5 | Rate=2.12e-06
+2026-02-07 18:04:34,444 [98440] INFO - Worker 98440 | n_X=1e+05 | L=157.5 | Rate=0.00e+00
+2026-02-07 18:04:34,925 [98442] INFO - Worker 98442 | n_X=1e+07 | L=157.5 | Rate=1.14e-06
+2026-02-07 18:04:35,487 [98437] INFO - Worker 98437 | n_X=1e+09 | L=157.5 | Rate=3.05e-06
+2026-02-07 18:04:35,786 [98439] INFO - Worker 98439 | n_X=1e+04 | L=162.5 | Rate=0.00e+00
+2026-02-07 18:04:37,355 [98438] INFO - Worker 98438 | n_X=1e+06 | L=162.5 | Rate=0.00e+00
+2026-02-07 18:04:37,749 [98441] INFO - Worker 98441 | n_X=1e+08 | L=162.5 | Rate=1.09e-06
+2026-02-07 18:04:38,229 [98440] INFO - Worker 98440 | n_X=1e+05 | L=162.5 | Rate=0.00e+00
+2026-02-07 18:04:38,852 [98442] INFO - Worker 98442 | n_X=1e+07 | L=162.5 | Rate=4.43e-07
+2026-02-07 18:04:39,086 [98439] INFO - Worker 98439 | n_X=1e+04 | L=167.5 | Rate=0.00e+00
+2026-02-07 18:04:39,943 [98437] INFO - Worker 98437 | n_X=1e+09 | L=162.5 | Rate=1.72e-06
+2026-02-07 18:04:41,446 [98438] INFO - Worker 98438 | n_X=1e+06 | L=167.5 | Rate=0.00e+00
+2026-02-07 18:04:41,694 [98441] INFO - Worker 98441 | n_X=1e+08 | L=167.5 | Rate=3.16e-07
+2026-02-07 18:04:41,979 [98440] INFO - Worker 98440 | n_X=1e+05 | L=167.5 | Rate=0.00e+00
+2026-02-07 18:04:42,394 [98439] INFO - Worker 98439 | n_X=1e+04 | L=172.5 | Rate=0.00e+00
+2026-02-07 18:04:42,666 [98442] INFO - Worker 98442 | n_X=1e+07 | L=167.5 | Rate=0.00e+00
+2026-02-07 18:04:44,168 [98437] INFO - Worker 98437 | n_X=1e+09 | L=167.5 | Rate=7.19e-07
+2026-02-07 18:04:45,695 [98438] INFO - Worker 98438 | n_X=1e+06 | L=172.5 | Rate=0.00e+00
+2026-02-07 18:04:45,697 [98439] INFO - Worker 98439 | n_X=1e+04 | L=177.5 | Rate=0.00e+00
+2026-02-07 18:04:45,876 [98440] INFO - Worker 98440 | n_X=1e+05 | L=172.5 | Rate=0.00e+00
+2026-02-07 18:04:45,920 [98441] INFO - Worker 98441 | n_X=1e+08 | L=172.5 | Rate=0.00e+00
+2026-02-07 18:04:47,270 [98442] INFO - Worker 98442 | n_X=1e+07 | L=172.5 | Rate=0.00e+00
+2026-02-07 18:04:47,976 [98437] INFO - Worker 98437 | n_X=1e+09 | L=172.5 | Rate=0.00e+00
+2026-02-07 18:04:49,084 [98439] INFO - Worker 98439 | n_X=1e+04 | L=182.5 | Rate=0.00e+00
+2026-02-07 18:04:49,849 [98440] INFO - Worker 98440 | n_X=1e+05 | L=177.5 | Rate=0.00e+00
+2026-02-07 18:04:49,965 [98438] INFO - Worker 98438 | n_X=1e+06 | L=177.5 | Rate=0.00e+00
+2026-02-07 18:04:50,767 [98441] INFO - Worker 98441 | n_X=1e+08 | L=177.5 | Rate=0.00e+00
+2026-02-07 18:04:51,913 [98442] INFO - Worker 98442 | n_X=1e+07 | L=177.5 | Rate=0.00e+00
+2026-02-07 18:04:52,487 [98439] INFO - Worker 98439 | n_X=1e+04 | L=187.5 | Rate=0.00e+00
+2026-02-07 18:04:52,737 [98437] INFO - Worker 98437 | n_X=1e+09 | L=177.5 | Rate=0.00e+00
+2026-02-07 18:04:53,869 [98440] INFO - Worker 98440 | n_X=1e+05 | L=182.5 | Rate=0.00e+00
+2026-02-07 18:04:54,370 [98438] INFO - Worker 98438 | n_X=1e+06 | L=182.5 | Rate=0.00e+00
+2026-02-07 18:04:55,287 [98441] INFO - Worker 98441 | n_X=1e+08 | L=182.5 | Rate=0.00e+00
+2026-02-07 18:04:55,842 [98439] INFO - Worker 98439 | n_X=1e+04 | L=192.5 | Rate=0.00e+00
+2026-02-07 18:04:56,466 [98442] INFO - Worker 98442 | n_X=1e+07 | L=182.5 | Rate=0.00e+00
+2026-02-07 18:04:57,304 [98437] INFO - Worker 98437 | n_X=1e+09 | L=182.5 | Rate=0.00e+00
+2026-02-07 18:04:57,767 [98440] INFO - Worker 98440 | n_X=1e+05 | L=187.5 | Rate=0.00e+00
+2026-02-07 18:04:58,712 [98438] INFO - Worker 98438 | n_X=1e+06 | L=187.5 | Rate=0.00e+00
+2026-02-07 18:04:59,199 [98439] INFO - Worker 98439 | n_X=1e+04 | L=197.5 | Rate=0.00e+00
+2026-02-07 18:04:59,983 [98441] INFO - Worker 98441 | n_X=1e+08 | L=187.5 | Rate=0.00e+00
+2026-02-07 18:05:00,961 [98439] INFO - ✅ Worker 98439 finished GEN-4 n_X=1e+04 in 57.18s
+2026-02-07 18:05:01,117 [98442] INFO - Worker 98442 | n_X=1e+07 | L=187.5 | Rate=0.00e+00
+2026-02-07 18:05:01,535 [98437] INFO - Worker 98437 | n_X=1e+09 | L=187.5 | Rate=0.00e+00
+2026-02-07 18:05:01,860 [98440] INFO - Worker 98440 | n_X=1e+05 | L=192.5 | Rate=0.00e+00
+2026-02-07 18:05:03,244 [98438] INFO - Worker 98438 | n_X=1e+06 | L=192.5 | Rate=0.00e+00
+2026-02-07 18:05:04,969 [98441] INFO - Worker 98441 | n_X=1e+08 | L=192.5 | Rate=0.00e+00
+2026-02-07 18:05:05,689 [98437] INFO - Worker 98437 | n_X=1e+09 | L=192.5 | Rate=0.00e+00
+2026-02-07 18:05:05,924 [98440] INFO - Worker 98440 | n_X=1e+05 | L=197.5 | Rate=0.00e+00
+2026-02-07 18:05:06,212 [98442] INFO - Worker 98442 | n_X=1e+07 | L=192.5 | Rate=0.00e+00
+2026-02-07 18:05:07,356 [98438] INFO - Worker 98438 | n_X=1e+06 | L=197.5 | Rate=0.00e+00
+2026-02-07 18:05:08,094 [98440] INFO - ✅ Worker 98440 finished GEN-4 n_X=1e+05 in 64.31s
+2026-02-07 18:05:09,715 [98441] INFO - Worker 98441 | n_X=1e+08 | L=197.5 | Rate=0.00e+00
+2026-02-07 18:05:09,778 [98437] INFO - Worker 98437 | n_X=1e+09 | L=197.5 | Rate=0.00e+00
+2026-02-07 18:05:09,853 [98438] INFO - ✅ Worker 98438 finished GEN-4 n_X=1e+06 in 66.07s
+2026-02-07 18:05:11,206 [98442] INFO - Worker 98442 | n_X=1e+07 | L=197.5 | Rate=0.00e+00
+2026-02-07 18:05:11,646 [98437] INFO - ✅ Worker 98437 finished GEN-4 n_X=1e+09 in 67.86s
+2026-02-07 18:05:11,738 [98441] INFO - ✅ Worker 98441 finished GEN-4 n_X=1e+08 in 67.95s
+2026-02-07 18:05:13,152 [98442] INFO - ✅ Worker 98442 finished GEN-4 n_X=1e+07 in 69.37s
+✅ Timing summary saved to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_generation4_jax/run_20260207_180403/Gen4_timing_summary.png
+✅ Text report saved to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_generation4_jax/run_20260207_180403/Gen4_timing_report.txt
+📊 Loading results from /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_generation4_jax/run_20260207_180403/gen4_results_jax_20260207_180403.json
+   ... Generating Summary Plot
+INFO:2026-02-07 18:05:14,102:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 18:05:14,102 [98345] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+   ... Generating Detailed Per-n_X Plots
+✅ All plots saved to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_generation4_jax/run_20260207_180403
+2026-02-07 18:05:20,676 [98345] INFO - ✅ FINAL GEN-4 SUCCESS! Path: /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_generation4_jax/run_20260207_180403

@@ -1,0 +1,94 @@
+2026-02-07 15:46:16,628 [95618] INFO - Starting Robust Adaptive Optimization in PARALLEL mode (6 workers)...
+2026-02-07 15:46:17,364 [95713] INFO - Worker 95713 starting robust curve n_X=1e+04
+2026-02-07 15:46:17,366 [95715] INFO - Worker 95715 starting robust curve n_X=1e+05
+2026-02-07 15:46:17,366 [95711] INFO - Worker 95711 starting robust curve n_X=1e+06
+2026-02-07 15:46:17,366 [95716] INFO - Worker 95716 starting robust curve n_X=1e+07
+2026-02-07 15:46:17,367 [95712] INFO - Worker 95712 starting robust curve n_X=1e+08
+2026-02-07 15:46:17,367 [95714] INFO - Worker 95714 starting robust curve n_X=1e+09
+INFO:2026-02-07 15:46:17,384:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 15:46:17,384:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 15:46:17,384:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 15:46:17,384 [95711] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 15:46:17,384 [95712] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 15:46:17,384:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 15:46:17,384:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 15:46:17,384 [95713] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 15:46:17,384 [95714] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 15:46:17,384 [95716] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+INFO:2026-02-07 15:46:17,384:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 15:46:17,384 [95715] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 15:46:19,226 [95716] INFO - Worker 95716 | n_X=1e+07 | L=0.0 | Rate=6.18e-03
+2026-02-07 15:46:19,239 [95715] INFO - Worker 95715 | n_X=1e+05 | L=0.0 | Rate=1.65e-03
+2026-02-07 15:46:19,261 [95711] INFO - Worker 95711 | n_X=1e+06 | L=0.0 | Rate=3.70e-03
+2026-02-07 15:46:19,275 [95714] INFO - Worker 95714 | n_X=1e+09 | L=0.0 | Rate=1.09e-02
+2026-02-07 15:46:19,283 [95712] INFO - Worker 95712 | n_X=1e+08 | L=0.0 | Rate=8.68e-03
+2026-02-07 15:46:19,292 [95713] INFO - Worker 95713 | n_X=1e+04 | L=0.0 | Rate=3.80e-04
+2026-02-07 15:46:19,422 [95716] INFO - Worker 95716 | n_X=1e+07 | L=20.0 | Rate=2.40e-03
+2026-02-07 15:46:19,426 [95715] INFO - Worker 95715 | n_X=1e+05 | L=20.0 | Rate=6.39e-04
+2026-02-07 15:46:19,428 [95713] INFO - Worker 95713 | n_X=1e+04 | L=20.0 | Rate=1.46e-04
+2026-02-07 15:46:19,433 [95711] INFO - Worker 95711 | n_X=1e+06 | L=20.0 | Rate=1.44e-03
+2026-02-07 15:46:19,480 [95712] INFO - Worker 95712 | n_X=1e+08 | L=20.0 | Rate=3.38e-03
+2026-02-07 15:46:19,486 [95714] INFO - Worker 95714 | n_X=1e+09 | L=20.0 | Rate=4.25e-03
+2026-02-07 15:46:19,509 [95715] INFO - Worker 95715 | n_X=1e+05 | L=40.0 | Rate=2.50e-04
+2026-02-07 15:46:19,529 [95711] INFO - Worker 95711 | n_X=1e+06 | L=40.0 | Rate=5.64e-04
+2026-02-07 15:46:19,539 [95716] INFO - Worker 95716 | n_X=1e+07 | L=40.0 | Rate=9.46e-04
+2026-02-07 15:46:19,563 [95715] INFO - Worker 95715 | n_X=1e+05 | L=60.1 | Rate=9.79e-05
+2026-02-07 15:46:19,615 [95711] INFO - Worker 95711 | n_X=1e+06 | L=60.1 | Rate=2.22e-04
+2026-02-07 15:46:19,628 [95716] INFO - Worker 95716 | n_X=1e+07 | L=60.1 | Rate=3.72e-04
+2026-02-07 15:46:19,630 [95712] INFO - Worker 95712 | n_X=1e+08 | L=40.0 | Rate=1.33e-03
+2026-02-07 15:46:19,667 [95711] INFO - Worker 95711 | n_X=1e+06 | L=80.1 | Rate=8.60e-05
+2026-02-07 15:46:19,667 [95714] INFO - Worker 95714 | n_X=1e+09 | L=40.0 | Rate=1.67e-03
+2026-02-07 15:46:19,678 [95716] INFO - Worker 95716 | n_X=1e+07 | L=80.1 | Rate=1.45e-04
+2026-02-07 15:46:19,697 [95712] INFO - Worker 95712 | n_X=1e+08 | L=60.1 | Rate=5.24e-04
+2026-02-07 15:46:19,757 [95716] INFO - Worker 95716 | n_X=1e+07 | L=100.1 | Rate=5.49e-05
+2026-02-07 15:46:19,773 [95714] INFO - Worker 95714 | n_X=1e+09 | L=60.1 | Rate=6.59e-04
+2026-02-07 15:46:19,788 [95712] INFO - Worker 95712 | n_X=1e+08 | L=80.1 | Rate=2.04e-04
+2026-02-07 15:46:19,874 [95712] INFO - Worker 95712 | n_X=1e+08 | L=100.1 | Rate=7.78e-05
+2026-02-07 15:46:19,874 [95714] INFO - Worker 95714 | n_X=1e+09 | L=80.1 | Rate=2.57e-04
+2026-02-07 15:46:19,967 [95712] INFO - Worker 95712 | n_X=1e+08 | L=120.1 | Rate=2.80e-05
+2026-02-07 15:46:19,988 [95714] INFO - Worker 95714 | n_X=1e+09 | L=100.1 | Rate=9.83e-05
+2026-02-07 15:46:20,038 [95714] INFO - Worker 95714 | n_X=1e+09 | L=120.1 | Rate=3.60e-05
+2026-02-07 15:46:20,088 [95714] INFO - Worker 95714 | n_X=1e+09 | L=140.1 | Rate=1.15e-05
+2026-02-07 15:46:22,036 [95713] INFO - Worker 95713 | n_X=1e+04 | L=40.0 | Rate=5.69e-05
+2026-02-07 15:46:22,267 [95711] INFO - Worker 95711 | n_X=1e+06 | L=100.1 | Rate=3.22e-05
+2026-02-07 15:46:22,335 [95716] INFO - Worker 95716 | n_X=1e+07 | L=120.1 | Rate=1.93e-05
+2026-02-07 15:46:22,506 [95712] INFO - Worker 95712 | n_X=1e+08 | L=140.1 | Rate=8.74e-06
+2026-02-07 15:47:14,361 [95715] INFO - Worker 95715 | n_X=1e+05 | L=80.1 | Rate=3.76e-05
+2026-02-07 15:48:05,795 [95714] INFO - Worker 95714 | n_X=1e+09 | L=160.2 | Rate=2.34e-06
+2026-02-07 15:49:43,397 [95711] INFO - Worker 95711 | n_X=1e+06 | L=120.1 | Rate=1.10e-05
+2026-02-07 15:49:45,491 [95713] INFO - Worker 95713 | n_X=1e+04 | L=60.1 | Rate=2.18e-05
+2026-02-07 15:49:46,169 [95712] INFO - Worker 95712 | n_X=1e+08 | L=160.2 | Rate=1.60e-06
+2026-02-07 15:49:46,241 [95716] INFO - Worker 95716 | n_X=1e+07 | L=140.1 | Rate=5.71e-06
+2026-02-07 15:50:30,051 [95715] INFO - Worker 95715 | n_X=1e+05 | L=100.1 | Rate=1.37e-05
+2026-02-07 15:51:21,297 [95714] INFO - Worker 95714 | n_X=1e+09 | L=180.2 | Rate=2.80e-07
+2026-02-07 15:52:59,415 [95711] INFO - Worker 95711 | n_X=1e+06 | L=140.1 | Rate=2.86e-06
+2026-02-07 15:53:04,860 [95716] INFO - Worker 95716 | n_X=1e+07 | L=160.2 | Rate=8.59e-07
+2026-02-07 15:53:06,031 [95713] INFO - Worker 95713 | n_X=1e+04 | L=80.1 | Rate=8.01e-06
+2026-02-07 15:53:06,501 [95712] INFO - Worker 95712 | n_X=1e+08 | L=180.2 | Rate=1.42e-07
+2026-02-07 15:53:47,574 [95715] INFO - Worker 95715 | n_X=1e+05 | L=120.1 | Rate=4.33e-06
+2026-02-07 15:54:36,168 [95714] INFO - ✅ Worker 95714 finished n_X=1e+09 in 498.80s
+2026-02-07 15:56:13,877 [95711] INFO - Worker 95711 | n_X=1e+06 | L=160.2 | Rate=4.73e-07
+2026-02-07 15:56:19,864 [95712] INFO - ✅ Worker 95712 finished n_X=1e+08 in 602.50s
+2026-02-07 15:56:24,753 [95713] INFO - Worker 95713 | n_X=1e+04 | L=100.1 | Rate=2.58e-06
+2026-02-07 15:56:25,423 [95716] INFO - Worker 95716 | n_X=1e+07 | L=180.2 | Rate=0.00e+00
+2026-02-07 15:57:03,470 [95715] INFO - Worker 95715 | n_X=1e+05 | L=140.1 | Rate=8.29e-07
+2026-02-07 15:59:29,358 [95711] INFO - Worker 95711 | n_X=1e+06 | L=180.2 | Rate=0.00e+00
+2026-02-07 15:59:42,215 [95716] INFO - ✅ Worker 95716 finished n_X=1e+07 in 804.85s
+2026-02-07 15:59:43,910 [95713] INFO - Worker 95713 | n_X=1e+04 | L=120.1 | Rate=5.36e-07
+2026-02-07 16:00:18,150 [95715] INFO - Worker 95715 | n_X=1e+05 | L=160.2 | Rate=6.03e-08
+2026-02-07 16:02:36,295 [95711] INFO - ✅ Worker 95711 finished n_X=1e+06 in 978.93s
+2026-02-07 16:02:53,761 [95713] INFO - Worker 95713 | n_X=1e+04 | L=140.1 | Rate=1.19e-08
+2026-02-07 16:03:26,628 [95715] INFO - Worker 95715 | n_X=1e+05 | L=180.2 | Rate=0.00e+00
+2026-02-07 16:05:59,704 [95713] INFO - Worker 95713 | n_X=1e+04 | L=160.2 | Rate=0.00e+00
+2026-02-07 16:06:31,461 [95715] INFO - ✅ Worker 95715 finished n_X=1e+05 in 1214.10s
+2026-02-07 16:09:11,453 [95713] INFO - Worker 95713 | n_X=1e+04 | L=180.2 | Rate=0.00e+00
+2026-02-07 16:12:20,753 [95713] INFO - ✅ Worker 95713 finished n_X=1e+04 in 1563.39s
+✅ Timing summary saved to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_robust_adaptive_jax/run_20260207_154616/RobustJAX_timing_summary.png
+✅ Text report saved to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_robust_adaptive_jax/run_20260207_154616/RobustJAX_timing_report.txt
+📊 Loading results from /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_robust_adaptive_jax/run_20260207_154616/robust_results_jax_20260207_154616.json
+   ... Generating Summary Plot
+INFO:2026-02-07 16:12:21,559:jax._src.xla_bridge:834: Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-07 16:12:21,559 [95618] INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/opt/homebrew/lib/libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+   ... Generating Detailed Per-n_X Plots
+✅ All plots saved to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_robust_adaptive_jax/run_20260207_154616
+2026-02-07 16:12:26,950 [95618] INFO - ✅ Success! Results and plots saved to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/outputs/tier3_robust_adaptive_jax/run_20260207_154616

@@ -1,0 +1,14 @@
+2026-02-05 00:14:34,057 - INFO - 🚀 Starting Notebook-Logic Optimization. Logs at /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/script_version/results_notebook_logic/run_20260205_001434/optimization_notebook.log
+2026-02-05 00:14:34,057 - INFO - 📂 Run Directory: /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/script_version/results_notebook_logic/run_20260205_001434
+2026-02-05 00:14:34,057 - INFO - Starting parallel optimization with 12 workers.
+2026-02-05 00:15:00,563 - INFO - ✅ Finished n_X=1e+04 in 25.78s
+2026-02-05 00:15:05,600 - INFO - ✅ Finished n_X=1e+05 in 30.82s
+2026-02-05 00:15:09,440 - INFO - ✅ Finished n_X=1e+06 in 34.65s
+2026-02-05 00:15:11,629 - INFO - ✅ Finished n_X=1e+07 in 36.84s
+2026-02-05 00:15:13,140 - INFO - ✅ Finished n_X=1e+08 in 38.35s
+2026-02-05 00:15:14,251 - INFO - ✅ Finished n_X=1e+09 in 39.46s
+2026-02-05 00:15:14,427 - INFO - 🎯 Total optimization finished in 40.37s
+2026-02-05 00:15:14,503 - INFO - ✅ Saved results to /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/script_version/results_notebook_logic/run_20260205_001434/reordered_qkd_results_notebook_logic_20260205_001434.json
+2026-02-05 00:15:14,503 - INFO - 📊 Generating Plots and Reports...
+2026-02-05 00:15:15,051 - INFO - Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: dlopen(libtpu.so, 0x0001): tried: 'libtpu.so' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibtpu.so' (no such file), '/Users/daai6ga1hou2/anaconda3/envs/qkd-opt/bin/../lib/libtpu.so' (no such file), '/usr/lib/libtpu.so' (no such file, not in dyld cache), 'libtpu.so' (no such file)
+2026-02-05 00:15:15,051 - WARNING - Platform 'METAL' is experimental and not all JAX functionality may be correctly supported!

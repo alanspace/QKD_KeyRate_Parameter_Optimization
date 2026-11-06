@@ -1,0 +1,10 @@
+2026-02-04 16:30:35,489 - INFO - 🚀 Starting JAX Optimization. Logs at /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/script_version/results_global_jax/run_20260204_163035/optimization_jax.log
+2026-02-04 16:30:35,489 - INFO - 📂 Run Directory: /Users/daai6ga1hou2/Documents/GitHub/Physics/QKD_KeyRate_Parameter_Optimization/Optimization/script_version/results_global_jax/run_20260204_163035
+2026-02-04 16:30:35,489 - INFO - Using 12 parallel workers
+2026-02-04 17:05:07,765 - INFO - ✅ Finished n_X=1e+09 in 2071.54s (1000 points)
+2026-02-04 17:05:26,713 - INFO - ✅ Finished n_X=1e+04 in 2090.50s (1000 points)
+2026-02-04 17:05:56,713 - INFO - ✅ Finished n_X=1e+08 in 2120.50s (1000 points)
+2026-02-04 17:07:32,079 - INFO - ✅ Finished n_X=1e+05 in 2215.86s (1000 points)
+2026-02-04 17:08:39,694 - INFO - ✅ Finished n_X=1e+07 in 2283.48s (1000 points)
+2026-02-04 17:11:32,710 - INFO - ✅ Finished n_X=1e+06 in 2456.49s (1000 points)
+2026-02-04 17:11:32,977 - INFO - 🎯 Total optimization time (sum of all n_X): 13238.37s (220.64 min)
