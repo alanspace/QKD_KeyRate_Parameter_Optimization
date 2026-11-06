@@ -399,6 +399,61 @@
 </section>
 
 <section class="slide">
+  <div class="kicker">Implementation · rationale</div>
+  <h2>Why 5 qubits and this circuit</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li><b>One qubit per output.</b> Five settings → five single-qubit observables ⟨Z<sub>i</sub>⟩ ∈ [−1, 1]. They commute, so one circuit
+          run gives all five. 5 qubits is the minimum width; 6 and 8 add capacity and are in the tuning grid.</li>
+        <li><b>Feasible by construction.</b> ⟨Z<sub>i</sub>⟩ maps affinely to u<sub>i</sub> ∈ (0, 1), and u to (μ<sub>1</sub>, μ<sub>2</sub>, P<sub>μ1</sub>,
+          P<sub>μ2</sub>, q<sub>x</sub>) through <code>reparam.py</code>. No prediction can violate μ<sub>1</sub> &gt; μ<sub>2</sub> + μ<sub>3</sub> or the probability simplex.</li>
+        <li><b>Data re-uploading = Fourier model.</b> Encoding the inputs in every layer makes each output a trigonometric series in u<sub>L</sub>
+          and v. The number of layers sets the number of frequencies; trainable input scalings set which frequencies.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><b>RX for u<sub>L</sub>, RY for v:</b> two inputs on different rotation axes; Rot gives a general trainable single-qubit unitary.</li>
+        <li><b>CZ ring:</b> lets the coupled outputs share information. CZ is native on IQM; a ring needs only nearest-neighbour coupling.
+          The product twin (no CZ) isolates the effect of entanglement.</li>
+        <li><b>RFF ridge on the circuit's spectrum:</b> a classical model with the same frequencies. Parity with the PQC would mean the circuit's value is its spectrum.</li>
+        <li><b>Not claimed:</b> a speed or quantum advantage. The test is accuracy per parameter under a fixed protocol.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">src: qml/models.py; qml/PREREGISTRATION.md §5–6</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Implementation · observations during the run</div>
+  <h2>What we observed while tuning (seed 0, training loss)</h2>
+  <div class="cols">
+    <div>
+      <table>
+        <tr><th>PQC-full</th><th class="num">params</th><th class="num">train MSE (z)</th><th class="num">train s</th></tr>
+        <tr><td>5 × 3</td><td class="num">75</td><td class="num">1.83e-2</td><td class="num">49</td></tr>
+        <tr><td>6 × 3</td><td class="num">90</td><td class="num">1.24e-2</td><td class="num">109</td></tr>
+        <tr><td>8 × 3</td><td class="num">120</td><td class="num">1.65e-2</td><td class="num">685*</td></tr>
+        <tr><td>5 × 6</td><td class="num">150</td><td class="num">5.65e-3</td><td class="num">97</td></tr>
+        <tr><td>6 × 6</td><td class="num">180</td><td class="num">5.18e-3</td><td class="num">267</td></tr>
+        <tr><td>8 × 6</td><td class="num" colspan="3">running at the time of writing</td></tr>
+      </table>
+      <p class="note">* another job overlapped this run. Training loss only; selection uses validation regret (pending).</p>
+    </div>
+    <div>
+      <ul>
+        <li>Depth helps more than width: 6 layers give 2–3× lower loss than 3 layers; 8 qubits did not beat 6.</li>
+        <li>Cost grows steeply with width (statevector simulation): 8 qubits ≈ 6× the step time of 6 qubits.</li>
+        <li>A loss of ~5·10<sup>−3</sup> corresponds to output errors of a few percent of each range; the pilot mapped 1 % of range to a median
+          regret of 4·10<sup>−3</sup>. Whether the kill criterion (median bulk regret &gt; 10<sup>−2</sup>) is met will be decided by certification.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">src: results/logs_qml/tune_*.log (live); PILOT.md</div>
+</section>
+
+<section class="slide">
   <div class="kicker">Implementation · comparison set</div>
   <h2>Models, budget and metrics (preregistered)</h2>
   <div class="cols">
