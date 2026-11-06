@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Can a 5-qubit circuit tune a quantum-key-distribution link? (pitch)</title>
+<title>A tiny quantum circuit that tunes a quantum-secure link (pitch)</title>
 <!--
-  Short pitch deck (hackathon format). The detailed deck is slides.html.
-  Frame: 1 data · 2 challenge · 3 argue for quantum · 4 prototype · 5 close the loop.
+  Short pitch deck for a general audience. Spoken text: TRANSCRIPT.md (one section per slide).
+  Detailed deck with methods and sources: slides.html.
   Keys: right/space next, left back, "o" overview. Print to PDF (landscape) for one slide per page.
-  Boxes with class "pending" are filled from qml/RESULTS.md when the run finishes.
-  Colours (fixed meaning): quantum circuit = blue, classical NN = orange, lookup table = aqua, exact optimum = black.
+  "pending" boxes are filled from qml/RESULTS.md when the benchmark run finishes.
+  Colours with fixed meaning: quantum circuit = blue, classical neural network = orange, lookup table = aqua, exact solver = black.
 -->
 <style>
   :root { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#8a8984; --rule:#e6e5e0;
@@ -17,241 +17,228 @@
   html,body { margin:0; background:#2b2b2a; font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; color:var(--ink); }
   .deck { display:flex; flex-direction:column; align-items:center; gap:24px; padding:24px 0; }
   .slide { width:var(--w); height:var(--h); background:var(--surface); position:relative; overflow:hidden;
-           padding:44px 64px 50px; display:none; flex-direction:column; }
+           padding:44px 64px 48px; display:none; flex-direction:column; }
   .slide.active { display:flex; }
   body.overview .slide { display:flex; transform:scale(.32); transform-origin:top left; margin:0 -870px -490px 0; cursor:pointer; }
   body.overview .deck { flex-direction:row; flex-wrap:wrap; justify-content:center; }
-  h1 { font-size:46px; margin:0 0 14px; line-height:1.12; }
-  h2 { font-size:32px; margin:0 0 16px; }
-  p, li { font-size:21px; line-height:1.4; }
-  ul { margin:4px 0; padding-left:26px; } li { margin:4px 0; }
-  .step { font-size:14px; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); font-weight:700; margin-bottom:6px; }
-  .cols { display:grid; grid-template-columns:1fr 1fr; gap:34px; flex:1; min-height:0; }
-  .cols.l { grid-template-columns:1.3fr 1fr; } .cols.r { grid-template-columns:1fr 1.4fr; }
+  h1 { font-size:52px; margin:0 0 16px; line-height:1.1; }
+  h2 { font-size:36px; margin:0 0 18px; line-height:1.15; }
+  p, li { font-size:24px; line-height:1.4; }
+  ul { margin:4px 0; padding-left:28px; } li { margin:8px 0; }
+  .step { font-size:15px; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); font-weight:700; margin-bottom:8px; }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:36px; flex:1; min-height:0; }
   .figbox { display:flex; align-items:center; justify-content:center; min-height:0; flex:1; }
   img.fig { max-width:100%; max-height:100%; object-fit:contain; display:block; }
-  table { border-collapse:collapse; width:100%; font-size:18px; }
-  th,td { border-bottom:1px solid var(--rule); padding:8px 10px; text-align:left; vertical-align:top; }
-  th { color:var(--ink2); font-weight:600; font-size:15px; }
-  td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
-  .src { position:absolute; left:64px; bottom:16px; font-size:11px; color:var(--muted); }
-  .num-badge { position:absolute; right:28px; bottom:14px; font-size:13px; color:var(--muted); }
-  .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin:18px 0; }
-  .kpi { border-top:4px solid var(--ink); padding-top:10px; }
-  .kpi .v { font-size:40px; font-weight:700; line-height:1.05; }
-  .kpi .l { font-size:15px; color:var(--ink2); margin-top:4px; }
+  .kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin:18px 0; }
+  .kpi { border-top:5px solid var(--ink); padding-top:12px; }
+  .kpi .v { font-size:54px; font-weight:800; line-height:1; }
+  .kpi .l { font-size:18px; color:var(--ink2); margin-top:6px; line-height:1.3; }
   .kpi.p .v { color:var(--muted); }
-  .pending { border:2px dashed var(--muted); border-radius:8px; padding:12px 16px; color:var(--ink2); background:#f6f6f3; font-size:17px; }
-  .callout { border-left:4px solid var(--blue); padding:10px 16px; background:#f1f5fb; font-size:19px; margin:10px 0; }
-  .honest { border-left-color:var(--orange); background:#fdf3ee; }
-  .dot { display:inline-block; width:12px; height:12px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+  .kpi.q { border-top-color:var(--blue); }
+  table { border-collapse:collapse; width:100%; font-size:20px; }
+  th,td { border-bottom:1px solid var(--rule); padding:10px 12px; text-align:left; }
+  th { color:var(--ink2); font-weight:600; font-size:16px; }
+  td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+  .dot { display:inline-block; width:14px; height:14px; border-radius:50%; margin-right:8px; vertical-align:middle; }
+  .pending { border:2px dashed var(--muted); border-radius:10px; padding:16px 20px; color:var(--ink2); background:#f6f6f3; font-size:20px; }
+  .big3 { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:10px; }
+  .card { background:#f3f2ee; border-radius:12px; padding:22px; }
+  .card h3 { margin:0 0 8px; font-size:24px; }
+  .card p { font-size:19px; margin:0; color:var(--ink2); }
+  .callout { border-left:5px solid var(--orange); padding:12px 18px; background:#fdf3ee; font-size:20px; margin-top:14px; }
   .muted { color:var(--ink2); }
-  code { font-family:ui-monospace,Menlo,monospace; font-size:.85em; background:#f0efea; padding:1px 4px; border-radius:3px; }
+  .src { position:absolute; left:64px; bottom:14px; font-size:11px; color:var(--muted); }
+  .num-badge { position:absolute; right:28px; bottom:12px; font-size:13px; color:var(--muted); }
   @media print { html,body{background:white} .deck{padding:0;gap:0} .slide{display:flex!important;break-after:page} @page{size:1280px 720px;margin:0} }
 </style>
 </head>
 <body>
 <div class="deck">
 
-<!-- 1 · TITLE + KPI -->
+<!-- 1 -->
 <section class="slide" style="justify-content:center">
-  <div class="step">QuantumBridge AI · hackathon pitch · work in progress</div>
-  <h1>Can a 5-qubit circuit tune a<br>quantum-key-distribution link?</h1>
-  <p class="muted" style="font-size:23px">A QKD link needs five laser settings retuned whenever the fiber length or session size changes.
-    We trained a small quantum circuit to predict all five at once, and benchmarked it fairly against classical models.</p>
+  <div class="step">QuantumBridge AI · work in progress</div>
+  <h1>A tiny quantum circuit that<br>tunes a quantum-secure link</h1>
+  <p class="muted">Quantum key distribution (QKD) turns a fiber into a provably secure key generator, but only if five laser
+    settings are tuned to the link. We teach a 5-qubit circuit to do the tuning, and test it fairly against classical AI.</p>
   <div class="kpis">
-    <div class="kpi"><div class="v">61,875</div><div class="l">verified optimal settings (training data)</div></div>
-    <div class="kpi"><div class="v">100 %</div><div class="l">of points where our classical solver matches an independent reference (≤ 10⁻⁶)</div></div>
-    <div class="kpi"><div class="v">1.6 ms</div><div class="l">exact retune from a nearby solution (classical, warm start)</div></div>
-    <div class="kpi p"><div class="v">pending</div><div class="l">% of optimal key the quantum circuit delivers (run in progress)</div></div>
+    <div class="kpi"><div class="v">100 %</div><div class="l">of cases where our classical solver finds the best settings</div></div>
+    <div class="kpi"><div class="v">1.6 ms</div><div class="l">to retune a link with the classical solver</div></div>
+    <div class="kpi q p"><div class="v">pending</div><div class="l">share of the best possible key the quantum circuit delivers</div></div>
   </div>
-  <div class="src">Shek Lun Leung · Nov 2026 · physics: Lim et al., PRA 89, 022307 (2014) · sources: qml/data/labels_0d8bef1402_9fa16da52f39.json, results/NUMBERS.md, PILOT.md</div>
+  <div class="src">sources: results/NUMBERS.md, results/qml_pilot_summary_*/PILOT.md</div>
 </section>
 
-<!-- 2 · DATA -->
+<!-- 2 -->
 <section class="slide">
-  <div class="step">1 · Find suitable data</div>
-  <h2>The data: optimal settings across distance, computed and verified</h2>
-  <div class="cols" style="grid-template-columns:2.1fr 1fr">
-    <div class="figbox"><img class="fig" src="assets/params_across_distance.png" alt="optimal parameters vs distance"></div>
+  <div class="step">The problem</div>
+  <h2>Longer fiber, less key, and the settings must follow</h2>
+  <div class="cols" style="grid-template-columns:1.9fr 1fr">
+    <div class="figbox"><img class="fig" src="assets/keyrate_simple.png" alt="key rate vs distance"></div>
     <div>
       <ul>
-        <li><b>Input:</b> fiber length (0–200 km) and block size (10⁴–10⁹ signals).</li>
-        <li><b>Output:</b> five settings: two laser intensities, their probabilities, and the basis choice.</li>
-        <li><b>Labels:</b> 61,875 settings from our exact solver; each is one optimisation of the finite-key security bound.</li>
-        <li><b>Checked:</b> never worse than an independently built reference, in all 278 shared-point checks.</li>
+        <li>Secret key per laser pulse drops about 10× every 50 km.</li>
+        <li>Each link has a hard <b>maximum distance</b>: 130 to 184 km here, depending on the session size.</li>
+        <li>Reaching it needs the <b>right five settings</b> for that distance.</li>
       </ul>
     </div>
   </div>
-  <div class="src">src: qml/data/labels_0d8bef1402_9fa16da52f39.{npz,json}; figure qml/slides/make_showcase.py</div>
+  <div class="src">qml/slides/make_keyrate_simple.py from the verified labels · max distance 130.44–184.16 km (results/NUMBERS.md)</div>
 </section>
 
-<!-- 3 · CHALLENGE -->
+<!-- 3 -->
 <section class="slide">
-  <div class="step">2 · Name the challenge</div>
-  <h2>What makes this hard to learn</h2>
-  <div class="cols">
-    <div>
-      <ul>
-        <li><b>Five coupled outputs with hard rules:</b> signal &gt; decoy, probabilities sum to 1. A wrong combination is not a valid setting.</li>
-        <li><b>A cliff at the range limit:</b> the key rate falls by about 10⁶× in the last 15 km. A simple lookup table is within 10⁻⁶ of the optimal key at only 24.6 % of points there (81.6 % elsewhere).</li>
-        <li><b>Sudden jumps:</b> at 13 places the best setting switches between two competing solutions.</li>
-      </ul>
-    </div>
-    <div>
-      <ul>
-        <li><b>Every label costs an optimisation:</b> 29.7 ms with our solver from scratch; 6–18 s with the earlier method.</li>
-        <li><b>The input space will grow:</b> detector noise, misalignment and fiber loss vary per link. A lookup table grows exponentially with every added input.</li>
-      </ul>
-      <div class="callout honest">Honest note: with only two inputs, a dense classical lookup table is strong. The case for a learned model gets stronger as inputs are added.</div>
-    </div>
+  <div class="step">What we built (classical)</div>
+  <h2>Step 1: an exact solver that always finds the best settings</h2>
+  <table style="margin-top:6px">
+    <tr><th>situation</th><th class="n">finds the best settings</th><th class="n">time</th></tr>
+    <tr><td>Earlier method (2026 run)</td><td class="n">4 % of cases</td><td class="n">6–18 s</td></tr>
+    <tr><td><b>Our solver: a brand-new link</b> (no previous settings to start from)</td><td class="n"><b>100 %</b></td><td class="n"><b>30 ms</b></td></tr>
+    <tr><td><b>Our solver: a running link that changed a little</b> (starts from its current settings)</td><td class="n"><b>100 %</b></td><td class="n"><b>1.6 ms</b></td></tr>
+  </table>
+  <div class="big3" style="margin-top:22px">
+    <div class="card"><h3>The dataset</h3><p><b>61,875 examples.</b> Each one is a link (fiber length + session size) and its best five settings,
+      found and checked by the solver. 15 session sizes × about 4,000 fiber lengths.</p></div>
+    <div class="card"><h3>Physics fixed</h3><p>A bug in the earlier key-rate model was found and fixed; the model now matches the published reference within 8 %.</p></div>
+    <div class="card"><h3>Cost to build</h3><p>The whole dataset took <b>4.6 minutes</b> on a laptop.</p></div>
   </div>
-  <div class="src">src: results/NUMBERS.md (lookup 81.6 / 24.6 % within 1e-6); STATUS.md §10 (13 switches); PILOT.md (29.7 ms); timing_lim (5.8–17.6 s)</div>
+  <div class="src">results/NUMBERS.md (earlier DA run 3.7 % within 1e-6, own physics); PILOT.md (29.7 ms cold, 1.63 ms warm); labels sweep 275.9 s (STATUS §10)</div>
 </section>
 
-<!-- 4 · ARGUE FOR QUANTUM -->
+<!-- 4 -->
 <section class="slide">
-  <div class="step">3 · Argue for quantum (the argument is the deliverable)</div>
-  <h2>Why this circuit, and why 5 qubits</h2>
-  <div class="cols">
-    <div>
-      <ul>
-        <li><b>One qubit per setting.</b> Five qubits, five measured values ⟨Z⟩ ∈ [−1, 1], five settings. Measured together in one circuit run.</li>
-        <li><b>Valid by construction.</b> Each value maps to a range that always satisfies the rules (signal &gt; decoy, probabilities sum to 1).</li>
-        <li><b>A learned Fourier series.</b> Re-feeding the inputs in every layer ("data re-uploading") makes the circuit a sum of sines and cosines.
-          Smooth curves need few parameters; more layers add more frequencies.</li>
-      </ul>
-    </div>
-    <div>
-      <ul>
-        <li><b>Shared information.</b> CZ gates entangle the qubits so the five coupled settings can depend on each other. A no-entanglement twin tests whether this matters.</li>
-        <li><b>Hardware-native.</b> Rotations and CZ in a ring are native on IQM processors.</li>
-      </ul>
-      <div class="callout honest"><b>What we do not claim.</b> No speed advantage on today's hardware, and no quantum advantage. The test is accuracy per
-        parameter against classical models of the same size, under rules fixed before training.</div>
-    </div>
+  <div class="step">The data</div>
+  <h2>All five settings across distance</h2>
+  <div class="figbox"><img class="fig" src="assets/params_by_blocksize.png" alt="five settings across distance"></div>
+  <div class="src">qml/slides/make_params_grid.py from qml/data/labels_0d8bef1402_9fa16da52f39.npz (optimal settings; ▲ = switch between two nearly equal optima)</div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <div class="step">The challenge</div>
+  <h2>Why can't we just store a big table?</h2>
+  <div class="big3">
+    <div class="card"><h3>1 · The edge is unforgiving</h3><p>Near the maximum distance, small mistakes in the settings can cost most or all of the key. A simple table is exactly right there only 1 time in 4.</p></div>
+    <div class="card"><h3>2 · The recipe sometimes jumps</h3><p>At a dozen or so distances the best settings switch suddenly to a different, equally good recipe. Averaging the two gives a bad one.</p></div>
+    <div class="card"><h3>3 · Real links have more knobs</h3><p>Detector noise, alignment, fiber quality. Every extra knob multiplies the size of a table; a learned model stays small.</p></div>
   </div>
-  <div class="src">src: qml/models.py; qml/PREREGISTRATION.md §5–6</div>
+  <p class="muted" style="margin-top:22px;font-size:20px">For today's two inputs a big table still works well, so we measure honestly against it. The learned tuner pays off as inputs are added.</p>
+  <div class="src">results/NUMBERS.md (lookup 24.6 % within 1e-6 near the edge); STATUS.md §10, §10d (switches)</div>
 </section>
 
-<!-- 5 · PROTOTYPE -->
+<!-- 6 -->
 <section class="slide">
-  <div class="step">4 · Prototype it</div>
-  <h2>The prototype: one circuit layer, repeated 3–6 times</h2>
-  <div class="cols l">
+  <div class="step">Our quantum idea</div>
+  <h2>One qubit per setting, connected because the settings are</h2>
+  <div class="cols" style="grid-template-columns:1.25fr 1fr">
     <div class="figbox"><img class="fig" src="assets/pqc_circuit.png" alt="circuit"></div>
     <div>
-      <ol style="padding-left:24px">
-        <li><b>Verified labels</b> from the exact solver.</li>
-        <li><b>Train the circuit</b> on a simulator (PennyLane, exact expectation values).</li>
-        <li><b>Check every prediction</b> with the exact physics: the key rate it delivers vs the optimum.</li>
-      </ol>
-      <p class="muted" style="font-size:17px">Tried: 5, 6, 8 qubits × 3, 6 layers (75–240 parameters).
-        Compared with a classical neural network of the same size, a Fourier regression, and a lookup table, all on the same data and budget.</p>
-    </div>
-  </div>
-  <div class="src">src: qml/models.py, qml/train.py, qml/certify.py</div>
-</section>
-
-<!-- 6 · OBSERVATIONS -->
-<section class="slide">
-  <div class="step">4 · Prototype it · what we observed during the run</div>
-  <h2>Live observations (training, seed 0)</h2>
-  <div class="cols">
-    <div>
-      <table>
-        <tr><th>circuit</th><th class="n">parameters</th><th class="n">training loss</th><th class="n">training time</th></tr>
-        <tr><td>5 qubits × 3 layers</td><td class="n">75</td><td class="n">1.8e-2</td><td class="n">49 s</td></tr>
-        <tr><td>6 × 3</td><td class="n">90</td><td class="n">1.2e-2</td><td class="n">109 s</td></tr>
-        <tr><td>8 × 3</td><td class="n">120</td><td class="n">1.7e-2</td><td class="n">685 s</td></tr>
-        <tr><td>5 × 6</td><td class="n">150</td><td class="n">5.6e-3</td><td class="n">97 s</td></tr>
-        <tr><td>6 × 6</td><td class="n">180</td><td class="n">5.2e-3</td><td class="n">267 s</td></tr>
-        <tr><td>8 × 6</td><td class="n" colspan="3">running</td></tr>
-      </table>
-      <p class="muted" style="font-size:15px">Loss = mean squared error of the five measured values (scale −1…1). Training time includes one overlapping job for 8 × 3.</p>
-    </div>
-    <div>
-      <ul>
-        <li><b>Depth beats width:</b> 6 layers reach 2–3× lower loss than 3 layers; extra qubits did not help.</li>
-        <li><b>Wider is costly:</b> 8 qubits train about 6× slower than 6 qubits.</li>
-        <li><b>Small errors, small loss of key:</b> in a pilot, an error of 1 % of each setting's range cost about 0.4 % of the key rate (median).</li>
-        <li><b>Repairable:</b> 1–3 exact correction steps (≈ 1–2 ms) remove that loss completely.</li>
+      <ul style="margin-top:0">
+        <li><b>5 qubits = 5 settings.</b> Measure each qubit, read off one setting; one run gives all five, always valid.</li>
+        <li><b>Why the connecting wires?</b>
+          <ul>
+            <li>Rules tie them: signal &gt; decoy; probabilities share 100 %.</li>
+            <li>The data shows it: signal probability vs basis choice move together at −0.97; decoy strength vs decoy probability at +0.97.</li>
+          </ul></li>
+        <li><b>We test it:</b> the same circuit without wires is trained too.</li>
       </ul>
     </div>
   </div>
-  <div class="src">src: results/logs_qml/tune_*.log (live); PILOT.md (stand-in: labels + 1 % noise; regret 4.1e-3 → 2.0e-5 → 2.0e-9 → 2.8e-15)</div>
+  <div class="src">correlations: mean over 6 session sizes of the 61,875 labels (qml/data); circuit: qml/models.py</div>
 </section>
 
-<!-- 7 · KPI SCOREBOARD -->
+<!-- 6b -->
 <section class="slide">
-  <div class="step">Results · KPI scoreboard</div>
-  <h2>Accuracy and speed: quantum vs classical</h2>
-  <table>
-    <tr><th>method</th><th class="n">settings error (median)</th><th class="n">key delivered, typical distance</th><th class="n">key delivered, near range limit</th><th class="n">time per prediction</th><th class="n">training</th></tr>
-    <tr><td>Exact solver, warm start (classical)</td><td class="n">0</td><td class="n">100 %</td><td class="n">100 %</td><td class="n">1.6 ms</td><td class="n">none</td></tr>
-    <tr><td>Exact solver, from scratch (classical)</td><td class="n">0</td><td class="n">100 %</td><td class="n">100 %</td><td class="n">29.7 ms</td><td class="n">none</td></tr>
-    <tr><td><span class="dot" style="background:var(--aqua)"></span>Lookup table</td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td><td class="n">none</td></tr>
-    <tr><td><span class="dot" style="background:var(--orange)"></span>Classical neural network</td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td></tr>
-    <tr><td><span class="dot" style="background:var(--blue)"></span><b>Quantum circuit (simulated)</b></td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td></tr>
-    <tr><td><span class="dot" style="background:var(--blue)"></span><b>Quantum circuit + 1 correction step</b></td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td><td class="n">–</td></tr>
-  </table>
-  <p class="muted" style="font-size:16px;margin-top:14px">
-    <b>Settings error:</b> distance from the optimal settings on each setting's own scale.
-    <b>Key delivered:</b> key rate at the predicted settings ÷ optimal key rate, recomputed with the exact physics (never the model's own estimate).
-    <b>Near range limit:</b> last 15 km before the maximum distance.
-    <b>Time:</b> one prediction, end-to-end, laptop CPU. Means over 5 training runs.</p>
-  <div class="src">src: classical rows PILOT.md / NUMBERS.md; others qml/RESULTS.md (pending)</div>
+  <div class="step">How it works</div>
+  <h2>From the solver to a tuner, and a physics check at the end</h2>
+  <svg viewBox="0 0 1150 500" width="100%" style="flex:1">
+    <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#52514e"/></marker></defs>
+    <g font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="19" text-anchor="middle">
+      <rect x="20" y="40" width="220" height="100" rx="14" fill="#0b0b0b"/><text x="130" y="85" fill="white" font-weight="700">Exact solver</text><text x="130" y="112" fill="#d9d8d3" font-size="15">best settings, verified</text>
+      <rect x="320" y="30" width="250" height="120" rx="6" fill="#e6e5e0"/><rect x="312" y="22" width="250" height="120" rx="6" fill="#f3f2ee" stroke="#b9b8b3"/>
+      <text x="437" y="70" font-weight="700">61,875 examples</text><text x="437" y="98" font-size="15" fill="#52514e">link → best 5 settings</text><text x="437" y="122" font-size="15" fill="#52514e">(4.6 min to build)</text>
+      <rect x="650" y="40" width="220" height="100" rx="14" fill="#2a78d6"/><text x="760" y="85" fill="white" font-weight="700">Train</text><text x="760" y="112" fill="#e8f1fb" font-size="15">quantum circuit / NN</text>
+      <rect x="910" y="40" width="220" height="100" rx="6" fill="#f3f2ee" stroke="#2a78d6"/><text x="1020" y="85" font-weight="700">Trained tuner</text><text x="1020" y="112" font-size="15" fill="#52514e">link → 5 settings</text>
+
+      <rect x="20" y="250" width="220" height="100" rx="6" fill="#f3f2ee" stroke="#b9b8b3"/><text x="130" y="292" font-weight="700">A new link</text><text x="130" y="320" font-size="15" fill="#52514e">fiber length, session size</text>
+      <rect x="330" y="250" width="220" height="100" rx="14" fill="#1baf7a"/><text x="440" y="295" fill="white" font-weight="700">Ask the tuner</text><text x="440" y="322" fill="#e6f7f0" font-size="15">one quick prediction</text>
+      <rect x="640" y="250" width="220" height="100" rx="6" fill="#f3f2ee" stroke="#b9b8b3"/><text x="750" y="292" font-weight="700">Predicted settings</text><text x="750" y="320" font-size="15" fill="#52514e">always valid</text>
+      <rect x="250" y="400" width="650" height="80" rx="14" fill="#eb6834"/><text x="575" y="436" fill="white" font-weight="700">Physics check: key with predicted settings ÷ key with best settings</text><text x="575" y="462" fill="#fdeee6" font-size="15">the score we report (never the model's own estimate)</text>
+    </g>
+    <g stroke="#52514e" stroke-width="2.2" fill="none" marker-end="url(#a)">
+      <path d="M240 90 L306 90"/><path d="M568 90 L646 90"/><path d="M870 90 L906 90"/>
+      <path d="M1020 140 L1020 200 L440 200 L440 246"/>
+      <path d="M240 300 L326 300"/><path d="M550 300 L636 300"/>
+      <path d="M750 350 L750 396"/><path d="M130 350 L130 440 L246 440"/>
+    </g>
+  </svg>
+  <div class="src">qml/labels.py → qml/train.py → qml/certify.py</div>
 </section>
 
-<!-- 8 · SHOWCASE -->
+<!-- 7 -->
+<section class="slide">
+  <div class="step">How we test it fairly</div>
+  <h2>Same data, same budget, every answer checked</h2>
+  <div class="big3">
+    <div class="card"><h3>1 · Train</h3><p>Quantum circuit (simulated), a classical neural network of the same size, and a lookup table, on the same examples.</p></div>
+    <div class="card"><h3>2 · Predict</h3><p>Settings for distances and session sizes the models never saw.</p></div>
+    <div class="card"><h3>3 · Check</h3><p>Plug the predicted settings into the exact physics and measure how much of the best possible key they deliver.</p></div>
+  </div>
+  <p style="margin-top:22px">The rules were written down <b>before</b> training. A tie or a loss for the quantum circuit counts as a valid result.</p>
+  <p class="muted" style="font-size:20px">Training time (laptop, one model): quantum circuit on a simulator from under 1 min to 23 min depending on size; classical network: pending (seconds).</p>
+  <div class="src">qml/PREREGISTRATION.md (committed before training; Amendments 1–4)</div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <div class="step">Results · scoreboard</div>
+  <h2>How good, how fast</h2>
+  <table>
+    <tr><th></th><th class="n">key delivered, typical distance</th><th class="n">key delivered, near max distance</th><th class="n">time per answer</th></tr>
+    <tr><td>Exact solver (classical)</td><td class="n">100 %</td><td class="n">100 %</td><td class="n">1.6–30 ms</td></tr>
+    <tr><td><span class="dot" style="background:var(--aqua)"></span>Lookup table</td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td></tr>
+    <tr><td><span class="dot" style="background:var(--orange)"></span>Classical neural network</td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td></tr>
+    <tr><td><span class="dot" style="background:var(--blue)"></span><b>Quantum circuit</b></td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td></tr>
+    <tr><td><span class="dot" style="background:var(--blue)"></span><b>Quantum circuit + one exact fix-up step</b></td><td class="n">pending</td><td class="n">pending</td><td class="n">pending</td></tr>
+  </table>
+  <p class="muted" style="font-size:18px;margin-top:14px">Key delivered = key at the predicted settings ÷ best possible key, computed with the exact physics.
+    Average over 5 training runs. Pilot: an error of 1 % of each setting's range costs about 0.4 % of the key, and two fix-up steps (1.4 ms) remove almost all of it.</p>
+  <div class="src">exact solver rows: PILOT.md; others: qml/RESULTS.md (pending)</div>
+</section>
+
+<!-- 9 -->
 <section class="slide">
   <div class="step">Results · showcase</div>
-  <h2>All five settings across distance, for a block size the model never saw</h2>
+  <h2>Predicted vs best settings, for a session size the models never saw</h2>
   <div class="pending" style="flex:1;display:flex;align-items:center;justify-content:center;text-align:center">
-    Pending: predicted vs optimal settings for n_X = 5·10⁸ (held out from training) and n_X = 10⁶ (test distances),
-    for the quantum circuit, the classical NN and the lookup table, plus the % of optimal key each delivers along the distance.<br>
-    (drawn automatically by qml/slides/make_showcase.py → assets/showcase_predictions.png)
+    Pending: the five settings across distance (best vs quantum circuit vs neural network vs table) and the share of the best key each delivers.
   </div>
-  <div class="src">src (to come): results/qml_final_*/predictions_query.npz, qml_certify_final_*/perpoint.npz</div>
+  <div class="src">qml/slides/make_showcase.py → assets/showcase_predictions.png</div>
 </section>
 
-<!-- 9 · CLOSE THE LOOP -->
+<!-- 10 -->
 <section class="slide">
-  <div class="step">5 · Close the loop</div>
-  <h2>Why it matters for real links</h2>
-  <div class="cols">
-    <div>
-      <h3 style="font-size:21px;margin:0 0 6px">Real-world phenomenon</h3>
-      <ul>
-        <li>Fiber loss changes: temperature, re-routing, splices, mobile or free-space links.</li>
-        <li>Session sizes change with traffic.</li>
-        <li>Fixed settings waste key. Near the range limit, wrong settings can drop the key to zero, where the right ones still produce key.</li>
-      </ul>
-    </div>
-    <div>
-      <h3 style="font-size:21px;margin:0 0 6px">Business case</h3>
-      <ul>
-        <li>A link controller that retunes in milliseconds keeps every link at its best key rate. That means more secure key per day from the same hardware, and longer usable reach.</li>
-        <li>A learned tuner extends to many inputs where tables cannot.</li>
-        <li>Quantum angle: future quantum-network nodes may carry small quantum processors. A native tuner is a natural first workload.</li>
-      </ul>
-    </div>
+  <div class="step">Why it matters</div>
+  <h2>More secure key from the same hardware</h2>
+  <div class="big3">
+    <div class="card"><h3>Real links drift</h3><p>Temperature, re-routing and traffic change the fiber and the session size. Fixed settings waste key.</p></div>
+    <div class="card"><h3>Near the edge it matters most</h3><p>Close to the maximum distance, wrong settings can drop the key to zero where the right ones still deliver.</p></div>
+    <div class="card"><h3>A fast, learned tuner</h3><p>Retunes every link in milliseconds, scales to more inputs, and is a natural first workload for future quantum network nodes.</p></div>
   </div>
-  <div class="src">Qualitative; no market figures are claimed.</div>
+  <div class="src">qualitative; no market figures claimed</div>
 </section>
 
-<!-- 10 · NEXT -->
+<!-- 11 -->
 <section class="slide">
   <div class="step">Next</div>
   <h2>What comes next</h2>
   <ul>
-    <li><b>Today:</b> finish the fair benchmark (5 runs per model) and fill the scoreboard. It is a valid outcome if the quantum circuit only ties or loses.</li>
-    <li><b>Quantum hardware:</b> run the trained circuit on an IQM device (paused; needs a credit budget). Shot noise is the main cost: about 10³ shots per prediction for 1 %-of-range accuracy, about 10⁵ for 0.1 %.</li>
-    <li><b>More inputs:</b> add noise, misalignment and fiber loss. This is where lookup tables stop scaling and learned models are needed.</li>
-    <li><b>Hybrid in production:</b> a learned first guess plus one exact correction step.</li>
+    <li><b>Finish the benchmark</b> and fill the scoreboard (running now).</li>
+    <li><b>Real quantum hardware</b> (IQM): run the trained circuit once the budget is approved.</li>
+    <li><b>More knobs</b>: add noise, alignment and fiber loss, where tables stop scaling.</li>
+    <li><b>Best of both</b>: a learned first guess plus one exact fix-up step.</li>
   </ul>
-  <div class="callout">Detailed deck with all methods, checks and sources: <code>slides.html</code></div>
-  <div class="src">src: qml/PREREGISTRATION.md §10; STATUS.md §10c</div>
+  <div class="src">qml/PREREGISTRATION.md §10; STATUS.md §10c</div>
 </section>
 
 </div>
