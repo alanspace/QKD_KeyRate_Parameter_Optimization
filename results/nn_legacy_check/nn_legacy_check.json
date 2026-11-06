@@ -1,0 +1,175 @@
+{
+ "torch": "2.15.0",
+ "checkpoints": {
+  "NeuralNetwork/models/bb84_nn_model.pth": {
+   "shapes": {
+    "fc1.weight": [
+     16,
+     4
+    ],
+    "fc1.bias": [
+     16
+    ],
+    "fc2.weight": [
+     32,
+     16
+    ],
+    "fc2.bias": [
+     32
+    ],
+    "fc3.weight": [
+     16,
+     32
+    ],
+    "fc3.bias": [
+     16
+    ],
+    "fc4.weight": [
+     6,
+     16
+    ],
+    "fc4.bias": [
+     6
+    ]
+   },
+   "n_outputs": 6,
+   "load_as_5_output": "FAILS: Error(s) in loading state_dict for BB84Network5:"
+  },
+  "NeuralNetwork/models/bb84_nn_model_jax.pth": {
+   "shapes": {
+    "fc1.weight": [
+     16,
+     4
+    ],
+    "fc1.bias": [
+     16
+    ],
+    "fc2.weight": [
+     32,
+     16
+    ],
+    "fc2.bias": [
+     32
+    ],
+    "fc3.weight": [
+     16,
+     32
+    ],
+    "fc3.bias": [
+     16
+    ],
+    "fc4.weight": [
+     5,
+     16
+    ],
+    "fc4.bias": [
+     5
+    ]
+   },
+   "n_outputs": 5,
+   "load_as_5_output": "ok"
+  },
+  "NeuralNetwork/models/bb84_nn_model_legacy.pth": {
+   "shapes": {
+    "fc1.weight": [
+     16,
+     4
+    ],
+    "fc1.bias": [
+     16
+    ],
+    "fc2.weight": [
+     32,
+     16
+    ],
+    "fc2.bias": [
+     32
+    ],
+    "fc3.weight": [
+     16,
+     32
+    ],
+    "fc3.bias": [
+     16
+    ],
+    "fc4.weight": [
+     5,
+     16
+    ],
+    "fc4.bias": [
+     5
+    ]
+   },
+   "n_outputs": 5,
+   "load_as_5_output": "ok"
+  },
+  "models/bb84_nn_model.pth": {
+   "shapes": {
+    "fc1.weight": [
+     16,
+     4
+    ],
+    "fc1.bias": [
+     16
+    ],
+    "fc2.weight": [
+     32,
+     16
+    ],
+    "fc2.bias": [
+     32
+    ],
+    "fc3.weight": [
+     16,
+     32
+    ],
+    "fc3.bias": [
+     16
+    ],
+    "fc4.weight": [
+     5,
+     16
+    ],
+    "fc4.bias": [
+     5
+    ]
+   },
+   "n_outputs": 5,
+   "load_as_5_output": "ok"
+  }
+ },
+ "scalers": {
+  "NeuralNetwork/models/scaler.pkl": {
+   "warnings": [
+    "Trying to unpickle estimator StandardScaler from version 1.7.2 when using version 1.9.1"
+   ],
+   "type": "StandardScaler",
+   "n_features_in": 4,
+   "n_samples_seen": 2117
+  },
+  "NeuralNetwork/models/y_scaler.pkl": {
+   "warnings": [
+    "Trying to unpickle estimator MinMaxScaler from version 1.7.2 when using version 1.9.1"
+   ],
+   "type": "MinMaxScaler",
+   "n_features_in": 6,
+   "n_samples_seen": 2117
+  },
+  "models/scaler.pkl": {
+   "warnings": [
+    "Trying to unpickle estimator StandardScaler from version 1.7.2 when using version 1.9.1"
+   ],
+   "type": "StandardScaler",
+   "n_features_in": 4,
+   "n_samples_seen": 2117
+  },
+  "models/y_scaler.pkl": {
+   "warnings": [
+    "Trying to unpickle estimator MinMaxScaler from version 1.7.2 when using version 1.9.1"
+   ],
+   "type": "MinMaxScaler",
+   "n_features_in": 5,
+   "n_samples_seen": 2117
+  }
+ }
+}

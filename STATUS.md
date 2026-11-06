@@ -473,3 +473,20 @@ Open issues
    1e-9 / 4.3e-7.
 8. timing_benchmark prints "NN surrogate not measured (torch not installed)". Torch is installed in
    .venv-nn; the NN was not retrained, so there is still nothing to time.
+
+
+9. Final report and audit (2026-11-06)
+--------------------------------------
+result_report/final_report.tex written (supersedes results_report.tex, the 2026-03 slides and the 2025 thesis
+numbers). Every \QKD number is imported from generated_numbers.tex; typed numbers carry a dagger.
+An independent read-only audit (separate agent, against result files and code) found 2 wrong statements and
+~23 imprecise ones. All were corrected in the report. The substantive one:
+  The lim warm sweep (results/benchmark_lim_0c8f47a1f0_530f6d58460c/summary.json, sweep_events) logged two
+  branch switches BELOW the horizon, objective R:
+    nX=1e5 at 135.34 km, rel_gain 7.7 %, u_dist 0.068, backfill crossover 130.3-130.8 km
+    nX=1e6 at 120.30 km, rel_gain 0.6 %, u_dist 0.029, backfill crossover 118.3-118.8 km
+  Section 5D above ("lim has NO branch switch between 100 km and the horizon") is therefore WRONG for nX=1e5
+  and 1e6. It holds for nX=1e4, 1e7, 1e8, 1e9. The dense scan (threshold 0.05) did not flag either switch.
+  Benchmark scores are unaffected (backfill puts the sweep on the better branch; 100 % within 1e-6).
+Open issue 9 (new): characterise both optima at these crossovers, and make dense_scan sensitive to switches of
+  this size.
