@@ -668,3 +668,39 @@ Figures:
     inputs are the latest benchmark runs.
   - Two caveats are stated on the slides: fig5 cliff_edge colouring (see 10a) and fig4's switch statement (see 10).
   - New: dataset_splits.png (from the label file) and pqc_circuit.png (PennyLane drawing, structure only).
+
+10d. Silent branch switches in the label sweep: sub-optimal labels (2026-11-06; finding, not yet repaired)
+--------------------------------------------------------------------------------------------------------
+Trigger: the owner questioned the parameters-across-distance figure (visible small steps).
+Search: label lattice points with R > 0, isolated jumps where max|du| exceeds 10x both neighbouring steps and 1e-3.
+  25 found: 13 are the logged crossovers (Amendment 2); 12 were not logged by the sweep (source "warm").
+  The unlogged ones have |du| 0.0019-0.0109; R is continuous across them.
+Check: independent cold solves (optimize_batch, 2^14 Sobol, top-16, seed 11).
+  - First pass: every 0.25 km within +-3 km of each unlogged jump.
+  - Second pass: every lattice point from jump - 3 km to jump + 0.25 km.
+Result:
+  - At 2 jumps (1e5 at 132.81 km, 10^5.5 at 136.88 km) the labels are optimal (cold better by <= 1e-14).
+  - At 10 jumps the labels just BEFORE the jump are sub-optimal: the warm sweep stayed on the worse branch past
+    the true crossover, then switched silently between global checks.
+    58 lattice labels, relative R deficit up to 6.0e-4, stretches of 0.13-0.63 km:
+      n_X     km              points  max deficit
+      1e6     138.53-138.75   8       2.3e-4
+      3e6     138.94-139.16   8       2.5e-4
+      10^6.5  138.91-139.22   11      3.2e-4
+      10^7.5  98.75-99.38     6       6.0e-4
+      10^7.5  136.84-137.19   12      2.5e-4
+      1e8     92.25-92.38     2       2.8e-4
+      10^8.5  84.88-85.25     4       1.3e-4
+      5e8     82.00-82.25     3       6.9e-5
+      1e9     77.63-77.75     2       3.4e-5
+      2e9     73.13-73.25     2       2.8e-5
+    By split: train 4, val 6, test 11, heldout 11, extrap 2, unused 24.
+Why the gate missed it: the quality gate compares labels with the reference only at reference points.
+The n_X=1e9 case is STATUS open issue 1 (the 77.7-78.2 km step). That issue is now shown to hide a sub-optimal
+stretch, not only a missing log entry.
+Not yet checked: whether sub-optimal stretches exist that do not end in a detectable jump. A backward warm sweep
+(best of forward and backward per point, as the reference builder does with cont_up / cont_down) would find them.
+Effect on the running Phase 4 (labels 0d8bef1402):
+  - 4 of 4727 training targets are off by <= 0.011 in u.
+  - Regret against the label is underestimated by <= 6e-4 at 11 test and 11 heldout points.
+  - Decision on repair requested from the owner; no change made.
