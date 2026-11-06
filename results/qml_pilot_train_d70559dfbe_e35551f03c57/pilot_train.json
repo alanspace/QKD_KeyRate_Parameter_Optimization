@@ -1,0 +1,320 @@
+{
+ "stamp": {
+  "git_commit": "d70559dfbe",
+  "git_branch": "qml-surrogate",
+  "qml_uncommitted_changes": false,
+  "config_hash": "e35551f03c57",
+  "python": "3.13.3",
+  "env": "/Users/daai6ga1hou2/Documents/GitHub/QBAI_Code_Workspace/QKD/QKD_qml_surrogate_wt/.venv-qml",
+  "packages": {
+   "jax": "0.10.2",
+   "jaxlib": "0.10.2",
+   "pennylane": "0.45.1",
+   "pennylane_lightning": "0.45.0",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "qiskit": "2.1.2",
+   "qiskit-aer": "0.17.2",
+   "iqm-client": "36.0.0"
+  },
+  "cpu": "Apple M2 Pro",
+  "machine": "arm64",
+  "os": "macOS-15.6-arm64-arm-64bit-Mach-O",
+  "n_cpu": 12,
+  "power": {
+   "source": "AC",
+   "battery_percent": 76,
+   "battery_state": "charging",
+   "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+   "caffeinate_running": true
+  }
+ },
+ "config": {
+  "script": "qml/pilot_train.py",
+  "labels": "labels_0d8bef1402_9fa16da52f39.npz",
+  "labels_sha": "09c0875e0feb",
+  "n_train": 4727,
+  "n_query": 45500,
+  "steps_timed": 3
+ },
+ "families": {
+  "PQC-full": [
+   {
+    "config": [
+     5,
+     3
+    ],
+    "n_params": 75,
+    "declared_params": 75,
+    "compile_s": 1.398411125000166,
+    "step_s": 0.02392695900016406,
+    "predict_query_first_s": 0.7075107909995495,
+    "predict_query_s": 0.10737529199923301
+   },
+   {
+    "config": [
+     6,
+     3
+    ],
+    "n_params": 90,
+    "declared_params": 90,
+    "compile_s": 1.8513116249996528,
+    "step_s": 0.052371541999491455,
+    "predict_query_first_s": 0.926856833999409,
+    "predict_query_s": 0.24865966699962883
+   },
+   {
+    "config": [
+     8,
+     3
+    ],
+    "n_params": 120,
+    "declared_params": 120,
+    "compile_s": 2.7724957079999513,
+    "step_s": 0.2964255420001791,
+    "predict_query_first_s": 2.261517291999553,
+    "predict_query_s": 1.4012064159996953
+   },
+   {
+    "config": [
+     5,
+     6
+    ],
+    "n_params": 150,
+    "declared_params": 150,
+    "compile_s": 2.690589082999395,
+    "step_s": 0.04660729200077185,
+    "predict_query_first_s": 1.3728529159998288,
+    "predict_query_s": 0.21991912499925093
+   },
+   {
+    "config": [
+     6,
+     6
+    ],
+    "n_params": 180,
+    "declared_params": 180,
+    "compile_s": 3.3867072089997237,
+    "step_s": 0.12814033300037408,
+    "predict_query_first_s": 1.8255585420001808,
+    "predict_query_s": 0.48622866699952283
+   },
+   {
+    "config": [
+     8,
+     6
+    ],
+    "n_params": 240,
+    "declared_params": 240,
+    "compile_s": 5.152406583000811,
+    "step_s": 0.5980447499996444,
+    "predict_query_first_s": 4.449104500000431,
+    "predict_query_s": 2.6327059579998604
+   }
+  ],
+  "PQC-product": [
+   {
+    "config": [
+     5,
+     3
+    ],
+    "n_params": 75,
+    "declared_params": 75,
+    "compile_s": 1.3301280420000694,
+    "step_s": 0.018616375000419794,
+    "predict_query_first_s": 0.7301654590000908,
+    "predict_query_s": 0.0927759590003916
+   },
+   {
+    "config": [
+     6,
+     3
+    ],
+    "n_params": 90,
+    "declared_params": 90,
+    "compile_s": 1.7025113749996308,
+    "step_s": 0.04188870800044242,
+    "predict_query_first_s": 0.9447439169998688,
+    "predict_query_s": 0.20802708299925143
+   },
+   {
+    "config": [
+     8,
+     3
+    ],
+    "n_params": 120,
+    "declared_params": 120,
+    "compile_s": 2.660703249999642,
+    "step_s": 0.2577990830004637,
+    "predict_query_first_s": 1.9933572079999067,
+    "predict_query_s": 1.0999255420001646
+   },
+   {
+    "config": [
+     5,
+     6
+    ],
+    "n_params": 150,
+    "declared_params": 150,
+    "compile_s": 2.465901458999724,
+    "step_s": 0.03658937500040338,
+    "predict_query_first_s": 1.30877829200017,
+    "predict_query_s": 0.1772405419997085
+   },
+   {
+    "config": [
+     6,
+     6
+    ],
+    "n_params": 180,
+    "declared_params": 180,
+    "compile_s": 3.097285792000548,
+    "step_s": 0.10909716600053798,
+    "predict_query_first_s": 1.7163870419999512,
+    "predict_query_s": 0.411680167000668
+   },
+   {
+    "config": [
+     8,
+     6
+    ],
+    "n_params": 240,
+    "declared_params": 240,
+    "compile_s": 5.202938417000041,
+    "step_s": 0.5170309579998502,
+    "predict_query_first_s": 4.196009166999829,
+    "predict_query_s": 2.155428082999606
+   }
+  ],
+  "NN": [
+   {
+    "config": 5,
+    "n_params": 75,
+    "declared_params": 75,
+    "compile_s": 0.0888942079991466,
+    "step_s": 0.0004760410001836135,
+    "predict_query_first_s": 0.037077250000038475,
+    "predict_query_s": 0.0011393330005375901
+   },
+   {
+    "config": 6,
+    "n_params": 95,
+    "declared_params": 95,
+    "compile_s": 0.0889580000002752,
+    "step_s": 0.0005111250002300949,
+    "predict_query_first_s": 0.03121833300065191,
+    "predict_query_s": 0.0009228330000041751
+   },
+   {
+    "config": 7,
+    "n_params": 117,
+    "declared_params": 117,
+    "compile_s": 0.08662370799993369,
+    "step_s": 0.0005376250001063454,
+    "predict_query_first_s": 0.03268158299943025,
+    "predict_query_s": 0.0010644169997249264
+   },
+   {
+    "config": 8,
+    "n_params": 141,
+    "declared_params": 141,
+    "compile_s": 0.0960570839997672,
+    "step_s": 0.0006064169992896495,
+    "predict_query_first_s": 0.034504540999478195,
+    "predict_query_s": 0.0015209160001177224
+   },
+   {
+    "config": 10,
+    "n_params": 195,
+    "declared_params": 195,
+    "compile_s": 0.09090224999999919,
+    "step_s": 0.0008989999996629194,
+    "predict_query_first_s": 0.03251412499957951,
+    "predict_query_s": 0.001780167000106303
+   },
+   {
+    "config": 12,
+    "n_params": 257,
+    "declared_params": 257,
+    "compile_s": 0.15694429100039997,
+    "step_s": 0.0008253339992734254,
+    "predict_query_first_s": 0.03304320799998095,
+    "predict_query_s": 0.0015804999993633828
+   }
+  ],
+  "RFF-ridge": [
+   {
+    "config": [
+     5,
+     3
+    ],
+    "D2": 7,
+    "n_params": 75,
+    "fit_with_lambda_sweep_s": 0.004299457999877632,
+    "predict_query_s": 0.004700459000559931
+   },
+   {
+    "config": [
+     6,
+     3
+    ],
+    "D2": 8,
+    "n_params": 85,
+    "fit_with_lambda_sweep_s": 0.0021479589995578863,
+    "predict_query_s": 0.00493037500018545
+   },
+   {
+    "config": [
+     8,
+     3
+    ],
+    "D2": 12,
+    "n_params": 125,
+    "fit_with_lambda_sweep_s": 0.0018543329997555702,
+    "predict_query_s": 0.006199542000103975
+   },
+   {
+    "config": [
+     5,
+     6
+    ],
+    "D2": 14,
+    "n_params": 145,
+    "fit_with_lambda_sweep_s": 0.0019722919996638666,
+    "predict_query_s": 0.007234790999973484
+   },
+   {
+    "config": [
+     6,
+     6
+    ],
+    "D2": 18,
+    "n_params": 185,
+    "fit_with_lambda_sweep_s": 0.0025590829991415376,
+    "predict_query_s": 0.00844158299969422
+   },
+   {
+    "config": [
+     8,
+     6
+    ],
+    "D2": 24,
+    "n_params": 245,
+    "fit_with_lambda_sweep_s": 0.004064208000272629,
+    "predict_query_s": 0.011585749999539985
+   }
+  ],
+  "lookup": [
+   {
+    "config": "2D",
+    "nodes": 4727,
+    "build_and_predict_query_s": 0.008809082999505335
+   },
+   {
+    "config": "per-nX",
+    "nodes": 4727,
+    "build_and_predict_query_s": 0.004177791999609326
+   }
+  ]
+ }
+}

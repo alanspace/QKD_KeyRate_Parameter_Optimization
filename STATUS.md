@@ -621,3 +621,38 @@ The crossover list (Amendment 2) is unaffected: switch detection uses R values a
     - |dR|/R equals the neighbouring steps (R continuous).
   Why the benchmark sweep logged only 2 of the switches at its six n_X is not verified. Candidate explanation:
   0.5 km steps with global checks every 5 km, so a warm start can land in the other basin without an event.
+
+10b. Phase 3 timing pilot (2026-11-06; on AC)
+----------------------------------------------
+Ran:
+  qml/run_qml.py --only pilot_train pilot_certify
+    - pilot_train finished (79.7 s).
+    - The first pilot_certify was stopped to run the 10a diagnosis without overlap, then re-run cleanly (127 s).
+Summary: results/qml_pilot_summary_d118356a45_d36bcf048d7d/PILOT.md
+
+Model side (.venv-qml): one full-batch Adam step on 4727 training points.
+  PQC-full     0.024 s (5x3) .. 0.598 s (8x6)
+  PQC-product  0.019 .. 0.517 s
+  NN           <= 0.001 s
+  Prediction of the 45500-point query set: <= 2.6 s per model.
+  Ridge and lookup: < 0.01 s.
+
+Physics side (.venv):
+  Certification: 0.005 s per 1000 predictions.
+  Hybrid, batched: k=1/2/3 take 0.10 / 0.18 / 0.26 s per 1000.
+  Stand-in predictions (label u + N(0, 0.01)): median regret before Newton 4.1e-3; after k=1/2/3:
+    2.0e-5, 2.0e-9, 2.8e-15.
+
+Batch-1:
+  Newton k=1/2/3, end-to-end median 896 / 1368 / 1835 us; device 685 / 1146 / 1608 us.
+  Warm solve from the nearest lower training node: 1629 us end-to-end (median 0.25 km away, 2 iterations).
+  Cold solve, optimize() with 2^12 Sobol and top-8, first measurement: 29.7 ms median, 32.8 ms p90 (n=20).
+
+Projection: 1.68 h (smallest configs selected) to 5.26 h (largest), including the sparse variant;
+  4.64 h worst case without it. Below 12 h, so Amendment 3 is included.
+
+Note for STOP 2 (not acted on): PREREGISTRATION section 7 describes the scenario (ii) neighbour as "0.5 km away in
+the bulk and 0.125 km in the tail".
+  The registered rule is "nearest lower training node". For test points that is 0.25 or 0.375 km in the bulk,
+  and 0.0625 or 0.094 km in the tail; the pilot median was 0.25 km.
+  The rule is implemented as registered, and the distance is reported.

@@ -1,0 +1,44 @@
+{
+ "stamp": {
+  "git_commit": "d118356a45",
+  "git_branch": "qml-surrogate",
+  "qml_uncommitted_changes": false,
+  "config_hash": "d36bcf048d7d",
+  "python": "3.13.3",
+  "env": "/Users/daai6ga1hou2/Documents/GitHub/QBAI_Code_Workspace/QKD/QKD_KeyRate_Parameter_Optimization/.venv",
+  "packages": {
+   "jax": "0.9.0",
+   "jaxlib": "0.9.0",
+   "pennylane": null,
+   "pennylane_lightning": null,
+   "numpy": "2.4.2",
+   "scipy": "1.17.0",
+   "qiskit": null,
+   "qiskit-aer": null,
+   "iqm-client": null
+  },
+  "cpu": "Apple M2 Pro",
+  "machine": "arm64",
+  "os": "macOS-15.6-arm64-arm-64bit-Mach-O",
+  "n_cpu": 12,
+  "power": {
+   "source": "AC",
+   "battery_percent": 76,
+   "battery_state": "charging",
+   "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+   "caffeinate_running": true
+  }
+ },
+ "config": {
+  "script": "pilot summary",
+  "inputs": [
+   "results/qml_pilot_train_d70559dfbe_e35551f03c57/pilot_train.json",
+   "results/qml_pilot_certify_d118356a45_b38f98f8dcfe/pilot_certify.json"
+  ],
+  "E": 2000,
+  "seeds": 5
+ },
+ "total_h_best": 1.68,
+ "total_h_worst": 5.26,
+ "total_h_worst_without_sparse": 4.64
+}

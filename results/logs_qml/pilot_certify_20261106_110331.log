@@ -1,0 +1,7 @@
+[certify pilot] hybrid k=1: 0.10s (first 13.8s) regret median 2.00e-05
+[certify pilot] hybrid k=2: 0.18s (first 13.9s) regret median 2.04e-09
+[certify pilot] hybrid k=3: 0.26s (first 14.8s) regret median 2.84e-15
+[certify pilot] batch-1 k-step: [{'k': 1, 'n': 50, 'device_us_median': 685.1665, 'end_to_end_us_median': 895.917, 'iters_median': 1.0}, {'k': 2, 'n': 50, 'device_us_median': 1146.3125, 'end_to_end_us_median': 1367.9999999999998, 'iters_median': 2.0}, {'k': 3, 'n': 50, 'device_us_median': 1608.396, 'end_to_end_us_median': 1834.667, 'iters_median': 3.0}]
+[certify pilot] batch-1 cold: {'n': 20, 'end_to_end_us_median': 29711.104000398336, 'end_to_end_us_p90': 32770.67889957834, 'settings': 'optimize(), 2^12 Sobol, top-8 (benchmark cold settings)'}
+[certify pilot] batch-1 warm: {'n': 50, 'end_to_end_us_median': 1629.4584993374883, 'iters_median': 2.0, 'neighbour_km_median': 0.25, 'settings': 'optimize.warm_solve, max_iter 200'}
+[certify pilot] wrote results/qml_pilot_certify_d118356a45_b38f98f8dcfe

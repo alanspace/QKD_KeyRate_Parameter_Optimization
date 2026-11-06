@@ -27,6 +27,56 @@
    },
    "git": "0d8bef1402",
    "finished": "2026-11-06 10:55:23"
+  },
+  {
+   "step": "pilot_train",
+   "env": "qml",
+   "command": [
+    ".venv-qml/bin/python",
+    "qml/pilot_train.py"
+   ],
+   "returncode": 0,
+   "wall_s": 79.7,
+   "log": "results/logs_qml/pilot_train_20261106_105848.log",
+   "outputs": [
+    "results/logs_qml",
+    "results/qml_pilot_train_d70559dfbe_e35551f03c57"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 76,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "d70559dfbe",
+   "finished": "2026-11-06 11:00:08"
+  },
+  {
+   "step": "pilot_certify",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/certify.py",
+    "--pilot"
+   ],
+   "returncode": 0,
+   "wall_s": 127.3,
+   "log": "results/logs_qml/pilot_certify_20261106_110331.log",
+   "outputs": [
+    "results/.DS_Store",
+    "results/logs_qml",
+    "results/qml_pilot_certify_d118356a45_b38f98f8dcfe"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 76,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "d118356a45",
+   "finished": "2026-11-06 11:05:38"
   }
  ]
 }

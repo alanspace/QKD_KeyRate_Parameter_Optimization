@@ -1,0 +1,20 @@
+[pilot_train] n_train 4727 n_query 45500; jax 0.10.2
+[pilot_train] PQC-full (5, 3): params 75 compile 1.4s step 0.024s predict 0.11s
+[pilot_train] PQC-full (6, 3): params 90 compile 1.9s step 0.052s predict 0.25s
+[pilot_train] PQC-full (8, 3): params 120 compile 2.8s step 0.296s predict 1.40s
+[pilot_train] PQC-full (5, 6): params 150 compile 2.7s step 0.047s predict 0.22s
+[pilot_train] PQC-full (6, 6): params 180 compile 3.4s step 0.128s predict 0.49s
+[pilot_train] PQC-full (8, 6): params 240 compile 5.2s step 0.598s predict 2.63s
+[pilot_train] PQC-product (5, 3): params 75 compile 1.3s step 0.019s predict 0.09s
+[pilot_train] PQC-product (6, 3): params 90 compile 1.7s step 0.042s predict 0.21s
+[pilot_train] PQC-product (8, 3): params 120 compile 2.7s step 0.258s predict 1.10s
+[pilot_train] PQC-product (5, 6): params 150 compile 2.5s step 0.037s predict 0.18s
+[pilot_train] PQC-product (6, 6): params 180 compile 3.1s step 0.109s predict 0.41s
+[pilot_train] PQC-product (8, 6): params 240 compile 5.2s step 0.517s predict 2.16s
+[pilot_train] NN 5: params 75 compile 0.1s step 0.000s predict 0.00s
+[pilot_train] NN 6: params 95 compile 0.1s step 0.001s predict 0.00s
+[pilot_train] NN 7: params 117 compile 0.1s step 0.001s predict 0.00s
+[pilot_train] NN 8: params 141 compile 0.1s step 0.001s predict 0.00s
+[pilot_train] NN 10: params 195 compile 0.1s step 0.001s predict 0.00s
+[pilot_train] NN 12: params 257 compile 0.2s step 0.001s predict 0.00s
+[pilot_train] wrote results/qml_pilot_train_d70559dfbe_e35551f03c57

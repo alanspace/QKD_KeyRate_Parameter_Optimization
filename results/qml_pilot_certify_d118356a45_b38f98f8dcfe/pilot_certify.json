@@ -1,0 +1,97 @@
+{
+ "stamp": {
+  "git_commit": "d118356a45",
+  "git_branch": "qml-surrogate",
+  "src_uncommitted_changes": false,
+  "physics_source_hash": "9564691bc5b0",
+  "config_hash": "b38f98f8dcfe",
+  "jax": "0.9.0",
+  "numpy": "2.4.2",
+  "scipy": "1.17.0",
+  "python": "3.13.3",
+  "jax_backend": "cpu",
+  "jax_devices": [
+   "TFRT_CPU_0"
+  ],
+  "x64": true,
+  "cpu": "Apple M2 Pro",
+  "machine": "arm64",
+  "os": "macOS-15.6-arm64-arm-64bit-Mach-O",
+  "n_cpu": 12,
+  "power": {
+   "source": "AC",
+   "battery_percent": 76,
+   "battery_state": "charging",
+   "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+   "caffeinate_running": true
+  }
+ },
+ "config": {
+  "script": "qml/certify.py --pilot",
+  "labels": "labels_0d8bef1402_9fa16da52f39.npz",
+  "n": 1000,
+  "noise_u": 0.01
+ },
+ "certify_first_s": 0.5180195829998411,
+ "certify_s": 0.005072875000223576,
+ "pilot_regret_median": 0.00407063123321859,
+ "hybrid": [
+  {
+   "k": 1,
+   "first_s": 13.78277991699997,
+   "steady_s": 0.09737320800013549,
+   "regret_median": 1.997873902599188e-05,
+   "iters_mean": 1.0
+  },
+  {
+   "k": 2,
+   "first_s": 13.909335166999881,
+   "steady_s": 0.17679845800012117,
+   "regret_median": 2.0428025482077126e-09,
+   "iters_mean": 2.0
+  },
+  {
+   "k": 3,
+   "first_s": 14.75390279200019,
+   "steady_s": 0.25698512500002835,
+   "regret_median": 2.838868017332591e-15,
+   "iters_mean": 3.0
+  }
+ ],
+ "batch1_kstep": [
+  {
+   "k": 1,
+   "n": 50,
+   "device_us_median": 685.1665,
+   "end_to_end_us_median": 895.917,
+   "iters_median": 1.0
+  },
+  {
+   "k": 2,
+   "n": 50,
+   "device_us_median": 1146.3125,
+   "end_to_end_us_median": 1367.9999999999998,
+   "iters_median": 2.0
+  },
+  {
+   "k": 3,
+   "n": 50,
+   "device_us_median": 1608.396,
+   "end_to_end_us_median": 1834.667,
+   "iters_median": 3.0
+  }
+ ],
+ "batch1_cold": {
+  "n": 20,
+  "end_to_end_us_median": 29711.104000398336,
+  "end_to_end_us_p90": 32770.67889957834,
+  "settings": "optimize(), 2^12 Sobol, top-8 (benchmark cold settings)"
+ },
+ "batch1_warm": {
+  "n": 50,
+  "end_to_end_us_median": 1629.4584993374883,
+  "iters_median": 2.0,
+  "neighbour_km_median": 0.25,
+  "settings": "optimize.warm_solve, max_iter 200"
+ }
+}
