@@ -13,6 +13,7 @@ venv/
 env/
 .venv/
 .venv-nn/
+.venv-qml/
 .conda/
 qkd-opt/
 

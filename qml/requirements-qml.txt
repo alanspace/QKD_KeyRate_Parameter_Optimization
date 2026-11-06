@@ -1,0 +1,12 @@
+# .venv-qml (Python 3.13). No physics code is imported in this environment; data exchange with .venv via files.
+# jax pinned to 0.10.2: PennyLane 0.45.1 fails at runtime with jax 0.11.2 / 0.12.0.1 (see PREREGISTRATION.md section 11).
+pennylane==0.45.1
+pennylane_lightning==0.45.0
+jax==0.10.2
+jaxlib==0.10.2
+iqm-client[qiskit]==36.0.0
+qiskit==2.1.2
+qiskit-aer==0.17.2
+numpy==2.5.4
+scipy==1.18.1
+matplotlib==3.11.2

@@ -616,6 +616,12 @@ chosen on a validation split, never on the test split.
 \end{itemize}
 Every comparison in the QML project should be framed against this criterion.
 
+\paragraph{Amendment 1 (2026-11-06).} The sentence under \emph{Labels} above (``Generated where compute is cheap
+(e.g.\ cloud CPU/GPU), not on a laptop'') is left unchanged. For the PQC surrogate study (branch
+\texttt{qml-surrogate}, \path{qml/PREREGISTRATION.md}), labels are instead generated locally on AC power, because
+the measured cost is small: 4.27\,ms per point for the warm sweep plus an 81\,s one-time compile, and about
+40\,ms per point for a cold solve (\path{results/benchmark_lim_0c8f47a1f0_530f6d58460c/summary.json}).
+
 %======================================================================
 \section{Conclusion}
 %======================================================================
