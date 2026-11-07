@@ -65,8 +65,9 @@ reference:
 \item For comparison, the earlier dual-annealing run is within $10^{-6}$ at \QKDLegacyOldDAPctWithin\,\% of
   points, and the run that produced the neural-network labels at \QKDLegacyOldFoRPctWithin\,\% (bulk) and
   \QKDLegacyTailOldFoRPctWithin\,\% (tail).
-\item The optimal parameters vary smoothly with $L$, apart from two switches between competing local optima
-  ($n_X=10^5$ near 130.5\,km, $n_X=10^6$ near 118.5\,km). The optimizer detects and logs both.
+\item The optimal parameters vary smoothly with $L$, apart from switches between competing local optima, where the
+  parameters jump but $R$ stays continuous. There are at least nine such switches below the maximal distance across
+  the six block sizes (Section~\ref{sec:results}). No single sweep logged all of them.
 \item A warm-started single-point solve takes \QKDLimWarmDeviceUs\,$\mu$s on a laptop CPU.
 \end{itemize}
 
@@ -323,13 +324,29 @@ SLSQP itself is weaker than the reference near the horizon: it agrees within $10
 \QKDLimXcheckMainPctAgree\,\% (bulk) and \QKDLimXcheckTailPctAgree\,\% (tail) of points, and is otherwise
 \emph{worse}. That makes it a test the reference can fail, not one it is guaranteed to pass.
 
-\paragraph{cliff\_edge points.} A point with $R>0$ and certificate gradient $>10^{-3}$ is labelled
-\emph{cliff\_edge}. These are the last points before the horizon, where the greatest fixed point of
-$\esec=\kappa\ell$ disappears and $R(p)$ is discontinuous. There, ``optimal'' is not a well-conditioned target.
-Such points are excluded from scores and listed separately: 2 of 105 bulk points with $R>0$, and 5 of 180 tail
-points\typed. Points with gradient between $10^{-6}$ and $10^{-3}$ (\emph{noise\_floor}) are scored. This applies to \plim\
-and \limlit. The \legacy\ references were built before this rule and use the earlier threshold, $10^{-6}$. With a
-fixed $\esec$, the large gradients there come from $|R|\to0$ at the horizon.
+\paragraph{cliff\_edge points.} A point with $R>0$ and stored certificate gradient $>10^{-3}$ is labelled
+\emph{cliff\_edge}. Such points are excluded from scores and listed separately: 2 of 105 bulk points with $R>0$, and
+5 of 180 tail points\typed.
+
+\textbf{What the flag does and does not mean.} The flag does \emph{not} mark an unconverged optimum or a
+discontinuity of $R(p)$.
+\begin{itemize}
+\item \emph{Why the stored gradient is large.} It is the gradient of the objective divided by the objective's value
+  at the solver's best \emph{starting} point. At all 7 points, which lie within 1.2\,km of their horizon, that
+  starting point had a near-zero key rate (about $10^{-28}$--$10^{-26}$). $R$ at the solution is
+  $10^{-12}$--$10^{-10}$, so the stored gradient is inflated by a factor of about $10^{15}$--$10^{17}$.
+\item \emph{What the points really are.} Normalised by $R$ at the solution instead, their gradient is
+  $2.8\times10^{-13}$--$1.1\times10^{-6}$\typed. They are converged optima.
+\item \emph{Why they are still excluded.} The stored certificate cannot confirm them near the horizon, so they stay
+  out of the scores and the counts above are unchanged.
+\end{itemize}
+The diagnosis is in \texttt{STATUS.md} \S10a on branch \texttt{qml-surrogate}: re-runs of the winning solves
+reproduce $R$ to 11 digits.
+
+Points with gradient between $10^{-6}$ and $10^{-3}$ (\emph{noise\_floor}) are scored. The same normalisation
+applies to that tier. This applies to \plim\ and \limlit. The \legacy\ references were built before this rule and use
+the earlier threshold, $10^{-6}$. Their large gradients also arise as $|R|\to0$ at the horizon; the same
+normalisation is the likely cause, but this has not been re-checked.
 
 \subsection{Metrics}
 \begin{description}
@@ -406,24 +423,43 @@ $n_X=10^9$\typed:
 \item Hessian\_FoR: 5 jumps;
 \item Hessian: 1 jump.
 \end{itemize}
-For \plim, the warm sweep logged two switches between competing local optima while the key is positive
-(\path{results/benchmark_lim_*/summary.json}, \texttt{sweep\_events})\typed:
-\begin{itemize}
-\item $n_X=10^5$: detected at 135.3\,km, where the warm path was 7.7\,\% below the global candidate, with
-  $u$-distance 0.068. Backfill located the crossover at 130.3--130.8\,km.
-\item $n_X=10^6$: detected at 120.3\,km, with a 0.6\,\% gain and $u$-distance 0.029. Crossover at
-  118.3--118.8\,km.
-\end{itemize}
-After backfill the sweep is on the better branch on both sides; this is why it scores 100\,\% in
-Table~\ref{tab:regret}. At such a crossover the optimal parameters are genuinely discontinuous in $L$, while $R$
-is continuous.
+For \plim, the optimal parameters also switch between competing local optima while the key is positive. At
+such a crossover the parameters jump while $R$ is continuous. At the six reference block sizes, at least nine such
+switches were found\typed. Each is confirmed either by independent cold solves ($2^{14}$ Sobol, top-16, 0.05\,km
+grid, where one parameter step is 35--1{,}522$\times$ the median step and $|\Delta R|/R$ equals its neighbours) or by
+the same jump test on the 1/32\,km label lattice:
 
-No switch was logged below the horizon for $n_X=10^4$, $10^7$, $10^8$ and $10^9$. All other logged switches
-lie beyond the horizon ($R\le0$, objective $\ell/n_X$).
+\begin{table}[H]\centering\small
+\fitbox{\begin{tabular}{lll}\toprule
+$n_X$ & crossover (km) & found by\\\midrule
+$10^5$ & 130.5--130.6 & benchmark sweep (detected at 135.3\,km, 7.7\,\% gain); dense forward and backward sweeps\\
+$10^6$ & 118.5--118.6 & benchmark sweep (detected at 120.3\,km, 0.6\,\% gain); dense forward and backward sweeps\\
+$10^6$ & 138.50--138.55 & dense forward sweep (unlogged jump)\\
+$10^7$ & 105.35--105.40 & backward sweep; the dense forward sweep placed it 0.55\,km too late (105.95)\\
+$10^7$ & 138.20--138.25 & dense forward and backward sweeps\\
+$10^8$ & $\le$91.85 & dense forward sweep (unlogged jump at 92.4)\\
+$10^8$ & 134.75--134.80 & dense forward sweep\\
+$10^9$ & 77.55--77.60 & dense forward sweep (unlogged jump at 77.75; open issue~1)\\
+$10^9$ & 128.65--128.70 & dense forward sweep\\\bottomrule
+\end{tabular}}
+\caption[Below-horizon branch switches]{Below-horizon switches between competing optima at the six reference block
+sizes. None was found at $n_X=10^4$. A tenth candidate ($10^5$, 132.80--132.85\,km) shows only an 8$\times$ step and is
+not counted.
+
+The list is not exhaustive, because cold-solve confirmation was run only around candidate jumps.
+
+Sources: benchmark sweep \path{results/benchmark_lim_*/summary.json}; dense forward label sweep on branch
+\texttt{qml-surrogate} (\texttt{STATUS.md} \S10, \S10a, \S10d); backward sweep (\S11(b)); cold solves (\S11(c)).}\label{tab:switches}
+\end{table}
+
+The benchmark warm sweep logged only the first two switches. At the reference points it is nevertheless optimal: it
+scores 100\,\% in Table~\ref{tab:regret}, and an independent backward sweep agrees with the reference there
+(\texttt{STATUS.md} \S11(b)). Between reference points, a forward warm sweep can stay on the worse branch past a
+crossover for up to about 0.6\,km (\texttt{STATUS.md} \S10d, \S11(c)).
 
 A dense 1\,km scan flags parameter changes larger than 0.05 (normalised) only in the last $\sim$5\,km before
 each horizon. Refined to 0.1\,km, the largest step is 11--12\,\% of the 1\,km change below the horizon,
-i.e.\ continuous drift. For pairs that cross the horizon it is 16--54\,\%. The dense scan did not flag the two
+i.e.\ continuous drift. For pairs that cross the horizon it is 16--54\,\%. The dense scan did not flag the
 switches above. Their relation to the scan's threshold and normalisation has not been investigated (open
 issue~6).
 
@@ -523,12 +559,17 @@ These ratios replace the withdrawn $5.9\times10^6$, $3{,}574\times$ and $270\tim
   \begin{itemize}
   \item two independent seeds;
   \item an independent optimizer (SLSQP) on a different code path;
-  \item a local perturbation test.
+  \item a local perturbation test;
+  \item an independent backward warm sweep on a dense descending grid (1{,}999 fiber lengths). It agrees with the
+    reference to about $10^{-12}$ at all 285 points with $R>0$, and never beats it by more than $10^{-9}$
+    (\texttt{STATUS.md} \S11(b)). Its limitation: the bulk reference grid is about 10\,km apart, so it does not sample
+    the sub-km stretches where a forward sweep was found to stay on a worse branch.
   \end{itemize}
   The reference and the new optimizer share the physics and the Newton solver. The physics is checked
   independently (Section~\ref{sec:numerics}); the SLSQP cross-check is the independent check on the optimisation.
-\item \textbf{Excluded points.} The cliff\_edge exclusions (2 bulk, 5 tail) remove points where $R(p)$ is
-  discontinuous. Scores there are listed separately, not hidden.
+\item \textbf{Excluded points.} The cliff\_edge exclusions (2 bulk, 5 tail) remove 7 points near the horizon whose
+  stored certificate gradient is inflated by its normalisation (Section~\ref{sec:protocol}). Re-checked, they are
+  converged optima, not discontinuities. Scores there are listed separately, not hidden.
 \item \textbf{The earlier runs scored here} are the February 2026 script outputs. The 2025 thesis dataset and
   network were not re-scored (Appendix~\ref{app:supersede}).
 \item \textbf{Timing} comes from one CPU machine; GPU and other hardware were not measured.
@@ -546,8 +587,9 @@ None of these affects the \plim\ results above (from \texttt{STATUS.md}):
 \item The sensitivity, robustness and extrapolation analyses (\texttt{analyses.py}) have not been re-run since the
   expm1 fix.
 \item The neural network has not been retrained (\texttt{NN\_RETRAIN\_PLAN.md}).
-\item The two below-horizon branch switches ($n_X=10^5$, $10^6$) were found by the sweep but not by the dense
-  scan. Characterise both optima there, and make the scan sensitive to switches of this size.
+\item The below-horizon branch switches (Table~\ref{tab:switches}) were not flagged by the dense scan, and no single
+  sweep logs all of them. Characterise the competing optima, and make switch detection reliable at this size, for
+  example with a backward pass.
 \end{enumerate}
 
 %======================================================================
@@ -622,7 +664,8 @@ Every comparison in the QML project should be framed against this criterion.
 The parameter-optimisation problem for finite-key decoy-state BB84 is now solved to within $10^{-12}$ relative
 regret of an independently cross-checked best-known reference (cliff\_edge points excluded), on a corrected model which is validated against the paper and against an independent implementation:
 \begin{itemize}
-\item the optimal parameters vary smoothly with distance, apart from two logged switches between competing optima;
+\item the optimal parameters vary smoothly with distance, apart from switches between competing optima (at least nine
+  below the horizon at the six block sizes);
 \item the horizons and key rates are reproducible from scripts with recorded provenance;
 \item the earlier speed-up, stability and neural-network claims are withdrawn.
 \end{itemize}

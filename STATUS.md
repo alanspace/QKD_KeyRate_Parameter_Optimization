@@ -490,3 +490,70 @@ An independent read-only audit (separate agent, against result files and code) f
   Benchmark scores are unaffected (backfill puts the sweep on the better branch; 100 % within 1e-6).
 Open issue 9 (new): characterise both optima at these crossovers, and make dense_scan sensitive to switches of
   this size.
+
+
+11. Reference stress test and cliff_edge text correction (2026-11-07; main branch)
+-------------------------------------------------------------------------------
+Context: on branch qml-surrogate, STATUS 10a showed that the 7 reference cliff_edge points are converged optima. The
+stored certificate gradient is normalised by the objective at the solver's best starting point (about
+1e-28 .. 1e-26), which inflates it by about 1e15-1e17. Normalised by R at the solution, the gradient is
+2.8e-13 .. 1.1e-6. STATUS 10d there showed that a single forward warm sweep can stay on a worse branch past a
+crossover (58 sub-optimal labels, up to 6e-4).
+
+(a) final_report.tex, text only. The cliff_edge paragraph (Section 4.1, "Trusted reference") and the "Excluded points"
+    item under threats to validity now state the mechanism above. They no longer say "the greatest fixed point
+    disappears and R(p) is discontinuous".
+    Unchanged: the exclusion counts (2 bulk, 5 tail), Table 5, and all \QKD macros.
+    STATUS section A group (i) is superseded by this entry; it is not edited, because this file is a log.
+
+(b) Backward-sweep check of the main reference (read-only; scripts/check_reference_backward.py;
+    results/check_reference_backward_4d3654c007_3930ee9fa663/; on AC; sweep 119 s).
+  Method: optimize_sweep (preset lim, default settings, global check every 10 grid points) on a DESCENDING grid of
+    1999 L values (the 400-point legacy grid U a 1/8-km lattice U every reference L) × the six reference n_X,
+    without horizon refinement. At every reference point (main 126 + tail 192 = 318; 285 with R_ref > 0, of which
+    278 are not cliff_edge), R_backward is compared with R_ref.
+  Result: backward solve better than the reference by > tol_ref (1e-9): 0 points.
+    max (R_bw - R_ref)/R_ref = 2.0e-13; median -1.0e-14;
+    backward worse by > 1e-9: 0 points (worst -1.4e-12).
+    So at all 285 points the backward sweep agrees with the stored reference to about 1e-12.
+  The backward sweep logged 4 branch switches with objective R:
+    n_X 1e5 at 129.875 km; 1e6 at 117.875 km; 1e7 at 104.875 and 137.875 km
+    (gains 7.6e-3, 2.1e-3, 5.9e-4, 3.3e-4).
+    These sit just below the crossovers found by the forward label sweep (130.55, 118.55, 105.95, 138.23 km).
+  Limit of this check: none of the 318 reference points lies inside any of the 10 stretches where the QML forward
+    label sweep was sub-optimal (STATUS 10d on qml-surrogate). The bulk reference grid is about 10 km apart.
+    The check therefore confirms that the stored reference values are correct. It does not show that a sparse
+    reference grid would expose that failure mode between its points.
+  Nothing in Optimization/ or the reference JSONs was modified.
+  (c) Cross-checks of the branch switches (2026-11-07; read-only; same session as (b)).
+  The benchmark forward sweep (0.5 km grid; results/benchmark_lim_0c8f47a1f0_530f6d58460c) logged below-horizon
+    switches only at n_X = 1e5 and 1e6. It does NOT confirm the two 1e7 switches from (b).
+  The dense forward label sweep (1/32 km above 100 km; branch qml-surrogate, labels_0d8bef1402_9fa16da52f39.json)
+    logged both 1e7 switches: 105.953 and 138.234 km. It also logged 1e8 at 134.766 km and 1e9 at 128.672 km,
+    which the backward sweep did not log.
+  Crossover brackets, forward vs backward:
+    1e5: 130.53-130.56 vs 130.50-130.63 (agree)
+    1e6: 118.53-118.56 vs 118.50-118.63 (agree)
+    1e7 upper: 138.22-138.25 vs 138.13-138.25 (agree)
+    1e7 lower: 105.94-105.97 vs 105.26-105.38 (DISAGREE by about 0.55 km)
+  Independent cold solves (optimize_batch, 2^14 Sobol, top-16, seed 21, 0.05 km grid), largest parameter step in
+  each window vs the median step, with |dR|/R in every case equal to the neighbouring steps (R continuous):
+      n_X   window          jump at          size vs median   verdict
+      1e7   104.8-106.3     105.35-105.40    910x             genuine; backward sweep correct, forward 0.55 km late
+      1e7   137.8-138.6     138.20-138.25    104x             genuine
+      1e8   134.4-135.1     134.75-134.80    162x             genuine
+      1e9   128.3-129.0     128.65-128.70    180x             genuine
+      1e6   138.1-139.2     138.50-138.55    35x              genuine (unlogged jump of STATUS 10d)
+      1e8   91.8-92.8       91.80-91.85      1449x            genuine (at the window edge; crossover <= 91.85)
+      1e9   77.2-78.2       77.55-77.60      1522x            genuine; this is open issue 1's step
+      1e5   132.3-133.3     132.80-132.85    8x               ambiguous; not counted
+  At the six reference n_X: at least 9 genuine below-horizon switches (none at 1e4).
+    final_report.tex now lists them in Section 5.3 (table "Below-horizon branch switches"), the abstract and the
+    conclusion. It previously said "two".
+  QML labels (read-only, via git show of the qml-surrogate label file): at n_X = 1e7 between 105.375 and 105.938 km,
+    19 lattice labels are sub-optimal vs cold solves, up to 7.47e-4. By split: train 1, val 1, test 3, unused 14.
+    STATUS 10d missed them: that search looked only at unlogged jumps, and this switch was logged, but its backfill
+    stopped about 0.55 km too early.
+    The Amendment 4 backward-sweep repair (repair_labels.py) should catch them, because the backward crossover is
+    correct here.
+    The total of known sub-optimal QML labels is therefore at least 77 (58 + 19); the maximum deficit is 7.5e-4.
