@@ -115,7 +115,22 @@ JAX_PLATFORMS=cpu PYTHONPATH=. .venv-qml/bin/python qml/train.py final --assembl
 
 Acceptance:
 - `gate_pass: true` in `results/qml_repair_*/repair_summary.json`.
-- The STATUS 10d finding should be repaired: 58 sub-optimal labels, max deficit 6e-4.
+- **Known sub-optimal labels to check, status "to be verified".** The repair is expected to fix these, but this is
+  NOT confirmed until the repair has run and these exact points have been re-checked against cold solves.
+  At least **77** sub-optimal labels are known, max relative deficit **7.5e-4**:
+  - 58 just before 10 silent switches (STATUS 10d; up to 6.0e-4);
+  - 19 at n_X = 1e7, L = 105.375–105.938 km (STATUS 11(c); up to 7.47e-4; split train 1, val 1, test 3, unused 14).
+    There the forward sweep logged the switch, but its backfill stopped about 0.55 km too early. Cold solves put the
+    crossover at 105.35–105.40 km.
+
+  After `repair_labels.py`:
+  - re-run cold solves (`optimize_batch`, 2^14 Sobol, top-16) at all 77 points, plus the window around each;
+  - confirm that every repaired label is within 1e-9 of the cold solve;
+  - record the per-point result in STATUS.
+
+  Only then call them fixed. If any point is still sub-optimal, stop and report.
+- The repaired crossover list should also contain the cold-solve-confirmed switches in `final_report.tex` Table
+  "Below-horizon branch switches" (at the six reference n_X). Report any that are missing.
 - Record `n_repaired`, the change in the crossover-window list, and the new crossover count.
 
 **Code task: the report must show both certifications.** `qml/report.py` currently reads only the newest
