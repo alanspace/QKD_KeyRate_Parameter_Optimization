@@ -3,6 +3,6 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 source qml/leonardo/env.sh
-scp "$LEO_USER@$LEO_HOST:\$WORK/qkd_qml/qml/data/final_parts/*.npz" qml/data/final_parts/
-mkdir -p results/logs_qml/leonardo && scp "$LEO_USER@$LEO_HOST:\$WORK/qkd_qml/qml_final_*.out" results/logs_qml/leonardo/ || true
+scp "$LEO_USER@$LEO_HOST:$LEO_DIR/qml/data/final_parts/*.npz" qml/data/final_parts/
+mkdir -p results/logs_qml/leonardo && scp "$LEO_USER@$LEO_HOST:$LEO_DIR/qml_final_*.out" results/logs_qml/leonardo/ || true
 ls qml/data/final_parts | wc -l

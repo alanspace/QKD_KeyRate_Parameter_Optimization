@@ -11,7 +11,8 @@
 #  --account is set at submission: sbatch --account="$LEO_ACCOUNT" qml/leonardo/final_array.sbatch
 # Task map: 0-3 -> dense seeds 1-4; 4-8 -> sparse seeds 0-4. Each task writes its own parts (no shared files).
 set -euo pipefail
-cd "$WORK/qkd_qml"
+cd "$SLURM_SUBMIT_DIR"   # submit from the qkd_qml repo root (clone may be in $WORK or scratch)
+[ -f qml/train.py ] || { echo "submit from the qml-surrogate repo root"; exit 1; }
 VARS=(dense dense dense dense sparse sparse sparse sparse sparse)
 SEEDS=(1 2 3 4 0 1 2 3 4)
 V=${VARS[$SLURM_ARRAY_TASK_ID]}; S=${SEEDS[$SLURM_ARRAY_TASK_ID]}

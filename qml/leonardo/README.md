@@ -12,8 +12,8 @@ Fill in `LEO_USER` and `LEO_ACCOUNT` in `env.sh` first. The SSH certificate is r
 
 1. On the Leonardo login node: `bash setup_env.sh`. Get the script with
    `curl -O https://raw.githubusercontent.com/alanspace/QKD_KeyRate_Parameter_Optimization/qml-surrogate/qml/leonardo/setup_env.sh`,
-   or copy it. It clones `qml-surrogate` from GitHub into `$WORK/qkd_qml` and builds `.venv-qml`.
-2. `cd $WORK/qkd_qml && sbatch --account=<ACCOUNT> qml/leonardo/final_array.sbatch` (9 tasks).
+   or copy it. It clones `qml-surrogate` from GitHub into `${QKD_PARENT:-$WORK}/qkd_qml` and builds `.venv-qml`.
+2. From the repo root (jobs run from the submit directory): `sbatch --account=<ACCOUNT> qml/leonardo/final_array.sbatch` (9 tasks).
 3. `bash qml/leonardo/pull.sh` on the Mac copies the parts back. Alternatively, commit and push them from Leonardo,
    if a GitHub credential is configured there.
    Then locally: `train.py final --assemble`, run_qml steps `latency` and `certify_final`, then Amendment 4.

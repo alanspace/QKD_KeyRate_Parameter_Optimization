@@ -75,7 +75,7 @@ Prerequisites from the owner:
 # on the Leonardo login node (the repo is public; no bundle or credentials needed to read it)
 curl -O https://raw.githubusercontent.com/alanspace/QKD_KeyRate_Parameter_Optimization/qml-surrogate/qml/leonardo/setup_env.sh
 bash setup_env.sh                              # clones qml-surrogate into $WORK/qkd_qml, builds .venv-qml (CUDA)
-cd $WORK/qkd_qml && sbatch --account=$LEO_ACCOUNT qml/leonardo/final_array.sbatch   # 9 tasks: dense s1-4, sparse s0-4
+cd <clone>/qkd_qml && sbatch --account=$LEO_ACCOUNT qml/leonardo/final_array.sbatch   # 9 tasks: dense s1-4, sparse s0-4
 squeue -u $USER                                # monitor; each task prints its devices and that float64 is in use
 bash qml/leonardo/pull.sh                      # Mac: copy the parts back (expect 50 files), or push them from Leonardo
 ```
