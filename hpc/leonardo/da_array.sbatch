@@ -9,7 +9,8 @@
 #SBATCH --output=da_%A_%a.out
 #  submit with: sbatch --account=<ACCOUNT> hpc/leonardo/da_array.sbatch
 set -euo pipefail
-cd "$WORK/qkd"
+cd "$SLURM_SUBMIT_DIR"   # submit from the repo root (clone may be in $WORK or scratch)
+[ -f Optimization/benchmark/da_dataset.py ] || { echo "submit from the main-branch repo root"; exit 1; }
 PRESET=lim
 NCHUNKS=100
 export JAX_PLATFORMS=cpu PYTHONPATH="$PWD"
