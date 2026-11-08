@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=da_merge
-#SBATCH --partition=dcgp_usr_prod
+#SBATCH --partition=dcgp_usr_prod   # Booster-only accounts: sbatch -p boost_usr_prod [--qos=boost_qos_dbg]
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
