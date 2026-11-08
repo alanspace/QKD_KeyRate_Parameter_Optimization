@@ -13,6 +13,7 @@ cd "$SLURM_SUBMIT_DIR"   # submit from the repo root (clone may be in $WORK or s
 [ -f Optimization/benchmark/da_dataset.py ] || { echo "submit from the main-branch repo root"; exit 1; }
 PRESET=lim
 NCHUNKS=100
-export JAX_PLATFORMS=cpu PYTHONPATH="$PWD"
+module load python/3.11.7 >/dev/null 2>&1 || true
+export JAX_PLATFORMS=cpu PYTHONPATH="$PWD"   # replaces the module's PYTHONPATH
 export XLA_FLAGS="--xla_cpu_multi_thread_eigen=false" OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1   # one core per task
 .venv/bin/python Optimization/benchmark/da_dataset.py run --preset "$PRESET" --chunk "$SLURM_ARRAY_TASK_ID" --nchunks "$NCHUNKS"

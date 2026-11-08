@@ -9,5 +9,6 @@
 set -euo pipefail
 cd "$SLURM_SUBMIT_DIR"   # submit from the repo root (clone may be in $WORK or scratch)
 [ -f Optimization/benchmark/da_dataset.py ] || { echo "submit from the main-branch repo root"; exit 1; }
-export JAX_PLATFORMS=cpu PYTHONPATH="$PWD"
+module load python/3.11.7 >/dev/null 2>&1 || true
+export JAX_PLATFORMS=cpu PYTHONPATH="$PWD"   # replaces the module's PYTHONPATH
 .venv/bin/python Optimization/benchmark/da_dataset.py merge --preset lim
