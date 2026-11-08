@@ -33,6 +33,10 @@ sbatch --account=<ACCOUNT> hpc/leonardo/da_array.sbatch          # 100 tasks × 
 sbatch --account=<ACCOUNT> --dependency=afterok:<JOBID> hpc/leonardo/da_merge.sbatch
 ```
 
+**Booster-only accounts** (no DCGP access, e.g. AIFAC_P02_1031): use `hpc/leonardo/da_boost.sbatch` instead: one
+Booster node, 32 chunks in parallel on its CPU cores, debug QOS (30 min). It skips finished chunks, so resubmit until
+all 100 exist, then `sbatch --account=<ACCOUNT> -p boost_usr_prod --qos=boost_qos_dbg hpc/leonardo/da_merge.sbatch`.
+
 Output: `results/da_dataset_<preset>/` (chunks, `da_dataset.json`, `DA_DATASET.md`).
 
 Estimated cost: about 3,000 DA points × 6–18 s + 3,000 fast L-BFGS-B points, i.e. ~10 CPU-hours in total. Measured on
