@@ -16,6 +16,7 @@ cd "$SLURM_SUBMIT_DIR"   # submit from the qkd_qml repo root (clone may be in $W
 VARS=(dense dense dense dense sparse sparse sparse sparse sparse)
 SEEDS=(1 2 3 4 0 1 2 3 4)
 V=${VARS[$SLURM_ARRAY_TASK_ID]}; S=${SEEDS[$SLURM_ARRAY_TASK_ID]}
-export PYTHONPATH="$PWD"
+module load python/3.11.7 >/dev/null 2>&1 || true
+export PYTHONPATH="$PWD"   # replaces the module's PYTHONPATH
 .venv-qml/bin/python -c "import jax; jax.config.update('jax_enable_x64', True); print('devices', jax.devices(), 'x64', jax.numpy.ones(1).dtype)"
 .venv-qml/bin/python qml/train.py final --variants "$V" --seeds "$S"

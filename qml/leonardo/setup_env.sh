@@ -7,8 +7,9 @@ if [ -d qkd_qml/.git ]; then git -C qkd_qml pull --ff-only; else
   git clone -b qml-surrogate https://github.com/alanspace/QKD_KeyRate_Parameter_Optimization.git qkd_qml; fi
 cd qkd_qml
 module load python/3.11.7 2>/dev/null || module load python 2>/dev/null || true   # Python >= 3.11 needed
+unset PYTHONPATH   # the module's PYTHONPATH carries its own pip, which breaks the venv's pip
 python3 -m venv .venv-qml
-.venv-qml/bin/pip install -q --upgrade pip
-.venv-qml/bin/pip install -q "jax[cuda12]==0.10.2" "pennylane==0.45.1" numpy scipy
+.venv-qml/bin/python -m pip install -q --upgrade pip
+.venv-qml/bin/python -m pip install -q "jax[cuda12]==0.10.2" "pennylane==0.45.1" numpy scipy
 .venv-qml/bin/python -c "import jax, pennylane; print('jax', jax.__version__, 'pennylane', pennylane.__version__)"
 ls qml/data/final_parts | wc -l    # expect 5 (dense seed 0) before the GPU run

@@ -155,7 +155,7 @@ def selection():
     return f, json.load(open(f))
 
 
-PARTS = os.path.join(C.DATA, "final_parts")
+PARTS = os.path.join(C.DATA, "final_parts" if E == 2000 else f"final_parts_smoke_E{E}")   # smoke runs never touch the real parts
 MODELS = ["PQC-full", "PQC-product", "NN-tuned", "NN-matched", "RFF-ridge"]
 
 
