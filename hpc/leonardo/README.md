@@ -11,7 +11,7 @@ not, so environments are built on the login node.
 ## 1. Get the code (login node)
 
 ```bash
-cd $WORK
+cd $WORK          # or any folder, e.g. /leonardo_scratch/large/userexternal/<user>/WORK; jobs run from where you sbatch
 git clone https://github.com/alanspace/QKD_KeyRate_Parameter_Optimization.git qkd   # first time
 cd qkd && git pull                                                                # later: update to the latest main
 ```
