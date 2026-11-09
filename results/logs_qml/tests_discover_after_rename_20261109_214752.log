@@ -1,0 +1,30 @@
+...../Users/daai6ga1hou2/Documents/GitHub/QBAI_Code_Workspace/QKD/QKD_qml_surrogate_wt/tests/test_independent_physics.py:155: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/daai6ga1hou2/Documents/GitHub/QBAI_Code_Workspace/QKD/QKD_qml_surrogate_wt/Optimization/reference/reference_lim_tail.json' mode='r' encoding='UTF-8'>
+  ref = json.load(open(os.path.join(root, "Optimization", "reference", "reference_lim_tail.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.............................s/Users/daai6ga1hou2/Documents/GitHub/QBAI_Code_Workspace/QKD/QKD_qml_surrogate_wt/tests/test_qml/test_qml_main.py:55: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/daai6ga1hou2/Documents/GitHub/QBAI_Code_Workspace/QKD/QKD_qml_surrogate_wt/Optimization/reference/reference_lim.json' mode='r' encoding='UTF-8'>
+  ref = json.load(open(os.path.join(ROOT, "Optimization", "reference", f"reference_lim{tag}.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/daai6ga1hou2/Documents/GitHub/QBAI_Code_Workspace/QKD/QKD_qml_surrogate_wt/tests/test_qml/test_qml_main.py:55: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/daai6ga1hou2/Documents/GitHub/QBAI_Code_Workspace/QKD/QKD_qml_surrogate_wt/Optimization/reference/reference_lim_tail.json' mode='r' encoding='UTF-8'>
+  ref = json.load(open(os.path.join(ROOT, "Optimization", "reference", f"reference_lim{tag}.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+....ss
+----------------------------------------------------------------------
+Ran 41 tests in 414.046s
+
+OK (skipped=3)
+tests/test_qml/test_qiskit_rebuild.py: skipped, PennyLane/Qiskit not installed (run in .venv-qml)
+tests/test_qml/test_qml_models.py: skipped, PennyLane not installed (run in .venv-qml)
+
+[independent] degenerate case b_ge_half: L=100.0 nX=1e+09 e_mis=1.2 rel diff 0.00e+00
+
+[independent] degenerate case s1_nonpos: L=200.0 nX=1e+04 e_mis=0.05 rel diff 0.00e+00
+
+[independent] degenerate case eobs_gt_half: L=100.0 nX=1e+09 e_mis=1.2 rel diff 0.00e+00
+
+[independent] eps fixed-point max residual: 3.819e-15
+
+[independent] fixed-eps max relative difference over 360 evaluations: 1.016e-13
+
+[independent] greatest-root check: 20 points, max relative eps difference 6.573e-13
+
+[independent] near-horizon (18 points) max relative difference in l: 7.821e-13

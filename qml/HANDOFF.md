@@ -21,7 +21,7 @@ git clone https://github.com/alanspace/QKD_KeyRate_Parameter_Optimization.git &&
 git checkout qml-surrogate
 python3.13 -m venv .venv && .venv/bin/pip install -r requirements.txt "jax[cpu]==0.9.0"   # physics env (main .venv)
 python3.13 -m venv .venv-qml && .venv-qml/bin/pip install -r qml/requirements-qml.txt      # models env (jax 0.10.2)
-JAX_PLATFORMS=cpu .venv/bin/python -m unittest tests.qml.test_qml_main                     # sanity check
+JAX_PLATFORMS=cpu .venv/bin/python -m unittest tests.test_qml.test_qml_main                     # sanity check
 ```
 The original machine used a git worktree and symlinked `.venv` from the main checkout. A plain clone with the two
 environments above is equivalent.
@@ -32,7 +32,7 @@ environments above is equivalent.
    model at the predicted parameters.
 2. **Predictions are u-vectors mapped through `src/qkd_opt/reparam.py`.** They are feasible by construction.
 3. **Code you may not modify:** `src/qkd_opt/`, `src/qkd/`, `Optimization/` and the existing tests. New code goes only
-   under `qml/` and `tests/qml/`.
+   under `qml/` and `tests/test_qml/`.
 4. **Protocol changes** are made only as dated amendments appended to `qml/PREREGISTRATION.md`. Never edit earlier
    text.
 5. **IQM hardware:**
@@ -188,8 +188,8 @@ Re-render each changed slide with headless Chrome and look at it. Check for over
 ### Step F: close out
 
 ```bash
-.venv/bin/python -m unittest tests.qml.test_qml_main
-PYTHONPATH=. .venv-qml/bin/python -m unittest tests.qml.test_qml_models tests.qml.test_qiskit_rebuild
+.venv/bin/python -m unittest tests.test_qml.test_qml_main
+PYTHONPATH=. .venv-qml/bin/python -m unittest tests.test_qml.test_qml_models tests.test_qml.test_qiskit_rebuild
 JAX_PLATFORMS=cpu PYTHONPATH=. .venv-qml/bin/python qml/iqm/rebuild.py --check     # Addition C on the TRAINED weights
 .venv/bin/python -m unittest discover tests                                       # CI-equivalent; about 7 min
 ```

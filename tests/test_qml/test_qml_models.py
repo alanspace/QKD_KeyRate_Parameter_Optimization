@@ -6,7 +6,7 @@ try:
     HAVE_PL = True
 except ImportError:
     HAVE_PL = False
-    print("tests/qml/test_qml_models.py: skipped, PennyLane not installed (run in .venv-qml)")
+    print("tests/test_qml/test_qml_models.py: skipped, PennyLane not installed (run in .venv-qml)")
 
 
 @unittest.skipUnless(HAVE_PL, "PennyLane not installed: .venv-qml tests skipped")

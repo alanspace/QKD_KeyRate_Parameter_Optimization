@@ -8,7 +8,7 @@ try:
     HAVE = True
 except ImportError:
     HAVE = False
-    print("tests/qml/test_qiskit_rebuild.py: skipped, PennyLane/Qiskit not installed (run in .venv-qml)")
+    print("tests/test_qml/test_qiskit_rebuild.py: skipped, PennyLane/Qiskit not installed (run in .venv-qml)")
 
 
 @unittest.skipUnless(HAVE, "PennyLane/Qiskit not installed: .venv-qml tests skipped")
