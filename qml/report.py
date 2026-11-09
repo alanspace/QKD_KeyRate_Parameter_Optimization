@@ -531,7 +531,7 @@ coefficients) point to the construction, not to a pipeline failure:
   {min(v['freq_abs_median'] for k, v in rff['seeds'].items() if v['variant'] == 'dense' and v['seed'] != 1):.2f}–{max(v['freq_abs_median'] for k, v in rff['seeds'].items() if v['variant'] == 'dense' and v['seed'] != 1):.2f}
   for the other dense seeds), and underfits.
 - The underfit is visible at training time: its training MSE equals its validation MSE (no overfitting) and both are
-  {rff_ratio[0]:.1f}–{rff_ratio[1]:.1f}× the other dense seeds'. Validation MSE varies by at most {rff_lamspread:.1f} % across the
+  {rff_ratio[0]:.1f}–{rff_ratio[1]:.1f}× the other dense seeds'. Validation MSE varies by at most {rff_lamspread:.2g} % across the
   λ grid for seed 1, so λ selection is not the cause (seed 1 chose λ = {rff['seeds']['dense__s1']['lam']:g}; seeds with
   the same λ: {rff_same_lam}), and F^T F is well conditioned (condition number {rff['seeds']['dense__s1']['cond_FtF']:.1e}).
 - Across the dense seeds, the ranking by training MSE equals the ranking by test regret:
