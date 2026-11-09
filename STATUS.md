@@ -789,3 +789,51 @@ crossover (58 sub-optimal labels, up to 6e-4).
     The Amendment 4 backward-sweep repair (repair_labels.py) should catch them, because the backward crossover is
     correct here.
     The total of known sub-optimal QML labels is therefore at least 77 (58 + 19); the maximum deficit is 7.5e-4.
+
+12. Cold-solve confirmation is a one-sided lower-bound check, not proof of global optimality (2026-11-09; qml-surrogate)
+-----------------------------------------------------------------------------------------------------------------------
+Finding: a cold solve (optimize_batch, 2^14 Sobol, top-16, seed 11) can miss the better of two competing optima next to
+  a branch crossover. Agreement with such a cold solve shows that a label is not worse than the best optimum the cold
+  solve found. It does not show that the label is globally optimal.
+How it was found: the Amendment 4 repair (repair_labels.py, results/qml_repair_b983055317_9dd20e4718fe) improved 15
+  labels with a key that were NOT among the 77 known sub-optimal labels. At those points the original label agreed with
+  a fresh cold solve (|diff| ~1e-14); the repaired label is better than that cold solve.
+Independent confirmation of the 15:
+  - fresh R recompute at the stored parameters (qml/certify.py R_at): equal to the stored R to 5.5e-15 (repaired) and
+    2.7e-15 (original); recomputed gain of repaired over original 6.2e-6 .. 3.16e-4;
+  - gradient check: repaired solutions converged, grad_norm_theta <= 3.3e-10, no cliff_edge / noise_floor flag;
+  - branch check: max|du| between repaired and original parameters 0.0003 .. 0.0087 (a different optimum).
+Two-sided comparison at the gate's 4,746 points (qml/check_cold_two_sided.py; results/qml_coldcheck_e007a41265_cd1f8920532d;
+  same cold settings, 444 s, on AC):
+                       cold better (>1e-9)       label better (>1e-9)      within +-1e-9
+    original labels    77 (max 7.47e-4)          6 (max 3.74e-4)           4663
+    repaired labels    0  (max 3.8e-13)          19 (max 3.74e-4)          4727
+  The 6 "original label better" points are n_X 3e6 at 112.344-112.500 km (heldout), just past the repaired-list jump at
+  112.328 km: the forward sweep already found the better branch there and the cold solve misses it.
+Points where a sweep label beats the cold solve (21 distinct, max 3.74e-4):
+    n_X      km                 points  max gain   source of the better label
+    1e4      117.844            1       6.2e-6     backward (smooth branch, |du| 0.0003; a single-point shortfall, not a switch)
+    10^4.5   130.750            1       2.5e-5     backward
+    1e5      132.750-132.812    3       6.2e-5     backward
+    10^5.5   136.750-136.875    5       1.4e-4     backward
+    3e6      112.344-112.500    6       3.7e-4     forward (original label)
+    3e6      139.188-139.219    2       3.2e-4     backward
+    1e8      91.875-92.125      3       1.4e-4     backward
+  (117.844 and 130.750 lie outside the gate set; they were checked separately with the same cold settings.)
+Consequences:
+  - Step C acceptance (Amendment 4) is unchanged: gate_pass true; all 77 known sub-optimal labels pass the one-sided
+    criterion (repaired not worse than cold by > 1e-9; |repaired - cold| <= 7.2e-15 at all 77,
+    results/qml_suboptcheck_b983055317_f5d7b9715fea). This section adds information; it does not change that verdict.
+  - Read two-sidedly ("within 1e-9 of the cold solve"), 19 of the 4,746 gate points differ, all in the label's favour.
+  - n_X 1e5 at 132.8 km is a genuine switch: two converged optima (grad ~5e-13) at the same lattice points; the
+    backward one is better by up to 6.2e-5; repaired crossover 132.72-132.75 km, forward sweep about 0.09 km late
+    (jump 132.81-132.84). STATUS 11(c) called it "ambiguous; not counted" on the basis of cold solves, which miss this
+    branch. At the six reference n_X there are therefore at least 10 below-horizon switches, not 9.
+  - n_X 1e4: no switch is shown (single-point shortfall of 6.2e-6 on a smooth branch); "none found at 1e4" stands.
+  - Reference values are unaffected: none of the 21 points is a reference point, and the repair's reference gate agrees
+    with all 263 positive non-cliff reference values to 9.5e-13.
+  - final_report.tex (main) needs the count and the 132.8 km candidate corrected. A diff is prepared for the owner's
+    review; main is not edited from this branch.
+  - QML numbers: certify_final against the repaired labels (results/qml_certify_final_b983055317_6518a9e98390) changes
+    the test_bulk median regrets by <= 2.6 % relative per seed (dense PQC-full mean over 5 seeds 5.995e-3 -> 5.997e-3);
+    test_tail medians unchanged. Of the 21 points, 6 are test, 1 train, 1 val, 8 heldout, 5 unused (none ref).
