@@ -1,0 +1,2 @@
+/var/spool/slurmd/job63982538/slurm_script: line 14: 2594479 Killed                  .venv/bin/python Optimization/benchmark/da_dataset.py merge --preset lim
+[2026-11-09T13:29:56.860] error: Detected 1 oom_kill event in StepId=63982538.batch. Some of the step tasks have been OOM Killed.

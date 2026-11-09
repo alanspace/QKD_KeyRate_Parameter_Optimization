@@ -557,3 +557,28 @@ crossover (58 sub-optimal labels, up to 6e-4).
     The Amendment 4 backward-sweep repair (repair_labels.py) should catch them, because the backward crossover is
     correct here.
     The total of known sub-optimal QML labels is therefore at least 77 (58 + 19); the maximum deficit is 7.5e-4.
+
+13. DA dataset regeneration on Leonardo (2026-11-09; main; resolves final_report.tex Appendix A's "to be regenerated")
+-------------------------------------------------------------------------------------------------------------------
+(Section 12 is used on branch qml-surrogate; this one is numbered 13 so the two do not collide.)
+What: Optimization/benchmark/da_dataset.py, the archived DA pipeline (BB84_PureDualAnnealing.py settings) on the 2025
+  thesis grid, L = linspace(0, 200, 1000) x n_X = 1e4..1e9 = 6,000 points, preset lim (the thesis physics is not a
+  defined preset). L <= 100 km: L-BFGS-B from the archived default guess; L > 100 km: dual annealing.
+  Scored at every point against the verified optimizer (optimize_batch, 2^12 Sobol, top-8, seed 7).
+Where: CINECA Leonardo, account AIFAC_P02_1031 (Booster-only), hpc/leonardo/da_boost.sbatch: 192 chunks, 32 in
+  parallel on one node's CPU cores (no GPU), debug QOS. Jobs 63975172 (timed out at 96/192; resumable) and 63979288
+  (192/192). Merge 63982538 ran out of memory at 123 GB (one optimize_batch call on 6,000 points); 63982773 on a whole
+  node (494 GB; peak 180 GB) completed in 7m25s. Code at git 8f9508e6a2 (clean); Intel Xeon Platinum 8358.
+Output: results/da_dataset_lim/{DA_DATASET.md, da_dataset.json, chunks/ (192), logs/}.
+Results (regret = (R_opt - R_DA)/R_opt where R_opt > 0; 5,041 of 6,000 points):
+  all: median 5.0e-2; within 1e-6 8.7 %, 1e-3 16.9 %, 1e-2 20.0 %; no key 40.1 %.
+  L-BFGS-B (L <= 100 km, 3,000 points, all with R_opt > 0): no key 66.7 % (2,000). Systematic: for n_X 1e4-1e7 every
+    solve (2,000 of 2,000) stops after a median of 5 evaluations with P_mu1 at its 1e-12 bound and R < 0; for 1e8 and
+    1e9 none fails (median regret 1.4e-6 and 5.9e-6).
+  dual annealing (L > 100 km, 2,041 with R_opt > 0): median 2.7e-2; within 1e-2 7.3 %; no key 1.0 % (21).
+    Per n_X median 0.18 (1e4), 5.2e-2, 2.8e-2, 2.1e-2, 2.1e-2, 2.3e-2 (1e9).
+  Time: L-BFGS-B median 0.0036 s per point; DA median 35.9 s; total 31.3 CPU-hours (the planning estimate was ~10).
+  Allocation: about 40 billed core-hours for the DA jobs (billing = cores).
+Caveat (STATUS 12 on qml-surrogate): agreement with a cold solve is a lower-bound check; it can miss the better branch
+  next to a crossover by up to 3.7e-4. That is far below the regrets reported here.
+final_report.tex Appendix A updated with these numbers (owner-approved).

@@ -687,14 +687,25 @@ Document & Setup & Status\\\midrule
 MSc thesis report, May 2025 (\path{Project_Report/}) &
 $p_{\mathrm{dc}}=6\times10^{-7}$, $e_{\mathrm{mis}}=5\times10^{-3}$, $p_{\mathrm{ap}}=0$ (stated), $\esec=10^{-10}$
 fixed; 6{,}000 DA labels; NN with 4 inputs and 5 outputs &
-\textbf{Superseded; not re-scored.}
+\textbf{Superseded.} Its own labels and NN are not re-scored; its DA pipeline was re-run under \plim\ and scored
+(below).
 \begin{itemize}
 \item Its physics omits afterpulsing and uses a fixed $\esec$. In Table~\ref{tab:chain}, these two differences
   (stages 4--6) shorten the $n_X=10^4$ horizon by 22\,km.
 \item Its horizons ($\sim$145--180\,km) use an $R\approx10^{-8}$ threshold, not $\ell=0$.
-\item The DA labels were not re-checked for optimality here. They will be regenerated on cloud compute and
-  scored with the protocol of Section~\ref{sec:qml}. The 3.7\,\% figure in Table~\ref{tab:regret} belongs to a
-  different DA run (February 2026, \legacy\ physics), not to the thesis labels.
+\item The DA pipeline was re-run on the thesis grid (1{,}000 distances in $[0,200]$\,km $\times$ $n_X=10^4,\dots,10^9$;
+  6{,}000 points) under \plim\ physics, because the thesis physics is not a defined preset. The runs used CPU cores of
+  CINECA Leonardo, and each point was scored against the verified optimizer ($2^{12}$ Sobol, top-8) at the same
+  point (\path{results/da_dataset_lim/DA_DATASET.md}; \texttt{STATUS.md} \S13). Where the optimizer finds a key
+  (5{,}041 points), the median regret is $5.0\times10^{-2}$\typed, and 8.7\,\%\typed\ are within $10^{-6}$.
+\item $L\le100$\,km, L-BFGS-B from the archived default guess: no key at 66.7\,\% (2{,}000 of 3{,}000)\typed\ of
+  the points where a key exists. The failure is systematic. For $n_X=10^4$--$10^7$, every solve stops after about
+  5 evaluations with $P_{\mu_1}$ at its $10^{-12}$ bound. For $10^8$ and $10^9$ the median regret is
+  $1.4\times10^{-6}$ and $5.9\times10^{-6}$\typed.
+\item $L>100$\,km, dual annealing: median regret $2.7\times10^{-2}$\typed; no key at 1.0\,\% (21 of 2{,}041)\typed.
+\item Compute: 31.3 CPU-hours\typed\ (median 36\,s per dual-annealing point).
+\item The 3.7\,\% figure in Table~\ref{tab:regret} belongs to a different DA run (February 2026, \legacy\
+  physics), not to the thesis labels.
 \item ``$\pm6$\,\% SKR error'' and ``270$\times$'' are not reproduced and should not be cited. The 270$\times$ divides
   an estimated DA time (4.5 min for 100 points, scaled from 45 min per 1,000) by a measured NN time (1 s).
 \item The background chapters (QKD, optimisation, NNs) remain valid as background.
