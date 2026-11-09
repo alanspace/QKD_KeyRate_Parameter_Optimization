@@ -7,7 +7,9 @@ PQC-full seed-0 predictions; 35 test_bulk + 15 test_tail points, rng seed 1; col
     other qml / benchmark Python process running (the load and the top CPU processes are recorded);
   - repeats the whole measurement N_PASSES times and reports the median over passes and the spread (min..max).
 Output: results/qml_retime_<git>_<cfg>/retime.json
-Usage: .venv/bin/python qml/retime.py
+Usage: .venv/bin/python qml/retime.py [--allow-battery]
+  --allow-battery: run on battery when the owner explicitly allows it; the power source and macOS Low Power Mode are
+  recorded in the output and must be stated next to the numbers (absolute timings are then not AC numbers).
 """
 import glob
 import json
@@ -42,8 +44,28 @@ def idle_check():
                 top_cpu=[dict(pcpu=r[1], command=os.path.basename(r[2].split()[0])) for r in top])
 
 
+def low_power_mode():
+    try:
+        out = subprocess.run(["pmset", "-g"], capture_output=True, text=True).stdout
+        for line in out.splitlines():
+            if line.strip().startswith("lowpowermode"):
+                return int(line.split()[1])
+    except Exception:
+        pass
+    return None
+
+
 def main():
-    pw = C.require_ac("retime")
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--allow-battery", action="store_true")
+    a = ap.parse_args()
+    if a.allow_battery:
+        pw = C.power_state()
+        pw["allowed_on_battery_by_owner"] = pw["source"] != "AC"
+    else:
+        pw = C.require_ac("retime")
+    pw["low_power_mode"] = low_power_mode()
     time.sleep(SETTLE_S)
     pre_state = idle_check()
     if pre_state["busy"]:
@@ -69,7 +91,7 @@ def main():
     pick = np.concatenate([rng.choice(tb, min(35, tb.size), replace=False), rng.choice(tt, min(15, tt.size), replace=False)])
     u_pick = Q["dense__PQC-full__s0"][evq[pick]]
     cfg = dict(script="qml/retime.py", certification=os.path.relpath(mf, ROOT), predictions=M["config"]["predictions"],
-               n_passes=N_PASSES, max_load=MAX_LOAD, settle_s=SETTLE_S, n_kstep=int(pick.size), n_cold=20,
+               n_passes=N_PASSES, max_load=MAX_LOAD, allow_battery=a.allow_battery, settle_s=SETTLE_S, n_kstep=int(pick.size), n_cold=20,
                n_warm=int(pick.size), pick="certify --final: rng seed 1, 35 test_bulk + 15 test_tail")
     st = stamp(cfg)
     passes = []

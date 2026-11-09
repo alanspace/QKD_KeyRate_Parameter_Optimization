@@ -281,8 +281,13 @@ def main():
     timing_cmp += [f"| cold solve | **{rng_(SU['cold']['end_to_end_us'])}** | {T1['batch1_cold']['end_to_end_us_median']:.0f} | {T0['batch1_cold']['end_to_end_us_median']:.0f} |",
                    f"| warm solve | **{rng_(SU['warm']['end_to_end_us'])}** | {T1['batch1_warm']['end_to_end_us_median']:.0f} | {T0['batch1_warm']['end_to_end_us_median']:.0f} |"]
     ib = RT["idle_before"]
-    rt_note = (f"Quiet re-timing `{os.path.relpath(rt_path, ROOT)}`: {RT['config']['n_passes']} full passes; AC power "
-               f"({RT['power_at_start']['source']}); 1-min load average before {ib['load_1_5_15'][0]:.2f} (limit "
+    pw_ = RT["power_at_start"]
+    pw_txt = ("AC power" if pw_["source"] == "AC" else
+              f"**on battery** ({pw_.get('battery_percent')} %, allowed by the owner), macOS Low Power Mode "
+              f"{'**on**' if pw_.get('low_power_mode') == 1 else 'off' if pw_.get('low_power_mode') == 0 else 'unknown'}"
+              + (": absolute timings are throttled and are not AC numbers; the ratios between methods, which the usefulness "
+                 "verdicts use, were measured in the same session" if pw_.get("low_power_mode") == 1 else ""))
+    rt_note = (f"Quiet re-timing `{os.path.relpath(rt_path, ROOT)}`: {RT['config']['n_passes']} full passes; {pw_txt}; 1-min load average before {ib['load_1_5_15'][0]:.2f} (limit "
                f"{RT['config']['max_load']}), after each pass " + ", ".join(f"{p_['load_1min_after']:.2f}" for p_ in RT["passes"])
                + "; no other qml or benchmark job running.")
     rff = json.load(open(latest("qml_rffdiag_*/rff_seeds.json")))

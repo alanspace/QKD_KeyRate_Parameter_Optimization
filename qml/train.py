@@ -348,8 +348,18 @@ def cmd_latency(a):
     fin = json.load(open(f))
     tr = train_mask(d, "dense")
     lo, hi = np.asarray(fin["variants"]["dense"]["lo"]), np.asarray(fin["variants"]["dense"]["hi"])
-    cfg = dict(script="qml/train.py latency", final=os.path.relpath(f, ROOT), reps=300, batch=1024)
-    C.require_ac("train latency")
+    cfg = dict(script="qml/train.py latency", final=os.path.relpath(f, ROOT), reps=300, batch=1024,
+               allow_battery=bool(a.allow_battery))
+    if a.allow_battery:          # owner allowed a battery run; the power state is recorded with the result
+        pw = C.power_state()
+        try:
+            import subprocess as sp_
+            pw["low_power_mode"] = int([l_.split()[1] for l_ in sp_.run(["pmset", "-g"], capture_output=True, text=True)
+                                       .stdout.splitlines() if l_.strip().startswith("lowpowermode")][0])
+        except Exception:
+            pw["low_power_mode"] = None
+    else:
+        pw = C.require_ac("train latency")
     st = C.stamp_qml(cfg)
     rng = np.random.default_rng(0)
     q = np.where(query_mask(d))[0]
@@ -357,7 +367,7 @@ def cmd_latency(a):
     x1 = jnp.asarray([[0.6, 0.5]])           # (u_L, v) raw inputs; models apply x' inside
     xb = jnp.asarray(np.stack([d["u_L"][xb_idx], d["v"][xb_idx]], 1))
     loJ, hiJ = jnp.asarray(lo), jnp.asarray(hi)
-    res = dict(stamp=st, config=cfg, models={})
+    res = dict(stamp=st, config=cfg, power_at_start=pw, models={})
     sel = fin["config"]["selected"]
     for name, fam, ci in (("PQC-full", "PQC-full", sel["PQC-full"]), ("PQC-product", "PQC-product", sel["PQC-product"]),
                           ("NN-tuned", "NN", sel["NN"]), ("NN-matched", "NN", sel["PQC-full"])):
@@ -411,6 +421,7 @@ def main():
     ap.add_argument("--seeds", nargs="+", type=int, default=None, help="final: only these seeds (one GPU job per seed)")
     ap.add_argument("--assemble", action="store_true", help="final: build predictions_query.npz from the parts")
     ap.add_argument("--import-cpu-s0", action="store_true", help="final: parts for dense seed 0 from the stopped CPU run")
+    ap.add_argument("--allow-battery", action="store_true", help="latency: run on battery (owner's decision; recorded)")
     a = ap.parse_args()
     {"tune": cmd_tune, "final": cmd_final, "latency": cmd_latency}[a.cmd](a)
 
