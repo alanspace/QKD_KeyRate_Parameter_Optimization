@@ -1,7 +1,7 @@
 """result_report/generated_numbers_qml.tex and results/NUMBERS_qml.md from the Phase 4 result files (main .venv).
 
 Macro style of Optimization/report/make_numbers.py: \\providecommand + \\renewcommand, values never typed by hand.
-Values over seeds are means (sd in NUMBERS_qml.md).
+Values over seeds are means (sd in NUMBERS_qml.md). Regrets are against the repaired labels (primary certification).
 """
 import glob
 import json
@@ -13,7 +13,7 @@ import numpy as np
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 from qml import common as C  # noqa: E402
-from qml.report import collect, latest  # noqa: E402
+from qml.report import certifications, collect, latest  # noqa: E402
 
 NAMES = {"PQC-full": "PQCFull", "PQC-product": "PQCProduct", "NN-tuned": "NNTuned", "NN-matched": "NNMatched",
          "RFF-ridge": "RFFRidge", "lookup-2D": "LookupTwoD", "lookup-nX": "LookupNX"}
@@ -31,7 +31,7 @@ def tex(v, sci):
 
 
 def main():
-    mf = latest("qml_certify_final_*/metrics.json")
+    mf, _ = certifications()   # primary: certification against the repaired labels (Amendment 4)
     M = json.load(open(mf))
     lat_f = latest("qml_latency_*/latency.json")
     lat = json.load(open(lat_f))

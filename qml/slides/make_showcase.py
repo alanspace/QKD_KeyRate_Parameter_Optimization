@@ -33,8 +33,10 @@ def plt_setup():
     return plt
 
 
-def labels():
-    f = sorted(glob.glob(os.path.join(C.DATA, "labels_*.npz")))[-1]
+def labels(path=None):
+    """The repaired labels (Amendment 4) when they exist, else the original labels; --labels overrides."""
+    rep = sorted(glob.glob(os.path.join(C.DATA, "repaired", "labels_repaired_*.npz")), key=os.path.getmtime)
+    f = path or (rep[-1] if rep else sorted(glob.glob(os.path.join(C.DATA, "labels_*.npz")))[-1])
     return f, dict(np.load(f, allow_pickle=False))
 
 
@@ -62,8 +64,9 @@ def optimal_only(d, out):
 def with_predictions(d, out):
     try:
         pq = sorted(glob.glob(os.path.join(C.RESULTS, "qml_final_*", "predictions_query.npz")), key=os.path.getmtime)[-1]
-        mf = sorted(glob.glob(os.path.join(C.RESULTS, "qml_certify_final_*", "metrics.json")), key=os.path.getmtime)[-1]
-    except IndexError:
+        from qml.report import certifications
+        mf = certifications()[0]   # certification against the repaired labels (Amendment 4)
+    except (IndexError, SystemExit):
         print("no Phase 4 results yet: showcase_predictions.png not drawn")
         return False
     P = dict(np.load(pq)); idxq = P.pop("idx")
@@ -109,8 +112,12 @@ def with_predictions(d, out):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--labels", default=None)
+    f, d = labels(ap.parse_args().labels)
+    print(f"labels: {os.path.relpath(f, ROOT)}", flush=True)
     os.makedirs(A, exist_ok=True)
-    _, d = labels()
     optimal_only(d, os.path.join(A, "params_across_distance.png"))
     drawn = with_predictions(d, os.path.join(A, "showcase_predictions.png"))
     print("params_across_distance.png written;", "showcase_predictions.png written" if drawn else "")
