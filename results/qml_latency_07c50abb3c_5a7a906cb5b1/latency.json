@@ -1,0 +1,106 @@
+{
+ "stamp": {
+  "git_commit": "07c50abb3c",
+  "git_branch": "qml-surrogate",
+  "qml_uncommitted_changes": true,
+  "config_hash": "5a7a906cb5b1",
+  "python": "3.13.3",
+  "env": "/Users/daai6ga1hou2/Documents/GitHub/QBAI_Code_Workspace/QKD/QKD_qml_surrogate_wt/.venv-qml",
+  "packages": {
+   "jax": "0.10.2",
+   "jaxlib": "0.10.2",
+   "pennylane": "0.45.1",
+   "pennylane_lightning": "0.45.0",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "qiskit": "2.1.2",
+   "qiskit-aer": "0.17.2",
+   "iqm-client": "36.0.0"
+  },
+  "cpu": "Apple M2 Pro",
+  "machine": "arm64",
+  "os": "macOS-15.6-arm64-arm-64bit-Mach-O",
+  "n_cpu": 12,
+  "power": {
+   "source": "AC",
+   "battery_percent": 71,
+   "battery_state": "charging",
+   "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+   "caffeinate_running": true
+  }
+ },
+ "config": {
+  "script": "qml/train.py latency",
+  "final": "results/qml_final_07c50abb3c_6d14876dd876/final.json",
+  "reps": 300,
+  "batch": 1024
+ },
+ "models": {
+  "PQC-full": {
+   "config": [
+    8,
+    6
+   ],
+   "backend": "default.qubit (analytic), jitted",
+   "circuits_per_prediction": 1,
+   "shots": 0,
+   "batch1_device_us": 278.458,
+   "batch1_end_to_end_us": 293.833,
+   "batch1024_s": 0.0481286875,
+   "throughput_per_s": 21276.291816601064
+  },
+  "PQC-product": {
+   "config": [
+    6,
+    6
+   ],
+   "backend": "default.qubit (analytic), jitted",
+   "circuits_per_prediction": 1,
+   "shots": 0,
+   "batch1_device_us": 101.333,
+   "batch1_end_to_end_us": 120.9375,
+   "batch1024_s": 0.0069433125,
+   "throughput_per_s": 147480.03924639718
+  },
+  "NN-tuned": {
+   "config": 12,
+   "backend": "JAX MLP, jitted",
+   "circuits_per_prediction": 0,
+   "shots": null,
+   "batch1_device_us": 6.583,
+   "batch1_end_to_end_us": 19.0,
+   "batch1024_s": 0.000116833,
+   "throughput_per_s": 8764646.974741725
+  },
+  "NN-matched": {
+   "config": 12,
+   "backend": "JAX MLP, jitted",
+   "circuits_per_prediction": 0,
+   "shots": null,
+   "batch1_device_us": 6.8545,
+   "batch1_end_to_end_us": 19.75,
+   "batch1024_s": 0.0001184165,
+   "throughput_per_s": 8647443.557274535
+  },
+  "RFF-ridge": {
+   "backend": "JAX, jitted",
+   "batch1_device_us": 6.917,
+   "batch1_end_to_end_us": 20.083,
+   "batch1024_s": 0.0002231665,
+   "throughput_per_s": 4588502.306573791
+  },
+  "lookup-2D": {
+   "backend": "JAX, jitted (padded rows)",
+   "batch1_device_us": 24.1455,
+   "batch1_end_to_end_us": 38.042,
+   "batch1024_s": 0.001903271,
+   "throughput_per_s": 538021.1225831739
+  }
+ },
+ "lookup_2D_jax_vs_numpy_max_abs": 1.1102230246251565e-16,
+ "pqc_shots_estimate": {
+  "eps_0.01": 9712.586342684399,
+  "eps_0.001": 971258.6342684398,
+  "eps_0.0001": 97125863.42684399
+ }
+}

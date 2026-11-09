@@ -1,0 +1,6 @@
+[latency] PQC-full: {'config': (8, 6), 'backend': 'default.qubit (analytic), jitted', 'circuits_per_prediction': 1, 'shots': 0, 'batch1_device_us': 278.937, 'batch1_end_to_end_us': 298.1045, 'batch1024_s': 0.048028604, 'throughput_per_s': 21320.628015754944}
+[latency] PQC-product: {'config': (6, 6), 'backend': 'default.qubit (analytic), jitted', 'circuits_per_prediction': 1, 'shots': 0, 'batch1_device_us': 104.8545, 'batch1_end_to_end_us': 119.8335, 'batch1024_s': 0.006923729, 'throughput_per_s': 147897.18083997798}
+[latency] NN-tuned: {'config': 12, 'backend': 'JAX MLP, jitted', 'circuits_per_prediction': 0, 'shots': None, 'batch1_device_us': 6.125, 'batch1_end_to_end_us': 18.458, 'batch1024_s': 0.0001095215, 'throughput_per_s': 9349762.375424003}
+[latency] NN-matched: {'config': 12, 'backend': 'JAX MLP, jitted', 'circuits_per_prediction': 0, 'shots': None, 'batch1_device_us': 6.083, 'batch1_end_to_end_us': 18.042, 'batch1024_s': 0.000121729, 'throughput_per_s': 8412128.580699751}
+[latency] lookup-2D: {'backend': 'JAX, jitted (padded rows)', 'batch1_device_us': 24.209, 'batch1_end_to_end_us': 38.25, 'batch1024_s': 0.001866979, 'throughput_per_s': 548479.6561718156} (jax vs numpy 1.1e-16)
+[latency] wrote results/qml_latency_35aba07eec_23413b61099e

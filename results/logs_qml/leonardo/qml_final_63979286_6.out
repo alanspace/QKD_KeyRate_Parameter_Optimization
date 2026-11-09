@@ -1,0 +1,9 @@
+E1109 12:54:48.730531  532791 numa_hwloc.cc:121] Call to hwloc_set_cpubind() failed: Invalid argument [22]
+devices [CudaDevice(id=0)] x64 float64
+E1109 12:55:09.500491  532850 numa_hwloc.cc:121] Call to hwloc_set_cpubind() failed: Invalid argument [22]
+[final] sparse PQC-full s2 (8, 6): train 66s loss 2.794e-03 on gpu
+[final] sparse PQC-product s2 (6, 6): train 30s loss 3.129e-03 on gpu
+E1109 12:58:03.854179  532855 cuda_timer.cc:88] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+[final] sparse NN-tuned s2 12: train 4s loss 1.247e-03 on gpu
+[final] sparse NN-matched s2 12: train 1s loss 1.247e-03 on gpu
+[final] sparse RFF-ridge s2: lambda 1e-10

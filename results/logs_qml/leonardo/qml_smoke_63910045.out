@@ -1,0 +1,10 @@
+name, driver_version, memory.total [MiB]
+NVIDIA A100-SXM-64GB, 535.274.02, 65536 MiB
+E1108 20:45:34.956687   89071 numa_hwloc.cc:121] Call to hwloc_set_cpubind() failed: Invalid argument [22]
+devices [CudaDevice(id=0)] x64 float64
+E1108 20:45:56.723937   89188 numa_hwloc.cc:121] Call to hwloc_set_cpubind() failed: Invalid argument [22]
+[final] dense PQC-full s1 (8, 6): train 43s loss 1.031e-01 on gpu
+[final] dense PQC-product s1 (6, 6): train 24s loss 5.100e-02 on gpu
+[final] dense NN-tuned s1 12: train 3s loss 4.379e-02 on gpu
+[final] dense NN-matched s1 12: train 0s loss 4.379e-02 on gpu
+[final] dense RFF-ridge s1: lambda 1e-10

@@ -1,0 +1,220 @@
+{
+ "config": {
+  "script": "qml/diag_rff_seeds.py",
+  "labels": "labels_0d8bef1402_9fa16da52f39.npz",
+  "certification": "results/qml_certify_final_b983055317_6518a9e98390/metrics.json",
+  "lambdas": [
+   1e-10,
+   1e-08,
+   1e-06,
+   0.0001,
+   0.01
+  ]
+ },
+ "seeds": {
+  "dense__s0": {
+   "variant": "dense",
+   "seed": 0,
+   "lam": null,
+   "device": "cpu",
+   "freq_abs_median": 1.3204221020254434,
+   "freq_abs_max_uL": 3.612992015339598,
+   "freq_abs_max_v": 3.5027114813329345,
+   "train_mse_z": 0.0037456116566536063,
+   "val_mse_z": 0.0037955129403665086,
+   "val_mse_z_by_lambda": [
+    0.0037955129403665086,
+    0.0037955129414373135,
+    0.0037955130485359994,
+    0.0037955239289476682,
+    0.003798205595455928
+   ],
+   "cond_FtF": 58599.663823727555,
+   "test_bulk_median_regret": 0.008744769708465203
+  },
+  "dense__s1": {
+   "variant": "dense",
+   "seed": 1,
+   "lam": 1e-10,
+   "device": "gpu",
+   "freq_abs_median": 2.740004860065293,
+   "freq_abs_max_uL": 6.595886127494964,
+   "freq_abs_max_v": 5.687724734505936,
+   "train_mse_z": 0.04341405627936964,
+   "val_mse_z": 0.043332530392495905,
+   "val_mse_z_by_lambda": [
+    0.0433325303924959,
+    0.04333253039260133,
+    0.04333253040314394,
+    0.043332531457533935,
+    0.04333263818287177
+   ],
+   "cond_FtF": 388.22501274305085,
+   "test_bulk_median_regret": 0.09420221324993502
+  },
+  "dense__s2": {
+   "variant": "dense",
+   "seed": 2,
+   "lam": 1e-06,
+   "device": "gpu",
+   "freq_abs_median": 1.15873161393431,
+   "freq_abs_max_uL": 3.8169691084172674,
+   "freq_abs_max_v": 2.8980844325626833,
+   "train_mse_z": 0.003407085394513151,
+   "val_mse_z": 0.0034297784060978473,
+   "val_mse_z_by_lambda": [
+    0.0034298004964091913,
+    0.0034298002495849428,
+    0.0034297784059951777,
+    0.003445531218578001,
+    0.003948962821083557
+   ],
+   "cond_FtF": 36150331.09041981,
+   "test_bulk_median_regret": 0.00569931514746798
+  },
+  "dense__s3": {
+   "variant": "dense",
+   "seed": 3,
+   "lam": 1e-10,
+   "device": "gpu",
+   "freq_abs_median": 1.0775242927327602,
+   "freq_abs_max_uL": 5.213923146475727,
+   "freq_abs_max_v": 5.014427765569984,
+   "train_mse_z": 0.00503426517614236,
+   "val_mse_z": 0.005061221229586909,
+   "val_mse_z_by_lambda": [
+    0.005061221229572111,
+    0.005061221239410166,
+    0.005061222224847192,
+    0.005061337152432053,
+    0.005122801975889559
+   ],
+   "cond_FtF": 1698455.8889821584,
+   "test_bulk_median_regret": 0.010887748638800855
+  },
+  "dense__s4": {
+   "variant": "dense",
+   "seed": 4,
+   "lam": 1e-10,
+   "device": "gpu",
+   "freq_abs_median": 1.8763505578736643,
+   "freq_abs_max_uL": 5.374262044970793,
+   "freq_abs_max_v": 3.462620903638374,
+   "train_mse_z": 0.011694355852633516,
+   "val_mse_z": 0.011639297024598046,
+   "val_mse_z_by_lambda": [
+    0.011639297024598042,
+    0.011639297024782476,
+    0.011639297043226198,
+    0.011639298887888718,
+    0.011639486253787164
+   ],
+   "cond_FtF": 1386.8717537418465,
+   "test_bulk_median_regret": 0.037874168656525306
+  },
+  "sparse__s0": {
+   "variant": "sparse",
+   "seed": 0,
+   "lam": 1e-10,
+   "device": "gpu",
+   "freq_abs_median": 1.0434544005119348,
+   "freq_abs_max_uL": 3.9089444593924974,
+   "freq_abs_max_v": 5.561705783616185,
+   "train_mse_z": 0.002012555020502574,
+   "val_mse_z": 0.0038125200210437186,
+   "val_mse_z_by_lambda": [
+    0.003812520022344425,
+    0.003812543819001088,
+    0.0038149496810876483,
+    0.004014169696350791,
+    0.004743627496085932
+   ],
+   "cond_FtF": 68949436.77201395,
+   "test_bulk_median_regret": 0.0026511023629379685
+  },
+  "sparse__s1": {
+   "variant": "sparse",
+   "seed": 1,
+   "lam": 1e-10,
+   "device": "gpu",
+   "freq_abs_median": 2.5252699035177253,
+   "freq_abs_max_uL": 5.667461089573422,
+   "freq_abs_max_v": 4.305966442852396,
+   "train_mse_z": 0.026892764847790303,
+   "val_mse_z": 0.03676277074599326,
+   "val_mse_z_by_lambda": [
+    0.03676277074599301,
+    0.0367627707756276,
+    0.03676277373921488,
+    0.03676307124735086,
+    0.036802861743687854
+   ],
+   "cond_FtF": 13543.952991572338,
+   "test_bulk_median_regret": 0.06436600174847826
+  },
+  "sparse__s2": {
+   "variant": "sparse",
+   "seed": 2,
+   "lam": 1e-10,
+   "device": "gpu",
+   "freq_abs_median": 1.512433859564902,
+   "freq_abs_max_uL": 2.7286832984239435,
+   "freq_abs_max_v": 5.0283172508202645,
+   "train_mse_z": 0.003034756403237196,
+   "val_mse_z": 0.00575829052172666,
+   "val_mse_z_by_lambda": [
+    0.0057582905217056215,
+    0.005758291243913371,
+    0.005758363465418548,
+    0.005765589206403925,
+    0.006369760751166989
+   ],
+   "cond_FtF": 433579.71118671243,
+   "test_bulk_median_regret": 0.006137390749770574
+  },
+  "sparse__s3": {
+   "variant": "sparse",
+   "seed": 3,
+   "lam": 1e-10,
+   "device": "gpu",
+   "freq_abs_median": 2.6824898374829993,
+   "freq_abs_max_uL": 5.376516862161509,
+   "freq_abs_max_v": 5.818860156001191,
+   "train_mse_z": 0.01780004089088513,
+   "val_mse_z": 0.029304750121950298,
+   "val_mse_z_by_lambda": [
+    0.029304750121950156,
+    0.029304750130115752,
+    0.02930475094667348,
+    0.029304832614129903,
+    0.029313103711739022
+   ],
+   "cond_FtF": 2778.6845217307186,
+   "test_bulk_median_regret": 0.03389779145110479
+  },
+  "sparse__s4": {
+   "variant": "sparse",
+   "seed": 4,
+   "lam": 1e-10,
+   "device": "gpu",
+   "freq_abs_median": 1.4218780518995864,
+   "freq_abs_max_uL": 4.957876729544236,
+   "freq_abs_max_v": 4.674782042075423,
+   "train_mse_z": 0.005889815639996467,
+   "val_mse_z": 0.011055664816709103,
+   "val_mse_z_by_lambda": [
+    0.011055664816708282,
+    0.011055664839785307,
+    0.011055667147456101,
+    0.011055897955317697,
+    0.01107933886741513
+   ],
+   "cond_FtF": 9041.140313122056,
+   "test_bulk_median_regret": 0.013470588409670449
+  }
+ },
+ "dense_rank_train_mse_equals_rank_test_regret": true,
+ "dense_spearman_train_mse_vs_test_regret": 0.9999999999999999,
+ "sparse_rank_train_mse_equals_rank_test_regret": true,
+ "sparse_spearman_train_mse_vs_test_regret": 0.9999999999999999
+}

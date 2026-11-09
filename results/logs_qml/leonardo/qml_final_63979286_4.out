@@ -1,0 +1,7 @@
+devices [CudaDevice(id=0)] x64 float64
+[final] sparse PQC-full s0 (8, 6): train 67s loss 3.262e-03 on gpu
+[final] sparse PQC-product s0 (6, 6): train 31s loss 5.034e-03 on gpu
+E1109 12:52:34.250271 1502002 cuda_timer.cc:88] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+[final] sparse NN-tuned s0 12: train 3s loss 1.175e-03 on gpu
+[final] sparse NN-matched s0 12: train 1s loss 1.175e-03 on gpu
+[final] sparse RFF-ridge s0: lambda 1e-10

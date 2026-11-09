@@ -1,0 +1,80 @@
+[repair] backward sweep 264s; gate: 4746 points (3855 in jump windows, 1000 random), 2^14 Sobol
+[gate] slice 1/48 (100 pts): 33.4s, elapsed 33s, est. remaining n/a
+[gate] slice 2/48 (100 pts): 6.2s, elapsed 40s, est. remaining 284s
+[gate] slice 3/48 (100 pts): 8.1s, elapsed 48s, est. remaining 322s
+[gate] slice 4/48 (100 pts): 5.8s, elapsed 54s, est. remaining 295s
+[gate] slice 5/48 (100 pts): 5.6s, elapsed 59s, est. remaining 276s
+[gate] slice 6/48 (100 pts): 10.2s, elapsed 69s, est. remaining 302s
+[gate] slice 7/48 (100 pts): 5.4s, elapsed 75s, est. remaining 282s
+[gate] slice 8/48 (100 pts): 5.6s, elapsed 80s, est. remaining 268s
+[gate] slice 9/48 (100 pts): 5.5s, elapsed 86s, est. remaining 255s
+[gate] slice 10/48 (100 pts): 5.5s, elapsed 91s, est. remaining 245s
+[gate] slice 11/48 (100 pts): 8.6s, elapsed 100s, est. remaining 246s
+[gate] slice 12/48 (100 pts): 5.7s, elapsed 106s, est. remaining 236s
+[gate] slice 13/48 (100 pts): 5.6s, elapsed 111s, est. remaining 227s
+[gate] slice 14/48 (100 pts): 5.5s, elapsed 117s, est. remaining 218s
+[gate] slice 15/48 (100 pts): 9.2s, elapsed 126s, est. remaining 218s
+[gate] slice 16/48 (100 pts): 5.5s, elapsed 131s, est. remaining 209s
+[gate] slice 17/48 (100 pts): 5.3s, elapsed 137s, est. remaining 200s
+[gate] slice 18/48 (100 pts): 5.5s, elapsed 142s, est. remaining 192s
+[gate] slice 19/48 (100 pts): 6.7s, elapsed 149s, est. remaining 186s
+[gate] slice 20/48 (100 pts): 5.4s, elapsed 154s, est. remaining 178s
+[gate] slice 21/48 (100 pts): 5.5s, elapsed 160s, est. remaining 171s
+[gate] slice 22/48 (100 pts): 5.4s, elapsed 165s, est. remaining 163s
+[gate] slice 23/48 (100 pts): 5.6s, elapsed 171s, est. remaining 156s
+[gate] slice 24/48 (100 pts): 5.7s, elapsed 176s, est. remaining 149s
+[gate] slice 25/48 (100 pts): 5.3s, elapsed 182s, est. remaining 142s
+[gate] slice 26/48 (100 pts): 5.4s, elapsed 187s, est. remaining 135s
+[gate] slice 27/48 (100 pts): 5.5s, elapsed 193s, est. remaining 129s
+[gate] slice 28/48 (100 pts): 5.3s, elapsed 198s, est. remaining 122s
+[gate] slice 29/48 (100 pts): 5.3s, elapsed 203s, est. remaining 115s
+[gate] slice 30/48 (100 pts): 5.6s, elapsed 209s, est. remaining 109s
+[gate] slice 31/48 (100 pts): 7.8s, elapsed 217s, est. remaining 104s
+[gate] slice 32/48 (100 pts): 5.3s, elapsed 222s, est. remaining 97s
+[gate] slice 33/48 (100 pts): 5.4s, elapsed 227s, est. remaining 91s
+[gate] slice 34/48 (100 pts): 8.4s, elapsed 236s, est. remaining 86s
+[gate] slice 35/48 (100 pts): 5.3s, elapsed 241s, est. remaining 79s
+[gate] slice 36/48 (100 pts): 5.4s, elapsed 246s, est. remaining 73s
+[gate] slice 37/48 (100 pts): 8.8s, elapsed 255s, est. remaining 68s
+[gate] slice 38/48 (100 pts): 5.4s, elapsed 261s, est. remaining 61s
+[gate] slice 39/48 (100 pts): 5.4s, elapsed 266s, est. remaining 55s
+[gate] slice 40/48 (100 pts): 5.4s, elapsed 272s, est. remaining 49s
+[gate] slice 41/48 (100 pts): 6.6s, elapsed 278s, est. remaining 43s
+[gate] slice 42/48 (100 pts): 5.4s, elapsed 284s, est. remaining 37s
+[gate] slice 43/48 (100 pts): 5.4s, elapsed 289s, est. remaining 30s
+[gate] slice 44/48 (100 pts): 8.7s, elapsed 298s, est. remaining 25s
+[gate] slice 45/48 (100 pts): 23.6s, elapsed 321s, est. remaining 20s
+[gate] slice 46/48 (100 pts): 6.8s, elapsed 328s, est. remaining 13s
+[gate] slice 47/48 (100 pts): 5.3s, elapsed 333s, est. remaining 7s
+[gate] slice 48/48 (46 pts): 22.0s, elapsed 355s, est. remaining 0s
+{
+ "backward_sweep_s": 264.4456489580007,
+ "n_repaired": 2914,
+ "repaired_by_split": {
+  "extrap": 981,
+  "heldout": 222,
+  "none": 1280,
+  "ref": 14,
+  "test": 210,
+  "train": 100,
+  "val": 107
+ },
+ "repair_rel_gain_max": 0.05648492563081596,
+ "n_crossover_windows_scored": 1424,
+ "gate": {
+  "n_checked": 4746,
+  "n_window": 3855,
+  "n_random": 1000,
+  "worse_than_cold": [],
+  "max_cold_gain_repaired": 3.794042325951744e-13,
+  "max_cold_gain_original": 0.0007467056852837043,
+  "n_original_worse": 77
+ },
+ "ref_gate": {
+  "n": 263,
+  "worse": 0,
+  "min_rel": -9.468724365096346e-13
+ },
+ "gate_pass": true
+}
+crossovers after repair: 27; wrote results/qml_repair_b983055317_9dd20e4718fe

@@ -1,0 +1,6 @@
+devices [CudaDevice(id=0)] x64 float64
+[final] sparse PQC-full s4 (8, 6): train 60s loss 3.969e-03 on gpu
+[final] sparse PQC-product s4 (6, 6): train 30s loss 6.787e-03 on gpu
+[final] sparse NN-tuned s4 12: train 1s loss 1.103e-03 on gpu
+[final] sparse NN-matched s4 12: train 1s loss 1.103e-03 on gpu
+[final] sparse RFF-ridge s4: lambda 1e-10

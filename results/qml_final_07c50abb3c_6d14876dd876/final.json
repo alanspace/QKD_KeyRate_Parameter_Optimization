@@ -1,0 +1,1160 @@
+{
+ "stamp": {
+  "git_commit": "07c50abb3c",
+  "git_branch": "qml-surrogate",
+  "qml_uncommitted_changes": true,
+  "config_hash": "6d14876dd876",
+  "python": "3.13.3",
+  "env": "/Users/daai6ga1hou2/Documents/GitHub/QBAI_Code_Workspace/QKD/QKD_qml_surrogate_wt/.venv-qml",
+  "packages": {
+   "jax": "0.10.2",
+   "jaxlib": "0.10.2",
+   "pennylane": "0.45.1",
+   "pennylane_lightning": "0.45.0",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "qiskit": "2.1.2",
+   "qiskit-aer": "0.17.2",
+   "iqm-client": "36.0.0"
+  },
+  "cpu": "Apple M2 Pro",
+  "machine": "arm64",
+  "os": "macOS-15.6-arm64-arm-64bit-Mach-O",
+  "n_cpu": 12,
+  "power": {
+   "source": "AC",
+   "battery_percent": 71,
+   "battery_state": "charging",
+   "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+   "caffeinate_running": true
+  }
+ },
+ "config": {
+  "script": "qml/train.py final (assembled from parts)",
+  "labels": "labels_0d8bef1402_9fa16da52f39.npz",
+  "selection": "results/qml_select_7218993cb5_feab976f711d/selection.json",
+  "selected": {
+   "PQC-full": 5,
+   "PQC-product": 4,
+   "NN": 5,
+   "RFF-ridge": 3
+  },
+  "E": 2000,
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "variants": [
+   "dense",
+   "sparse"
+  ],
+  "n_query": 45500
+ },
+ "variants": {
+  "dense": {
+   "n_train": 4727,
+   "lo": [
+    0.22825238787222704,
+    0.08664685237372427,
+    1e-10,
+    0.46557626599311447,
+    1e-10
+   ],
+   "hi": [
+    0.535164345151702,
+    0.4925456731990643,
+    0.9745869080039042,
+    0.741409207501205,
+    0.9999999999
+   ],
+   "runs": [
+    {
+     "model": "PQC-full",
+     "seed": 0,
+     "variant": "dense",
+     "config": [
+      8,
+      6
+     ],
+     "config_index": 5,
+     "n_params": 240,
+     "train_s": 1196.0,
+     "final_loss": 0.0037867945497232934,
+     "device": {
+      "backend": "cpu",
+      "devices": [
+       "Apple M2 Pro CPU (stopped run 2026-11-06 14:02-14:36)"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000,
+     "imported_from_cpu_run": true
+    },
+    {
+     "model": "PQC-product",
+     "seed": 0,
+     "variant": "dense",
+     "config": [
+      6,
+      6
+     ],
+     "config_index": 4,
+     "n_params": 180,
+     "train_s": 224.0,
+     "final_loss": 0.00588511235970461,
+     "device": {
+      "backend": "cpu",
+      "devices": [
+       "Apple M2 Pro CPU (stopped run 2026-11-06 14:02-14:36)"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000,
+     "imported_from_cpu_run": true
+    },
+    {
+     "model": "NN-tuned",
+     "seed": 0,
+     "variant": "dense",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 2.0,
+     "final_loss": 0.001701472801075408,
+     "device": {
+      "backend": "cpu",
+      "devices": [
+       "Apple M2 Pro CPU (stopped run 2026-11-06 14:02-14:36)"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000,
+     "imported_from_cpu_run": true
+    },
+    {
+     "model": "NN-matched",
+     "seed": 0,
+     "variant": "dense",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 2.0,
+     "final_loss": 0.001701472801075408,
+     "device": {
+      "backend": "cpu",
+      "devices": [
+       "Apple M2 Pro CPU (stopped run 2026-11-06 14:02-14:36)"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000,
+     "imported_from_cpu_run": true
+    },
+    {
+     "model": "RFF-ridge",
+     "seed": 0,
+     "variant": "dense",
+     "config": [
+      5,
+      6
+     ],
+     "config_index": 3,
+     "n_params": 145,
+     "lam": null,
+     "D2": 14,
+     "train_s": null,
+     "device": {
+      "backend": "cpu",
+      "devices": [
+       "Apple M2 Pro CPU (stopped run 2026-11-06 14:02-14:36)"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000,
+     "imported_from_cpu_run": true,
+     "note": "lambda not saved by the stopped run"
+    },
+    {
+     "model": "PQC-full",
+     "seed": 1,
+     "variant": "dense",
+     "config": [
+      8,
+      6
+     ],
+     "config_index": 5,
+     "n_params": 240,
+     "train_s": 163.70918783172965,
+     "final_loss": 0.004365583050212086,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-product",
+     "seed": 1,
+     "variant": "dense",
+     "config": [
+      6,
+      6
+     ],
+     "config_index": 4,
+     "n_params": 180,
+     "train_s": 47.878217143937945,
+     "final_loss": 0.008104746181072939,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-tuned",
+     "seed": 1,
+     "variant": "dense",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 3.6230886969715357,
+     "final_loss": 0.0024195439129466164,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-matched",
+     "seed": 1,
+     "variant": "dense",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 0.7130249608308077,
+     "final_loss": 0.0024195439129466164,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "RFF-ridge",
+     "seed": 1,
+     "variant": "dense",
+     "config": [
+      5,
+      6
+     ],
+     "config_index": 3,
+     "n_params": 145,
+     "lam": 1e-10,
+     "D2": 14,
+     "train_s": 35.346773406490684,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-full",
+     "seed": 2,
+     "variant": "dense",
+     "config": [
+      8,
+      6
+     ],
+     "config_index": 5,
+     "n_params": 240,
+     "train_s": 164.53558787796646,
+     "final_loss": 0.0038095991802886693,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-product",
+     "seed": 2,
+     "variant": "dense",
+     "config": [
+      6,
+      6
+     ],
+     "config_index": 4,
+     "n_params": 180,
+     "train_s": 47.793374076485634,
+     "final_loss": 0.004298790107589082,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-tuned",
+     "seed": 2,
+     "variant": "dense",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 3.383866121992469,
+     "final_loss": 0.0015433840368769907,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-matched",
+     "seed": 2,
+     "variant": "dense",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 0.7280393950641155,
+     "final_loss": 0.0015433840368769907,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "RFF-ridge",
+     "seed": 2,
+     "variant": "dense",
+     "config": [
+      5,
+      6
+     ],
+     "config_index": 3,
+     "n_params": 145,
+     "lam": 1e-06,
+     "D2": 14,
+     "train_s": 35.72338203061372,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-full",
+     "seed": 3,
+     "variant": "dense",
+     "config": [
+      8,
+      6
+     ],
+     "config_index": 5,
+     "n_params": 240,
+     "train_s": 164.23048068769276,
+     "final_loss": 0.005668468842386017,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-product",
+     "seed": 3,
+     "variant": "dense",
+     "config": [
+      6,
+      6
+     ],
+     "config_index": 4,
+     "n_params": 180,
+     "train_s": 51.87031119130552,
+     "final_loss": 0.008354759025363808,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-tuned",
+     "seed": 3,
+     "variant": "dense",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 3.2349727656692266,
+     "final_loss": 0.0019288881997418007,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-matched",
+     "seed": 3,
+     "variant": "dense",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 0.7829869836568832,
+     "final_loss": 0.0019288881997418007,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "RFF-ridge",
+     "seed": 3,
+     "variant": "dense",
+     "config": [
+      5,
+      6
+     ],
+     "config_index": 3,
+     "n_params": 145,
+     "lam": 1e-10,
+     "D2": 14,
+     "train_s": 38.17463410645723,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-full",
+     "seed": 4,
+     "variant": "dense",
+     "config": [
+      8,
+      6
+     ],
+     "config_index": 5,
+     "n_params": 240,
+     "train_s": 157.4448249740526,
+     "final_loss": 0.003919461579123418,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-product",
+     "seed": 4,
+     "variant": "dense",
+     "config": [
+      6,
+      6
+     ],
+     "config_index": 4,
+     "n_params": 180,
+     "train_s": 47.54738211911172,
+     "final_loss": 0.007063267203134395,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-tuned",
+     "seed": 4,
+     "variant": "dense",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 1.5239981366321445,
+     "final_loss": 0.0012708619568369917,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-matched",
+     "seed": 4,
+     "variant": "dense",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 0.7302499413490295,
+     "final_loss": 0.0012708619568369917,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "RFF-ridge",
+     "seed": 4,
+     "variant": "dense",
+     "config": [
+      5,
+      6
+     ],
+     "config_index": 3,
+     "n_params": 145,
+     "lam": 1e-10,
+     "D2": 14,
+     "train_s": 35.83625100925565,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    }
+   ],
+   "lookup_nodes": {
+    "lookup_2D": 4727,
+    "lookup_nX": 4727
+   }
+  },
+  "sparse": {
+   "n_train": 940,
+   "lo": [
+    0.22826167223087157,
+    0.09061302673823257,
+    1e-10,
+    0.46557664267883697,
+    1e-10
+   ],
+   "hi": [
+    0.5351635011190979,
+    0.4921851118931999,
+    0.9722867656373833,
+    0.7414091732570484,
+    0.9999999999
+   ],
+   "runs": [
+    {
+     "model": "PQC-full",
+     "seed": 0,
+     "variant": "sparse",
+     "config": [
+      8,
+      6
+     ],
+     "config_index": 5,
+     "n_params": 240,
+     "train_s": 66.54655692493543,
+     "final_loss": 0.003262188626252981,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-product",
+     "seed": 0,
+     "variant": "sparse",
+     "config": [
+      6,
+      6
+     ],
+     "config_index": 4,
+     "n_params": 180,
+     "train_s": 30.8740822696127,
+     "final_loss": 0.005034396878193389,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-tuned",
+     "seed": 0,
+     "variant": "sparse",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 3.312408805359155,
+     "final_loss": 0.0011749246448876937,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-matched",
+     "seed": 0,
+     "variant": "sparse",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 0.7210961319506168,
+     "final_loss": 0.0011749246448876937,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "RFF-ridge",
+     "seed": 0,
+     "variant": "sparse",
+     "config": [
+      5,
+      6
+     ],
+     "config_index": 3,
+     "n_params": 145,
+     "lam": 1e-10,
+     "D2": 14,
+     "train_s": 25.889177358709276,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-full",
+     "seed": 1,
+     "variant": "sparse",
+     "config": [
+      8,
+      6
+     ],
+     "config_index": 5,
+     "n_params": 240,
+     "train_s": 65.96506230346859,
+     "final_loss": 0.003006690326848247,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-product",
+     "seed": 1,
+     "variant": "sparse",
+     "config": [
+      6,
+      6
+     ],
+     "config_index": 4,
+     "n_params": 180,
+     "train_s": 32.61031161248684,
+     "final_loss": 0.00511043989666175,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-tuned",
+     "seed": 1,
+     "variant": "sparse",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 1.7821203544735909,
+     "final_loss": 0.0016387973425158748,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-matched",
+     "seed": 1,
+     "variant": "sparse",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 0.7745622918009758,
+     "final_loss": 0.0016387973425158748,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "RFF-ridge",
+     "seed": 1,
+     "variant": "sparse",
+     "config": [
+      5,
+      6
+     ],
+     "config_index": 3,
+     "n_params": 145,
+     "lam": 1e-10,
+     "D2": 14,
+     "train_s": 27.223661912605166,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-full",
+     "seed": 2,
+     "variant": "sparse",
+     "config": [
+      8,
+      6
+     ],
+     "config_index": 5,
+     "n_params": 240,
+     "train_s": 65.59930637711659,
+     "final_loss": 0.0027938478509399807,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-product",
+     "seed": 2,
+     "variant": "sparse",
+     "config": [
+      6,
+      6
+     ],
+     "config_index": 4,
+     "n_params": 180,
+     "train_s": 30.29900968167931,
+     "final_loss": 0.0031291905538222285,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-tuned",
+     "seed": 2,
+     "variant": "sparse",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 3.6453317729756236,
+     "final_loss": 0.0012468569093026178,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-matched",
+     "seed": 2,
+     "variant": "sparse",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 0.7030361611396074,
+     "final_loss": 0.0012468569093026178,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "RFF-ridge",
+     "seed": 2,
+     "variant": "sparse",
+     "config": [
+      5,
+      6
+     ],
+     "config_index": 3,
+     "n_params": 145,
+     "lam": 1e-10,
+     "D2": 14,
+     "train_s": 24.83373535471037,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-full",
+     "seed": 3,
+     "variant": "sparse",
+     "config": [
+      8,
+      6
+     ],
+     "config_index": 5,
+     "n_params": 240,
+     "train_s": 66.0081671809312,
+     "final_loss": 0.0031174221459006747,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-product",
+     "seed": 3,
+     "variant": "sparse",
+     "config": [
+      6,
+      6
+     ],
+     "config_index": 4,
+     "n_params": 180,
+     "train_s": 29.850438667926937,
+     "final_loss": 0.01618369573247855,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-tuned",
+     "seed": 3,
+     "variant": "sparse",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 2.286520587047562,
+     "final_loss": 0.0012385253574264165,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-matched",
+     "seed": 3,
+     "variant": "sparse",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 0.6971785388886929,
+     "final_loss": 0.0012385253574264165,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "RFF-ridge",
+     "seed": 3,
+     "variant": "sparse",
+     "config": [
+      5,
+      6
+     ],
+     "config_index": 3,
+     "n_params": 145,
+     "lam": 1e-10,
+     "D2": 14,
+     "train_s": 25.153879572171718,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-full",
+     "seed": 4,
+     "variant": "sparse",
+     "config": [
+      8,
+      6
+     ],
+     "config_index": 5,
+     "n_params": 240,
+     "train_s": 60.05432427302003,
+     "final_loss": 0.0039687771871250825,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "PQC-product",
+     "seed": 4,
+     "variant": "sparse",
+     "config": [
+      6,
+      6
+     ],
+     "config_index": 4,
+     "n_params": 180,
+     "train_s": 29.585476174019277,
+     "final_loss": 0.00678692806956657,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-tuned",
+     "seed": 4,
+     "variant": "sparse",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 1.4507393359672278,
+     "final_loss": 0.0011034249070546638,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "NN-matched",
+     "seed": 4,
+     "variant": "sparse",
+     "config": 12,
+     "config_index": 5,
+     "n_params": 257,
+     "train_s": 0.7333524890709668,
+     "final_loss": 0.0011034249070546638,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    },
+    {
+     "model": "RFF-ridge",
+     "seed": 4,
+     "variant": "sparse",
+     "config": [
+      5,
+      6
+     ],
+     "config_index": 3,
+     "n_params": 145,
+     "lam": 1e-10,
+     "D2": 14,
+     "train_s": 25.492517153033987,
+     "device": {
+      "backend": "gpu",
+      "devices": [
+       "cuda:0"
+      ],
+      "jax": "0.10.2",
+      "x64": true
+     },
+     "E": 2000
+    }
+   ],
+   "lookup_nodes": {
+    "lookup_2D": 940,
+    "lookup_nX": 940
+   }
+  }
+ }
+}

@@ -1,0 +1,28 @@
+### test_qml_main
+....
+----------------------------------------------------------------------
+Ran 4 tests in 3.009s
+
+OK
+### qml models + qiskit rebuild
+.
+----------------------------------------------------------------------
+Ran 3 tests in 17.738s
+
+OK
+### iqm rebuild --check (trained weights)
+[check] trained PQC-full: max |<Z>_pennylane - <Z>_qiskit| = 1.22e-15 over 20 inputs
+[check] trained PQC-product: max |<Z>_pennylane - <Z>_qiskit| = 1.33e-15 over 20 inputs
+[check] Addition C: PASS (worst 1.33e-15, limit 1e-10)
+{
+ "check_ok": true
+}
+### full discover
+
+[independent] eps fixed-point max residual: 3.819e-15
+
+[independent] fixed-eps max relative difference over 360 evaluations: 1.016e-13
+
+[independent] greatest-root check: 20 points, max relative eps difference 6.573e-13
+
+[independent] near-horizon (18 points) max relative difference in l: 7.821e-13

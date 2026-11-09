@@ -1,0 +1,114 @@
+{
+ "stamp": {
+  "git_commit": "35aba07eec",
+  "git_branch": "qml-surrogate",
+  "qml_uncommitted_changes": true,
+  "config_hash": "23413b61099e",
+  "python": "3.13.3",
+  "env": "/Users/daai6ga1hou2/Documents/GitHub/QBAI_Code_Workspace/QKD/QKD_qml_surrogate_wt/.venv-qml",
+  "packages": {
+   "jax": "0.10.2",
+   "jaxlib": "0.10.2",
+   "pennylane": "0.45.1",
+   "pennylane_lightning": "0.45.0",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1",
+   "qiskit": "2.1.2",
+   "qiskit-aer": "0.17.2",
+   "iqm-client": "36.0.0"
+  },
+  "cpu": "Apple M2 Pro",
+  "machine": "arm64",
+  "os": "macOS-15.6-arm64-arm-64bit-Mach-O",
+  "n_cpu": 12,
+  "power": {
+   "source": "AC",
+   "battery_percent": 83,
+   "battery_state": "charging",
+   "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+   "caffeinate_running": true
+  }
+ },
+ "config": {
+  "script": "qml/train.py latency",
+  "final": "results/qml_final_07c50abb3c_6d14876dd876/final.json",
+  "reps": 300,
+  "batch": 1024,
+  "allow_battery": false
+ },
+ "power_at_start": {
+  "source": "AC",
+  "battery_percent": 83,
+  "battery_state": "charging",
+  "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+  "caffeinate_running": true
+ },
+ "models": {
+  "PQC-full": {
+   "config": [
+    8,
+    6
+   ],
+   "backend": "default.qubit (analytic), jitted",
+   "circuits_per_prediction": 1,
+   "shots": 0,
+   "batch1_device_us": 278.937,
+   "batch1_end_to_end_us": 298.1045,
+   "batch1024_s": 0.048028604,
+   "throughput_per_s": 21320.628015754944
+  },
+  "PQC-product": {
+   "config": [
+    6,
+    6
+   ],
+   "backend": "default.qubit (analytic), jitted",
+   "circuits_per_prediction": 1,
+   "shots": 0,
+   "batch1_device_us": 104.8545,
+   "batch1_end_to_end_us": 119.8335,
+   "batch1024_s": 0.006923729,
+   "throughput_per_s": 147897.18083997798
+  },
+  "NN-tuned": {
+   "config": 12,
+   "backend": "JAX MLP, jitted",
+   "circuits_per_prediction": 0,
+   "shots": null,
+   "batch1_device_us": 6.125,
+   "batch1_end_to_end_us": 18.458,
+   "batch1024_s": 0.0001095215,
+   "throughput_per_s": 9349762.375424003
+  },
+  "NN-matched": {
+   "config": 12,
+   "backend": "JAX MLP, jitted",
+   "circuits_per_prediction": 0,
+   "shots": null,
+   "batch1_device_us": 6.083,
+   "batch1_end_to_end_us": 18.042,
+   "batch1024_s": 0.000121729,
+   "throughput_per_s": 8412128.580699751
+  },
+  "RFF-ridge": {
+   "backend": "JAX, jitted",
+   "batch1_device_us": 6.75,
+   "batch1_end_to_end_us": 19.917,
+   "batch1024_s": 0.000199875,
+   "throughput_per_s": 5123202.001250782
+  },
+  "lookup-2D": {
+   "backend": "JAX, jitted (padded rows)",
+   "batch1_device_us": 24.209,
+   "batch1_end_to_end_us": 38.25,
+   "batch1024_s": 0.001866979,
+   "throughput_per_s": 548479.6561718156
+  }
+ },
+ "lookup_2D_jax_vs_numpy_max_abs": 1.1102230246251565e-16,
+ "pqc_shots_estimate": {
+  "eps_0.01": 9712.586342684399,
+  "eps_0.001": 971258.6342684398,
+  "eps_0.0001": 97125863.42684399
+ }
+}

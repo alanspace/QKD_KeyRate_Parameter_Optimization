@@ -837,3 +837,85 @@ Consequences:
   - QML numbers: certify_final against the repaired labels (results/qml_certify_final_b983055317_6518a9e98390) changes
     the test_bulk median regrets by <= 2.6 % relative per seed (dense PQC-full mean over 5 seeds 5.995e-3 -> 5.997e-3);
     test_tail medians unchanged. Of the 21 points, 6 are test, 1 train, 1 val, 8 heldout, 5 unused (none ref).
+
+10f. Steps A-D finished: final training, certification, label repair, results (2026-11-08 .. 2026-11-09; qml-surrogate)
+-----------------------------------------------------------------------------------------------------------------------
+HEADLINE. The classical models win on every criterion. Kill criterion (dense PQC-full median test_bulk regret,
+  mean over 5 seeds, above 1e-2 = negative result): NOT MET, 6.00e-3 +- 2.72e-3 (repaired labels; 6.00e-3 against the
+  original labels). Usefulness (Section 7; definitions post hoc, in RESULTS.md): no trained model meets (b) "beats
+  lookup-2D at <= 10x its latency", and no trained model meets (i) or (ii) "the hybrid reaches the cold- / warm-solve
+  class faster", for either test split. Ranking on test_bulk: lookup-2D 2.4e-12 < NN 9.5e-4 < PQC-full 6.0e-3 <
+  PQC-product 1.4e-2 < RFF-ridge 3.2e-2. No quantum advantage is claimed (stated twice in qml/RESULTS.md).
+
+A. Final training on CINECA Leonardo (Amendment 5). Booster A100, debug QOS (30 min, 2 running / 4 queued).
+  Jobs 63912030_0, 63975169_1-3, 63979286_4-6, 63980051_7-8 (dense s1-s4, sparse s0-s4); 3-12 min each.
+  Every log shows devices [CudaDevice(id=0)] x64 float64 and "on gpu"; every part's meta.device.backend is gpu
+  (45 parts) except the 5 dense s0 CPU parts. 50/50 parts, SHA-256 equal on Leonardo and the Mac.
+  Training time (never pooled): PQC-full CPU s0 1196 s vs A100 162.5 +- 3.4 s; PQC-product 224 s vs 48.8 +- 2.1 s;
+  NN 2.0 s vs 2.9 +- 1.0 s.
+  Allocation AIFAC_P02_1031: billing = cores (a GPU adds nothing; full node = 32). This study plus the DA dataset
+  billed 48.2 core-hours (sacct; QML 8.6, DA 39.6), 0.12 % of 40,000; saldo had not yet updated (615).
+B. assemble: results/qml_final_07c50abb3c_6d14876dd876 (54 prediction sets).
+  certify_final against the original labels: results/qml_certify_final_a9ef3e3082_18624ccd048e.
+  The first two attempts were OOM-killed / swapping: one optimize_batch call on all 21,137 points (global stage
+  ~30 MB per point at 2^12 Sobol). Fixed in qml/cold.py (slices of 200 points at 2^12, 100 at 2^14; padded last
+  slice; per-slice progress); sliced == unsliced to <= 4e-13. Peak footprint 11.0 GB.
+C. Amendment 4 repair: results/qml_repair_b983055317_9dd20e4718fe, labels qml/data/repaired/labels_repaired_
+  b983055317_9dd20e4718fe.npz. n_repaired 2914 (339 with gains > 1e-3 are all no-key points beyond the horizon,
+  unscored; with a key: 98, max gain 7.47e-4); gate 4,746 cold solves, 0 repaired labels worse, gate_pass true;
+  reference gate 263, 0 worse. Crossovers 13 -> 27; all 9 switches of final_report.tex's table are present.
+  The 77 known sub-optimal labels (STATUS 10d 58 + 11(c) 19) were re-derived independently (exactly 77) and all pass:
+  |repaired - cold| <= 7.2e-15 (results/qml_suboptcheck_b983055317_f5d7b9715fea). Scored count unchanged (46,116).
+  certify_final against the repaired labels: results/qml_certify_final_b983055317_6518a9e98390 (primary).
+D. qml/RESULTS.md, result_report/generated_numbers_qml.tex (267 macros), results/NUMBERS_qml.md; all from the primary
+  certification. report.py / make_numbers_qml.py had never run on real outputs; fixed: certification chosen by label
+  file (not date), training time per hardware, NN-tuned = NN-matched reported once, crossover count from the repaired
+  list, cliff_edge wording (7 reference flags = 5 distinct points, all tail), neighbour distance per test split
+  (bulk 0.25 / 0.375 km, tail 0.0625 / 0.094 km, as registered).
+
+STATUS 12 caveat. Cold-solve agreement is a one-sided lower-bound check: at 21 label points a warm sweep beats the
+  2^14-Sobol/top-16 cold solve, by up to 3.74e-4. Only ONE of the 21 enters a reported test number: n_X 1e4 at
+  117.844 km (test_tail; label improved by 6.2e-6 by the repair; dense PQC-full regret 0.23 there). 13 lie in
+  crossover windows (excluded from the test/ref/heldout/extrap groups), 7 are not scored. Original vs repaired labels
+  changes the test_bulk medians by <= 2.6 % per seed; test_tail unchanged.
+
+Re-timing (supersedes the noisy runs). qml/retime.py, results/qml_retime_35aba07eec_431340851504: AC power, macOS
+  Low Power Mode off, 1-min load 1.54 before, no other job; certify's timing code on the same 50 points, 5 full passes.
+  Batch-1 end-to-end median (min-max over passes): k=1 844 (827-854) us, k=2 1307 (1304-1314), k=3 1765 (1758-1768),
+  cold 28,736 (28,556-29,075), warm 1499 (1492-1545). Each Newton step adds ~460 us over ~380 us fixed overhead;
+  k3/k2 = 1.35 in every pass. The 4.7x k3/k2 in the repaired-label certification run was noise. Surrogate latency
+  re-measured in the same window (results/qml_latency_35aba07eec_23413b61099e): PQC-full 298 us, PQC-product 120,
+  NN 18.5, RFF 19.9, lookup-2D 38.2. The batch-1 timings inside the two certification runs (single passes during heavy
+  jobs; up to ~2x apart) are kept in RESULTS.md as a caveat only. No usefulness verdict changes with either set.
+  A battery attempt (owner's permission, then withdrawn) measured nothing: logs in results/logs_qml/discarded/.
+
+RFF-ridge seed spread, resolved (qml/diag_rff_seeds.py, results/qml_rffdiag_a08b8d5e0b_eba620de9c21). Dense seed 1
+  (test_bulk 9.4e-2 vs 5.7e-3 .. 3.8e-2) drew mostly high frequencies (median |frequency| 2.74 vs 1.08-1.88) among its
+  14 random features and underfits: train MSE = val MSE = 4.3e-2, 3.7-12.7x the other seeds; val MSE flat over the
+  lambda grid (lambda 1e-10, as seeds 3 and 4); F^T F well conditioned. In both variants the seed ranking by
+  training MSE equals the ranking by test regret. A property of the preregistered 14-feature construction, not a
+  failure of one run; seed 1 stays in the mean +- sd.
+
+Figures (slide decks dropped by the owner on 2026-11-09; reused as paper figures): regret CDFs (dense, sparse),
+  showcase_predictions, params_across_distance, params_by_blocksize (repaired labels; marks the 10^5 132.7 km switch),
+  pqc_circuit_8q_labelled. Fixed: clipped panel title, legend/stamp overlap, lookup-nX drawn dashed over lookup-2D.
+
+main: final_report.tex corrected and pushed (9300965): at least ten below-horizon switches, 10^5 at 132.72-132.75 km,
+  cold-solve lower-bound caveat. The DA dataset result (results/da_dataset_lim/ on the main checkout) is held for
+  Appendix A on main.
+
+Tests (Step F; 2026-11-09, AC):
+  All 9 test modules by name (main .venv): "Ran 41 tests in 388.250s / OK (skipped=3)"
+    (results/logs_qml/tests_all_modules_20261109_211517.log). The 3 skips are the PennyLane/Qiskit tests.
+  .venv-qml: tests.qml.test_qml_models + tests.qml.test_qiskit_rebuild "Ran 3 tests / OK"; tests.qml.test_qml_main
+    "Ran 4 tests / OK"; qml/iqm/rebuild.py --check on the TRAINED weights: Addition C PASS (worst 1.33e-15, limit 1e-10).
+  `python -m unittest discover tests` (the CI command, .github/workflows/ci.yml): "Ran 38 tests / FAILED (errors=1,
+    skipped=3)" (results/logs_qml/tests_discover_20261109_210714.log). The error is a load failure, not a failing
+    test: discover makes tests/ the top-level directory, so tests/qml/ is imported as the package `qml` and shadows
+    the repository's qml/ ("cannot import name 'common' from 'qml' (tests/qml/__init__.py)"). Present since d70559d,
+    when tests/qml/ was added; CI on this branch would fail the same way. `discover -s tests -t .` does not work
+    either (tests/ has no __init__.py). Not changed here (CI config and the existing test layout are outside qml/);
+    open item for the owner: rename tests/qml, or change the CI command.
+
+Open items: the discover/CI collision above; the 45 GPU parts (qml/data/final_parts, ~78 MB) are not committed
+  (the 5 dense s0 parts are); Appendix A of final_report.tex (DA dataset) on main, with the owner's approval.

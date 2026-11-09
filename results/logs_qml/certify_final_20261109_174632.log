@@ -1,0 +1,162 @@
+[final] dense__PQC-full__s0: test_bulk median 2.76e-03 tail 3.62e-02
+[final] dense__PQC-product__s0: test_bulk median 1.07e-02 tail 5.44e-02
+[final] dense__NN-tuned__s0: test_bulk median 4.42e-04 tail 7.12e-03
+[final] dense__NN-matched__s0: test_bulk median 4.42e-04 tail 7.12e-03
+[final] dense__RFF-ridge__s0: test_bulk median 8.74e-03 tail 3.84e-02
+[final] dense__PQC-full__s1: test_bulk median 6.45e-03 tail 4.47e-02
+[final] dense__PQC-product__s1: test_bulk median 8.08e-03 tail 4.48e-02
+[final] dense__NN-tuned__s1: test_bulk median 2.36e-03 tail 2.56e-02
+[final] dense__NN-matched__s1: test_bulk median 2.36e-03 tail 2.56e-02
+[final] dense__RFF-ridge__s1: test_bulk median 9.42e-02 tail 3.30e-01
+[final] dense__PQC-full__s2: test_bulk median 4.69e-03 tail 4.28e-02
+[final] dense__PQC-product__s2: test_bulk median 8.32e-03 tail 4.37e-02
+[final] dense__NN-tuned__s2: test_bulk median 6.13e-04 tail 5.63e-03
+[final] dense__NN-matched__s2: test_bulk median 6.13e-04 tail 5.63e-03
+[final] dense__RFF-ridge__s2: test_bulk median 5.70e-03 tail 4.25e-02
+[final] dense__PQC-full__s3: test_bulk median 1.01e-02 tail 6.77e-02
+[final] dense__PQC-product__s3: test_bulk median 2.72e-02 tail 8.82e-02
+[final] dense__NN-tuned__s3: test_bulk median 7.70e-04 tail 1.28e-02
+[final] dense__NN-matched__s3: test_bulk median 7.70e-04 tail 1.28e-02
+[final] dense__RFF-ridge__s3: test_bulk median 1.09e-02 tail 6.10e-02
+[final] dense__PQC-full__s4: test_bulk median 5.96e-03 tail 4.20e-02
+[final] dense__PQC-product__s4: test_bulk median 1.72e-02 tail 6.67e-02
+[final] dense__NN-tuned__s4: test_bulk median 5.52e-04 tail 7.05e-03
+[final] dense__NN-matched__s4: test_bulk median 5.52e-04 tail 7.05e-03
+[final] dense__RFF-ridge__s4: test_bulk median 3.79e-02 tail 1.13e-01
+[final] dense__lookup-2D__s0: test_bulk median 2.44e-12 tail 1.08e-09
+[final] dense__lookup-nX__s0: test_bulk median 2.44e-12 tail 1.08e-09
+[final] sparse__PQC-full__s0: test_bulk median 3.20e-03 tail 7.85e-02
+[final] sparse__PQC-product__s0: test_bulk median 8.29e-03 tail 1.01e-01
+[final] sparse__NN-tuned__s0: test_bulk median 5.82e-04 tail 1.48e-02
+[final] sparse__NN-matched__s0: test_bulk median 5.82e-04 tail 1.48e-02
+[final] sparse__RFF-ridge__s0: test_bulk median 2.65e-03 tail 6.13e-02
+[final] sparse__PQC-full__s1: test_bulk median 3.02e-03 tail 8.09e-02
+[final] sparse__PQC-product__s1: test_bulk median 6.59e-03 tail 7.59e-02
+[final] sparse__NN-tuned__s1: test_bulk median 8.34e-04 tail 2.93e-02
+[final] sparse__NN-matched__s1: test_bulk median 8.34e-04 tail 2.93e-02
+[final] sparse__RFF-ridge__s1: test_bulk median 6.44e-02 tail 5.69e-01
+[final] sparse__PQC-full__s2: test_bulk median 1.69e-03 tail 6.74e-02
+[final] sparse__PQC-product__s2: test_bulk median 4.29e-03 tail 6.53e-02
+[final] sparse__NN-tuned__s2: test_bulk median 5.52e-04 tail 1.60e-02
+[final] sparse__NN-matched__s2: test_bulk median 5.52e-04 tail 1.60e-02
+[final] sparse__RFF-ridge__s2: test_bulk median 6.14e-03 tail 7.66e-02
+[final] sparse__PQC-full__s3: test_bulk median 4.81e-03 tail 7.40e-02
+[final] sparse__PQC-product__s3: test_bulk median 5.96e-02 tail 1.36e-01
+[final] sparse__NN-tuned__s3: test_bulk median 2.90e-04 tail 2.57e-02
+[final] sparse__NN-matched__s3: test_bulk median 2.90e-04 tail 2.57e-02
+[final] sparse__RFF-ridge__s3: test_bulk median 3.39e-02 tail 4.70e-01
+[final] sparse__PQC-full__s4: test_bulk median 4.49e-03 tail 8.53e-02
+[final] sparse__PQC-product__s4: test_bulk median 1.05e-02 tail 7.63e-02
+[final] sparse__NN-tuned__s4: test_bulk median 4.51e-04 tail 1.90e-02
+[final] sparse__NN-matched__s4: test_bulk median 4.51e-04 tail 1.90e-02
+[final] sparse__RFF-ridge__s4: test_bulk median 1.35e-02 tail 9.04e-02
+[final] sparse__lookup-2D__s0: test_bulk median 3.45e-10 tail 3.46e-05
+[final] sparse__lookup-nX__s0: test_bulk median 3.45e-10 tail 3.46e-05
+[cold] slice 1/106 (200 pts): 31.9s, elapsed 32s, est. remaining n/a
+[cold] slice 2/106 (200 pts): 5.7s, elapsed 38s, est. remaining 595s
+[cold] slice 3/106 (200 pts): 7.6s, elapsed 45s, est. remaining 686s
+[cold] slice 4/106 (200 pts): 27.2s, elapsed 72s, est. remaining 1377s
+[cold] slice 5/106 (200 pts): 5.2s, elapsed 78s, est. remaining 1153s
+[cold] slice 6/106 (200 pts): 3.9s, elapsed 81s, est. remaining 992s
+[cold] slice 7/106 (200 pts): 4.5s, elapsed 86s, est. remaining 892s
+[cold] slice 8/106 (200 pts): 24.9s, elapsed 111s, est. remaining 1105s
+[cold] slice 9/106 (200 pts): 4.7s, elapsed 116s, est. remaining 1014s
+[cold] slice 10/106 (200 pts): 3.7s, elapsed 119s, est. remaining 931s
+[cold] slice 11/106 (200 pts): 4.1s, elapsed 123s, est. remaining 868s
+[cold] slice 12/106 (200 pts): 23.7s, elapsed 147s, est. remaining 983s
+[cold] slice 13/106 (200 pts): 4.3s, elapsed 151s, est. remaining 925s
+[cold] slice 14/106 (200 pts): 3.8s, elapsed 155s, est. remaining 871s
+[cold] slice 15/106 (200 pts): 3.7s, elapsed 159s, est. remaining 825s
+[cold] slice 16/106 (200 pts): 5.8s, elapsed 165s, est. remaining 796s
+[cold] slice 17/106 (200 pts): 22.5s, elapsed 187s, est. remaining 863s
+[cold] slice 18/106 (200 pts): 5.2s, elapsed 192s, est. remaining 830s
+[cold] slice 19/106 (200 pts): 3.5s, elapsed 196s, est. remaining 792s
+[cold] slice 20/106 (200 pts): 4.0s, elapsed 200s, est. remaining 759s
+[cold] slice 21/106 (200 pts): 21.9s, elapsed 222s, est. remaining 806s
+[cold] slice 22/106 (200 pts): 5.5s, elapsed 227s, est. remaining 781s
+[cold] slice 23/106 (200 pts): 3.5s, elapsed 231s, est. remaining 750s
+[cold] slice 24/106 (200 pts): 4.1s, elapsed 235s, est. remaining 723s
+[cold] slice 25/106 (200 pts): 5.3s, elapsed 240s, est. remaining 702s
+[cold] slice 26/106 (200 pts): 21.4s, elapsed 261s, est. remaining 734s
+[cold] slice 27/106 (200 pts): 5.1s, elapsed 266s, est. remaining 713s
+[cold] slice 28/106 (200 pts): 3.6s, elapsed 270s, est. remaining 688s
+[cold] slice 29/106 (200 pts): 4.0s, elapsed 274s, est. remaining 666s
+[cold] slice 30/106 (200 pts): 6.5s, elapsed 280s, est. remaining 651s
+[cold] slice 31/106 (200 pts): 3.4s, elapsed 284s, est. remaining 630s
+[cold] slice 32/106 (200 pts): 3.3s, elapsed 287s, est. remaining 609s
+[cold] slice 33/106 (200 pts): 3.7s, elapsed 291s, est. remaining 591s
+[cold] slice 34/106 (200 pts): 4.1s, elapsed 295s, est. remaining 574s
+[cold] slice 35/106 (200 pts): 7.1s, elapsed 302s, est. remaining 564s
+[cold] slice 36/106 (200 pts): 3.1s, elapsed 305s, est. remaining 546s
+[cold] slice 37/106 (200 pts): 3.9s, elapsed 309s, est. remaining 531s
+[cold] slice 38/106 (200 pts): 3.7s, elapsed 313s, est. remaining 516s
+[cold] slice 39/106 (200 pts): 3.9s, elapsed 317s, est. remaining 502s
+[cold] slice 40/106 (200 pts): 22.2s, elapsed 339s, est. remaining 519s
+[cold] slice 41/106 (200 pts): 5.0s, elapsed 344s, est. remaining 507s
+[cold] slice 42/106 (200 pts): 3.7s, elapsed 348s, est. remaining 493s
+[cold] slice 43/106 (200 pts): 4.1s, elapsed 352s, est. remaining 480s
+[cold] slice 44/106 (200 pts): 8.4s, elapsed 360s, est. remaining 473s
+[cold] slice 45/106 (200 pts): 6.6s, elapsed 367s, est. remaining 464s
+[cold] slice 46/106 (200 pts): 4.6s, elapsed 371s, est. remaining 453s
+[cold] slice 47/106 (200 pts): 4.2s, elapsed 376s, est. remaining 441s
+[cold] slice 48/106 (200 pts): 4.9s, elapsed 380s, est. remaining 430s
+[cold] slice 49/106 (200 pts): 26.6s, elapsed 407s, est. remaining 446s
+[cold] slice 50/106 (200 pts): 7.4s, elapsed 414s, est. remaining 437s
+[cold] slice 51/106 (200 pts): 3.9s, elapsed 418s, est. remaining 425s
+[cold] slice 52/106 (200 pts): 4.1s, elapsed 422s, est. remaining 414s
+[cold] slice 53/106 (200 pts): 5.0s, elapsed 428s, est. remaining 403s
+[cold] slice 54/106 (200 pts): 5.2s, elapsed 433s, est. remaining 393s
+[cold] slice 55/106 (200 pts): 5.5s, elapsed 438s, est. remaining 384s
+[cold] slice 56/106 (200 pts): 5.5s, elapsed 444s, est. remaining 374s
+[cold] slice 57/106 (200 pts): 4.0s, elapsed 448s, est. remaining 364s
+[cold] slice 58/106 (200 pts): 5.0s, elapsed 453s, est. remaining 354s
+[cold] slice 59/106 (200 pts): 5.8s, elapsed 459s, est. remaining 346s
+[cold] slice 60/106 (200 pts): 6.0s, elapsed 465s, est. remaining 337s
+[cold] slice 61/106 (200 pts): 6.5s, elapsed 471s, est. remaining 329s
+[cold] slice 62/106 (200 pts): 4.2s, elapsed 475s, est. remaining 320s
+[cold] slice 63/106 (200 pts): 6.2s, elapsed 481s, est. remaining 312s
+[cold] slice 64/106 (200 pts): 6.0s, elapsed 487s, est. remaining 304s
+[cold] slice 65/106 (200 pts): 27.8s, elapsed 515s, est. remaining 310s
+[cold] slice 66/106 (200 pts): 6.6s, elapsed 522s, est. remaining 302s
+[cold] slice 67/106 (200 pts): 5.9s, elapsed 528s, est. remaining 293s
+[cold] slice 68/106 (200 pts): 4.8s, elapsed 533s, est. remaining 284s
+[cold] slice 69/106 (200 pts): 4.8s, elapsed 537s, est. remaining 275s
+[cold] slice 70/106 (200 pts): 4.8s, elapsed 542s, est. remaining 266s
+[cold] slice 71/106 (200 pts): 5.2s, elapsed 547s, est. remaining 258s
+[cold] slice 72/106 (200 pts): 4.8s, elapsed 552s, est. remaining 249s
+[cold] slice 73/106 (200 pts): 5.0s, elapsed 557s, est. remaining 241s
+[cold] slice 74/106 (200 pts): 5.3s, elapsed 562s, est. remaining 233s
+[cold] slice 75/106 (200 pts): 4.2s, elapsed 567s, est. remaining 224s
+[cold] slice 76/106 (200 pts): 4.6s, elapsed 571s, est. remaining 216s
+[cold] slice 77/106 (200 pts): 5.4s, elapsed 577s, est. remaining 208s
+[cold] slice 78/106 (200 pts): 5.3s, elapsed 582s, est. remaining 200s
+[cold] slice 79/106 (200 pts): 5.3s, elapsed 587s, est. remaining 192s
+[cold] slice 80/106 (200 pts): 5.0s, elapsed 592s, est. remaining 184s
+[cold] slice 81/106 (200 pts): 5.6s, elapsed 598s, est. remaining 177s
+[cold] slice 82/106 (200 pts): 10.2s, elapsed 608s, est. remaining 171s
+[cold] slice 83/106 (200 pts): 7.0s, elapsed 615s, est. remaining 164s
+[cold] slice 84/106 (200 pts): 5.9s, elapsed 621s, est. remaining 156s
+[cold] slice 85/106 (200 pts): 5.9s, elapsed 627s, est. remaining 149s
+[cold] slice 86/106 (200 pts): 9.9s, elapsed 637s, est. remaining 142s
+[cold] slice 87/106 (200 pts): 32.1s, elapsed 669s, est. remaining 141s
+[cold] slice 88/106 (200 pts): 28.9s, elapsed 698s, est. remaining 138s
+[cold] slice 89/106 (200 pts): 28.3s, elapsed 726s, est. remaining 134s
+[cold] slice 90/106 (200 pts): 6.2s, elapsed 732s, est. remaining 126s
+[cold] slice 91/106 (200 pts): 4.8s, elapsed 737s, est. remaining 117s
+[cold] slice 92/106 (200 pts): 4.7s, elapsed 742s, est. remaining 109s
+[cold] slice 93/106 (200 pts): 4.6s, elapsed 746s, est. remaining 101s
+[cold] slice 94/106 (200 pts): 5.0s, elapsed 751s, est. remaining 93s
+[cold] slice 95/106 (200 pts): 5.1s, elapsed 756s, est. remaining 85s
+[cold] slice 96/106 (200 pts): 5.6s, elapsed 762s, est. remaining 77s
+[cold] slice 97/106 (200 pts): 5.7s, elapsed 768s, est. remaining 69s
+[cold] slice 98/106 (200 pts): 4.4s, elapsed 772s, est. remaining 61s
+[cold] slice 99/106 (200 pts): 5.2s, elapsed 777s, est. remaining 53s
+[cold] slice 100/106 (200 pts): 5.6s, elapsed 783s, est. remaining 46s
+[cold] slice 101/106 (200 pts): 5.2s, elapsed 788s, est. remaining 38s
+[cold] slice 102/106 (200 pts): 5.1s, elapsed 793s, est. remaining 30s
+[cold] slice 103/106 (200 pts): 5.1s, elapsed 798s, est. remaining 23s
+[cold] slice 104/106 (200 pts): 5.8s, elapsed 804s, est. remaining 15s
+[cold] slice 105/106 (200 pts): 6.0s, elapsed 810s, est. remaining 7s
+[cold] slice 106/106 (137 pts): 30.9s, elapsed 841s, est. remaining 0s
+[final] timing {'batch1_kstep': [{'k': 1, 'n': 50, 'device_us_median': 953.917, 'end_to_end_us_median': 1164.875, 'iters_median': 1.0}, {'k': 2, 'n': 50, 'device_us_median': 1148.2914999999998, 'end_to_end_us_median': 1356.9995, 'iters_median': 2.0}, {'k': 3, 'n': 50, 'device_us_median': 5561.7080000000005, 'end_to_end_us_median': 6349.6665, 'iters_median': 3.0}], 'batch1_cold': {'n': 20, 'end_to_end_us_median': 34902.79150173592, 'end_to_end_us_p90': 62250.338100057, 'settings': 'optimize(), 2^12 Sobol, top-8 (benchmark cold settings)'}, 'batch1_warm': {'n': 50, 'end_to_end_us_median': 1896.5204999403795, 'iters_median': 2.0, 'neighbour_km_median': 0.25, 'settings': 'optimize.warm_solve, max_iter 200'}}
+[final] wrote results/qml_certify_final_b983055317_6518a9e98390

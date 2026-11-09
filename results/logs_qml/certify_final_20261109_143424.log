@@ -1,0 +1,162 @@
+[final] dense__PQC-full__s0: test_bulk median 2.75e-03 tail 3.62e-02
+[final] dense__PQC-product__s0: test_bulk median 1.08e-02 tail 5.44e-02
+[final] dense__NN-tuned__s0: test_bulk median 4.43e-04 tail 7.12e-03
+[final] dense__NN-matched__s0: test_bulk median 4.43e-04 tail 7.12e-03
+[final] dense__RFF-ridge__s0: test_bulk median 8.76e-03 tail 3.84e-02
+[final] dense__PQC-full__s1: test_bulk median 6.42e-03 tail 4.47e-02
+[final] dense__PQC-product__s1: test_bulk median 8.25e-03 tail 4.48e-02
+[final] dense__NN-tuned__s1: test_bulk median 2.38e-03 tail 2.56e-02
+[final] dense__NN-matched__s1: test_bulk median 2.38e-03 tail 2.56e-02
+[final] dense__RFF-ridge__s1: test_bulk median 9.46e-02 tail 3.30e-01
+[final] dense__PQC-full__s2: test_bulk median 4.69e-03 tail 4.28e-02
+[final] dense__PQC-product__s2: test_bulk median 8.42e-03 tail 4.37e-02
+[final] dense__NN-tuned__s2: test_bulk median 6.12e-04 tail 5.63e-03
+[final] dense__NN-matched__s2: test_bulk median 6.12e-04 tail 5.63e-03
+[final] dense__RFF-ridge__s2: test_bulk median 5.73e-03 tail 4.25e-02
+[final] dense__PQC-full__s3: test_bulk median 1.01e-02 tail 6.77e-02
+[final] dense__PQC-product__s3: test_bulk median 2.72e-02 tail 8.82e-02
+[final] dense__NN-tuned__s3: test_bulk median 7.70e-04 tail 1.28e-02
+[final] dense__NN-matched__s3: test_bulk median 7.70e-04 tail 1.28e-02
+[final] dense__RFF-ridge__s3: test_bulk median 1.09e-02 tail 6.10e-02
+[final] dense__PQC-full__s4: test_bulk median 5.96e-03 tail 4.20e-02
+[final] dense__PQC-product__s4: test_bulk median 1.74e-02 tail 6.67e-02
+[final] dense__NN-tuned__s4: test_bulk median 5.49e-04 tail 7.05e-03
+[final] dense__NN-matched__s4: test_bulk median 5.49e-04 tail 7.05e-03
+[final] dense__RFF-ridge__s4: test_bulk median 3.78e-02 tail 1.13e-01
+[final] dense__lookup-2D__s0: test_bulk median 2.46e-12 tail 1.08e-09
+[final] dense__lookup-nX__s0: test_bulk median 2.46e-12 tail 1.08e-09
+[final] sparse__PQC-full__s0: test_bulk median 3.24e-03 tail 7.85e-02
+[final] sparse__PQC-product__s0: test_bulk median 8.40e-03 tail 1.01e-01
+[final] sparse__NN-tuned__s0: test_bulk median 5.79e-04 tail 1.48e-02
+[final] sparse__NN-matched__s0: test_bulk median 5.79e-04 tail 1.48e-02
+[final] sparse__RFF-ridge__s0: test_bulk median 2.67e-03 tail 6.13e-02
+[final] sparse__PQC-full__s1: test_bulk median 3.04e-03 tail 8.09e-02
+[final] sparse__PQC-product__s1: test_bulk median 6.59e-03 tail 7.59e-02
+[final] sparse__NN-tuned__s1: test_bulk median 8.33e-04 tail 2.93e-02
+[final] sparse__NN-matched__s1: test_bulk median 8.33e-04 tail 2.93e-02
+[final] sparse__RFF-ridge__s1: test_bulk median 6.49e-02 tail 5.69e-01
+[final] sparse__PQC-full__s2: test_bulk median 1.71e-03 tail 6.74e-02
+[final] sparse__PQC-product__s2: test_bulk median 4.30e-03 tail 6.53e-02
+[final] sparse__NN-tuned__s2: test_bulk median 5.53e-04 tail 1.60e-02
+[final] sparse__NN-matched__s2: test_bulk median 5.53e-04 tail 1.60e-02
+[final] sparse__RFF-ridge__s2: test_bulk median 6.15e-03 tail 7.66e-02
+[final] sparse__PQC-full__s3: test_bulk median 4.82e-03 tail 7.40e-02
+[final] sparse__PQC-product__s3: test_bulk median 5.97e-02 tail 1.36e-01
+[final] sparse__NN-tuned__s3: test_bulk median 2.90e-04 tail 2.57e-02
+[final] sparse__NN-matched__s3: test_bulk median 2.90e-04 tail 2.57e-02
+[final] sparse__RFF-ridge__s3: test_bulk median 3.36e-02 tail 4.70e-01
+[final] sparse__PQC-full__s4: test_bulk median 4.52e-03 tail 8.53e-02
+[final] sparse__PQC-product__s4: test_bulk median 1.05e-02 tail 7.63e-02
+[final] sparse__NN-tuned__s4: test_bulk median 4.54e-04 tail 1.90e-02
+[final] sparse__NN-matched__s4: test_bulk median 4.54e-04 tail 1.90e-02
+[final] sparse__RFF-ridge__s4: test_bulk median 1.36e-02 tail 9.04e-02
+[final] sparse__lookup-2D__s0: test_bulk median 3.54e-10 tail 3.46e-05
+[final] sparse__lookup-nX__s0: test_bulk median 3.54e-10 tail 3.46e-05
+[cold] slice 1/106 (200 pts): 43.5s, elapsed 44s, est. remaining n/a
+[cold] slice 2/106 (200 pts): 5.5s, elapsed 49s, est. remaining 573s
+[cold] slice 3/106 (200 pts): 9.3s, elapsed 58s, est. remaining 764s
+[cold] slice 4/106 (200 pts): 36.4s, elapsed 95s, est. remaining 1742s
+[cold] slice 5/106 (200 pts): 4.8s, elapsed 100s, est. remaining 1415s
+[cold] slice 6/106 (200 pts): 4.8s, elapsed 104s, est. remaining 1216s
+[cold] slice 7/106 (200 pts): 5.4s, elapsed 110s, est. remaining 1092s
+[cold] slice 8/106 (200 pts): 34.3s, elapsed 144s, est. remaining 1406s
+[cold] slice 9/106 (200 pts): 4.6s, elapsed 149s, est. remaining 1273s
+[cold] slice 10/106 (200 pts): 4.6s, elapsed 153s, est. remaining 1170s
+[cold] slice 11/106 (200 pts): 5.2s, elapsed 158s, est. remaining 1091s
+[cold] slice 12/106 (200 pts): 32.5s, elapsed 191s, est. remaining 1259s
+[cold] slice 13/106 (200 pts): 4.3s, elapsed 195s, est. remaining 1175s
+[cold] slice 14/106 (200 pts): 4.8s, elapsed 200s, est. remaining 1107s
+[cold] slice 15/106 (200 pts): 4.6s, elapsed 205s, est. remaining 1047s
+[cold] slice 16/106 (200 pts): 7.4s, elapsed 212s, est. remaining 1011s
+[cold] slice 17/106 (200 pts): 33.3s, elapsed 245s, est. remaining 1122s
+[cold] slice 18/106 (200 pts): 4.7s, elapsed 250s, est. remaining 1069s
+[cold] slice 19/106 (200 pts): 4.6s, elapsed 255s, est. remaining 1020s
+[cold] slice 20/106 (200 pts): 5.3s, elapsed 260s, est. remaining 980s
+[cold] slice 21/106 (200 pts): 34.9s, elapsed 295s, est. remaining 1068s
+[cold] slice 22/106 (200 pts): 5.0s, elapsed 300s, est. remaining 1025s
+[cold] slice 23/106 (200 pts): 4.5s, elapsed 304s, est. remaining 984s
+[cold] slice 24/106 (200 pts): 5.4s, elapsed 310s, est. remaining 949s
+[cold] slice 25/106 (200 pts): 7.0s, elapsed 317s, est. remaining 922s
+[cold] slice 26/106 (200 pts): 32.7s, elapsed 349s, est. remaining 979s
+[cold] slice 27/106 (200 pts): 4.7s, elapsed 354s, est. remaining 944s
+[cold] slice 28/106 (200 pts): 4.7s, elapsed 359s, est. remaining 911s
+[cold] slice 29/106 (200 pts): 5.2s, elapsed 364s, est. remaining 882s
+[cold] slice 30/106 (200 pts): 8.1s, elapsed 372s, est. remaining 862s
+[cold] slice 31/106 (200 pts): 4.4s, elapsed 377s, est. remaining 833s
+[cold] slice 32/106 (200 pts): 4.4s, elapsed 381s, est. remaining 806s
+[cold] slice 33/106 (200 pts): 4.7s, elapsed 386s, est. remaining 781s
+[cold] slice 34/106 (200 pts): 5.3s, elapsed 391s, est. remaining 758s
+[cold] slice 35/106 (200 pts): 9.1s, elapsed 400s, est. remaining 745s
+[cold] slice 36/106 (200 pts): 4.0s, elapsed 404s, est. remaining 721s
+[cold] slice 37/106 (200 pts): 5.0s, elapsed 409s, est. remaining 701s
+[cold] slice 38/106 (200 pts): 4.8s, elapsed 414s, est. remaining 681s
+[cold] slice 39/106 (200 pts): 5.1s, elapsed 419s, est. remaining 662s
+[cold] slice 40/106 (200 pts): 34.2s, elapsed 453s, est. remaining 693s
+[cold] slice 41/106 (200 pts): 4.7s, elapsed 458s, est. remaining 673s
+[cold] slice 42/106 (200 pts): 4.7s, elapsed 463s, est. remaining 654s
+[cold] slice 43/106 (200 pts): 5.0s, elapsed 468s, est. remaining 636s
+[cold] slice 44/106 (200 pts): 17.1s, elapsed 485s, est. remaining 636s
+[cold] slice 45/106 (200 pts): 9.6s, elapsed 494s, est. remaining 625s
+[cold] slice 46/106 (200 pts): 9.1s, elapsed 503s, est. remaining 613s
+[cold] slice 47/106 (200 pts): 9.5s, elapsed 513s, est. remaining 602s
+[cold] slice 48/106 (200 pts): 10.0s, elapsed 523s, est. remaining 592s
+[cold] slice 49/106 (200 pts): 49.6s, elapsed 572s, est. remaining 628s
+[cold] slice 50/106 (200 pts): 9.9s, elapsed 582s, est. remaining 616s
+[cold] slice 51/106 (200 pts): 9.3s, elapsed 592s, est. remaining 603s
+[cold] slice 52/106 (200 pts): 10.2s, elapsed 602s, est. remaining 591s
+[cold] slice 53/106 (200 pts): 9.8s, elapsed 612s, est. remaining 579s
+[cold] slice 54/106 (200 pts): 9.5s, elapsed 621s, est. remaining 567s
+[cold] slice 55/106 (200 pts): 9.2s, elapsed 630s, est. remaining 554s
+[cold] slice 56/106 (200 pts): 8.4s, elapsed 639s, est. remaining 541s
+[cold] slice 57/106 (200 pts): 9.4s, elapsed 648s, est. remaining 529s
+[cold] slice 58/106 (200 pts): 9.8s, elapsed 658s, est. remaining 517s
+[cold] slice 59/106 (200 pts): 9.3s, elapsed 667s, est. remaining 505s
+[cold] slice 60/106 (200 pts): 10.0s, elapsed 677s, est. remaining 494s
+[cold] slice 61/106 (200 pts): 10.4s, elapsed 688s, est. remaining 483s
+[cold] slice 62/106 (200 pts): 9.6s, elapsed 697s, est. remaining 472s
+[cold] slice 63/106 (200 pts): 11.9s, elapsed 709s, est. remaining 462s
+[cold] slice 64/106 (200 pts): 12.0s, elapsed 721s, est. remaining 452s
+[cold] slice 65/106 (200 pts): 49.4s, elapsed 770s, est. remaining 466s
+[cold] slice 66/106 (200 pts): 9.1s, elapsed 779s, est. remaining 453s
+[cold] slice 67/106 (200 pts): 9.5s, elapsed 789s, est. remaining 440s
+[cold] slice 68/106 (200 pts): 9.2s, elapsed 798s, est. remaining 428s
+[cold] slice 69/106 (200 pts): 9.4s, elapsed 808s, est. remaining 416s
+[cold] slice 70/106 (200 pts): 9.3s, elapsed 817s, est. remaining 403s
+[cold] slice 71/106 (200 pts): 9.6s, elapsed 826s, est. remaining 391s
+[cold] slice 72/106 (200 pts): 9.3s, elapsed 836s, est. remaining 379s
+[cold] slice 73/106 (200 pts): 9.6s, elapsed 845s, est. remaining 368s
+[cold] slice 74/106 (200 pts): 9.4s, elapsed 855s, est. remaining 356s
+[cold] slice 75/106 (200 pts): 8.3s, elapsed 863s, est. remaining 343s
+[cold] slice 76/106 (200 pts): 9.2s, elapsed 872s, est. remaining 331s
+[cold] slice 77/106 (200 pts): 9.2s, elapsed 881s, est. remaining 320s
+[cold] slice 78/106 (200 pts): 9.0s, elapsed 890s, est. remaining 308s
+[cold] slice 79/106 (200 pts): 9.3s, elapsed 900s, est. remaining 296s
+[cold] slice 80/106 (200 pts): 9.9s, elapsed 910s, est. remaining 285s
+[cold] slice 81/106 (200 pts): 10.9s, elapsed 921s, est. remaining 274s
+[cold] slice 82/106 (200 pts): 19.9s, elapsed 940s, est. remaining 266s
+[cold] slice 83/106 (200 pts): 13.9s, elapsed 954s, est. remaining 255s
+[cold] slice 84/106 (200 pts): 11.5s, elapsed 966s, est. remaining 244s
+[cold] slice 85/106 (200 pts): 10.6s, elapsed 976s, est. remaining 233s
+[cold] slice 86/106 (200 pts): 20.4s, elapsed 997s, est. remaining 224s
+[cold] slice 87/106 (200 pts): 55.2s, elapsed 1052s, est. remaining 223s
+[cold] slice 88/106 (200 pts): 45.9s, elapsed 1098s, est. remaining 218s
+[cold] slice 89/106 (200 pts): 44.8s, elapsed 1143s, est. remaining 212s
+[cold] slice 90/106 (200 pts): 8.7s, elapsed 1151s, est. remaining 199s
+[cold] slice 91/106 (200 pts): 8.7s, elapsed 1160s, est. remaining 186s
+[cold] slice 92/106 (200 pts): 9.0s, elapsed 1169s, est. remaining 173s
+[cold] slice 93/106 (200 pts): 9.3s, elapsed 1178s, est. remaining 160s
+[cold] slice 94/106 (200 pts): 9.0s, elapsed 1187s, est. remaining 148s
+[cold] slice 95/106 (200 pts): 8.9s, elapsed 1196s, est. remaining 135s
+[cold] slice 96/106 (200 pts): 8.8s, elapsed 1205s, est. remaining 122s
+[cold] slice 97/106 (200 pts): 8.8s, elapsed 1214s, est. remaining 110s
+[cold] slice 98/106 (200 pts): 9.0s, elapsed 1223s, est. remaining 97s
+[cold] slice 99/106 (200 pts): 8.5s, elapsed 1231s, est. remaining 85s
+[cold] slice 100/106 (200 pts): 10.1s, elapsed 1242s, est. remaining 73s
+[cold] slice 101/106 (200 pts): 9.7s, elapsed 1251s, est. remaining 60s
+[cold] slice 102/106 (200 pts): 9.3s, elapsed 1260s, est. remaining 48s
+[cold] slice 103/106 (200 pts): 10.3s, elapsed 1271s, est. remaining 36s
+[cold] slice 104/106 (200 pts): 10.1s, elapsed 1281s, est. remaining 24s
+[cold] slice 105/106 (200 pts): 11.3s, elapsed 1292s, est. remaining 12s
+[cold] slice 106/106 (137 pts): 51.8s, elapsed 1344s, est. remaining 0s
+[final] timing {'batch1_kstep': [{'k': 1, 'n': 50, 'device_us_median': 1935.229, 'end_to_end_us_median': 2522.2079999999996, 'iters_median': 1.0}, {'k': 2, 'n': 50, 'device_us_median': 3091.021, 'end_to_end_us_median': 3801.7295, 'iters_median': 2.0}, {'k': 3, 'n': 50, 'device_us_median': 4350.9580000000005, 'end_to_end_us_median': 5057.4165, 'iters_median': 3.0}], 'batch1_cold': {'n': 20, 'end_to_end_us_median': 72524.2079988675, 'end_to_end_us_p90': 86533.79169845722, 'settings': 'optimize(), 2^12 Sobol, top-8 (benchmark cold settings)'}, 'batch1_warm': {'n': 50, 'end_to_end_us_median': 5111.458498504362, 'iters_median': 2.0, 'neighbour_km_median': 0.25, 'settings': 'optimize.warm_solve, max_iter 200'}}
+[final] wrote results/qml_certify_final_a9ef3e3082_18624ccd048e

@@ -1,0 +1,8 @@
+E1109 11:57:28.187769 3981894 numa_hwloc.cc:121] Call to hwloc_set_cpubind() failed: Invalid argument [22]
+devices [CudaDevice(id=0)] x64 float64
+E1109 11:57:51.840088 3981951 numa_hwloc.cc:121] Call to hwloc_set_cpubind() failed: Invalid argument [22]
+[final] dense PQC-full s3 (8, 6): train 164s loss 5.668e-03 on gpu
+[final] dense PQC-product s3 (6, 6): train 52s loss 8.355e-03 on gpu
+[final] dense NN-tuned s3 12: train 3s loss 1.929e-03 on gpu
+[final] dense NN-matched s3 12: train 1s loss 1.929e-03 on gpu
+[final] dense RFF-ridge s3: lambda 1e-10

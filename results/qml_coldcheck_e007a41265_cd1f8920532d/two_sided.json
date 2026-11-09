@@ -1,0 +1,194 @@
+{
+ "config": {
+  "script": "qml/check_cold_two_sided.py",
+  "repaired": "qml/data/repaired/labels_repaired_b983055317_9dd20e4718fe.npz",
+  "original": "qml/data/labels_0d8bef1402_9fa16da52f39.npz",
+  "cold": {
+   "n_sobol": 16384,
+   "top_k": 16,
+   "seed": 11
+  },
+  "tol": 1e-09
+ },
+ "power_at_start": {
+  "source": "AC",
+  "battery_percent": 92,
+  "battery_state": "charging",
+  "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+  "caffeinate_running": true
+ },
+ "cold_s": 444.5716943749976,
+ "n_points": 4746,
+ "n_window": 3855,
+ "n_random": 1000,
+ "original": {
+  "n_with_key": 4746,
+  "n_cold_better": 77,
+  "max_cold_gain": 0.0007467056852837043,
+  "n_label_better": 6,
+  "max_label_gain": 0.00037397212524343333,
+  "n_within_tol_two_sided": 4663,
+  "label_better_points": [
+   {
+    "n_X": 3000000.0,
+    "L": 112.34375,
+    "split": "heldout",
+    "rel": -5.75661605907684e-05
+   },
+   {
+    "n_X": 3000000.0,
+    "L": 112.375,
+    "split": "heldout",
+    "rel": -0.0001206350615498489
+   },
+   {
+    "n_X": 3000000.0,
+    "L": 112.40625,
+    "split": "heldout",
+    "rel": -0.00018380990860426488
+   },
+   {
+    "n_X": 3000000.0,
+    "L": 112.4375,
+    "split": "heldout",
+    "rel": -0.00024709090142399474
+   },
+   {
+    "n_X": 3000000.0,
+    "L": 112.46875,
+    "split": "heldout",
+    "rel": -0.00031047824012078116
+   },
+   {
+    "n_X": 3000000.0,
+    "L": 112.5,
+    "split": "heldout",
+    "rel": -0.00037397212524343333
+   }
+  ]
+ },
+ "repaired": {
+  "n_with_key": 4746,
+  "n_cold_better": 0,
+  "max_cold_gain": 3.794042325951744e-13,
+  "n_label_better": 19,
+  "max_label_gain": 0.00037397212524343333,
+  "n_within_tol_two_sided": 4727,
+  "label_better_points": [
+   {
+    "n_X": 100000.0,
+    "L": 132.75,
+    "split": "test",
+    "rel": -1.7505871907022933e-05
+   },
+   {
+    "n_X": 100000.0,
+    "L": 132.78125,
+    "split": "none",
+    "rel": -3.9577452482973843e-05
+   },
+   {
+    "n_X": 100000.0,
+    "L": 132.8125,
+    "split": "none",
+    "rel": -6.171402757126702e-05
+   },
+   {
+    "n_X": 316227.7660168379,
+    "L": 136.75,
+    "split": "test",
+    "rel": -2.7336498744395244e-05
+   },
+   {
+    "n_X": 316227.7660168379,
+    "L": 136.78125,
+    "split": "none",
+    "rel": -5.545869327810405e-05
+   },
+   {
+    "n_X": 316227.7660168379,
+    "L": 136.8125,
+    "split": "none",
+    "rel": -8.36578345719279e-05
+   },
+   {
+    "n_X": 316227.7660168379,
+    "L": 136.84375,
+    "split": "none",
+    "rel": -0.00011193418253345015
+   },
+   {
+    "n_X": 316227.7660168379,
+    "L": 136.875,
+    "split": "test",
+    "rel": -0.0001402879982101125
+   },
+   {
+    "n_X": 3000000.0,
+    "L": 112.34375,
+    "split": "heldout",
+    "rel": -5.75661605907684e-05
+   },
+   {
+    "n_X": 3000000.0,
+    "L": 112.375,
+    "split": "heldout",
+    "rel": -0.0001206350615498489
+   },
+   {
+    "n_X": 3000000.0,
+    "L": 112.40625,
+    "split": "heldout",
+    "rel": -0.00018380990860426488
+   },
+   {
+    "n_X": 3000000.0,
+    "L": 112.4375,
+    "split": "heldout",
+    "rel": -0.00024709090142399474
+   },
+   {
+    "n_X": 3000000.0,
+    "L": 112.46875,
+    "split": "heldout",
+    "rel": -0.00031047824012078116
+   },
+   {
+    "n_X": 3000000.0,
+    "L": 112.5,
+    "split": "heldout",
+    "rel": -0.00037397212524343333
+   },
+   {
+    "n_X": 3000000.0,
+    "L": 139.1875,
+    "split": "heldout",
+    "rel": -0.0002833731932589715
+   },
+   {
+    "n_X": 3000000.0,
+    "L": 139.21875,
+    "split": "heldout",
+    "rel": -0.0003159202677619449
+   },
+   {
+    "n_X": 100000000.0,
+    "L": 91.875,
+    "split": "test",
+    "rel": -1.6729551597748534e-05
+   },
+   {
+    "n_X": 100000000.0,
+    "L": 92.0,
+    "split": "train",
+    "rel": -8.065377128565972e-05
+   },
+   {
+    "n_X": 100000000.0,
+    "L": 92.125,
+    "split": "val",
+    "rel": -0.0001449562300803799
+   }
+  ]
+ }
+}

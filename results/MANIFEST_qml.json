@@ -158,6 +158,369 @@
    ],
    "lost": "dense PQC-full s1 (~9 min of training, in memory only)",
    "finished": "2026-11-06 14:37:02"
+  },
+  {
+   "step": "latency",
+   "env": "qml",
+   "command": [
+    ".venv-qml/bin/python",
+    "qml/train.py",
+    "latency"
+   ],
+   "returncode": 0,
+   "wall_s": 9.3,
+   "log": "results/logs_qml/latency_20261109_134258.log",
+   "outputs": [
+    "results/logs_qml",
+    "results/qml_latency_07c50abb3c_5a7a906cb5b1"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 71,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "07c50abb3c",
+   "finished": "2026-11-09 13:43:07"
+  },
+  {
+   "step": "certify_final",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/certify.py",
+    "--final"
+   ],
+   "returncode": -9,
+   "wall_s": 706.8,
+   "log": "results/logs_qml/certify_final_20261109_134307.log",
+   "outputs": [
+    "results/logs_qml"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 71,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "07c50abb3c",
+   "finished": "2026-11-09 13:54:55"
+  },
+  {
+   "step": "certify_final",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/certify.py",
+    "--final"
+   ],
+   "returncode": 0,
+   "wall_s": 2272.8,
+   "log": "results/logs_qml/certify_final_20261109_143424.log",
+   "outputs": [
+    "results/logs_qml",
+    "results/qml_certify_final_a9ef3e3082_18624ccd048e"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 61,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "a9ef3e3082",
+   "finished": "2026-11-09 15:12:16"
+  },
+  {
+   "step": "certify_final",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/certify.py",
+    "--final",
+    "--labels",
+    "qml/data/repaired/labels_repaired_b983055317_9dd20e4718fe.npz"
+   ],
+   "returncode": 0,
+   "wall_s": 1676.9,
+   "log": "results/logs_qml/certify_final_20261109_174632.log",
+   "outputs": [
+    "qml/data/.DS_Store",
+    "results/logs_qml",
+    "results/qml_certify_final_b983055317_6518a9e98390"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 99,
+    "battery_state": "finishing charge",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "b983055317",
+   "finished": "2026-11-09 18:14:29"
+  },
+  {
+   "step": "report",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/report.py"
+   ],
+   "returncode": 0,
+   "wall_s": 3.6,
+   "log": "results/logs_qml/report_20261109_192144.log",
+   "outputs": [
+    "results/logs_qml",
+    "results/qml_certify_final_b983055317_6518a9e98390"
+   ],
+   "power_at_start": {
+    "source": "battery",
+    "battery_percent": 99,
+    "battery_state": "discharging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "b49310a630",
+   "finished": "2026-11-09 19:21:47"
+  },
+  {
+   "step": "numbers",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/make_numbers_qml.py"
+   ],
+   "returncode": 0,
+   "wall_s": 0.2,
+   "log": "results/logs_qml/numbers_20261109_192147.log",
+   "outputs": [
+    "results/NUMBERS_qml.md",
+    "results/logs_qml"
+   ],
+   "power_at_start": {
+    "source": "battery",
+    "battery_percent": 99,
+    "battery_state": "discharging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "b49310a630",
+   "finished": "2026-11-09 19:21:48"
+  },
+  {
+   "step": "report",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/report.py"
+   ],
+   "returncode": 0,
+   "wall_s": 3.0,
+   "log": "results/logs_qml/report_20261109_192443.log",
+   "outputs": [
+    "results/logs_qml"
+   ],
+   "power_at_start": {
+    "source": "battery",
+    "battery_percent": 99,
+    "battery_state": "discharging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "890c0a7849",
+   "finished": "2026-11-09 19:24:46"
+  },
+  {
+   "step": "numbers",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/make_numbers_qml.py"
+   ],
+   "returncode": 0,
+   "wall_s": 0.2,
+   "log": "results/logs_qml/numbers_20261109_192446.log",
+   "outputs": [
+    "results/NUMBERS_qml.md",
+    "results/logs_qml"
+   ],
+   "power_at_start": {
+    "source": "battery",
+    "battery_percent": 99,
+    "battery_state": "discharging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "890c0a7849",
+   "finished": "2026-11-09 19:24:46"
+  },
+  {
+   "step": "latency",
+   "env": "qml",
+   "command": [
+    ".venv-qml/bin/python",
+    "qml/train.py",
+    "latency"
+   ],
+   "returncode": 0,
+   "wall_s": 9.3,
+   "log": "results/logs_qml/latency_20261109_210608.log",
+   "outputs": [
+    "results/logs_qml",
+    "results/qml_latency_35aba07eec_23413b61099e"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 83,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "35aba07eec",
+   "finished": "2026-11-09 21:06:17"
+  },
+  {
+   "step": "report",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/report.py"
+   ],
+   "returncode": 0,
+   "wall_s": 2.1,
+   "log": "results/logs_qml/report_20261109_210623.log",
+   "outputs": [
+    "results/logs_qml"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 83,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "35aba07eec",
+   "finished": "2026-11-09 21:06:25"
+  },
+  {
+   "step": "numbers",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/make_numbers_qml.py"
+   ],
+   "returncode": 0,
+   "wall_s": 0.1,
+   "log": "results/logs_qml/numbers_20261109_210625.log",
+   "outputs": [
+    "results/NUMBERS_qml.md",
+    "results/logs_qml"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 83,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "35aba07eec",
+   "finished": "2026-11-09 21:06:25"
+  },
+  {
+   "step": "report",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/report.py"
+   ],
+   "returncode": 0,
+   "wall_s": 1.8,
+   "log": "results/logs_qml/report_20261109_210632.log",
+   "outputs": [
+    "results/logs_qml"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 83,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "529a76a7a3",
+   "finished": "2026-11-09 21:06:34"
+  },
+  {
+   "step": "numbers",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/make_numbers_qml.py"
+   ],
+   "returncode": 0,
+   "wall_s": 0.1,
+   "log": "results/logs_qml/numbers_20261109_210634.log",
+   "outputs": [
+    "results/NUMBERS_qml.md",
+    "results/logs_qml"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 83,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "529a76a7a3",
+   "finished": "2026-11-09 21:06:34"
+  },
+  {
+   "step": "report",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/report.py"
+   ],
+   "returncode": 0,
+   "wall_s": 1.8,
+   "log": "results/logs_qml/report_20261109_210641.log",
+   "outputs": [
+    "results/logs_qml"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 83,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "4d99c35437",
+   "finished": "2026-11-09 21:06:43"
+  },
+  {
+   "step": "numbers",
+   "env": "main",
+   "command": [
+    ".venv/bin/python",
+    "qml/make_numbers_qml.py"
+   ],
+   "returncode": 0,
+   "wall_s": 0.1,
+   "log": "results/logs_qml/numbers_20261109_210643.log",
+   "outputs": [
+    "results/NUMBERS_qml.md",
+    "results/logs_qml"
+   ],
+   "power_at_start": {
+    "source": "AC",
+    "battery_percent": 83,
+    "battery_state": "charging",
+    "thermal": "Note: No thermal warning level has been recorded | Note: No performance warning level has been recorded | Note: No CPU power status has been recorded",
+    "caffeinate_running": true
+   },
+   "git": "4d99c35437",
+   "finished": "2026-11-09 21:06:43"
   }
  ]
 }
