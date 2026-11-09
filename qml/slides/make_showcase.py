@@ -99,7 +99,7 @@ def with_predictions(d, out):
         for key, lab, col in models:
             r = pp[f"{key}__k0"][sel]
             ax.plot(L, 100 * (1 - np.clip(r, 0, 1)), color=col, lw=1.3)
-        ax.set_ylim(0, 101); ax.set_title("% of optimal key rate delivered", loc="left", fontsize=11) if row == 0 else None
+        ax.set_ylim(0, 101); ax.set_title("% of optimal key rate\ndelivered", loc="left", fontsize=11) if row == 0 else None
         axes[row, 0].set_ylabel(title, fontsize=9)
         for a in axes[row]:
             a.set_xlabel("L (km)") if row == 1 else None

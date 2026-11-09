@@ -148,8 +148,10 @@ def figures(M, P, d, od):
                     r = np.sort(np.clip(r[np.isfinite(r)], 1e-16, 1))
                     if r.size == 0:
                         continue
+                    same = model == "lookup-nX" and np.array_equal(r, np.sort(np.clip(P[f"{var}__lookup-2D__s0__k0"][m][np.isfinite(P[f"{var}__lookup-2D__s0__k0"][m])], 1e-16, 1)))
                     ax.step(r, np.arange(1, r.size + 1) / r.size, color=col, lw=1.6 if j == 0 else 0.6,
-                            alpha=1 if j == 0 else 0.5, label=model if j == 0 else None)
+                            alpha=1 if j == 0 else 0.5, ls=(0, (4, 3)) if model == "lookup-nX" else "-",
+                            label=(f"{model} (identical to lookup-2D here)" if same else model) if j == 0 else None)
             ax.set_xscale("log"); ax.set_xlim(1e-16, 1.5); ax.axvline(1e-6, color="0.5", ls="--", lw=0.8)
             ax.set_title(f"{g} ({var} training)"); ax.set_xlabel("regret (R_ref - R(p_hat)) / R_ref, clipped to [1e-16, 1]")
             ax.grid(alpha=0.3)
@@ -257,19 +259,44 @@ def main():
         SHOWN_TRAINED = [m for m in TRAINED if m != "NN-matched"]
     s12_table, s12_touched, s12_n = status12_points(d, d0, P, P0)
     figs = figures(M, P, d, od)
-    useful, U = usefulness(M, lat)
-    useful_alt, U_alt = usefulness(M, lat, T=M0["timing"])
-    flips = [(a_, b_) for a_, b_ in zip(useful.splitlines()[2:], useful_alt.splitlines()[2:])
-             if [c.strip().split(" (")[0].split(":")[0] for c in a_.split("|")[6:9]] !=
-                [c.strip().split(" (")[0].split(":")[0] for c in b_.split("|")[6:9]]]
-    T0, T1 = M0["timing"], M["timing"]
-    timing_cmp = ["| batch-1 end-to-end median, µs | this certification (repaired labels) | original-label certification |",
-                  "|---|---|---|"]
+    rt_path = latest("qml_retime_*/retime.json")
+    RT = json.load(open(rt_path))
+    TH = RT["timing"]                                   # headline batch-1 timings: the quiet re-timing
+    useful, U = usefulness(M, lat, T=TH)
+    flips = []
+    for name_, T_ in (("repaired-label certification run", M["timing"]), ("original-label certification run", M0["timing"])):
+        alt, _ = usefulness(M, lat, T=T_)
+        for a_, b_ in zip(useful.splitlines()[2:], alt.splitlines()[2:]):
+            va_ = [c.strip().split(" (")[0].split(":")[0] for c in a_.split("|")[6:9]]
+            vb_ = [c.strip().split(" (")[0].split(":")[0] for c in b_.split("|")[6:9]]
+            if va_ != vb_:
+                flips.append(f"{a_.split('|')[1].strip()} {a_.split('|')[2].strip()} ({name_})")
+    T0, T1, SU = M0["timing"], M["timing"], RT["summary"]
+    rng_ = lambda x: f"{x['median']:.0f} ({x['min']:.0f}–{x['max']:.0f})"
+    timing_cmp = ["| batch-1 end-to-end median, µs | **quiet re-timing** (median over passes; min–max) | repaired-label certification run | original-label certification run |",
+                  "|---|---|---|---|"]
     for k_ in range(3):
-        timing_cmp.append(f"| k = {k_ + 1} Newton steps | {T1['batch1_kstep'][k_]['end_to_end_us_median']:.0f} | "
-                          f"{T0['batch1_kstep'][k_]['end_to_end_us_median']:.0f} |")
-    timing_cmp += [f"| cold solve | {T1['batch1_cold']['end_to_end_us_median']:.0f} | {T0['batch1_cold']['end_to_end_us_median']:.0f} |",
-                   f"| warm solve | {T1['batch1_warm']['end_to_end_us_median']:.0f} | {T0['batch1_warm']['end_to_end_us_median']:.0f} |"]
+        timing_cmp.append(f"| k = {k_ + 1} Newton steps | **{rng_(SU['kstep'][k_]['end_to_end_us'])}** | "
+                          f"{T1['batch1_kstep'][k_]['end_to_end_us_median']:.0f} | {T0['batch1_kstep'][k_]['end_to_end_us_median']:.0f} |")
+    timing_cmp += [f"| cold solve | **{rng_(SU['cold']['end_to_end_us'])}** | {T1['batch1_cold']['end_to_end_us_median']:.0f} | {T0['batch1_cold']['end_to_end_us_median']:.0f} |",
+                   f"| warm solve | **{rng_(SU['warm']['end_to_end_us'])}** | {T1['batch1_warm']['end_to_end_us_median']:.0f} | {T0['batch1_warm']['end_to_end_us_median']:.0f} |"]
+    ib = RT["idle_before"]
+    rt_note = (f"Quiet re-timing `{os.path.relpath(rt_path, ROOT)}`: {RT['config']['n_passes']} full passes; AC power "
+               f"({RT['power_at_start']['source']}); 1-min load average before {ib['load_1_5_15'][0]:.2f} (limit "
+               f"{RT['config']['max_load']}), after each pass " + ", ".join(f"{p_['load_1min_after']:.2f}" for p_ in RT["passes"])
+               + "; no other qml or benchmark job running.")
+    rff = json.load(open(latest("qml_rffdiag_*/rff_seeds.json")))
+    s1_ = rff["seeds"]["dense__s1"]
+    others_ = [v for v in rff["seeds"].values() if v["variant"] == "dense" and v["seed"] != 1]
+    rff_ratio = (s1_["train_mse_z"] / max(v["train_mse_z"] for v in others_), s1_["train_mse_z"] / min(v["train_mse_z"] for v in others_))
+    rff_lamspread = 100 * (max(s1_["val_mse_z_by_lambda"]) - min(s1_["val_mse_z_by_lambda"])) / min(s1_["val_mse_z_by_lambda"])
+    rff_same_lam = ", ".join(f"s{v['seed']}" for v in others_ if v["lam"] == s1_["lam"]) or "none"
+    rff_rows = ["| variant | seed | hardware | λ | median abs frequency | train MSE (z) | val MSE (z) | val MSE over λ grid (min–max) | test_bulk median regret |",
+                "|---|---|---|---|---|---|---|---|---|"]
+    for k_, r_ in sorted(rff["seeds"].items(), key=lambda kv: (kv[1]["variant"], kv[1]["seed"])):
+        rff_rows.append(f"| {r_['variant']} | {r_['seed']} | {r_['device']} | {r_['lam'] if r_['lam'] is not None else 'not saved'} | "
+                        f"{r_['freq_abs_median']:.2f} | {r_['train_mse_z']:.2e} | {r_['val_mse_z']:.2e} | "
+                        f"{min(r_['val_mse_z_by_lambda']):.2e}–{max(r_['val_mse_z_by_lambda']):.2e} | {r_['test_bulk_median_regret']:.2e} |")
     from qml.certify import groups as _groups
     Gd = _groups(d)
     nkm = P["warm_neighbour_km"]
@@ -309,7 +336,7 @@ def main():
                         f"{ms(cpu, False) if cpu else ('not recorded' if any(r.get('device', {}).get('backend') == 'cpu' for r in rs) else '–')} | {ms(gpu, False) if gpu else '–'} | "
                         f"{fmt(l_.get('batch1_device_us'), False)} | {fmt(l_.get('batch1_end_to_end_us'), False)} | "
                         f"{fmt(l_.get('throughput_per_s'))} | {l_.get('backend', '')} |")
-    T = M["timing"]
+    T = TH
     tim = (f"- Batch-1 Newton steps from a surrogate prediction, end-to-end median: k=1 {T['batch1_kstep'][0]['end_to_end_us_median']:.0f} µs, "
            f"k=2 {T['batch1_kstep'][1]['end_to_end_us_median']:.0f} µs, k=3 {T['batch1_kstep'][2]['end_to_end_us_median']:.0f} µs.\n"
            f"- Batch-1 cold solve (optimize, 2^12 Sobol, top-8): {T['batch1_cold']['end_to_end_us_median']:.0f} µs median "
@@ -454,12 +481,14 @@ Groups touched (repaired labels): {', '.join(f'{g} ({n})' for g, n in sorted(s12
 
 {tim}
 
-Batch-1 timings of the two certification runs (same code path, same machine, measured in each run):
+The batch-1 timings above are from the dedicated quiet re-timing, which **supersedes** the batch-1 timings recorded
+inside the two certification runs. Those were single passes taken during a heavy job and differ by up to about 2×; they
+are kept below as a documented caveat, not as results. {rt_note}
 
 {chr(10).join(timing_cmp)}
 
-They differ by up to about 2×, and k = 3 in this run is out of line with k = 1, 2. The usefulness verdicts below use
-this run's timings. Recomputed with the original-label run's timings, {('these rows change: ' + '; '.join(a_.split('|')[1].strip() + ' ' + a_.split('|')[2].strip() for a_, _ in flips)) if flips else 'no (i)/(ii) verdict changes'}.
+The usefulness verdicts below use the quiet re-timing. Recomputed with either certification run's timings,
+{('these rows change: ' + '; '.join(flips)) if flips else 'no (i)/(ii) verdict changes'}.
 - Batched baselines over all {M['config']['n_eval']} evaluation points (wall clock, this laptop): cold
   {M['baselines']['cold_batched_s']:.0f} s and warm {M['baselines']['warm_batched_s']:.0f} s in this certification;
   {M0['baselines']['cold_batched_s']:.0f} s and {M0['baselines']['warm_batched_s']:.0f} s in the original-label certification.
@@ -483,6 +512,27 @@ The two latencies are added across environments. Transfer between `.venv-qml` an
 ## Sparse training (Amendment 3; 2 km labels; its own tables, never pooled)
 
 {table(M, 'sparse', primary + ['ref_bulk', 'ref_tail'] + held)}
+
+## RFF-ridge: seed-to-seed spread
+
+The dense RFF-ridge median test_bulk regret varies by more than 10× between seeds. The per-seed diagnostics
+(`{os.path.relpath(latest('qml_rffdiag_*/rff_seeds.json'), ROOT)}`, recomputed from the saved frequencies and
+coefficients) point to the construction, not to a pipeline failure:
+
+{chr(10).join(rff_rows)}
+
+- Each seed draws only 14 random frequencies (random {{-1, 0, 1}} combinations of its own trained PQC input scalings).
+  Dense seed 1 drew mostly high frequencies (median |frequency| {rff['seeds']['dense__s1']['freq_abs_median']:.2f}, against
+  {min(v['freq_abs_median'] for k, v in rff['seeds'].items() if v['variant'] == 'dense' and v['seed'] != 1):.2f}–{max(v['freq_abs_median'] for k, v in rff['seeds'].items() if v['variant'] == 'dense' and v['seed'] != 1):.2f}
+  for the other dense seeds), and underfits.
+- The underfit is visible at training time: its training MSE equals its validation MSE (no overfitting) and both are
+  {rff_ratio[0]:.1f}–{rff_ratio[1]:.1f}× the other dense seeds'. Validation MSE varies by at most {rff_lamspread:.1f} % across the
+  λ grid for seed 1, so λ selection is not the cause (seed 1 chose λ = {rff['seeds']['dense__s1']['lam']:g}; seeds with
+  the same λ: {rff_same_lam}), and F^T F is well conditioned (condition number {rff['seeds']['dense__s1']['cond_FtF']:.1e}).
+- Across the dense seeds, the ranking by training MSE equals the ranking by test regret:
+  {rff['dense_rank_train_mse_equals_rank_test_regret']}.
+- So the spread is a property of the RFF-ridge as preregistered (14 random features per seed), not a fault of one
+  run. The mean ± sd over seeds in the tables includes seed 1 unchanged.
 
 ## Fourier spectrum of the trained PQC-full (selected configuration, seed 0, from tuning)
 
@@ -519,6 +569,8 @@ the figures are used as paper figures instead. Each one is listed with what it w
 - metrics, primary (repaired labels) `{os.path.relpath(mf, ROOT)}`
 - metrics, secondary (original labels) `{os.path.relpath(mf0, ROOT)}`
 - labels `{os.path.relpath(rep_path, ROOT)}`; repair `{lab['repair']}`
+- batch-1 timing (headline) `{os.path.relpath(rt_path, ROOT)}`
+- RFF-ridge seed diagnostics `{os.path.relpath(latest('qml_rffdiag_*/rff_seeds.json'), ROOT)}`
 - STATUS 12 checks `{os.path.relpath(latest('qml_coldcheck_*/two_sided.json'), ROOT)}`, `{os.path.relpath(latest('qml_suboptcheck_*/check.json'), ROOT)}`
 - figures: {', '.join('`' + os.path.relpath(f, ROOT) + '`' for f in figs)}
 

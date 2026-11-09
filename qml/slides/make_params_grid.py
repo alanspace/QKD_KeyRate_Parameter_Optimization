@@ -74,7 +74,7 @@ def main():
     fig.suptitle("The five optimal settings across distance: flat at short and medium range, changing fast near the maximum distance",
                  x=0.01, ha="left", fontsize=12)
     st = meta["stamp"]
-    fig.text(0.995, 0.003, f"labels {os.path.basename(f)} | phys {st['physics_source_hash']}", ha="right", fontsize=6, color="0.45")
+    fig.text(0.995, 0.995, f"labels {os.path.basename(f)} | phys {st['physics_source_hash']}", ha="right", va="top", fontsize=6, color="0.45")
     fig.tight_layout(rect=(0, 0.07, 1, 0.97))
     out = os.path.join(C.QML, "slides", "assets", "params_by_blocksize.png")
     fig.savefig(out, dpi=160); plt.close(fig)
