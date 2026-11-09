@@ -295,6 +295,17 @@ def horizon_errors(d, R_all, idxq):
     return out
 
 
+COLD_SLICE = 1000   # points per optimize_batch call; its global stage holds [points, 4096] arrays (all ~21k at once: OOM)
+
+
+def cold_sliced(L, nX, n_sobol=4096, top_k=8, seed=7, slice_=COLD_SLICE):
+    """optimize_batch over slices of points. Same Sobol set for every point and per-point top-k/local solves, so the
+    result does not depend on the slicing (checked against one unsliced call)."""
+    outs = [O.optimize_batch(L[s:s + slice_], nX[s:s + slice_], PRE, n_sobol=n_sobol, top_k=top_k, seed=seed)
+            for s in range(0, len(L), slice_)]
+    return {"R": np.concatenate([np.asarray(o["R"]) for o in outs])}
+
+
 def cmd_final(d, path, skip_baselines=False):
     from src.qkd_opt.provenance import stamp, to_jsonable
     f = latest("qml_final_*/predictions_query.npz")
@@ -310,7 +321,8 @@ def cmd_final(d, path, skip_baselines=False):
     evq = np.array([pos_in_q[int(i)] for i in ev])
     G = groups(d)
     cfg = dict(script="qml/certify.py --final", predictions=os.path.relpath(f, ROOT), labels=os.path.basename(path),
-               n_eval=int(ev.size), hybrid_k=[1, 2, 3], cold="optimize_batch 2^12 Sobol top-8 seed 7 (batched)",
+               n_eval=int(ev.size), hybrid_k=[1, 2, 3],
+               cold=f"optimize_batch 2^12 Sobol top-8 seed 7 (batched, slices of {COLD_SLICE} points)",
                warm="warm_solve max_iter 200 from neighbours()", smoke_eval=smoke)
     C.require_ac("certify --final")
     res = dict(stamp=stamp(cfg), config=cfg, keys={}, baselines={}, timing={})
@@ -348,7 +360,7 @@ def cmd_final(d, path, skip_baselines=False):
     if not skip_baselines:
         # scenario (i): cold solve at every evaluation point (batched), regret vs the same references
         t = time.perf_counter()
-        cold = O.optimize_batch(d["L"][ev], d["n_X"][ev], PRE, n_sobol=4096, top_k=8, seed=7)
+        cold = cold_sliced(d["L"][ev], d["n_X"][ev])
         rc = (reference_R(d, ev) - cold["R"]) / reference_R(d, ev)
         res["baselines"]["cold_batched_s"] = time.perf_counter() - t
         perpoint["cold"] = rc
