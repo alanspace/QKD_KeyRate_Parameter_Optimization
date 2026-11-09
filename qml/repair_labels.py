@@ -53,7 +53,8 @@ def main():
     import jax
     jax.config.update("jax_enable_x64", True)
     from src.qkd_opt import get_preset, check_x64, reparam
-    from src.qkd_opt.optimize import optimize_sweep, optimize_batch
+    from src.qkd_opt.optimize import optimize_sweep
+    from qml.cold import optimize_sliced
     from src.qkd_opt.provenance import stamp, to_jsonable
     check_x64()
     pre = get_preset("lim")
@@ -132,7 +133,9 @@ def main():
     rnd = rng.choice(sc, min(1000 if not a.quick else 50, sc.size), replace=False)
     chk = np.unique(np.concatenate([np.where(win)[0], rnd]))
     t0 = time.perf_counter()
-    cold = optimize_batch(rep["L"][chk], rep["n_X"][chk], pre, n_sobol=2 ** 14, top_k=16, seed=11)
+    print(f"[repair] backward sweep {sweep_s:.0f}s; gate: {chk.size} points ({int(win.sum())} in jump windows, "
+          f"{rnd.size} random), 2^14 Sobol", flush=True)
+    cold = optimize_sliced(rep["L"][chk], rep["n_X"][chk], pre, n_sobol=2 ** 14, top_k=16, seed=11, tag="gate")
     gate_s = time.perf_counter() - t0
     rel = (cold["R"] - R[chk]) / np.abs(R[chk])
     worse = chk[rel > 1e-9]

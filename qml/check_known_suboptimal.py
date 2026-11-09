@@ -49,7 +49,7 @@ def main():
     import jax
     jax.config.update("jax_enable_x64", True)
     from src.qkd_opt import get_preset, check_x64
-    from src.qkd_opt.optimize import optimize_batch
+    from qml.cold import optimize_sliced
     from src.qkd_opt.provenance import to_jsonable
     check_x64()
     pre = get_preset("lim")
@@ -67,7 +67,7 @@ def main():
     idx0 = np.array(idx0); win_of = np.array(win_of)
     idx1 = np.array([k1[(round(float(np.log10(d0["n_X"][i])), 6), round(float(d0["L"][i]), 9))] for i in idx0])
     t0 = time.perf_counter()
-    cold = optimize_batch(d0["L"][idx0], d0["n_X"][idx0], pre, n_sobol=2 ** 14, top_k=16, seed=11)
+    cold = optimize_sliced(d0["L"][idx0], d0["n_X"][idx0], pre, n_sobol=2 ** 14, top_k=16, seed=11, tag="check")
     cold_s = time.perf_counter() - t0
     Rc = np.asarray(cold["R"]); R0 = d0["R"][idx0]; R1 = d1["R"][idx1]
     rel0 = (Rc - R0) / np.abs(R0)

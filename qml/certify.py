@@ -295,33 +295,12 @@ def horizon_errors(d, R_all, idxq):
     return out
 
 
-# Points per optimize_batch call. Measured on the 32 GB Mac (2026-11-09): 1000 points peaked at 33.8 GB footprint
-# (~30 MB/point over a ~5 GB base) and swapped; all ~21k at once was OOM-killed. 200 -> predicted peak ~11 GB.
-COLD_SLICE = 200
+COLD_SLICE = 200    # see qml/cold.py for the measured memory per point
 
 
 def cold_sliced(L, nX, n_sobol=4096, top_k=8, seed=7, slice_=COLD_SLICE):
-    """optimize_batch over slices of points. Same Sobol set for every point and per-point top-k/local solves, so the
-    result does not depend on the slicing (checked against one unsliced call). The last slice is padded with copies of
-    its final point (trimmed afterwards) so every call has the same shape and nothing recompiles.
-    Prints one progress line per slice: time of this slice, elapsed, and remaining estimated from slices 2.. (slice 1
-    includes compilation)."""
-    n = len(L)
-    starts = list(range(0, n, slice_))
-    pad = starts[-1] + slice_ - n
-    Lp = np.concatenate([L, np.repeat(L[-1:], pad)]); nXp = np.concatenate([nX, np.repeat(nX[-1:], pad)])
-    outs, t0, first = [], time.perf_counter(), 0.0
-    for i, s in enumerate(starts, 1):
-        ts = time.perf_counter()
-        outs.append(O.optimize_batch(Lp[s:s + slice_], nXp[s:s + slice_], PRE, n_sobol=n_sobol, top_k=top_k, seed=seed))
-        el = time.perf_counter() - t0
-        if i == 1:
-            first, eta = el, "n/a"
-        else:
-            eta = f"{(el - first) / (i - 1) * (len(starts) - i):.0f}s"
-        print(f"[cold] slice {i}/{len(starts)} ({min(slice_, n - s)} pts): {time.perf_counter() - ts:.1f}s, "
-              f"elapsed {el:.0f}s, est. remaining {eta}", flush=True)
-    return {"R": np.concatenate([np.asarray(o["R"]) for o in outs])[:n]}
+    from qml.cold import optimize_sliced
+    return optimize_sliced(L, nX, PRE, n_sobol=n_sobol, top_k=top_k, seed=seed, slice_=slice_)
 
 
 def cmd_final(d, path, skip_baselines=False):
