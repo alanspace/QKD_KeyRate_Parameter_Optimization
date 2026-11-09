@@ -66,7 +66,7 @@ reference:
   points, and the run that produced the neural-network labels at \QKDLegacyOldFoRPctWithin\,\% (bulk) and
   \QKDLegacyTailOldFoRPctWithin\,\% (tail).
 \item The optimal parameters vary smoothly with $L$, apart from switches between competing local optima, where the
-  parameters jump but $R$ stays continuous. There are at least nine such switches below the maximal distance across
+  parameters jump but $R$ stays continuous. There are at least ten such switches below the maximal distance across
   the six block sizes (Section~\ref{sec:results}). No single sweep logged all of them.
 \item A warm-started single-point solve takes \QKDLimWarmDeviceUs\,$\mu$s on a laptop CPU.
 \end{itemize}
@@ -424,15 +424,17 @@ $n_X=10^9$\typed:
 \item Hessian: 1 jump.
 \end{itemize}
 For \plim, the optimal parameters also switch between competing local optima while the key is positive. At
-such a crossover the parameters jump while $R$ is continuous. At the six reference block sizes, at least nine such
-switches were found\typed. Each is confirmed either by independent cold solves ($2^{14}$ Sobol, top-16, 0.05\,km
-grid, where one parameter step is 35--1{,}522$\times$ the median step and $|\Delta R|/R$ equals its neighbours) or by
-the same jump test on the 1/32\,km label lattice:
+such a crossover the parameters jump while $R$ is continuous. At the six reference block sizes, at least ten such
+switches were found\typed. Each is confirmed by independent cold solves ($2^{14}$ Sobol, top-16, 0.05\,km
+grid, where one parameter step is 35--1{,}522$\times$ the median step and $|\Delta R|/R$ equals its neighbours), by
+the same jump test on the 1/32\,km label lattice, or (the second $10^5$ switch) by two converged optima at the same
+lattice points, the backward sweep's being better by up to $6.2\times10^{-5}$ (\texttt{STATUS.md} \S12):
 
 \begin{table}[H]\centering\small
 \fitbox{\begin{tabular}{lll}\toprule
 $n_X$ & crossover (km) & found by\\\midrule
 $10^5$ & 130.5--130.6 & benchmark sweep (detected at 135.3\,km, 7.7\,\% gain); dense forward and backward sweeps\\
+$10^5$ & 132.72--132.75 & backward sweep over the label lattice; the dense forward sweep switched about 0.09\,km late (132.81--132.84)\\
 $10^6$ & 118.5--118.6 & benchmark sweep (detected at 120.3\,km, 0.6\,\% gain); dense forward and backward sweeps\\
 $10^6$ & 138.50--138.55 & dense forward sweep (unlogged jump)\\
 $10^7$ & 105.35--105.40 & backward sweep; the dense forward sweep placed it 0.55\,km too late (105.95)\\
@@ -443,13 +445,16 @@ $10^9$ & 77.55--77.60 & dense forward sweep (unlogged jump at 77.75; open issue~
 $10^9$ & 128.65--128.70 & dense forward sweep\\\bottomrule
 \end{tabular}}
 \caption[Below-horizon branch switches]{Below-horizon switches between competing optima at the six reference block
-sizes. None was found at $n_X=10^4$. A tenth candidate ($10^5$, 132.80--132.85\,km) shows only an 8$\times$ step and is
-not counted.
+sizes. None was found at $n_X=10^4$.
 
-The list is not exhaustive, because cold-solve confirmation was run only around candidate jumps.
+The list is not exhaustive. Cold-solve confirmation was run only around candidate jumps, and a cold solve ($2^{14}$
+Sobol, top-16) can itself miss the better branch next to a crossover: at 21 label points a warm sweep (forward or backward) beats it
+by up to $3.7\times10^{-4}$ (\texttt{STATUS.md} \S12). Cold-solve agreement is therefore a lower-bound check, not
+proof of global optimality. An earlier version did not count the $10^5$ switch at 132.7\,km, because cold solves
+showed only an 8$\times$ step there.
 
 Sources: benchmark sweep \path{results/benchmark_lim_*/summary.json}; dense forward label sweep on branch
-\texttt{qml-surrogate} (\texttt{STATUS.md} \S10, \S10a, \S10d); backward sweep (\S11(b)); cold solves (\S11(c)).}\label{tab:switches}
+\texttt{qml-surrogate} (\texttt{STATUS.md} \S10, \S10a, \S10d); backward sweep (\S11(b)); cold solves (\S11(c)); label repair and the cold-solve limit (\S12).}\label{tab:switches}
 \end{table}
 
 The benchmark warm sweep logged only the first two switches. At the reference points it is nevertheless optimal: it
@@ -664,7 +669,7 @@ Every comparison in the QML project should be framed against this criterion.
 The parameter-optimisation problem for finite-key decoy-state BB84 is now solved to within $10^{-12}$ relative
 regret of an independently cross-checked best-known reference (cliff\_edge points excluded), on a corrected model which is validated against the paper and against an independent implementation:
 \begin{itemize}
-\item the optimal parameters vary smoothly with distance, apart from switches between competing optima (at least nine
+\item the optimal parameters vary smoothly with distance, apart from switches between competing optima (at least ten
   below the horizon at the six block sizes);
 \item the horizons and key rates are reproducible from scripts with recorded provenance;
 \item the earlier speed-up, stability and neural-network claims are withdrawn.
