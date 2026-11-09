@@ -289,7 +289,7 @@ def main():
                  "verdicts use, were measured in the same session" if pw_.get("low_power_mode") == 1 else ""))
     rt_note = (f"Quiet re-timing `{os.path.relpath(rt_path, ROOT)}`: {RT['config']['n_passes']} full passes; {pw_txt}; 1-min load average before {ib['load_1_5_15'][0]:.2f} (limit "
                f"{RT['config']['max_load']}), after each pass " + ", ".join(f"{p_['load_1min_after']:.2f}" for p_ in RT["passes"])
-               + "; no other qml or benchmark job running.")
+               + " (1-min averages that include the timing process itself; pass 1 also compiles); no other qml or benchmark job running.")
     rff = json.load(open(latest("qml_rffdiag_*/rff_seeds.json")))
     s1_ = rff["seeds"]["dense__s1"]
     others_ = [v for v in rff["seeds"].values() if v["variant"] == "dense" and v["seed"] != 1]
