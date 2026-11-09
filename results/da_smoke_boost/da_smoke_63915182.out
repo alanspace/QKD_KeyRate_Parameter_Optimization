@@ -1,0 +1,5 @@
+Model name:          Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz
+warm-up (JIT compile) 9.0s
+L=50.0 n_X=1e+09 L-BFGS-B maxiter=500 nfev=21 R=8.4965e-04 0.0s
+L=130.0 n_X=1e+09 dual_annealing maxiter=7500 nfev=75007 R=1.8465e-05 19.5s
+L=180.0 n_X=1e+09 dual_annealing maxiter=15000 nfev=150013 R=8.4784e-08 38.8s

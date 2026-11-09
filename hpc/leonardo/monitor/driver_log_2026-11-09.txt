@@ -1,0 +1,3 @@
+2026-11-09_12:57:00 submitted qml_final 63980051 array 7,8
+2026-11-09_13:27:49 submitted da_merge 63982538
+2026-11-09_13:32:39 resubmitted da_merge 63982773 whole node (prev OOM at 123G)

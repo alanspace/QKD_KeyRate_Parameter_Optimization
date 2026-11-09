@@ -1,0 +1,7 @@
+Model name:          Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz
+warm-up (JIT compile) 6.6s
+Traceback (most recent call last):
+  File "/leonardo_scratch/large/userexternal/sleung00/WORK/qkd/da_smoke_boost.py", line 15, in <module>
+    print(f"L={L} n_X={nx:.0e} {r[method]} maxiter={r[maxiter]} nfev={r[nfev]} R={r[R]:.4e} {r[seconds]:.1f}s", flush=True)
+                                  ^^^^^^
+NameError: name 'method' is not defined
